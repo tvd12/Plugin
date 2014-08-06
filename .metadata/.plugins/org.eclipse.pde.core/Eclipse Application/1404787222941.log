@@ -1,0 +1,60 @@
+!SESSION 2014-07-08 09:40:22.694 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.6.0_65
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.sdk.ide
+Command-line arguments:  -product org.eclipse.sdk.ide -data /Volumes/Working/GitHub/Plugin/../runtime-EclipseApplication -dev file:/Volumes/Working/GitHub/Plugin/.metadata/.plugins/org.eclipse.pde.core/Eclipse Application/dev.properties -debug /Volumes/Working/GitHub/Plugin/.metadata/.plugins/org.eclipse.pde.core/Eclipse Application/.options -os macosx -ws cocoa -arch x86_64 -consoleLog
+
+!ENTRY com.tvd.study.plugin 4 0 2014-07-08 09:40:26.299
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.tvd.study.plugin [9]
+  Unresolved requirement: Require-Bundle: org.junit4
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.equinox.app 0 0 2014-07-08 09:40:27.693
+!MESSAGE Product org.eclipse.sdk.ide could not be found.
+
+!ENTRY com.tvd.study.plugin 2 0 2014-07-08 09:40:27.961
+!MESSAGE Could not resolve module: com.tvd.study.plugin [9]
+  Unresolved requirement: Require-Bundle: org.junit4
+
+
+!ENTRY org.eclipse.core.filesystem.java7 2 0 2014-07-08 09:40:27.962
+!MESSAGE Could not resolve module: org.eclipse.core.filesystem.java7 [47]
+  Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+  Unresolved requirement: Fragment-Host: org.eclipse.core.filesystem; bundle-version="[1.4.100,2.0.0)"
+
+
+!ENTRY org.eclipse.jdt.annotation 2 0 2014-07-08 09:40:27.963
+!MESSAGE Could not resolve module: org.eclipse.jdt.annotation [157]
+  Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+
+!ENTRY org.eclipse.osgi 4 0 2014-07-08 09:40:27.963
+!MESSAGE Application error
+!STACK 1
+java.lang.RuntimeException: No application id has been found.
+	at org.eclipse.equinox.internal.app.EclipseAppContainer.startDefaultApp(EclipseAppContainer.java:242)
+	at org.eclipse.equinox.internal.app.MainApplicationLauncher.run(MainApplicationLauncher.java:29)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:382)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:236)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1438)

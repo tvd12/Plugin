@@ -1,0 +1,46 @@
+package com.tvd.gameview.plugin.model;
+
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.DirectoryDialog;
+import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+
+class FileSelectionField {
+	
+	private void createFields() {
+		
+	}
+	
+	public Label getLabel() {
+		return mLabel;
+	}
+	public void setLabel(Label pLabel) {
+		this.mLabel = pLabel;
+	}
+	public Text getText() {
+		return mText;
+	}
+	public void setText(Text pText) {
+		this.mText = pText;
+	}
+	public Button getBrowseButton() {
+		return mBrowseButton;
+	}
+	public void setBrowseButton(Button pBrowseButton) {
+		this.mBrowseButton = pBrowseButton;
+	}
+	
+	public static class Builder {
+		
+	}
+	
+	protected Label mLabel;
+	protected Text mText;
+	protected Button mBrowseButton;
+	protected FileDialog mFileDialog;
+	protected DirectoryDialog mDirectoryDialog;
+	
+	protected Composite mParent;
+}

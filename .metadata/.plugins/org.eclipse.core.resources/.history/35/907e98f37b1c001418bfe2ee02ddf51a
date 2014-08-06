@@ -1,0 +1,7 @@
+package com.tvd.gameview.plugin.model;
+
+public class DirectorySelectionField extends FileSelectionField {
+	public DirectorySelectionField() {
+		// TODO Auto-generated constructor stub
+	}
+}

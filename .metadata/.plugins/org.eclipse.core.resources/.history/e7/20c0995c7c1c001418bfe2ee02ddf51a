@@ -1,0 +1,26 @@
+package com.tvd.gameview.plugin.model;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.DirectoryDialog;
+import org.eclipse.swt.widgets.FileDialog;
+
+public class DirectorySelectionField extends FileSelectionField {
+	public DirectorySelectionField(Builder pBuilder) {
+		super(pBuilder);
+	}
+	
+	@Override
+	protected void addListeners() {
+		this.mDirectoryDialog = new DirectoryDialog(mParent.getShell(), SWT.OPEN);
+		this.mBrowseButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				mText.setText(mDirectoryDialog.open());
+			}
+		});
+	}
+	
+	protected DirectoryDialog mDirectoryDialog;
+}

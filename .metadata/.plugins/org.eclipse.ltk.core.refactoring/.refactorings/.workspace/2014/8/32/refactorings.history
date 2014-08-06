@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;development-d2f2b1d7b77d06bce8cf9340171cf6c25cd720c4-tools-eclipse-plugins-com.android.ide.eclipse.adt&apos;" deleteContents="false" description="Delete resource &apos;development-d2f2b1d7b77d06bce8cf9340171cf6c25cd720c4-tools-eclipse-plugins-com.android.ide.eclipse.adt&apos;" element1="/development-d2f2b1d7b77d06bce8cf9340171cf6c25cd720c4-tools-eclipse-plugins-com.android.ide.eclipse.adt" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1407134845691"/>
+</session>
