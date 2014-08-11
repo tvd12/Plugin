@@ -3,8 +3,6 @@ package com.packtpub.e4.clock.ui;
 import java.util.Arrays;
 import java.util.TimeZone;
 
-import javax.inject.Inject;
-
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.ColorFieldEditor;
 import org.eclipse.jface.preference.ComboFieldEditor;
@@ -25,8 +23,6 @@ public class ClockPreferencePage
 		extends FieldEditorPreferencePage 
 		implements IWorkbenchPreferencePage {
 
-	@Inject private String name;
-	
 	public ClockPreferencePage() {
 		super(FieldEditorPreferencePage.GRID);
 	}

@@ -36,6 +36,8 @@
 	<section name="TracingTab">
 		<item value="org.eclipse.ui" key="selectedPlugin"/>
 	</section>
+	<section name="targetStateView">
+	</section>
 	<section name="pde-form-editor">
 		<item value="dependencies" key="org.eclipse.pde.ui.manifestEditor"/>
 	</section>
