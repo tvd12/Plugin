@@ -1,0 +1,27 @@
+package com.tvd.gameview.views;
+
+import java.util.List;
+
+public class BuildingListElement {
+
+	public void addChilds(String[] strs) {
+		
+	}
+	
+	public void addChild(String str) {
+		
+	}
+	
+	public void addChild(BuildingListElement element) {
+		
+	}
+	
+	public BuildingListElement getChild() {
+		return mChild;
+	}
+	public String getName() {
+		return mName;
+	}
+	private List<BuildingListElement> mChilds;
+	private String mName;
+}

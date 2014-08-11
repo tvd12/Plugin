@@ -1,0 +1,201 @@
+package com.tdgc.cocos2dx.popup.creator.global;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Config {
+	
+	private Config() {
+		mNormalPropertyPrefix = "m";
+		mDefaultSupers = new HashMap<String, String>();
+		mProjectName = "DragonVideoPoker";
+		mDefaultSupers.put("popup", "PopUpLayer");
+	}
+
+	public static Config getInstance() {
+		if(sInstance == null) {
+			synchronized (Config.class) {
+				if(sInstance == null) {
+					sInstance = new Config();
+				}
+			}
+		}
+		
+		return sInstance;
+	}
+	
+	public String getNormalPropertyPrefix() {
+		return this.mNormalPropertyPrefix;
+	}
+	
+	public String getDefautSuper(String pClassName) {
+		return mDefaultSupers.get(pClassName);
+	}
+	
+	public String getProjectName() {
+		return this.mProjectName;
+	}
+	
+	public void setPrefix(String pPrefix) {
+		this.mPrefix = pPrefix;
+	}
+	
+	public String getPrefix() {
+		return this.mPrefix;
+	}
+	
+	public String getDefaultParentPopup() {
+		return "mBackgroundSprite";
+	}
+	
+	public Map<String, String> getDefaultSupers() {
+		return mDefaultSupers;
+	}
+
+	public String getDefinePath() {
+		return mDefinePath;
+	}
+
+	public String getParametersPath() {
+		return mParametersPath;
+	}
+
+	public String getImagesInputPath() {
+		return mImagesInputPath;
+	}
+
+	public String getImagesPath() {
+		return mImagesPath;
+	}
+
+	public String getXibContainerPath() {
+		return mXibContainerPath;
+	}
+
+	public String getClassPath() {
+		return mClassPath;
+	}
+	
+	public String getDefaultMenuItemParent() {
+		return this.mDefaultMenuItemParent;
+	}
+	
+	public String getScreenContainerPath() {
+		return this.mScreenContainerPath;
+	}
+	
+	public String getmProjectName() {
+		return mProjectName;
+	}
+
+	public void setmProjectName(String mProjectName) {
+		this.mProjectName = mProjectName;
+	}
+
+	public String getmNormalPropertyPrefix() {
+		return mNormalPropertyPrefix;
+	}
+
+	public void setmNormalPropertyPrefix(String mNormalPropertyPrefix) {
+		this.mNormalPropertyPrefix = mNormalPropertyPrefix;
+	}
+
+	public Map<String, String> getmDefaultSupers() {
+		return mDefaultSupers;
+	}
+
+	public void setmDefaultSupers(Map<String, String> mDefaultSupers) {
+		this.mDefaultSupers = mDefaultSupers;
+	}
+
+	public String getmPrefix() {
+		return mPrefix;
+	}
+
+	public void setmPrefix(String mPrefix) {
+		this.mPrefix = mPrefix;
+	}
+
+	public String getmDefinePath() {
+		return mDefinePath;
+	}
+
+	public void setmDefinePath(String mDefinePath) {
+		this.mDefinePath = mDefinePath;
+	}
+
+	public String getmParametersPath() {
+		return mParametersPath;
+	}
+
+	public void setmParametersPath(String mParametersPath) {
+		this.mParametersPath = mParametersPath;
+	}
+
+	public String getmImagesInputPath() {
+		return mImagesInputPath;
+	}
+
+	public void setmImagesInputPath(String mImagesInputPath) {
+		this.mImagesInputPath = mImagesInputPath;
+	}
+
+	public String getmImagesPath() {
+		return mImagesPath;
+	}
+
+	public void setmImagesPath(String mImagesPath) {
+		this.mImagesPath = mImagesPath;
+	}
+
+	public String getmXibContainerPath() {
+		return mXibContainerPath;
+	}
+
+	public void setmXibContainerPath(String mXibContainerPath) {
+		this.mXibContainerPath = mXibContainerPath;
+	}
+
+	public String getmClassPath() {
+		return mClassPath;
+	}
+
+	public void setmClassPath(String mClassPath) {
+		this.mClassPath = mClassPath;
+	}
+
+	public String getmDefaultMenuItemParent() {
+		return mDefaultMenuItemParent;
+	}
+
+	public void setmDefaultMenuItemParent(String mDefaultMenuItemParent) {
+		this.mDefaultMenuItemParent = mDefaultMenuItemParent;
+	}
+
+	public String getmScreenContainerPath() {
+		return mScreenContainerPath;
+	}
+
+	public void setmScreenContainerPath(String mScreenContainerPath) {
+		this.mScreenContainerPath = mScreenContainerPath;
+	}
+
+
+
+	private String mProjectName;
+	private String mNormalPropertyPrefix;
+	private Map<String, String> mDefaultSupers;
+	private String mPrefix;
+	private String mDefinePath;
+	private String mParametersPath;
+	private String mImagesInputPath;
+	private String mImagesPath;
+	private String mXibContainerPath;
+	private String mClassPath;
+//	private String mProjectPath;
+	private String mDefaultMenuItemParent;
+	private String mScreenContainerPath;
+	
+	private static Config sInstance;
+	
+}

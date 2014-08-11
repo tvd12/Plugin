@@ -1,0 +1,262 @@
+package com.tvd.study.linuxsagas.plugin.page;
+
+import java.io.InputStream;
+
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+
+import com.tvd.gameview.plugin.model.DirectorySelectionField;
+import com.tvd.gameview.plugin.model.FileSelectionField;
+import com.tvd.gameview.plugin.model.ProjectChooserHelper;
+import com.tvd.study.linuxsagas.plugin.utils.MessageUtils;
+
+public class NewGameViewFilePage extends WizardPage {
+
+	public NewGameViewFilePage(String pageName,
+			IStructuredSelection selection) {
+		super(pageName);
+		this.setPageComplete(false);
+	}
+	
+	@Override
+	public void createControl(Composite parent) {
+		Composite composite = new Composite(parent, SWT.NULL);
+		composite.setFont(parent.getFont());
+		
+		this.initializeDialogUnits(parent);
+		
+		composite.setLayout(new GridLayout(3, false));
+		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
+        
+        this.createDefineGroup(composite);
+        this.createSeparator(composite);
+        
+        this.createImageGroup(composite);
+        this.createSeparator(composite);
+        
+        this.createScreenContainerGroup(composite);
+        this.createSeparator(composite);
+        
+        this.createClassContainerGroup(composite);
+        this.createSeparator(composite);
+        
+        this.createProjectsGroup(composite);
+        
+		this.setErrorMessage(null);
+		this.setMessage(null);
+		this.setControl(composite);
+		
+		this.validatePage();
+	}
+	
+	
+	protected boolean validatePage() {
+		return false;
+	}
+	private void createDefineGroup(final Composite parent) {
+		this.mDefineSelectionField = new FileSelectionField.Builder(parent)
+				.setLabelText("Define path:")
+				.build();
+		this.mParamsSelectionField = new FileSelectionField.Builder(parent)
+			.setLabelText("Parameters path:")
+			.build();
+		this.mDefineSelectionField.getText().addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent e) {
+				updateText((Text)e.getSource());
+			}
+		});
+		this.mParamsSelectionField.getText().addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent e) {
+				updateText((Text)e.getSource());
+			}
+		});
+	}
+	
+	private void createImageGroup(final Composite parent) {
+		this.mImageInputPathField = new DirectorySelectionField.Builder(parent)
+			.setLabelText("Images input path:")
+			.build();
+		this.mImageOutputPathField = new DirectorySelectionField.Builder(parent)
+			.setLabelText("Images output path:")
+			.build();
+		
+	}
+	
+	private void createScreenContainerGroup(final Composite parent) {
+		this.mXibContainerPathField = new DirectorySelectionField.Builder(parent)
+			.setLabelText("Xib container path: ")
+			.build();
+		this.mScreenContainerPathField = new DirectorySelectionField.Builder(parent)
+			.setLabelText("Screen container path: ")
+			.build();
+	}
+	
+	private void createClassContainerGroup(final Composite parent) {
+		this.mClassPathField = new DirectorySelectionField.Builder(parent)
+			.setLabelText("Class path")
+			.build();
+	}
+	
+	private void createProjectsGroup(Composite parent) {
+        String tooltip = "The Android Project where the new resource file will be created.";
+        Label label = new Label(parent, SWT.NONE);
+        label.setText("Project: ");
+        label.setToolTipText(tooltip);
+        
+        mProjectCombo = new GameViewProjectCombo(parent);
+        
+        emptyCell(parent);
+        
+        createFileNameField(parent);
+        
+    }
+	
+	private void createFileNameField(Composite parent) {
+		Label label = new Label(parent, SWT.NONE);
+        label.setText("File");
+        label.setToolTipText("The name of view");
+        
+        mFileNameTextField = new Text(parent, SWT.BORDER);
+        mFileNameTextField.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        mFileNameTextField.setToolTipText("The name of the resource file to create.");
+        mFileNameTextField.addModifyListener(new ModifyListener() {
+            public void modifyText(ModifyEvent e) {
+                validatePage();
+            }
+        });
+        
+        emptyCell(parent);
+        
+    }
+	
+	
+	private void createSeparator(Composite composite) {
+		Label rootSeparator = new Label(composite, SWT.SEPARATOR | SWT.HORIZONTAL);
+        GridData gd = new GridData(GridData.GRAB_HORIZONTAL);
+        gd.horizontalAlignment = SWT.FILL;
+        gd.horizontalSpan = 3;
+        rootSeparator.setLayoutData(gd);
+	}
+	
+	
+    private void emptyCell(Composite parent) {
+        new Label(parent, SWT.NONE);
+    }
+    
+    private void updateText(Text text) {
+		String str = text.getText();
+		if(str == null || str.equals("")) {
+			return;
+		}
+		String fileName = str.substring(str.lastIndexOf('/') + 1);
+		if(fileName.contains(".")) {
+			str = str.substring(0, str.lastIndexOf('.'));
+			text.setText(str);
+		}
+    }
+    
+    private void setTextForTextFieldWithProject(IProject project) {
+    	if(project != null) {
+			try {
+				InputStream inputStream = 
+						project.getFile("src/com/properties/global.properties")
+						.getContents();
+				String gameProject = MessageUtils.getString(inputStream, "game_project");
+				mDefineSelectionField.getText().setText(gameProject
+						+ "/Classes/Utils/Defines");
+				mParamsSelectionField.getText().setText(gameProject 
+						+ "/Classes/Utils/GameParams");
+				mXibContainerPathField.getText().setText(gameProject
+						+ "/Resources/screenshots");
+				mScreenContainerPathField.getText().setText(gameProject
+						+ "/Wireframing/WireframingScreen");
+				
+			} catch (CoreException ex) {
+				ex.printStackTrace();
+			}
+		}
+    }
+	
+    private class GameViewProjectCombo extends ProjectChooserHelper.ProjectCombo {
+
+		public GameViewProjectCombo(Composite parent) {
+			super(parent);
+			setTextForTextFieldWithProject(mInitialProject);
+		}
+		
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+			super.widgetSelected(e);
+			setTextForTextFieldWithProject(mProject);
+		}
+    	
+    }
+    
+	private DirectorySelectionField mClassPathField;
+	
+	private DirectorySelectionField mXibContainerPathField;
+	private DirectorySelectionField mScreenContainerPathField;
+	
+	private DirectorySelectionField mImageInputPathField;
+	private DirectorySelectionField mImageOutputPathField;
+	
+	private FileSelectionField mDefineSelectionField;
+	private FileSelectionField mParamsSelectionField;
+	
+
+	public DirectorySelectionField getClassPathField() {
+		return mClassPathField;
+	}
+
+	public DirectorySelectionField getXibContainerPathField() {
+		return mXibContainerPathField;
+	}
+
+	public DirectorySelectionField getScreenContainerPathField() {
+		return mScreenContainerPathField;
+	}
+
+	public DirectorySelectionField getImageInputPathField() {
+		return mImageInputPathField;
+	}
+
+	public DirectorySelectionField getImageOutputPathField() {
+		return mImageOutputPathField;
+	}
+
+	public FileSelectionField getDefineSelectionField() {
+		return mDefineSelectionField;
+	}
+
+	public FileSelectionField getParamsSelectionField() {
+		return mParamsSelectionField;
+	}
+
+	public Combo getProjectCombo() {
+		return mProjectCombo;
+	}
+
+	public Text getFileNameTextField() {
+		return mFileNameTextField;
+	}
+
+	private Combo mProjectCombo;
+	private Text mFileNameTextField;
+}
+

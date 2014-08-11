@@ -1,0 +1,92 @@
+package com.tvd.gameview.ui.internal;
+
+import java.io.InputStream;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.core.resources.IResourceProxy;
+import org.eclipse.core.resources.IResourceProxyVisitor;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Status;
+
+import com.tvd.gamview.ext.Activator;
+import com.tvd.gamview.ext.utils.MessageUtils;
+
+
+public class SdkPropetiesFileVisitor implements IResourceProxyVisitor,
+	IResourceDeltaVisitor {	
+
+	@Override
+	public boolean visit(IResourceDelta delta) throws CoreException {
+		System.out.println("SdkPropetiesFileVisitor::visit::delta.getKind = " + delta.getKind());
+		boolean deleted = (IResourceDelta.REMOVED & delta.getKind()) != 0;
+		boolean changed = (IResourceDelta.CHANGED & delta.getKind()) != 0;
+		IResource resource = delta.getResource();
+		String name = resource.getName();
+		if(name.endsWith(".properties")) {
+			if(deleted) {
+				System.out.println("file " + name + " has deleted");
+			} else if(changed) {
+				processPropertiesResource(resource);
+			}
+		} 
+		return true;
+	}
+	
+	@Override
+	public boolean visit(IResourceProxy proxy) throws CoreException {
+		System.out.println("SdkPropetiesFileVisitor::visit::proxy");
+		String name = proxy.getName();
+		if(name != null && name.endsWith(""))
+			processPropertiesResource(proxy.requestResource());
+		return true;
+	}
+	
+	private void processPropertiesResource(IResource resource) 
+			throws CoreException {
+		if(resource instanceof IFile && resource.exists()) {
+			try {
+				IFile file = (IFile)resource;
+				String name = file.getName();
+				IProject project = resource.getProject();
+				System.out.println("processResource path = " + file.getProjectRelativePath().toString());
+				if(name.equals("global.properties")) {
+					InputStream inputStream = 
+							project.getFile("src/com/properties/global.properties")
+							.getContents();
+					String deviceStr = MessageUtils.getString(inputStream, "devices");
+					String devices[] = (deviceStr.contains(",")) 
+							? deviceStr.split(",") : new String[] {deviceStr};
+					for(int i = 0 ; i < devices.length ; i++) {
+						IFolder xml = project.getFolder("resource/xml/" + devices[i]);
+						if(!xml.exists()) {
+							xml.create(true, true, null);
+						}
+						
+						IFolder xib = project.getFolder("resources/xib/" + devices[i]);
+						if(!xib.exists()) {
+							xib.create(true, true, null);
+						}
+						
+						IFolder screen = project.getFolder("resources/screen/" + devices[i]);
+						if(!screen.exists()) {
+							screen.create(true, true, null);
+						}
+						
+						IFolder android = project.getFolder("resources/android/" + devices[i]);
+						if(!android.exists()) {
+							android.create(true, true, null);
+						}
+					}
+				}
+			} catch (CoreException e) {
+				throw new CoreException(new Status(Status.ERROR,
+						Activator.PLUGIN_ID, "Failed to generate resource", e));
+			}
+		}
+	}
+}

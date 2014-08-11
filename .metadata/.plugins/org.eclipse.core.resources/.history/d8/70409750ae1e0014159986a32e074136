@@ -1,0 +1,11 @@
+
+
+import org.eclipse.ui.texteditor.AbstractDecoratedTextEditor;
+
+
+public class SdkXMLEditor extends AbstractDecoratedTextEditor {
+
+	public SdkXMLEditor() {
+		
+	}
+}

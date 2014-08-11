@@ -1,0 +1,136 @@
+package com.tvd.gameview.ui.natures;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
+import org.eclipse.core.resources.ICommand;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IProjectNature;
+import org.eclipse.core.runtime.CoreException;
+
+import com.tvd.gameview.ui.builder.SdkPropertiesFileBuilder;
+import com.tvd.gameview.ui.builder.SdkXMLFileBuilder;
+
+public class SdkFileNature implements IProjectNature {
+	
+	@Override
+	public void configure() throws CoreException {
+		System.out.println("SdkXMLFileNature::configure");
+		IProjectDescription desc = mProject.getDescription();
+		List<ICommand> commands = new ArrayList<ICommand>(
+				Arrays.asList(desc.getBuildSpec()));
+		Iterator<ICommand> iterator = commands.iterator();
+		while(iterator.hasNext()) {
+			ICommand command = iterator.next();
+			if(SdkXMLFileBuilder.ID.equals(command.getBuilderName())) {
+				return;
+			}
+		}
+		ICommand newCommand = desc.newCommand();
+		newCommand.setBuilderName(SdkXMLFileBuilder.ID);
+		commands.add(newCommand);
+		
+		while(iterator.hasNext()) {
+			ICommand command = iterator.next();
+			if(SdkPropertiesFileBuilder.ID.equals(command.getBuilderName())) {
+				return;
+			}
+		}
+		
+		newCommand = desc.newCommand();
+		newCommand.setBuilderName(SdkPropertiesFileBuilder.ID);
+		commands.add(newCommand);
+		desc.setBuildSpec(commands.toArray(new ICommand[0]));
+		mProject.setDescription(desc, null);
+	}
+
+	@Override
+	public void deconfigure() throws CoreException {
+		System.out.println("SdkXMLFileNature::deconfigure");
+		IProjectDescription desc = mProject.getDescription();
+		List<ICommand> commands = new ArrayList<ICommand>(
+				Arrays.asList(desc.getBuildSpec()));
+		Iterator<ICommand> iterator = commands.iterator();
+		while (iterator.hasNext()) {
+			iterator.remove();
+		}
+		desc.setBuildSpec(commands.toArray(new ICommand[0]));
+		mProject.setDescription(desc, null);
+	}
+
+	@Override
+	public IProject getProject() {
+		return mProject;
+	}
+
+	@Override
+	public void setProject(IProject project) {
+		mProject = project;
+	}
+	
+	public static void configureXMLFileBuiler(IProject project) 
+			throws CoreException {
+		// get the builder list
+        IProjectDescription desc = project.getDescription();
+        ICommand[] commands = desc.getBuildSpec();
+        // look for the builder in case it's already there.
+        for (int i = 0; i < commands.length; ++i) {
+            if (SdkXMLFileBuilder.ID.equals(commands[i].getBuilderName())) {
+                return;
+            }
+        }
+        // it's not there, lets add it at the beginning of the builders
+        ICommand[] newCommands = new ICommand[commands.length + 1];
+        System.arraycopy(commands, 0, newCommands, 1, commands.length);
+        ICommand command = desc.newCommand();
+        command.setBuilderName(SdkXMLFileBuilder.ID);
+        newCommands[0] = command;
+        desc.setBuildSpec(newCommands);
+        project.setDescription(desc, null);
+	}
+	
+	public static void configurePropertiesFileBuilder(IProject project) 
+			throws CoreException {
+		// get the builder list
+        IProjectDescription desc = project.getDescription();
+        ICommand[] commands = desc.getBuildSpec();
+        // look for the builder in case it's already there.
+        for (int i = 0; i < commands.length; ++i) {
+            if (SdkPropertiesFileBuilder.ID.equals(commands[i].getBuilderName())) {
+                return;
+            }
+        }
+        // we need to add it after the resource manager builder.
+        // Let's look for it
+        int index = -1;
+        for (int i = 0; i < commands.length; ++i) {
+            if (SdkXMLFileBuilder.ID.equals(commands[i].getBuilderName())) {
+                index = i;
+                break;
+            }
+        }
+        // we're inserting after
+        index++;
+        // do the insertion
+        // copy the builders before.
+        ICommand[] newCommands = new ICommand[commands.length + 1];
+        System.arraycopy(commands, 0, newCommands, 0, index);
+        // insert the new builder
+        ICommand command = desc.newCommand();
+        command.setBuilderName(SdkPropertiesFileBuilder.ID);
+        newCommands[index] = command;
+        // copy the builder after
+        System.arraycopy(commands, index, newCommands, index + 1, commands.length-index);
+        // set the new builders in the project
+        desc.setBuildSpec(newCommands);
+        project.setDescription(desc, null);
+	}
+
+	public static final String ID = 
+			"com.tvd.gamview.ext.SdkFileNature";
+	private IProject mProject;
+	
+}

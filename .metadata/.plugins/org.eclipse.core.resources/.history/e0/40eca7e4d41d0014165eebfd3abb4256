@@ -1,0 +1,7 @@
+package com.tdgc.cocos2dx.popup.creator.constants;
+
+public interface Constants {
+	public static final String DONT_DELETE_THIS_LINE 	= "//don't modify or delete this line";
+	public static final String IMAGEVIEW_TAG_MARK 		= "<!--{imageview_tag}-->";
+	public static final String IMAGE_TAG_MARK			= "<!--{image_tag}-->";
+}

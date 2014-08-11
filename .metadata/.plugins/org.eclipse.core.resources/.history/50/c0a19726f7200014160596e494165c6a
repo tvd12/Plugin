@@ -1,0 +1,5 @@
+package com.tvd.gameview.views;
+
+public class BuildingListSelectionListener {
+
+}

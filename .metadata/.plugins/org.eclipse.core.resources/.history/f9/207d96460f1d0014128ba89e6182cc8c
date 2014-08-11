@@ -1,0 +1,35 @@
+package com.tvd.gameview.plugin.model;
+
+import org.eclipse.core.resources.IProject;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
+
+import com.tvd.study.linuxsagas.plugin.utils.ProjectUtils;
+
+public class ProjectChooserHelper {
+
+	public class ProjectCombo extends Combo implements SelectionListener {
+
+		public ProjectCombo(Composite parent, int style) {
+			super(parent, SWT.BORDER | SWT.FLAT | SWT.READ_ONLY);
+			mInitialProject = ProjectUtils.getActiveSdkProject();
+			
+		}
+
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+			
+		}
+
+		@Override
+		public void widgetDefaultSelected(SelectionEvent e) {
+			
+		}
+		
+		private IProject mInitialProject;
+		private IProject[] mAvailableProjects;
+	}
+}

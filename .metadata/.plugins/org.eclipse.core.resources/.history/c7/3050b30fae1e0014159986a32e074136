@@ -1,0 +1,10 @@
+package com.tvd.gameview.ui;
+
+import org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorActionBarContributor;
+
+public class SdkXMLEditor extends XMLMultiPageEditorActionBarContributor {
+
+	public SdkXMLEditor() {
+		
+	}
+}

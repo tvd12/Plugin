@@ -1,0 +1,7 @@
+package com.tvd.gameview.ui.internal;
+
+import org.eclipse.core.resources.IResourceProxy;
+
+public class SdkFileVisitor implements IResourceProxy {
+	
+}

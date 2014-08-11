@@ -1,0 +1,64 @@
+ package com.tvd.study.linuxsagas.plugin.wizard;
+
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.ui.INewWizard;
+import org.eclipse.ui.IWorkbench;
+
+import com.tdgc.cocos2dx.popup.creator.constants.Device;
+import com.tdgc.cocos2dx.popup.creator.global.Config;
+import com.tdgc.cocos2dx.popup.creator.xml.XmlFileBuilder;
+import com.tvd.study.linuxsagas.plugin.page.NewGameViewFilePage;
+import com.tvd.study.linuxsagas.plugin.utils.MessageUtils;
+
+public class NewGameViewWizard extends Wizard implements INewWizard {
+
+	public NewGameViewWizard() {
+		this.setWindowTitle(MessageUtils.getString("window_title"));
+	}
+
+	@Override
+	public void init(IWorkbench workbench, IStructuredSelection selection) {
+//		this.workbench = workbench;
+		this.selection = selection;
+	}
+
+	@Override
+	public boolean performFinish() {
+		createXMLFile();
+		return true;
+	}
+	
+	@Override
+	public void addPages() {
+		super.addPages();
+		
+		mNewGameViewFilePage = new NewGameViewFilePage("Game View", this.selection);
+		mNewGameViewFilePage.setTitle("From Game View Project");
+		mNewGameViewFilePage.setDescription("Creating something from scratch");
+		
+		this.addPage(mNewGameViewFilePage);
+	}
+	
+	private void createXMLFile() {
+		NewGameViewFilePage gameViewPage = (NewGameViewFilePage)mNewGameViewFilePage;
+		Config config = Config.getInstance();
+		config.setClassPath(gameViewPage.getClassPathField().getText().getText());
+		config.setDefinePath(gameViewPage.getDefineSelectionField().getText().getText());
+		config.setImagesInputPath(gameViewPage.getImageInputPathField().getText().getText());
+		config.setImagesPath(gameViewPage.getImageOutputPathField().getText().getText());
+		config.setScreenContainerPath(gameViewPage.getScreenContainerPathField().getText().getText());
+		config.setXibContainerPath(gameViewPage.getXibContainerPathField().getText().getText());
+		config.setParametersPath(gameViewPage.getParamsSelectionField().getText().getText());
+		XmlFileBuilder xmlBuilder = new XmlFileBuilder(gameViewPage
+				.getImageInputPathField().getText().getText());
+		String xmlContent = xmlBuilder.buildFor(Device.IPADHD);
+		
+	}
+	
+	private WizardPage mNewGameViewFilePage;
+//	private IWorkbench workbench;
+	private IStructuredSelection selection;
+
+}

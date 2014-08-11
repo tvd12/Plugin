@@ -1,0 +1,25 @@
+package com.tvd.gameview.views;
+
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.ui.part.ViewPart;
+
+public class XMLFileChangeListener implements IResourceChangeListener {
+
+	public XMLFileChangeListener(ViewPart viewPart) {
+		mViewPart = viewPart;
+	}
+	
+	@Override
+	public void resourceChanged(IResourceChangeEvent event) {
+		if(event.getSource() != null) {
+			System.out.println("XMLFileChangeListener::resourceChanged::source instance of = " + event.getSource().getClass().getName());
+		}
+		if(event.getType() == IResourceChangeEvent.PRE_DELETE) {
+			
+		}
+	}
+
+	private ViewPart mViewPart;
+	
+}

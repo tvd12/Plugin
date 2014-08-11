@@ -1,0 +1,69 @@
+package com.tvd.gameview.views;
+
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.ui.part.ViewPart;
+
+import com.tvd.gamview.ext.utils.ProjectUtils;
+
+public class XMLFileChangeListener implements IResourceChangeListener {
+
+	public XMLFileChangeListener(ViewPart viewPart) {
+		mViewPart = viewPart;
+	}
+	
+	@Override
+	public void resourceChanged(IResourceChangeEvent event) {
+		if(event.getSource() != null) {
+			System.out.println("XMLFileChangeListener::resourceChanged::source instance of = " + event.getSource().getClass().getName()
+					+ ", type = " + event.getType());
+			IResourceDelta delta = event.getDelta();
+			switch (event.getType()) {
+			case IResourceChangeEvent.POST_CHANGE:
+				System.out.println("Resources have changed.");
+				
+				break;
+
+			default:
+				break;
+			}
+		}
+		if(event.getType() == IResourceChangeEvent.PRE_DELETE) {
+			System.out.println("XMLFileChangeListener::resourceChanged::source deleted");
+			if(mViewPart instanceof BuildingTreeView) {
+				ProjectUtils.checkViewsInProject();
+				((BuildingTreeView)mViewPart).update();
+			}
+		}
+	}
+
+	class DeltaPrinter implements IResourceDeltaVisitor {
+	      public boolean visit(IResourceDelta delta) {
+	         IResource res = delta.getResource();
+	         switch (delta.getKind()) {
+	            case IResourceDelta.ADDED:
+	               System.out.print("Resource ");
+	               System.out.print(res.getFullPath());
+	               System.out.println(" was added.");
+	               break;
+	            case IResourceDelta.REMOVED:
+	               System.out.print("Resource ");
+	               System.out.print(res.getFullPath());
+	               System.out.println(" was removed.");
+	               break;
+	            case IResourceDelta.CHANGED:
+	               System.out.print("Resource ");
+	               System.out.print(res.getFullPath());
+	               System.out.println(" has changed.");
+	               break;
+	         }
+	         return true; // visit the children
+	      }
+	   }
+	
+	private ViewPart mViewPart;
+	
+}

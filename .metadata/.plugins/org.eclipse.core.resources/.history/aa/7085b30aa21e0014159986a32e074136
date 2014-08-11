@@ -1,0 +1,8 @@
+package com.tvd.gameview.ui;
+
+public class SdkXMLEditor {
+
+	public SdkXMLEditor() {
+		
+	}
+}

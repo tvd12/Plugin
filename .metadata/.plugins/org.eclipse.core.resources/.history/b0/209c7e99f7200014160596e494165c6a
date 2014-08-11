@@ -1,0 +1,22 @@
+package com.tvd.gameview.views;
+
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.ui.IWorkbenchPart;
+
+public class BuildingListSelectionListener implements ISelectionChangedListener {
+	
+	public public BuildingListSelectionListener() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public void selectionChanged(SelectionChangedEvent event) {
+		
+	}
+	
+	private Viewer mViewer;
+	private IWorkbenchPart mPart;
+	
+}

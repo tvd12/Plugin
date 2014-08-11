@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<!--create a view-->
+	<extension
+         point="org.eclipse.ui.views">
+	  	<category
+            	name="Game view"
+            id="com.tvd.gameview.views">
+      	</category>
+      	<view
+            category="com.tvd.gameview.views"
+            class="com.tvd.gameview.views.BuildingTreeView"
+            icon="icons/sample.gif"
+            id="com.tvd.gameview.views.BuildingTreeView"
+            name="Building list"
+            restorable="true">
+      	</view>	
+    </extension>
+    
+    <!--for sdk files-->
+    <extension
+          point="org.eclipse.ui.editors">
+       <editor
+       		 class="com.tvd.gameview.ui.editors.SdkXMLEditor"
+             default="false"
+             id="com.tvd.gameview.ui.SdkXMLEditor"
+             name="name">
+       </editor>
+    </extension>
+    
+    <extension
+          id="SdkXMLFileBuilder"
+          name="Sdk XML File Builder"
+          point="org.eclipse.core.resources.builders">
+       <builder callOnEmptyDelta="false"
+       		hasNature="true"
+       		isConfigurable="false"
+       		supportsConfigurations="false">
+       		<run
+               class="com.tvd.gameview.ui.builder.SdkXMLFileBuilder">
+       		</run>
+       </builder>
+    </extension>
+    
+    <extension
+    		id="SdkXMLFileNature"
+          	point="org.eclipse.core.resources.natures">
+          <runtime>
+             <run
+                   class="com.tvd.gameview.ui.natures.SdkXMLFileNature">
+             </run>
+          </runtime>
+          <builder id="com.tvd.gameview.ui.builder.SdkXMLFileBuilder" />
+    </extension>
+    
+    <!--create a project -->
+	<extension
+	      	point="org.eclipse.ui.newWizards">
+	    <category
+	          id="com.tvd.gameview.plugin.category.wizards"
+	          name="Category Wizard">
+	    </category>
+	    <wizard 
+	    	class="com.tvd.study.linuxsagas.plugin.wizard.NewGameViewWizard"
+	    	icon="icons/sample.gif"
+	    	name="Game View"
+	    	category="com.tvd.gameview.plugin.category.wizards"
+           	id="com.tvd.study.linuxsagas.plugin.wizard.view">
+           	<description>
+               This file used to config game view
+           	</description>
+           	<selection
+                  class="org.eclipse.core.resources.IResource">
+           	</selection>
+	    </wizard>
+	    
+	    <wizard
+			id="org.eclipse.jdt.ui.examples.gameviewprojectcreationwizard"
+			name="My project"
+			class="com.tvd.study.linuxsagas.plugin.wizard.GameViewProjectCreationWizard"
+			category="com.tvd.gameview.plugin.category.wizards"
+			project="true"
+			finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+			icon="icons/sample.gif">
+			<description>My project</description>
+    	</wizard>
+	</extension>
+	
+	<extension
+	       id="com.tvd.study.linuxsagas.plugin.natures"
+	       point="org.eclipse.core.resources.natures">
+	    <runtime>
+	       <run
+	             class="com.tvd.gamview.ext.natures.ProjectNature">
+       		</run>
+    	</runtime>
+	</extension>
+	
+	 <extension
+	       point="org.eclipse.ui.views">
+	    <view
+	          class="org.eclipse.ui.navigator.CommonNavigator"
+	          icon="icons/sample.gif"
+	          id="com.tvd.study.linuxsagas.plugin.navigator"
+	          name="TVD Common Navigator">
+	    </view>
+	 </extension>
+	 <extension
+	       point="org.eclipse.ui.navigator.viewer">
+	    <viewerActionBinding
+	          viewerId="com.tvd.study.linuxsagas.plugin.navigator">
+	       <includes>
+	          <actionExtension
+	                pattern="org.eclipse.ui.navigator.resources.*">
+	          </actionExtension>
+	       </includes>
+	    </viewerActionBinding>
+	    <viewerContentBinding
+	          viewerId="com.tvd.study.linuxsagas.plugin.navigator">
+	       <includes>
+	          <contentExtension
+	                pattern="org.eclipse.ui.navigator.resourceContent">
+	          </contentExtension>
+	          <contentExtension
+	                pattern="org.eclipse.ui.navigator.resources.filters.*">
+	          </contentExtension>
+	          <contentExtension
+	                pattern="org.eclipse.ui.navigator.resources.linkHelper">
+	          </contentExtension>
+	          <contentExtension
+	                pattern="org.eclipse.ui.navigator.resources.workingSets">
+	          </contentExtension>
+	       </includes>
+	    </viewerContentBinding>
+	 </extension>
+	 <extension
+	       point="org.eclipse.ui.perspectiveExtensions">
+	    <perspectiveExtension
+	          targetID="org.eclipse.ui.resourcePerspective">
+	       <view
+	             id="com.tvd.study.linuxsagas.plugin.navigator"
+	             ratio="0.5"
+	             relationship="stack"
+	             relative="org.eclipse.ui.navigator.ProjectExplorer">
+	       </view>
+	    </perspectiveExtension>
+	 </extension>
+
+	<!-- Create Game View preference page -->
+	<extension
+	      point="org.eclipse.ui.preferencePages">
+	    <page
+	          class="com.tvd.study.linuxsagas.plugin.preference.GameViewPreferencePage"
+	          id="com.tvd.study.linuxsagas.plugin.preference.gameview.preference.page.main"
+	          name="Game View">
+	          <keywordReference
+                 id="com.tvd.study.linuxsagas.plugin.preference.keywords">
+	          </keywordReference>
+	    </page>
+	</extension>
+	<extension
+	      point="org.eclipse.ui.preferencePages">
+	    <page
+	          class="com.tvd.study.linuxsagas.plugin.preference.GameViewPreferencePage"
+	          id="com.tvd.study.linuxsagas.plugin.preference.gameview.preference.page.one"
+	          category="com.tvd.study.linuxsagas.plugin.preference.gameview.preference.page.main"
+	          name="Template">
+	          <keywordReference
+                 id="com.tvd.study.linuxsagas.plugin.preference.keywords">
+	          </keywordReference>
+	    </page>
+	</extension>
+	<extension
+	      	point="org.eclipse.ui.keywords">
+	      <keyword
+             id="com.tvd.study.linuxsagas.plugin.preference.keywords"
+             label="game view">
+	      </keyword>
+	</extension>
+</plugin>

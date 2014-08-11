@@ -1,0 +1,78 @@
+package com.tvd.gameview.ui.natures;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
+import org.eclipse.core.resources.ICommand;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IProjectNature;
+import org.eclipse.core.runtime.CoreException;
+
+import com.tvd.gameview.ui.builder.SdkPropertiesFileBuilder;
+import com.tvd.gameview.ui.builder.SdkXMLFileBuilder;
+
+public class SdkFileNature implements IProjectNature {
+	
+	@Override
+	public void configure() throws CoreException {
+		System.out.println("SdkXMLFileNature::configure");
+		IProjectDescription desc = mProject.getDescription();
+		List<ICommand> commands = new ArrayList<ICommand>(
+				Arrays.asList(desc.getBuildSpec()));
+		Iterator<ICommand> iterator = commands.iterator();
+		while(iterator.hasNext()) {
+			ICommand command = iterator.next();
+			if(SdkXMLFileBuilder.ID.equals(command.getBuilderName())) {
+				return;
+			}
+		}
+		ICommand newCommand = desc.newCommand();
+		newCommand.setBuilderName(SdkXMLFileBuilder.ID);
+		commands.add(newCommand);
+		
+		while(iterator.hasNext()) {
+			ICommand command = iterator.next();
+			if(SdkPropertiesFileBuilder.ID.equals(command.getBuilderName())) {
+				return;
+			}
+		}
+		
+		newCommand = desc.newCommand();
+		newCommand.setBuilderName(SdkPropertiesFileBuilder.ID);
+		commands.add(newCommand);
+		desc.setBuildSpec(commands.toArray(new ICommand[0]));
+		mProject.setDescription(desc, null);
+	}
+
+	@Override
+	public void deconfigure() throws CoreException {
+		System.out.println("SdkXMLFileNature::deconfigure");
+		IProjectDescription desc = mProject.getDescription();
+		List<ICommand> commands = new ArrayList<ICommand>(
+				Arrays.asList(desc.getBuildSpec()));
+		Iterator<ICommand> iterator = commands.iterator();
+		while (iterator.hasNext()) {
+			iterator.remove();
+		}
+		desc.setBuildSpec(commands.toArray(new ICommand[0]));
+		mProject.setDescription(desc, null);
+	}
+
+	@Override
+	public IProject getProject() {
+		return mProject;
+	}
+
+	@Override
+	public void setProject(IProject project) {
+		mProject = project;
+	}
+
+	public static final String ID = 
+			"com.tvd.gamview.ext.SdkFileNature";
+	private IProject mProject;
+	
+}

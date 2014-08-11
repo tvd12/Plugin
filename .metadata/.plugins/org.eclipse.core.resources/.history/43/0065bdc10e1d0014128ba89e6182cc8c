@@ -1,0 +1,27 @@
+package com.tvd.gameview.plugin.model;
+
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
+
+public class ProjectChooserHelper {
+
+	public class ProjectCombo extends Combo implements SelectionListener {
+
+		public ProjectCombo(Composite parent, int style) {
+			super(parent, style);
+		}
+
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+			
+		}
+
+		@Override
+		public void widgetDefaultSelected(SelectionEvent e) {
+			
+		}
+		
+	}
+}

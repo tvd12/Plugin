@@ -1,0 +1,10 @@
+package com.tvd.gameview.views;
+
+public class BuildingListElement {
+
+	
+	public BuildingListElement getChild() {
+		return mChild;
+	}
+	private BuildingListElement mChild;
+}
