@@ -36,4 +36,20 @@ public interface Constant {
 		public static final String PROPERTIES			= "src/com/properties";
 	}
 	
+	public static interface TreeElement {
+		public static final String EXPORT_IMAGES 		= "export images";
+		public static final String EXPORT_XIB_TPL		= "export xib template";
+		public static final String EXPORT_SCREEN_TPL	= "export screen template";
+		public static final String EXPORT_ANDROID_TPL	= "export android template";
+		public static final String EXPORT_POSITIONS		= "export positions";
+		public static final String EXPORT_SRC_CODE		= "export source code";
+		public static final String EXPORT_IDS			= "export identifiers";
+		
+		public static final String DECLARE_POSITIONS	= "declare positions";
+		public static final String IMPLEMENT_POSITIONS	= "implement positions";
+		public static final String DECLARE_CLASS		= "declare class";
+		public static final String IMPLEMENT_CLASS		= "implement class";
+		public static final String DECLARE_IDS			= "declare identifiers";
+		public static final String IMPLEMENT_IDS		= "implement identifiers";
+	}
 }

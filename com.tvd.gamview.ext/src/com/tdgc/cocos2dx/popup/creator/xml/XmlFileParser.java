@@ -1,6 +1,6 @@
 package com.tdgc.cocos2dx.popup.creator.xml;
 
-import java.util.Collections;
+import java.util.Collections; 
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -31,6 +31,7 @@ public class XmlFileParser extends DefaultHandler {
 	@Override
 	public void startElement(String namespaceURI, String localName,
 			String qName, Attributes atts) throws SAXException {
+		try {
 		if(qName.equals(Tag.VIEW)) {
 			mView = new View();
 			mView.setClassName(getAttributeValue(Attribute.CLASS_NAME, atts));
@@ -127,6 +128,9 @@ public class XmlFileParser extends DefaultHandler {
 			mCurrentParameter.setType(getAttributeValue(Attribute.TYPE, atts));
 			mCurrentParameter.setKind(getAttributeValue(Attribute.KIND, atts));
 		}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 		
 		
@@ -137,6 +141,7 @@ public class XmlFileParser extends DefaultHandler {
 	@Override
 	public void endElement(String namespaceURI, String localName, 
 			String qName) throws SAXException {
+		try {
 		if(qName.equals(Tag.DEFINE_PATH)) {
 			mView.setDefinePath(mCurrentText);
 		}
@@ -225,17 +230,24 @@ public class XmlFileParser extends DefaultHandler {
 		else if(qName.equals(Tag.VIEW)) {
 			Collections.sort(mView.getImages());
 		}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
 	public void characters(char[] ch, int start, int length) {
-		mCurrentText = new String(ch, start, length);
+		String text = new String(ch, start, length).trim();
+		if(text.length() == 0) {
+			return;
+		}
+		mCurrentText = text;
 	}
 	
 	private String getAttributeValue(String attName, Attributes atts) {
 		String result = null;
 		for(int i = 0 ; i < atts.getLength() ; i++) {
-			String thisAtt = atts.getLocalName(i);
+			String thisAtt = atts.getQName(i);
 			if(attName.equals(thisAtt)) {
 				result = atts.getValue(i);
 				return result.trim();

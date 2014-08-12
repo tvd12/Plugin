@@ -13,16 +13,16 @@
 		<item value="true" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="SdkResourceDeltaVisitor" key="selection"/>
+		<item value="exportImage" key="selection"/>
 		<list key="findhistory">
+			<item value="exportImage"/>
+			<item value="standalone"/>
+			<item value="addProjectNature"/>
 			<item value="DeltaPrinter"/>
 			<item value="delete"/>
 			<item value="fr"/>
 			<item value="ir"/>
 			<item value="setm"/>
-			<item value="getm"/>
-			<item value="_pageOne"/>
-			<item value="setTextForTextFieldWithProject"/>
 		</list>
 		<list key="replacehistory">
 			<item value="SdkResourceDeltaVisitor"/>

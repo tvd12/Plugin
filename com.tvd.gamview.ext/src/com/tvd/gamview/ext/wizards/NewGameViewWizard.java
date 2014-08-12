@@ -1,13 +1,10 @@
  package com.tvd.gamview.ext.wizards;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.InputStream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -16,7 +13,6 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
-import com.tdgc.cocos2dx.popup.creator.constants.Device;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.xml.XmlFileBuilder;
 import com.tvd.gameview.plugin.model.ProjectChooserHelper.ProjectCombo;
@@ -65,10 +61,14 @@ public class NewGameViewWizard extends Wizard implements INewWizard {
 					.getImageInputPathField().getText().getText());
 			
 			//build for device
-			String xmlContent = xmlBuilder.buildFor(Device.IPADHD);
 			IProject project = ((ProjectCombo)gameViewPage.getProjectCombo()).getSelectedProject();
+			String devices[] = ProjectUtils.getDevices(project);
+			if(devices == null || devices.length == 0) {
+				return;
+			}
+			String fileName = gameViewPage.getFileNameTextField().getText();
 			IFile newFile = project.getFile(
-					new Path(xmlBuilder.getOutputFilePath()));
+					"resources/xml/" + devices[0] + "/" + fileName);
 			File file = newFile.getLocation().toFile();
 			
 			boolean duplicate = false;
@@ -86,11 +86,7 @@ public class NewGameViewWizard extends Wizard implements INewWizard {
 				duplicate = true;
 			}
 			
-			//push xml content into stream
-			InputStream inputStream = new ByteArrayInputStream(xmlContent.getBytes());
-			
-			//create new visible file and show to project
-			newFile.create(inputStream, true, null);
+			ProjectUtils.createXMLFileWithBuilder(project, xmlBuilder, true);
 			
 			//add this file to list file in project
 			String propertyValue = project.getPersistentProperty(new QualifiedName("tvd", "views"));

@@ -11,7 +11,6 @@ import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.file.ImageFileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
-import com.tdgc.cocos2dx.popup.creator.log.Log;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Parameter;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Property;
@@ -38,6 +37,7 @@ public class View extends CommonObject {
 				"avatars_popup/background/pop_common_bg.png",
 				true, this);
 		this.mImages.add(mBackgroundImage);
+		this.mPrefix = "";
 	}
 	
 	@Override
@@ -207,12 +207,13 @@ public class View extends CommonObject {
 		this.exportImplementedCode();
 	}
 	
+	public void exportImages() {
+		ImageFileUtils imageFileUtils = new ImageFileUtils();
+		imageFileUtils.writeImagesFromTo(mImagesInputPath, 
+				mImagesPath);
+	}
+	
 	public void exportXibTemplate(String pDevice) {
-//		try {
-//			new FileUtils().copyFile("resources/xib/" + pDevice + "_template.xib", 
-//					mXibContainerPath, 
-//					mClassName + ".xib");
-			this.exportImages();
 			FileUtils fileUtils = new FileUtils();
 			String xibContent = fileUtils.readFromFile("resources/xib/" 
 					+ pDevice + "/template.xib");
@@ -223,34 +224,16 @@ public class View extends CommonObject {
 					+ "_" + pDevice + "" 
 					+ ".xib";
 			fileUtils.setContent(xibContent).writeToFile(fileName, true);
-			new Thread(new Runnable() {
-				
-				@Override
-				public void run() {
-					FileUtils fileUtils = new FileUtils();
-					while(true) {
-						try {
-							String xibFilePath = fileName;
-							XibFetcher xibFetcher = new XibFetcher(mImages);
-							xibFetcher.fetchData(xibFilePath);
-							String fileContent = fileUtils.readFromFile(mXmlFilePath);
-							for(int i = 0 ; i < mImages.size() ; i++) {
-								fileContent = XmlContentUtils.replaceSpritePosition(
-										fileContent, mImages.get(i));
-							}
-	 						fileUtils.setContent(fileContent).replaceContent(mXmlFilePath);
+			String xibFilePath = fileName;
+			XibFetcher xibFetcher = new XibFetcher(mImages);
+			xibFetcher.fetchData(xibFilePath);
+			String fileContent = fileUtils.readFromFile(mXmlFilePath);
+			for(int i = 0 ; i < mImages.size() ; i++) {
+				fileContent = XmlContentUtils.replaceSpritePosition(
+					fileContent, mImages.get(i));
+			}
+	 		fileUtils.setContent(fileContent).replaceContent(mXmlFilePath);
 							
-							Thread.sleep(5 * 1000);
-						} catch (InterruptedException e) {
-							Log.e(e);
-						}
-					}
-				}
-			}).start();
-			
-//		} catch(IOException e) {
-//			Log.e(e);
-//		}
 	}
 	
 	public void exportScreenTemplate(String pDevice) {
@@ -262,30 +245,15 @@ public class View extends CommonObject {
 				+ "_" + pDevice + "" 
 				+ ".screen";
 		fileUtils.setContent(screenContent).writeToFile(fileName, true);
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				FileUtils fileUtils = new FileUtils();
-				while(true) {
-					try {
-						String screenPath = fileName;
-						ScreenFetcher screenFetcher = new ScreenFetcher(mImages);
-						screenFetcher.fetchData(screenPath);
-						String fileContent = fileUtils.readFromFile(mXmlFilePath);
-						for(int i = 0 ; i < mImages.size() ; i++) {
-							fileContent = XmlContentUtils.replaceSpritePosition(
-									fileContent, mImages.get(i));
-						}
- 						fileUtils.setContent(fileContent).replaceContent(mXmlFilePath);
-						
-						Thread.sleep(5 * 1000);
-					} catch (InterruptedException e) {
-						Log.e(e);
-					}
-				}
-			}
-		}).start();
+		String screenPath = fileName;
+		ScreenFetcher screenFetcher = new ScreenFetcher(mImages);
+		screenFetcher.fetchData(screenPath);
+		String fileContent = fileUtils.readFromFile(mXmlFilePath);
+		for(int i = 0 ; i < mImages.size() ; i++) {
+			fileContent = XmlContentUtils.replaceSpritePosition(
+				fileContent, mImages.get(i));
+		}
+ 		fileUtils.setContent(fileContent).replaceContent(mXmlFilePath);
 		
 	}
 	public void addImage(Image pImage) {
@@ -308,6 +276,10 @@ public class View extends CommonObject {
 	
 	@Override
 	public void setPrefix(String pPrefix) {
+		if(pPrefix == null) {
+			System.out.println("TVD-DEBUG: prefix is null");
+			return;
+		}
 		this.mPrefix = pPrefix;
 		String directoryName = pPrefix.substring(pPrefix.indexOf('_') + 1);
 		this.mDirectoryName = StringUtils.convertToClassName(directoryName, "");
@@ -382,19 +354,18 @@ public class View extends CommonObject {
 		.append("\n");
 	}
 	
-	private void exportDeclaringImageIds() {
+	public void exportDeclaringImageIds() {
 		FileUtils fileUtils = new FileUtils();
 		String content = fileUtils.readFromFile(mDefinePath + ".h");
 		String replaceContent = this.declareImageIds();
 		content = content.replace(Constants.DONT_DELETE_THIS_LINE, 
 				replaceContent);
 		
-		System.out.println(content);
 		fileUtils.setContent(content)
 			.writeToFile(mDefinePath + ".h", false);
 	}
 	
-	private void exportImplementedImageIds() {
+	public void exportImplementedImageIds() {
 		FileUtils fileUtils = new FileUtils();
 		String content = fileUtils.readFromFile(mDefinePath + ".cpp");
 		String replaceContent = this.implementImageIds();
@@ -423,12 +394,6 @@ public class View extends CommonObject {
 				replaceContent);
 		fileUtils.setContent(content)
 			.writeToFile(mParametersPath + ".cpp", false);
-	}
-	
-	private void exportImages() {
-		ImageFileUtils imageFileUtils = new ImageFileUtils();
-		imageFileUtils.writeImagesFromTo(mImagesInputPath, 
-				mImagesPath);
 	}
 	
 	private void exportDirectory() {

@@ -16,12 +16,12 @@ public class BuildingListSelectionListener implements ISelectionListener {
 	
 	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection sel) {
-		System.out.println("BuildingListSelectionListener::selectionChanged::sel instanceof = " + sel.getClass().getName());
+//		System.out.println("BuildingListSelectionListener::selectionChanged::sel instanceof = " + sel.getClass().getName());
 		if(part != this.mPart && sel instanceof IStructuredSelection) {
 			Object selected = ((IStructuredSelection)sel).getFirstElement();
 			Object current = ((IStructuredSelection)mViewer.getSelection())
 					.getFirstElement();
-			System.out.println("BuildingListSelectionListener::selectionChanged::selected instanceof = " + ((selected != null)?selected.getClass().getName():"null"));
+//			System.out.println("BuildingListSelectionListener::selectionChanged::selected instanceof = " + ((selected != null)?selected.getClass().getName():"null"));
 			if(selected != current && selected instanceof BuildingListElement) {
 				mViewer.setSelection(sel);
 				if(mViewer instanceof StructuredViewer) {

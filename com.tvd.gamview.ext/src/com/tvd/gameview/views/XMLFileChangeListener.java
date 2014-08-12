@@ -1,5 +1,10 @@
 package com.tvd.gameview.views;
 
+import java.io.InputStream;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
@@ -7,6 +12,8 @@ import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ui.part.ViewPart;
+
+import com.tvd.gamview.ext.utils.ProjectUtils;
 
 public class XMLFileChangeListener implements IResourceChangeListener {
 
@@ -51,23 +58,27 @@ public class XMLFileChangeListener implements IResourceChangeListener {
 	
 	private class SdkResourceDeltaVisitor implements IResourceDeltaVisitor {
 	      public boolean visit(IResourceDelta delta) {
-	         IResource res = delta.getResource();
+	    	  IResource res = delta.getResource();
+              String fullPath = res.getFullPath().toString();
+              if(fullPath == null 
+           		   || fullPath.equals("")
+           		   || fullPath.trim().equals("/")) {
+           	   return true;
+              }
 	         switch (delta.getKind()) {
 	            case IResourceDelta.ADDED:
 	               System.out.print("Resource ");
 	               System.out.print(res.getFullPath());
 	               System.out.println(" was added.");
+	               if(fullPath.contains("resources/xml") && 
+	            		   res.getType() == IResource.FOLDER) {
+	            	   //copyXMLFilesToDevicesFolder(fullPath);
+	               }
 	               break;
 	            case IResourceDelta.REMOVED:
 	               System.out.print("Resource ");
 	               System.out.print(res.getFullPath());
 	               System.out.println(" was removed.");
-	               String fullPath = res.getFullPath().toString();
-	               if(fullPath == null 
-	            		   || fullPath.equals("")
-	            		   || fullPath.trim().equals("/")) {
-	            	   return true;
-	               }
 	               if((fullPath.contains("resources/xml")
 	            		   && res.getName().endsWith(".xml"))) {
 	            	   updateTreeViewer();
@@ -101,6 +112,42 @@ public class XMLFileChangeListener implements IResourceChangeListener {
 				}
 			});
  	   }
+	}
+	
+	@SuppressWarnings("unused")
+	private void copyXMLFilesToDevicesFolder(String fullPath) {
+		String projectName = fullPath.substring(1);
+  	   	projectName = projectName.substring(0, projectName.indexOf('/'));
+  	   	IProject project = ProjectUtils.findSdkProject(projectName);
+  	   	if(project != null) {
+			try {
+				String devices[] = ProjectUtils.getDevices(project);
+				if(devices == null || devices.length == 0) {
+					return;
+				}
+				String folderPath = "resources/xml/" + devices[0];
+		  		IFolder folder = project.getFolder(folderPath);
+		  		IResource[] members = folder.members();
+		  		String newFolder = fullPath.substring(fullPath.lastIndexOf("resources/xml"));
+		  		
+				for(int i = 0 ; i < members.length ; i++) {
+					String fileName = members[i].getName();
+					if(members[i].getType() == IResource.FILE
+							&& fileName.endsWith(".xml")) {
+						String newFilePath = newFolder + "/" + fileName;
+						IFile newFile = project.getFile(newFilePath);
+						InputStream inputStream = project.getFile(folderPath + "/" + fileName)
+								.getContents();
+						if(!newFile.exists()) {
+							newFile.create(inputStream, true, null);
+						}
+					}
+      		}
+      		   
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+  	   }
 	}
 	
 	private ViewPart mViewPart;

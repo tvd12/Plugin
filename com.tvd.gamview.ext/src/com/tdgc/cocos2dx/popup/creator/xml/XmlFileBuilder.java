@@ -19,11 +19,12 @@ public class XmlFileBuilder {
 	}
 	
 	public String buildFor(String pDevice) {
-		mXmlCreator = new XmlCreator(this.mImagesPath);
+		mXmlCreator = new XmlCreator(this.mImagesPath, pDevice);
 		Document doc = mXmlCreator.parseFilePaths();
 		
 		this.mFileOutputPath = "resources/xml/" + pDevice 
 				+ "/" + mXmlCreator.getOutputFileName();
+		this.mFileOutputName = mXmlCreator.getOutputFileName();
 		
 		// write the content into xml file
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -55,9 +56,14 @@ public class XmlFileBuilder {
 		return this.mFileOutputPath;
 	}
 	
+	public String getOutputFileName() {
+		return this.mFileOutputName;
+	}
+	
 	private XmlCreator mXmlCreator;
 	private String mFileOutputPath;
 	private String mImagesPath;
+	private String mFileOutputName;
 	
 	
 //	public static void main(String[] args) {

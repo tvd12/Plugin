@@ -1,7 +1,6 @@
 package com.tdgc.cocos2dx.popup.creator.file;
 
 import java.io.BufferedReader;
-
 import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.File;
@@ -147,6 +146,7 @@ public class FileUtils {
 	        output.close();
 	    }
 	}
+
 	
 	private String mContent;
 	

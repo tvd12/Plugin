@@ -21,6 +21,11 @@ public class XmlCreator {
 		this.mInputPath = pInputPath;
 	}
 	
+	public XmlCreator(String pInputPath, String pDevice) {
+		this(pInputPath);
+		this.mDevice = pDevice;
+	}
+	
 	public Document parseFilePaths() {
 		FileParser parser = new FileParser(mInputPath);
 		mFilePaths = parser.getFilePaths();
@@ -70,6 +75,9 @@ public class XmlCreator {
 				type);
 		
 		rootElement.setAttribute(Attribute.COMMENT, "");
+		rootElement.setAttribute("xmlns", "http://www.tvd.com/tools" );
+		rootElement.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance" );
+		rootElement.setAttribute("xsi:schemaLocation", "http://www.tvd.com/tools ../xsd/view.xsd");
 		
 		Element positionName = mDocument.createElement(Tag.POSITION_NAME);
 		positionName.appendChild(mDocument.createTextNode("default"));
@@ -96,12 +104,12 @@ public class XmlCreator {
 		
 		Element imagesPath = mDocument.createElement(Tag.IMAGES_PATH);
 		imagesPath.appendChild(mDocument.createTextNode(
-				Config.getInstance().getImagesPath()));
+				Config.getInstance().getImagesPath() + "/" + mDevice));
 		rootElement.appendChild(imagesPath);
 		
 		Element xibContainerPath = mDocument.createElement(Tag.XIBCONTAINER_PATH);
 		xibContainerPath.appendChild(mDocument.createTextNode(
-				Config.getInstance().getXibContainerPath()));
+				Config.getInstance().getXibContainerPath() + "/" + mDevice));
 		rootElement.appendChild(xibContainerPath);
 		
 		Element classPath = mDocument.createElement(Tag.CLASS_PATH);
@@ -351,7 +359,16 @@ public class XmlCreator {
 		return element;
 	}
 	
+	public void setDevice(String pDevice) {
+		this.mDevice = pDevice;
+	}
+	
+	public String getDevice() {
+		return mDevice;
+	}
+	
 	private List<String> mFilePaths;
 	private Document mDocument;
 	private String mInputPath;
+	private String mDevice;
 }

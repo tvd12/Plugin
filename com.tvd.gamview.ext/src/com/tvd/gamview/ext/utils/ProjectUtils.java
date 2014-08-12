@@ -1,5 +1,7 @@
 package com.tvd.gamview.ext.utils;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -21,6 +24,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
+import com.tdgc.cocos2dx.popup.creator.xml.XmlFileBuilder;
 import com.tvd.gameview.plugin.model.ViewModel;
 import com.tvd.gameview.views.BuildingTreeView;
 
@@ -246,5 +250,73 @@ public class ProjectUtils {
 		System.out.println("updateBuildingTreeViewPart = 5");
 		BuildingTreeView buildingTreeView = (BuildingTreeView)viewPart;
 		buildingTreeView.update();
+	}
+	
+	public static String[] getDevices(IProject project) 
+			throws CoreException {
+		InputStream inp = 
+				project.getFile("src/com/properties/global.properties")
+				.getContents();
+		String devicesStr = MessageUtils.getString(inp, "devices");
+		if(devicesStr == null || devicesStr.equals("")) {
+			return null;
+		}
+		String devices[] = devicesStr.contains(",")
+				? devicesStr.split(",") : new String[] {devicesStr};
+		for(int i = 0 ; i < devices.length ; i++) {
+			devices[i] = devices[i].trim();
+		}
+		
+		return devices;
+	}
+	
+	public static void copyXMLFileToDevicesFolder(IProject project, String fileName,
+			boolean override) {
+		try {
+			String devices[] = getDevices(project);
+			if(devices == null || devices.length == 0) {
+				return;
+			}
+			InputStream inputStream = project.getFile("resources/xml/" 
+					+ devices[0].trim() + "/" + fileName).getContents();
+			for(int i = 1 ; i < devices.length ; i++) {
+				String filePath = "resources/xml/" + devices[i].trim() + "/" + fileName;
+				IFile file = project.getFile(filePath);
+				if((file.exists() && override) || (!file.exists())) {
+					file.create(inputStream, true, null);
+				}
+			}
+		} catch(CoreException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void createXMLFileWithBuilder(IProject project, XmlFileBuilder builder,
+			boolean override) {
+		try {
+			String devices[] = getDevices(project);
+			if(devices == null || devices.length == 0) {
+				return;
+			}
+			for(int i = 0 ; i < devices.length ; i++) {
+				String xmlContent = builder.buildFor(devices[i]);
+				IFile newFile = project.getFile(
+						new Path(builder.getOutputFilePath()));
+				if(newFile.exists()) {
+					if(override) {
+						newFile.delete(true, null);
+					}
+				}
+				if(!newFile.exists()) {
+					//push xml content into stream
+					InputStream inputStream = new ByteArrayInputStream(xmlContent.getBytes());
+					
+					//create new visible file and show to project
+					newFile.create(inputStream, true, null);
+				}
+			}
+		} catch(CoreException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -135,7 +135,8 @@ public class GameViewProjectCreationWizard extends Wizard
 					"resources/screen/iphone", "resources/screen/ipadhd",
 					"resources/xib/iphone", "resources/xib/ipadhd",
 					"resources/xml/iphone", "resources/xml/ipadhd",
-					"resources/android/iphone", "resources/android/ipadhd"
+					"resources/android/iphone", "resources/android/ipadhd",
+					"resources/xml/xsd"
 					};
 			CustomProjectSupport.createFolders(jproject, paths);
 			

@@ -70,7 +70,7 @@
 	      	point="org.eclipse.ui.newWizards">
 	    <category
 	          id="com.tvd.gameview.plugin.category.wizards"
-	          name="Category Wizard">
+	          name="Gext">
 	    </category>
 	    <wizard 
 	    	class="com.tvd.gamview.ext.wizards.NewGameViewWizard"

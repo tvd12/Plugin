@@ -1,9 +1,9 @@
 package com.tvd.gameview.views;
 
-import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -14,14 +14,21 @@ import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.resource.LocalResourceManager;
 import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.part.ViewPart;
 
+import com.tdgc.cocos2dx.popup.creator.model.View;
+import com.tdgc.cocos2dx.popup.creator.xml.XmlFetcher;
 import com.tvd.gameview.plugin.model.ViewModel;
-import com.tvd.gamview.ext.utils.MessageUtils;
+import com.tvd.gamview.ext.constants.Constant;
 import com.tvd.gamview.ext.utils.ProjectUtils;
 
 /***
@@ -44,7 +51,7 @@ import com.tvd.gamview.ext.utils.ProjectUtils;
  *		declare class
  *		implement class
  */
-public class BuildingTreeView extends ViewPart {
+public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 	
 	public BuildingTreeView() {
 	}
@@ -68,7 +75,7 @@ public class BuildingTreeView extends ViewPart {
 		
 		mTreeViewer.setContentProvider(new BuildingListContentProvider());
 		mTreeViewer.setInput(createInput());
-		
+		mTreeViewer.addDoubleClickListener(this);
 		
 		this.getSite().setSelectionProvider(mTreeViewer);
 		mSelectionListener = new BuildingListSelectionListener(mTreeViewer, 
@@ -78,7 +85,71 @@ public class BuildingTreeView extends ViewPart {
 		ResourcesPlugin.getWorkspace()
 			.addResourceChangeListener(new XMLFileChangeListener(this));
 	}
+	
+	@Override
+	public void doubleClick(DoubleClickEvent event) {
+		Viewer viewer = event.getViewer();
+		ISelection sel = viewer.getSelection();
+		Object selectedValue = null;
+		if(!(sel instanceof IStructuredSelection) || sel.isEmpty()) {
+			selectedValue = null;
+		} else {
+			selectedValue = ((IStructuredSelection)sel).getFirstElement();
+			if(selectedValue instanceof BuildingListElement) {
+				BuildingListElement element = (BuildingListElement)selectedValue;
+				System.out.println("name of element = " + element.getName()
+						+ " device = " + element.getDevice()
+						+ " parent = " + element.getParent()
+						+ " filePath = " + element.getFilePath());
+				if(element.getFilePath() == null 
+						|| element.getFilePath().equals("")) {
+					return;
+				}
+				IFile xmlFile = element.getProject().getFile(element.getFilePath());
+				XmlFetcher xmlFetcher = new XmlFetcher();
+				View view = xmlFetcher.fetchView(xmlFile);
+				exportImages(element, view);
+				declareIdentifiers(element, view);
+				implementIdentifiers(element, view);
+				exportIdentifiers(element, view);
+			}
+		}
+	}
 
+	private void exportImages(BuildingListElement element, View view) {
+		String device = element.getDevice();
+		if(device != null && !device.equals("")) {
+			BuildingListElement parentOfDeviceElement = element.getParent();
+			if(parentOfDeviceElement.getName()
+					.equals(Constant.TreeElement.EXPORT_IMAGES)) {
+				System.out.println("Exporting images...");
+				view.exportImages();
+			}
+		}
+	}
+	
+	private void declareIdentifiers(BuildingListElement element, View view) {
+		if(element.getName().equals(Constant.TreeElement.DECLARE_IDS)) {
+			System.out.println("declaring identifier...");
+			view.exportDeclaringImageIds();
+		}
+	}
+	
+	private void implementIdentifiers(BuildingListElement element, View view) {
+		if(element.getName().equals(Constant.TreeElement.IMPLEMENT_IDS)) {
+			System.out.println("declaring identifier...");
+			view.exportImplementedImageIds();
+		}
+	}
+	
+	private void exportIdentifiers(BuildingListElement element, View view) {
+		if(element.getName().equals(Constant.TreeElement.EXPORT_IDS)) {
+			System.out.println("declaring identifier...");
+			view.exportDeclaringImageIds();
+			view.exportImplementedImageIds();
+		}
+	}
+	
 	@Override
 	public void setFocus() {
 		
@@ -104,12 +175,15 @@ public class BuildingTreeView extends ViewPart {
 					//devices
 				"export android template", //3
 					//devices
-				"export positions", //4 
-					//"declare positions", 4.1
-					//"implement positions", 4.2
-				"export source code", //5 
-					//"declare class", //5.1
-					//"implement class", //5.2	
+				"export identifiers", //4
+					//declare identifiers 4.1
+					//implement identifiers 4.2
+				"export positions", //5
+					//"declare positions", 5.1
+					//"implement positions", 5.2
+				"export source code", //6 
+					//"declare class", //6.1
+					//"implement class", //6.2	
 		};
 		
 		List<IProject> sdkProjects = ProjectUtils.getSdkProjects();
@@ -119,7 +193,8 @@ public class BuildingTreeView extends ViewPart {
 			//project menuitem in treeview
 			BuildingListElement projectElement = 
 					new BuildingListElement("export views of " 
-							+ sdkProjects.get(i).getName() + " project");
+							+ sdkProjects.get(i).getName() + " project",
+							sdkProjects.get(i));
 			
 			//check exists views
 			ProjectUtils.checkViewsInProject();
@@ -128,50 +203,48 @@ public class BuildingTreeView extends ViewPart {
 			List<ViewModel> viewModels = 
 					ProjectUtils.getViewInProject(sdkProjects.get(i)); 
 			
-			//get all devices
-			String devicesStr = null;
+			//device array
+			String devices[] = null;
 			try {
-				InputStream inputStream = 
-						sdkProjects.get(i).getFile("src/com/properties/global.properties")
-						.getContents();
-				devicesStr = MessageUtils.getString(inputStream, "devices");
-			} catch (CoreException e) {
+				devices = ProjectUtils.getDevices(sdkProjects.get(i));
+			} catch(CoreException e) {
 				e.printStackTrace();
 			}
-			
-			//if have no device
-			if(devicesStr == null || devicesStr.equals("")) {
-				continue;
+			if(devices == null || devices.length == 0) {
+				return new Object[] {new BuildingListElement("iphone")};
 			}
-			
-			//device array
-			String devices[] = (devicesStr.contains(","))
-					? (devicesStr.split(",")) : new String[] {devicesStr};
 			BuildingListElement elements[] = 
 					new BuildingListElement[strs.length];
 			
 		    for(int j = 0 ; j < elements.length ; j++) {
 		    	elements[j] = new BuildingListElement(strs[j]);
 		    }
-		    for(int j = 0 ; j < devices.length ; j++) {
-		    	BuildingListElement deviceElement = 
-		    			new BuildingListElement("export for " + devices[j]);
-		    	elements[0].addChild(deviceElement);
-		    	elements[1].addChild(deviceElement);
-		    	elements[2].addChild(deviceElement);
-		    	elements[3].addChild(deviceElement);
-		    }
 		    
-		    elements[4].addChild(new BuildingListElement("declare positions"));
-		    elements[4].addChild(new BuildingListElement("implement positions"));
-		    elements[5].addChild(new BuildingListElement("declare class"));
-		    elements[5].addChild(new BuildingListElement("implement class"));
+		    elements[4].addChild(new BuildingListElement(Constant.TreeElement.DECLARE_IDS));
+		    elements[4].addChild(new BuildingListElement(Constant.TreeElement.IMPLEMENT_IDS));
+		    elements[5].addChild(new BuildingListElement("declare positions"));
+		    elements[6].addChild(new BuildingListElement("implement positions"));
+		    elements[6].addChild(new BuildingListElement("declare class"));
+		    elements[6].addChild(new BuildingListElement("implement class"));
 			for(int k = 0 ; k < viewModels.size() ; k++) {
 				if(!viewModels.get(k).isDone()) {
 					String name = "export building list of " + 
 							viewModels.get(k).getName() + " view";
-					projectElement.addChild(
-							new BuildingListElement(name, elements));
+					for(int j = 0 ; j < devices.length ; j++) {
+				    	String device = devices[j].trim();
+				    	BuildingListElement deviceElement = 
+				    			new BuildingListElement("export for " + device, device);
+				    	deviceElement.setFilePath("resources/xml/" + device
+				    			+ "/" + viewModels.get(k).getName());
+				    	elements[0].addChild(deviceElement.copy());
+				    	elements[1].addChild(deviceElement.copy());
+				    	elements[2].addChild(deviceElement.copy());
+				    	elements[3].addChild(deviceElement.copy());
+				    }
+					BuildingListElement viewElement = new BuildingListElement(name, elements);
+					viewElement.setFilePath("resources/xml/" + devices[0]
+				    			+ "/" + viewModels.get(k).getName());
+					projectElement.addChild(viewElement);
 				}
 			}
 			input[i] = projectElement;

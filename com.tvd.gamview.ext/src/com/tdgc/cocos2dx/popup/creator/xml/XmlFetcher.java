@@ -9,6 +9,7 @@ import java.io.Reader;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.eclipse.core.resources.IFile;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
@@ -42,10 +43,38 @@ public class XmlFetcher {
 		
 	}
 	
+	//tvd update
+	public void fetchData(IFile xmlFile) {
+		try {
+			Reader reader = new InputStreamReader(xmlFile.getContents(), xmlFile.getCharset());
+			InputSource inputSource = new InputSource(reader);
+			inputSource.setEncoding(xmlFile.getCharset());
+			
+			SAXParserFactory spf = SAXParserFactory.newInstance();
+			SAXParser sp = spf.newSAXParser();
+			XMLReader xr = sp.getXMLReader();
+			XMLErrorHandler reporter = new XMLErrorHandler();
+			xr.setErrorHandler(reporter);
+			xr.setContentHandler(mHandler);
+			xr.parse(inputSource);
+			
+		} catch (Exception e) {
+			Log.e(e);
+		}
+		
+	}
+	
 	public View fetchView(String pOutputPath) {
 		fetchData(pOutputPath);
 		View view = ((XmlFileParser)mHandler).getView();
 		view.setXmlFilePath(pOutputPath);
+		
+		return view;
+	}
+	
+	public View fetchView(IFile xmlFile) {
+		fetchData(xmlFile);
+		View view = ((XmlFileParser)mHandler).getView();
 		
 		return view;
 	}

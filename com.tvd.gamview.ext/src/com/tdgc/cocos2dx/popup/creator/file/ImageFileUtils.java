@@ -31,6 +31,13 @@ public class ImageFileUtils {
 	}
 	
 	public void writeImagesFromTo(String pFromPath, String pToPath) {
+		if(pFromPath == null || pToPath == null) {
+			return;
+		}
+		File toFile = new File(pToPath);
+		if(!toFile.exists()) {
+			toFile.mkdirs();
+		}
 		List<String> filePaths = new FileParser(pFromPath).fetchFilePaths();
 		pFromPath = pFromPath.substring(0, pFromPath.lastIndexOf('/'));
 		BufferedImage image = null;
@@ -41,6 +48,9 @@ public class ImageFileUtils {
 					image = ImageIO.read(new File(pFromPath + "/" + filePaths.get(i)));
 	        		if(!outFile.exists()) {
 	        			ImageIO.write(image, "png", outFile);
+	        			System.out.println(filePaths.get(i) + " is writing...");
+	        		} else {
+	        			System.out.println(filePaths.get(i) + " is existed");
 	        		}
 				} catch(IOException e) {
 					Log.e(e);
@@ -52,5 +62,7 @@ public class ImageFileUtils {
 				}
 			}
 		}
+		System.out.println("Done!");
+		System.out.println("===============================================================");
 	}
 }
