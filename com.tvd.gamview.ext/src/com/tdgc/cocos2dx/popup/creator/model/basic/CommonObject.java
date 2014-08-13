@@ -3,6 +3,8 @@ package com.tdgc.cocos2dx.popup.creator.model.basic;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IProject;
+
 import com.tdgc.cocos2dx.popup.creator.constants.Strings;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
@@ -66,7 +68,7 @@ public class CommonObject {
 	public String implementPositions() {
 		
 		String template = new FileUtils().fetchTemplate("MakePointCommon", 
-				"src/com/template/new_point.template");
+				"src/com/template/new_point.template", getProject());
 		StringBuilder builder = new StringBuilder("\n");
 		
 		if(mPositionString != null 
@@ -334,6 +336,21 @@ public class CommonObject {
 		}
 	}
 	
+	public void setProject(IProject project) {
+		this.mProject = project;
+	}
+	
+	public IProject getProject() {
+		IProject project = mProject;
+		CommonObject parent = mParent;
+		if(mProject == null && parent != null) {
+			project = parent.mProject;
+			parent = parent.getParent();
+		}
+		
+		return project;
+	}
+	
 	protected List<ItemGroup> mMenuItemsGroups;
 	protected List<ItemGroup> mLabelsGroups;
 	protected List<ItemGroup> mSpritesGroups;
@@ -361,4 +378,6 @@ public class CommonObject {
 	protected boolean mIsBackground;
 	protected boolean mIsUnlocated;
 	protected String mZIndex;
+	
+	protected IProject mProject;
 }

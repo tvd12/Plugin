@@ -108,10 +108,24 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 				IFile xmlFile = element.getProject().getFile(element.getFilePath());
 				XmlFetcher xmlFetcher = new XmlFetcher();
 				View view = xmlFetcher.fetchView(xmlFile);
+				view.setProject(element.getProject());
+				
 				exportImages(element, view);
+				
 				declareIdentifiers(element, view);
 				implementIdentifiers(element, view);
 				exportIdentifiers(element, view);
+				
+				declarePositions(element, view);
+				implementPositionsForDevice(element, view);
+				
+				exportXibTemplateForDevice(element, view);
+				exportScreenTemplateForDevice(element, view);
+				exportAndroidTemplateForDevice(element, view);
+				
+				declareClass(element, view);
+				implementClass(element, view);
+				exportSourceCode(element, view);
 			}
 		}
 	}
@@ -124,29 +138,154 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 					.equals(Constant.TreeElement.EXPORT_IMAGES)) {
 				System.out.println("Exporting images...");
 				view.exportImages();
+				System.out.println("Done!");
+				System.out.println("===============================================================");
 			}
 		}
 	}
 	
 	private void declareIdentifiers(BuildingListElement element, View view) {
 		if(element.getName().equals(Constant.TreeElement.DECLARE_IDS)) {
-			System.out.println("declaring identifier...");
+			System.out.println("declaring identifiers...");
 			view.exportDeclaringImageIds();
+			System.out.println("Done!");
+			System.out.println("===============================================================");
 		}
 	}
 	
 	private void implementIdentifiers(BuildingListElement element, View view) {
 		if(element.getName().equals(Constant.TreeElement.IMPLEMENT_IDS)) {
-			System.out.println("declaring identifier...");
+			System.out.println("implementing identifiers...");
 			view.exportImplementedImageIds();
+			System.out.println("Done!");
+			System.out.println("===============================================================");
 		}
 	}
 	
 	private void exportIdentifiers(BuildingListElement element, View view) {
 		if(element.getName().equals(Constant.TreeElement.EXPORT_IDS)) {
-			System.out.println("declaring identifier...");
+			System.out.println("exporting identifiers...");
 			view.exportDeclaringImageIds();
 			view.exportImplementedImageIds();
+			System.out.println("Done!");
+			System.out.println("===============================================================");
+		}
+	}
+	
+	private void declarePositions(BuildingListElement element, View view) {
+		if(element.getName().equals(Constant.TreeElement.DECLARE_POSITIONS)) {
+			System.out.println("declaring positions...");
+			view.exportDeclaringPositions();
+			System.out.println("Done!");
+			System.out.println("===============================================================");
+		}
+	}
+	
+	private void implementPositionsForDevice(BuildingListElement element, View view) {
+		String device = element.getDevice();
+		if(device != null && !device.equals("")) {
+			BuildingListElement parentOfDeviceElement = element.getParent();
+			if(parentOfDeviceElement.getName()
+					.equals(Constant.TreeElement.IMPLEMENT_POSITIONS)) {
+				System.out.println("Implementing position for " + element.getDevice()
+						+ " device...");
+				view.exportImplementedPositions(device);
+				System.out.println("Done!");
+				System.out.println("===============================================================");
+			}
+		}
+	}
+	
+	private void exportXibTemplateForDevice(BuildingListElement element, View view) {
+		String device = element.getDevice();
+		if(device != null && !device.equals("")) {
+			BuildingListElement parentOfDeviceElement = element.getParent();
+			if(parentOfDeviceElement.getName()
+					.equals(Constant.TreeElement.EXPORT_XIB_TPL)) {
+				System.out.println("Implementing position for " + element.getDevice()
+						+ " device...");
+				view.exportXibTemplate(element.getDevice(), view.getProject());
+				System.out.println("Done!");
+				System.out.println("===============================================================");
+			}
+		}
+	}
+	
+	private void exportScreenTemplateForDevice(BuildingListElement element, View view) {
+		String device = element.getDevice();
+		if(device != null && !device.equals("")) {
+			BuildingListElement parentOfDeviceElement = element.getParent();
+			if(parentOfDeviceElement.getName()
+					.equals(Constant.TreeElement.EXPORT_SCREEN_TPL)) {
+				System.out.println("Implementing position for " + element.getDevice()
+						+ " device...");
+				view.exportScreenTemplate(element.getDevice(), view.getProject());
+				System.out.println("Done!");
+				System.out.println("===============================================================");
+			}
+		}
+	}
+	
+	private void exportAndroidTemplateForDevice(BuildingListElement element, View view) {
+		String device = element.getDevice();
+		if(device != null && !device.equals("")) {
+			BuildingListElement parentOfDeviceElement = element.getParent();
+			if(parentOfDeviceElement.getName()
+					.equals(Constant.TreeElement.EXPORT_ANDROID_TPL)) {
+				System.out.println("Implementing position for " + element.getDevice()
+						+ " device...");
+				//view.exportImplementedPositions(device);
+				System.out.println("Comming soon!");
+				System.out.println("===============================================================");
+			}
+		}
+	}
+	
+	private void declareClass(BuildingListElement element, View view) {
+		if(element.getName().equals(Constant.TreeElement.DECLARE_CLASS)) {
+			System.out.println("Declaring " + view.getClassName()
+					+ " class for view...");
+			view.exportHeaderCode();
+			System.out.println("Done!");
+			System.out.println("===============================================================");
+		}
+	}
+	
+	private void implementClass(BuildingListElement element, View view) {
+		if(element.getName().equals(Constant.TreeElement.IMPLEMENT_CLASS)) {
+			System.out.println("Implementing " + view.getClassName()
+					+ " class for view...");
+			view.exportImplementedCode();
+			System.out.println("Done!");
+			System.out.println("===============================================================");
+		}
+	}
+	
+	private void exportSourceCode(BuildingListElement element, View view) {
+		if(element.getName().equals(Constant.TreeElement.EXPORT_SRC_CODE)) {
+			System.out.println("Exporting " + view.getClassName()
+					+ " class for view...");
+			view.exportHeaderCode();
+			view.exportImplementedCode();
+			System.out.println("Done!");
+			System.out.println("===============================================================");
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	private void implementPositions(BuildingListElement element, View view) {
+		if(element.getName().equals(Constant.TreeElement.IMPLEMENT_CLASS)) {
+			System.out.println("implemeting positions...");
+			view.exportImplementedPositions();
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	private void exportPositions(BuildingListElement element, View view) {
+		if(element.getName().equals(Constant.TreeElement.DECLARE_POSITIONS)) {
+			System.out.println("exporting positions...");
+			view.exportDeclaringPositions();
+			view.exportImplementedPositions();
 		}
 	}
 	
@@ -181,6 +320,7 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 				"export positions", //5
 					//"declare positions", 5.1
 					//"implement positions", 5.2
+						//implement for device 5.2.x
 				"export source code", //6 
 					//"declare class", //6.1
 					//"implement class", //6.2	
@@ -223,7 +363,7 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 		    elements[4].addChild(new BuildingListElement(Constant.TreeElement.DECLARE_IDS));
 		    elements[4].addChild(new BuildingListElement(Constant.TreeElement.IMPLEMENT_IDS));
 		    elements[5].addChild(new BuildingListElement("declare positions"));
-		    elements[6].addChild(new BuildingListElement("implement positions"));
+		    elements[5].addChild(new BuildingListElement("implement positions"));
 		    elements[6].addChild(new BuildingListElement("declare class"));
 		    elements[6].addChild(new BuildingListElement("implement class"));
 			for(int k = 0 ; k < viewModels.size() ; k++) {
@@ -234,12 +374,18 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 				    	String device = devices[j].trim();
 				    	BuildingListElement deviceElement = 
 				    			new BuildingListElement("export for " + device, device);
-				    	deviceElement.setFilePath("resources/xml/" + device
-				    			+ "/" + viewModels.get(k).getName());
+				    	String filePath = "resources/xml/" + device
+				    			+ "/" + viewModels.get(k).getName();
+				    	deviceElement.setFilePath(filePath);
 				    	elements[0].addChild(deviceElement.copy());
 				    	elements[1].addChild(deviceElement.copy());
 				    	elements[2].addChild(deviceElement.copy());
 				    	elements[3].addChild(deviceElement.copy());
+				    	
+				    	BuildingListElement implementForDeviceElement
+				    			= new BuildingListElement("implement for " + device, device);
+				    	implementForDeviceElement.setFilePath(filePath);
+				    	elements[5].getChildAt(1).addChild(implementForDeviceElement);
 				    }
 					BuildingListElement viewElement = new BuildingListElement(name, elements);
 					viewElement.setFilePath("resources/xml/" + devices[0]

@@ -75,7 +75,7 @@ public class MenuItem extends CommonObject {
 		}
 		
 		String template = new FileUtils().fetchTemplate(templateName, 
-				"src/com/template/new_menuitem.template");
+				"src/com/template/new_menuitem.template", getProject());
 		
 		String parentName = Config.getInstance().getDefaultParentPopup();
 		if(mParent != null) {

@@ -12,6 +12,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
+
 import com.tdgc.cocos2dx.popup.creator.log.Log;
 
 public class FileUtils {
@@ -46,29 +50,60 @@ public class FileUtils {
 		}
 		return mContent;
 	}
+	
+	public String readFromFile(IFile file) {
+		DataInputStream inputStream = null;
+		BufferedReader bufferedReader = null;
+		try {
+			inputStream = new DataInputStream(file.getContents());
+			bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+			
+			StringBuilder builder = new StringBuilder();
+			String lineContent = bufferedReader.readLine();
+			while(lineContent != null) {
+				builder.append(lineContent).append("\n");
+				lineContent = bufferedReader.readLine();
+			}
+			mContent = builder.toString();
+			inputStream.close();
+			bufferedReader.close();
+		} catch(IOException e) {
+			Log.e(e);
+		} catch(CoreException e) {
+			Log.e(e);
+		}
+		finally {
+
+		}
+		return mContent;
+	}
 
 	public void writeToFile(String pFilePath, boolean pCreateCopy) {
 		try {
+			String folderPath = pFilePath.substring(0, pFilePath.lastIndexOf('/'));
+			File container = new File(folderPath);
+			if(!container.exists()) {
+				container.mkdirs();
+			}
+			File file = new File(pFilePath);
 			
-		File file = new File(pFilePath);
-		
-		//if file doesn't exists, then create it
-		if(!file.exists()) {
-			file.createNewFile();
-		} else if(pCreateCopy) {
-			int lastIndex = pFilePath.lastIndexOf('/') + 1;
-			String newName = pFilePath.substring(lastIndex);
-			newName = "copy of " + newName;
-			pFilePath = pFilePath.substring(0, lastIndex)
-					+ newName;
-			file = new File(pFilePath);
-		}
-		
-		FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
-		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-		bufferedWriter.write(mContent);
-		
-		bufferedWriter.close();
+			//if file doesn't exists, then create it
+			if(!file.exists()) {
+				file.createNewFile();
+			} else if(pCreateCopy) {
+				int lastIndex = pFilePath.lastIndexOf('/') + 1;
+				String newName = pFilePath.substring(lastIndex);
+				newName = "copy of " + newName;
+				pFilePath = pFilePath.substring(0, lastIndex)
+						+ newName;
+				file = new File(pFilePath);
+			}
+			
+			FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			bufferedWriter.write(mContent);
+			
+			bufferedWriter.close();
 		} catch(IOException e) {
 			Log.e(e);
 		}
@@ -76,19 +111,23 @@ public class FileUtils {
 	
 	public void replaceContent(String pFilePath) {
 		try {
+			String folderPath = pFilePath.substring(0, pFilePath.lastIndexOf('/'));
+			File container = new File(folderPath);
+			if(!container.exists()) {
+				container.mkdirs();
+			}
+			File file = new File(pFilePath);
 			
-		File file = new File(pFilePath);
-		
-		//if file doesn't exists, then create it
-		if(!file.exists()) {
-			file.createNewFile();
-		}
-		
-		FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
-		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-		bufferedWriter.write(mContent);
-		
-		bufferedWriter.close();
+			//if file doesn't exists, then create it
+			if(!file.exists()) {
+				file.createNewFile();
+			}
+			
+			FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			bufferedWriter.write(mContent);
+			
+			bufferedWriter.close();
 		} catch(IOException e) {
 			Log.e(e);
 		}
@@ -97,6 +136,26 @@ public class FileUtils {
 	public String fetchTemplate(String pTemplateName, String pTemplateFilePath) {
 		StringBuilder builder = new StringBuilder();
 		String contentLines[] = readFromFile(pTemplateFilePath).split("\n");
+		pTemplateName = "#" + pTemplateName.trim() + " template";
+		for(int i = 0 ; i < contentLines.length ; i++) {
+			if(contentLines[i].trim().equals(pTemplateName)) {
+				while(!contentLines[++i].trim().equals("#end")) {
+					if(!contentLines[i].equals("")) {
+						builder.append(contentLines[i])
+							.append("\n");
+					}
+				}
+				break;
+			}
+		}
+		return builder.toString();
+	}
+	
+	public String fetchTemplate(String pTemplateName, String pTemplatePath, 
+			IProject pProject) {
+		StringBuilder builder = new StringBuilder();
+		IFile file = pProject.getFile(pTemplatePath);
+		String contentLines[] = readFromFile(file).split("\n");
 		pTemplateName = "#" + pTemplateName.trim() + " template";
 		for(int i = 0 ; i < contentLines.length ; i++) {
 			if(contentLines[i].trim().equals(pTemplateName)) {

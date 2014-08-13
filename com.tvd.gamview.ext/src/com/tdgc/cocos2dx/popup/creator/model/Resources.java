@@ -59,7 +59,7 @@ public class Resources extends CommonObject {
 		String superImplement = super.implement(true);
 		StringBuilder builder = new StringBuilder();
 		String template = new FileUtils().fetchTemplate("normal",
-				"src/com/template/new_function.template");
+				"src/com/template/new_function.template", getProject());
 		String arguments = parentType + " " + parentStr;
 		template = template.replace("{function_type}", "void")
 				.replace("{function_name}", mName)

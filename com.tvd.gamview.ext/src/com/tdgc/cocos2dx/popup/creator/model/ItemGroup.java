@@ -24,7 +24,7 @@ public class ItemGroup {
 		String name = mItems.get(0).getName().replaceAll("[0-9]Sprite", "Sprites");
 		if(mIsArray) {
 			String template = new FileUtils().fetchTemplate("vector", 
-					"src/com/template/array_declare.template");
+					"src/com/template/array_declare.template", mItems.get(0).getProject());
 			template = template.replace("{tab}", "\t")
 					.replace("{type}", mItems.get(0).getDeclareObjectName() + "*")
 					.replace("{name}", name);

@@ -53,7 +53,7 @@ public class Sprite extends CommonObject {
 		}
 		
 		String template = new FileUtils().fetchTemplate(templateName, 
-				"src/com/template/new_sprite.template");
+				"src/com/template/new_sprite.template", getProject());
 		
 		String imageName = "";
 		if(mImage == null) {

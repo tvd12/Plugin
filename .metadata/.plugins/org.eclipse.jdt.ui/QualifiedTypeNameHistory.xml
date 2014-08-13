@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.io.ByteArrayInputStream"/>
-<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
-<fullyQualifiedTypeName name="com.tvd.gamview.ext.constants.Constant.File"/>
-<fullyQualifiedTypeName name="com.tvd.gameview.ui.internal.SdkPropetiesFileVisitor"/>
-<fullyQualifiedTypeName name="org.eclipse.core.runtime.NullProgressMonitor"/>
-<fullyQualifiedTypeName name="org.eclipse.jdt.core.JavaCore"/>
-<fullyQualifiedTypeName name="com.tvd.gameview.ui.natures.SdkFileNature"/>
 <fullyQualifiedTypeName name="com.tvd.gameview.ui.builder.SdkXMLFileBuilder"/>
 <fullyQualifiedTypeName name="com.tvd.gameview.ui.builder.SdkPropertiesFileBuilder"/>
 <fullyQualifiedTypeName name="org.eclipse.jface.viewers.ISelectionChangedListener"/>
@@ -37,17 +30,10 @@
 <fullyQualifiedTypeName name="java.lang.Object"/>
 <fullyQualifiedTypeName name="org.eclipse.jface.viewers.IStructuredSelection"/>
 <fullyQualifiedTypeName name="org.eclipse.core.resources.IFolder"/>
-<fullyQualifiedTypeName name="org.eclipse.core.runtime.CoreException"/>
 <fullyQualifiedTypeName name="java.lang.SuppressWarnings"/>
 <fullyQualifiedTypeName name="org.eclipse.core.resources.IResource"/>
 <fullyQualifiedTypeName name="com.tvd.gamview.ext.utils.ProjectUtils"/>
-<fullyQualifiedTypeName name="org.eclipse.core.resources.IProject"/>
-<fullyQualifiedTypeName name="com.tvd.gamview.ext.constants.Constant"/>
-<fullyQualifiedTypeName name="com.tvd.gamview.ext.constants.Constant.TreeElement"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.xml.XmlFetcher"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.View"/>
-<fullyQualifiedTypeName name="com.tvd.gameview.views.BuildingListElement"/>
-<fullyQualifiedTypeName name="org.eclipse.core.resources.IFile"/>
 <fullyQualifiedTypeName name="java.io.InputStream"/>
 <fullyQualifiedTypeName name="org.eclipse.ui.PlatformUI"/>
 <fullyQualifiedTypeName name="org.eclipse.core.resources.ResourcesPlugin"/>
@@ -60,4 +46,18 @@
 <fullyQualifiedTypeName name="org.xml.sax.helpers.DefaultHandler"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.xml.XMLErrorHandler"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.xml.XmlCreator"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.xml.XmlFileBuilder"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="com.tvd.gameview.views.BuildingListElement"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.View"/>
+<fullyQualifiedTypeName name="com.tvd.gamview.ext.constants.Constant"/>
+<fullyQualifiedTypeName name="com.tvd.gamview.ext.constants.Constant.TreeElement"/>
+<fullyQualifiedTypeName name="org.eclipse.wst.xml.ui.internal.wizards.NewModelWizard.NewFilePage"/>
+<fullyQualifiedTypeName name="org.eclipse.core.runtime.CoreException"/>
+<fullyQualifiedTypeName name="org.eclipse.core.resources.IFile"/>
+<fullyQualifiedTypeName name="org.eclipse.core.resources.IProject"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject"/>
 </qualifiedTypeNameHistroy>

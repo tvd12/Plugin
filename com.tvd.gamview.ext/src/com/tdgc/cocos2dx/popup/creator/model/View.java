@@ -7,6 +7,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+
 import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.file.ImageFileUtils;
@@ -15,9 +18,6 @@ import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Parameter;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Property;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
-import com.tdgc.cocos2dx.popup.creator.utils.XmlContentUtils;
-import com.tdgc.cocos2dx.popup.creator.xml.ScreenFetcher;
-import com.tdgc.cocos2dx.popup.creator.xml.XibFetcher;
 
 public class View extends CommonObject {
 
@@ -34,7 +34,7 @@ public class View extends CommonObject {
 				Config.getInstance().getScreenContainerPath();
 		this.mBackgroundImage = new Image("common_background", 
 				"pop_common_bg.png", 
-				"avatars_popup/background/pop_common_bg.png",
+				"pop_common_bg.png",
 				true, this);
 		this.mImages.add(mBackgroundImage);
 		this.mPrefix = "";
@@ -52,7 +52,7 @@ public class View extends CommonObject {
 		String propertiesDeclare = StringUtils.standardizeCode(superDeclare
 				+ declareProperties());
 		String template = new FileUtils().readFromFile(
-				"src/com/template/popup_default_header.template");
+				getProject().getFile("src/com/template/popup_default_header.template"));
 		String result = template.replace("{class_name}", mClassName)
 				.replace("{author}", System.getProperty("user.name"))
 				.replace("{project_name}", Config.getInstance().getProjectName())
@@ -81,7 +81,7 @@ public class View extends CommonObject {
 		classNamePrefix = classNamePrefix.replace(classNamePrefix.charAt(0), firstChar);
 		
 		String template = new FileUtils().fetchTemplate("implement", 
-				"src/com/template/popup_default_implement.template");
+				"src/com/template/popup_default_implement.template", getProject());
 		
 		String result = template.replace("{author}", System.getProperty("user.name"))
 				.replace("{project_name}", Config.getInstance().getProjectName())
@@ -157,6 +157,23 @@ public class View extends CommonObject {
 		return builder.toString();
 	}
 	
+	public String implementPositions(String device) {
+		String declare = super.implementPositions();
+		String strs[] = declare.split("\n");
+		Arrays.sort(strs);
+		StringBuilder builder = new StringBuilder("\n");
+		createHeaderCommentTemplate(builder, " position init");
+		for(int i = 0 ; i < strs.length ; i++) {
+			if(!strs[i].trim().equals("")) {
+				builder.append(strs[i] + "\n");
+			}
+		}
+		builder.append("\n")
+			.append("\t" + Constants.DONT_DELETE_THIS_LINE + "(" + device + ")");
+		
+		return builder.toString();
+	}
+	
 	public String declareImageIds() {
 		StringBuilder builder = new StringBuilder();
 		createHeaderCommentTemplate(builder, "image ids declare");
@@ -165,7 +182,7 @@ public class View extends CommonObject {
 				.append("\n");
 		}
 		builder.append("\n")
-			.append("\t//don't modify or delete this line");
+			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
 		
 		return builder.toString();
 	}
@@ -181,7 +198,7 @@ public class View extends CommonObject {
 				.append("\n");
 		}
 		builder.append("\n")
-			.append("\t//don't modify or delete this line");
+			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
 		
 		return builder.toString();
 	}
@@ -213,53 +230,51 @@ public class View extends CommonObject {
 				mImagesPath);
 	}
 	
-	public void exportXibTemplate(String pDevice) {
+	public void exportXibTemplate(String pDevice, IProject pProject) {
 			FileUtils fileUtils = new FileUtils();
-			String xibContent = fileUtils.readFromFile("resources/xib/" 
+			IFile file = pProject.getFile("resources/xib/" 
 					+ pDevice + "/template.xib");
+			String xibContent = fileUtils.readFromFile(file);
 			xibContent = xibContent.replace("<!--{imageviews_tag}-->", createImageViewsTag())
 				.replace("<!--{images_tag}-->", createImagesTag());
 			
-			final String fileName = mXibContainerPath + "/" + mClassName 
-					+ "_" + pDevice + "" 
-					+ ".xib";
-			fileUtils.setContent(xibContent).writeToFile(fileName, true);
-			String xibFilePath = fileName;
-			XibFetcher xibFetcher = new XibFetcher(mImages);
-			xibFetcher.fetchData(xibFilePath);
-			String fileContent = fileUtils.readFromFile(mXmlFilePath);
-			for(int i = 0 ; i < mImages.size() ; i++) {
-				fileContent = XmlContentUtils.replaceSpritePosition(
-					fileContent, mImages.get(i));
-			}
-	 		fileUtils.setContent(fileContent).replaceContent(mXmlFilePath);
+			final String xibFilePath = mXibContainerPath + "/" 
+					+ "/" + mClassName + ".xib";
+			fileUtils.setContent(xibContent).writeToFile(xibFilePath, true);
+//			XibFetcher xibFetcher = new XibFetcher(mImages);
+//			xibFetcher.fetchData(xibFilePath);
+//			String fileContent = fileUtils.readFromFile(pProject.getFile(mXmlFilePath));
+//			for(int i = 0 ; i < mImages.size() ; i++) {
+//				fileContent = XmlContentUtils.replaceSpritePosition(
+//					fileContent, mImages.get(i));
+//			}
+//	 		fileUtils.setContent(fileContent).replaceContent(mXmlFilePath);
 							
 	}
 	
-	public void exportScreenTemplate(String pDevice) {
+	public void exportScreenTemplate(String pDevice, IProject pProject) {
 		FileUtils fileUtils = new FileUtils();
-		String screenContent = fileUtils.readFromFile("resources/screen/" 
+		IFile file = pProject.getFile("resources/screen/" 
 				+ pDevice + "/template.screen");
+		String screenContent = fileUtils.readFromFile(file);
 		screenContent = screenContent.replace("<!--{widgets}-->", createWidgetsTag());
-		final String fileName = mScreenContainerPath + "/" + mClassName 
-				+ "_" + pDevice + "" 
-				+ ".screen";
-		fileUtils.setContent(screenContent).writeToFile(fileName, true);
-		String screenPath = fileName;
-		ScreenFetcher screenFetcher = new ScreenFetcher(mImages);
-		screenFetcher.fetchData(screenPath);
-		String fileContent = fileUtils.readFromFile(mXmlFilePath);
-		for(int i = 0 ; i < mImages.size() ; i++) {
-			fileContent = XmlContentUtils.replaceSpritePosition(
-				fileContent, mImages.get(i));
-		}
- 		fileUtils.setContent(fileContent).replaceContent(mXmlFilePath);
+		final String screenPath = mScreenContainerPath
+				+ "/" + mClassName + ".screen";
+		fileUtils.setContent(screenContent).writeToFile(screenPath, true);
+//		ScreenFetcher screenFetcher = new ScreenFetcher(mImages);
+//		screenFetcher.fetchData(screenPath);
+//		String fileContent = fileUtils.readFromFile(mXmlFilePath);
+//		for(int i = 0 ; i < mImages.size() ; i++) {
+//			fileContent = XmlContentUtils.replaceSpritePosition(
+//				fileContent, mImages.get(i));
+//		}
+// 		fileUtils.setContent(fileContent).replaceContent(mXmlFilePath);
 		
 	}
 	public void addImage(Image pImage) {
 		if(pImage.isBackground()) {
 			mBackgroundImage = pImage;
-			this.mImages.set(0, pImage);
+			this.mImages.get(0).replaceWithAnother(pImage);
 		} else {
 			this.mImages.add(pImage);
 		}
@@ -283,67 +298,6 @@ public class View extends CommonObject {
 		this.mPrefix = pPrefix;
 		String directoryName = pPrefix.substring(pPrefix.indexOf('_') + 1);
 		this.mDirectoryName = StringUtils.convertToClassName(directoryName, "");
-	}
-
-	@Override
-	public void setPositionName(String pPositionName) {
-		
-	}
-	
-	public void setClassName(String pClassName) {
-		this.mClassName = pClassName;
-	}
-	
-	public String getClassName() {
-		return this.mClassName;
-	}
-	
-	public void setDefinePath(String mDefinePath) {
-		this.mDefinePath = mDefinePath;
-	}
-
-	public void setParametersPath(String mParametersPath) {
-		this.mParametersPath = mParametersPath;
-	}
-
-	public void setImagesInputPath(String mImagesInputPath) {
-		this.mImagesInputPath = mImagesInputPath;
-	}
-
-	public void setImagesPath(String mImagesPath) {
-		this.mImagesPath = mImagesPath;
-	}
-
-	public void setXibContainerPath(String mXibContainerPath) {
-		this.mXibContainerPath = mXibContainerPath;
-	}
-
-	public void setClassPath(String mClassPath) {
-		this.mClassPath = mClassPath;
-	}
-
-	public void setDirectoryName(String mDirectoryName) {
-		this.mDirectoryName = mDirectoryName;
-	}
-	
-	public void setXmlFilePath(String pXmlFilePath) {
-		this.mXmlFilePath = pXmlFilePath;
-	}
-	
-	public String getScreenContainerPath() {
-		return this.mScreenContainerPath;
-	}
-	
-	public List<Image> getImages() {
-		return this.mImages;
-	}
-	
-	public void setScreenContainerPath(String pScreenContainerPath) {
-		this.mScreenContainerPath = pScreenContainerPath;
-	}
-	
-	public void addResource(Resources pResources) {
-		this.mResources.add(pResources);
 	}
 
 	private void createHeaderCommentTemplate(StringBuilder pBuilder,
@@ -375,7 +329,7 @@ public class View extends CommonObject {
 			.writeToFile(mDefinePath + ".cpp", false);
 	}
 	
-	private void exportDeclaringPositions() {
+	public void exportDeclaringPositions() {
 		FileUtils fileUtils = new FileUtils();
 		String content = fileUtils.readFromFile(mParametersPath + ".h");
 		String replaceContent = this.declarePositions();
@@ -385,7 +339,7 @@ public class View extends CommonObject {
 			.writeToFile(mParametersPath + ".h", false);
 	}
 	
-	private void exportImplementedPositions() {
+	public void exportImplementedPositions() {
 		FileUtils fileUtils = new FileUtils();
 		String content = fileUtils.readFromFile(
 				mParametersPath + ".cpp");
@@ -396,12 +350,18 @@ public class View extends CommonObject {
 			.writeToFile(mParametersPath + ".cpp", false);
 	}
 	
-	private void exportDirectory() {
-		new FileUtils().createDirectory(mClassPath, 
-				mDirectoryName);
+	public void exportImplementedPositions(String device) {
+		FileUtils fileUtils = new FileUtils();
+		String content = fileUtils.readFromFile(
+				mParametersPath + ".cpp");
+		String replaceContent = this.implementPositions(device);
+		content = content.replace(Constants.DONT_DELETE_THIS_LINE + "(" + device + ")", 
+				replaceContent);
+		fileUtils.setContent(content)
+			.writeToFile(mParametersPath + ".cpp", false);
 	}
 	
-	private void exportHeaderCode() {
+	public void exportHeaderCode() {
 		String content = declare();
 		new FileUtils().setContent(content)
 			.writeToFile(mClassPath + "/"
@@ -409,11 +369,16 @@ public class View extends CommonObject {
 				
 	}
 	
-	private void exportImplementedCode() {
+	public void exportImplementedCode() {
 		String content = implement(false);
 		new FileUtils().setContent(content)
 			.writeToFile(mClassPath + "/"
 				+ mDirectoryName + "/" + mClassName + ".cpp", false);
+	}
+	
+	private void exportDirectory() {
+		new FileUtils().createDirectory(mClassPath, 
+				mDirectoryName);
 	}
 	
 	private void setParentForMenuItems() {
@@ -534,6 +499,67 @@ public class View extends CommonObject {
 		}
 		
 		return builder.toString();
+	}
+	
+	@Override
+	public void setPositionName(String pPositionName) {
+		
+	}
+	
+	public void setClassName(String pClassName) {
+		this.mClassName = pClassName;
+	}
+	
+	public String getClassName() {
+		return this.mClassName;
+	}
+	
+	public void setDefinePath(String mDefinePath) {
+		this.mDefinePath = mDefinePath;
+	}
+
+	public void setParametersPath(String mParametersPath) {
+		this.mParametersPath = mParametersPath;
+	}
+
+	public void setImagesInputPath(String mImagesInputPath) {
+		this.mImagesInputPath = mImagesInputPath;
+	}
+
+	public void setImagesPath(String mImagesPath) {
+		this.mImagesPath = mImagesPath;
+	}
+
+	public void setXibContainerPath(String mXibContainerPath) {
+		this.mXibContainerPath = mXibContainerPath;
+	}
+
+	public void setClassPath(String mClassPath) {
+		this.mClassPath = mClassPath;
+	}
+
+	public void setDirectoryName(String mDirectoryName) {
+		this.mDirectoryName = mDirectoryName;
+	}
+	
+	public void setXmlFilePath(String pXmlFilePath) {
+		this.mXmlFilePath = pXmlFilePath;
+	}
+	
+	public String getScreenContainerPath() {
+		return this.mScreenContainerPath;
+	}
+	
+	public List<Image> getImages() {
+		return this.mImages;
+	}
+	
+	public void setScreenContainerPath(String pScreenContainerPath) {
+		this.mScreenContainerPath = pScreenContainerPath;
+	}
+	
+	public void addResource(Resources pResources) {
+		this.mResources.add(pResources);
 	}
 	
 	private String mDefinePath;

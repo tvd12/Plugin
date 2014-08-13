@@ -104,7 +104,6 @@ public class Image implements Comparable<Image> {
 			.append("measuredHeight=\"" + height/2 + "\" ")
 			.append("src=\"assets/" + imageDirectory + "/" + mRealPath + "\" ")
 			.append("/>\n");
-		
 		return builder.toString();
 	}
 	
@@ -117,6 +116,20 @@ public class Image implements Comparable<Image> {
 	@Override
 	public String toString() {
 		return mName + " position(" + mX + ", " + ", " + mY + ")";
+	}
+	
+	public void replaceWithAnother(Image another) {
+		another.mId = mId;
+		another.mImageViewId = mImageViewId;
+		another.mRealPath = mRealPath;
+		another.mPhonyPath = mPhonyPath;
+		another.mName = mName;
+		another.mIsBackground = mIsBackground;
+		another.mSize = mSize;
+		another.mX = mX;
+		another.mY = mY;
+		another.mParent = mParent;
+		another.mAnchorpoint = mAnchorpoint;
 	}
 
 	public void setId(String pId) {

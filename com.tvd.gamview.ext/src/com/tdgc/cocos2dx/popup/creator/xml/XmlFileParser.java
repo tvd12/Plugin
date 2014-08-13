@@ -157,6 +157,9 @@ public class XmlFileParser extends DefaultHandler {
 		else if(qName.equals(Tag.XIBCONTAINER_PATH)) {
 			mView.setXibContainerPath(mCurrentText);
 		}
+		else if(qName.equals(Tag.SCREENCONTAINER_PATH)) {
+			mView.setScreenContainerPath(mCurrentText);
+		}
 		else if(qName.equals(Tag.CLASS_PATH)) {
 			mView.setClassPath(mCurrentText);
 		}

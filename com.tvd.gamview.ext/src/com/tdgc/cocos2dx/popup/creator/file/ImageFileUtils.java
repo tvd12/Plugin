@@ -62,7 +62,5 @@ public class ImageFileUtils {
 				}
 			}
 		}
-		System.out.println("Done!");
-		System.out.println("===============================================================");
 	}
 }

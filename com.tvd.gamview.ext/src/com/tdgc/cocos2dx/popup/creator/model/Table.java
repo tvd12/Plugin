@@ -26,7 +26,7 @@ public class Table extends CommonObject {
 		StringBuilder builder = new StringBuilder("\n");
 		builder.append(super.implement(pInfunction));
 		String template = new FileUtils().fetchTemplate("TableView", 
-				"src/com/template/new_table.template");
+				"src/com/template/new_table.template", getProject());
 		
 		String parentName = Config.getInstance().getDefaultParentPopup();
 		if(mParent != null) {

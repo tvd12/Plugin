@@ -119,7 +119,7 @@ public class XmlCreator {
 		
 		Element screenContainerPath = mDocument.createElement(Tag.SCREENCONTAINER_PATH);
 		screenContainerPath.appendChild(mDocument.createTextNode(
-				Config.getInstance().getScreenContainerPath()));
+				Config.getInstance().getScreenContainerPath() + mDevice));
 		rootElement.appendChild(screenContainerPath);
 		
 		return rootElement;
