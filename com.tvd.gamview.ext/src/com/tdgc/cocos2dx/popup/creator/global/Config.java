@@ -128,7 +128,13 @@ public class Config {
 		this.mScreenContainerPath = mScreenContainerPath;
 	}
 
-
+	public void setAndroidContainerPath(String path) {
+		this.mAndroidContainerPath = path;
+	}
+	
+	public String getAndroidContainerPath() {
+		return this.mAndroidContainerPath;
+	}
 
 	private String mProjectName;
 	private String mNormalPropertyPrefix;
@@ -143,6 +149,7 @@ public class Config {
 //	private String mProjectPath;
 	private String mDefaultMenuItemParent;
 	private String mScreenContainerPath;
+	private String mAndroidContainerPath;
 	
 	private static Config sInstance;
 	

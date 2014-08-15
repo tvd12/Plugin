@@ -1,14 +1,16 @@
 package com.tdgc.cocos2dx.popup.creator.model;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
 
 import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
@@ -18,6 +20,9 @@ import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Parameter;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Property;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
+import com.tdgc.cocos2dx.popup.creator.utils.ViewUtils;
+import com.tdgc.cocos2dx.popup.creator.utils.XmlContentUtils;
+import com.tdgc.cocos2dx.popup.creator.xml.XibFetcher;
 
 public class View extends CommonObject {
 
@@ -37,12 +42,30 @@ public class View extends CommonObject {
 				"pop_common_bg.png",
 				true, this);
 		this.mImages.add(mBackgroundImage);
+		this.mLabels = new ArrayList<Label>();
 		this.mPrefix = "";
+		
+		this.mLabelGroupInView = new ArrayList<ItemGroup>();
+		this.mSpriteGroupInView = new ArrayList<ItemGroup>();
+		this.mMenuItemGroupInView = new ArrayList<ItemGroup>();
+		this.mMenuGroupInView = new ArrayList<ItemGroup>();
+		this.mTableGroupInView = new ArrayList<ItemGroup>();
 	}
 	
 	@Override
 	public String declare() {
-		String superDeclare = super.declare();
+		String superDeclare = new StringBuilder()
+			.append(ViewUtils.declareGroups(mLabelGroupInView))
+			.append("\n")
+			.append(ViewUtils.declareGroups(mSpriteGroupInView))
+			.append("\n")
+			.append(ViewUtils.declareGroups(mMenuItemGroupInView))
+			.append("\n")
+			.append(ViewUtils.declareGroups(mMenuGroupInView))
+			.append("\n")
+			.append(ViewUtils.declareGroups(mTableGroupInView))
+			.toString();
+		
 		Date createdDate = Calendar.getInstance().getTime();
 		String classNamePrefix = StringUtils.convertToClassName(
 				mPrefix.substring(mPrefix.indexOf("_") + 1), "");
@@ -64,7 +87,7 @@ public class View extends CommonObject {
 						createExtendFunctions(true)))
 				.replace("{class_name_prefix}", classNamePrefix)
 				.replace("{background_id}", mBackgroundImage.getId())
-				.replace("//{parameters}", declareParameters())
+				.replace("//{parameters},", declareParameters())
 				.replace("//{n}", "\n");
 
 		return StringUtils.standardizeCode(result);
@@ -88,19 +111,19 @@ public class View extends CommonObject {
 				.replace("{created_date}", createdDate.toString())
 				.replace("{super_name}", Config.getInstance().getDefautSuper(mSuffix))
 				.replace("//{add_menuitems}", StringUtils.standardizeCode(
-						implementObjects(mMenuItemsGroups, false)))
+						ViewUtils.implementGroups(mMenuItemGroupInView)))
 				.replace("//{add_sprites}", StringUtils.standardizeCode(
-						implementObjects(mSpritesGroups, false)))
+						ViewUtils.implementGroups(mSpriteGroupInView)))
 				.replace("{class_name_prefix}", classNamePrefix)
 				.replace("//{add_labels}", StringUtils.standardizeCode(
-						implementObjects(mLabelsGroups, false)))
+						ViewUtils.implementGroups(mLabelGroupInView)))
 				.replace("//{add_tables}", StringUtils.standardizeCode(
-						implementObjects(mTablesGroups, false)))
+						ViewUtils.implementGroups(mTableGroupInView)))
 				.replace("//{extend_functions}", StringUtils.standardizeCode(
 						createExtendFunctions(false)))
 				.replace("{callback_function}", classNamePrefix + "MenuItemCallback")
 				.replace("{class_name}", mClassName)
-				.replace("//{parameters}", declareParameters())
+				.replace("//{parameters},", declareParameters())
 				.replace("//{importing_params}", importingParams())
 				.replace("//{assigning_area}", assigningArea())
 				.replace("//{n}", "\n");
@@ -115,68 +138,64 @@ public class View extends CommonObject {
 	
 	@Override
 	public String declarePositions() {
-		String declare = super.declarePositions();
-		String strs[] = declare.split("\n");
-		Arrays.sort(strs);
+		
 		StringBuilder builder = new StringBuilder("\n");
-		createHeaderCommentTemplate(builder, " position declare");
-		boolean isArray = false;
-		for(int i = 0 ; i < strs.length ; i++) {
-			if(!strs[i].trim().equals("")) {
-				if(strs[i].contains("[")) {
-					isArray = true;
-					continue;
-				} 
-				if(isArray) {
-					builder.append(strs[i -1] + "\n");
-					isArray = false;
-				}
-				builder.append(strs[i] + "\n");
-			}
-		}
+		createHeaderCommentTemplate(builder, Constants.POSITION_DECLARING_CMM);
+		builder.append(ViewUtils.declarePositionGroups(mLabelGroupInView))
+			.append("\n")
+			.append(ViewUtils.declarePositionGroups(mSpriteGroupInView))
+			.append("\n")
+			.append(ViewUtils.declarePositionGroups(mMenuItemGroupInView))
+			.append("\n")
+			.append(ViewUtils.declarePositionGroups(mMenuGroupInView))
+			.append("\n")
+			.append(ViewUtils.declarePositionGroups(mTableGroupInView));
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
-		return builder.toString();
+		return builder.toString().trim();
 	}
 	
 	@Override
 	public String implementPositions() {
-		String declare = super.implementPositions();
-		String strs[] = declare.split("\n");
-		Arrays.sort(strs);
 		StringBuilder builder = new StringBuilder("\n");
-		createHeaderCommentTemplate(builder, " position init");
-		for(int i = 0 ; i < strs.length ; i++) {
-			if(!strs[i].trim().equals("")) {
-				builder.append(strs[i] + "\n");
-			}
-		}
+		createHeaderCommentTemplate(builder, Constants.POSITION_IMPLEMENTING_CMM);
+		builder.append(ViewUtils.declarePositionGroups(mLabelGroupInView))
+			.append("\n")
+			.append(ViewUtils.declarePositionGroups(mSpriteGroupInView))
+			.append("\n")
+			.append(ViewUtils.declarePositionGroups(mMenuItemGroupInView))
+			.append("\n")
+			.append(ViewUtils.declarePositionGroups(mMenuGroupInView))
+			.append("\n")
+			.append(ViewUtils.declarePositionGroups(mTableGroupInView));
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
 		
-		return builder.toString();
+		return builder.toString().trim();
 	}
 	
 	public String implementPositions(String device) {
-		String declare = super.implementPositions();
-		String strs[] = declare.split("\n");
-		Arrays.sort(strs);
 		StringBuilder builder = new StringBuilder("\n");
-		createHeaderCommentTemplate(builder, " position init");
-		for(int i = 0 ; i < strs.length ; i++) {
-			if(!strs[i].trim().equals("")) {
-				builder.append(strs[i] + "\n");
-			}
-		}
+		createHeaderCommentTemplate(builder, 
+				Constants.POSITION_IMPLEMENTING_CMM + "(" + device + ")");
+		builder.append(ViewUtils.implementPositionGroups(mLabelGroupInView))
+			.append("\n")
+			.append(ViewUtils.implementPositionGroups(mSpriteGroupInView))
+			.append("\n")
+			.append(ViewUtils.implementPositionGroups(mMenuItemGroupInView))
+			.append("\n")
+			.append(ViewUtils.implementPositionGroups(mMenuGroupInView))
+			.append("\n")
+			.append(ViewUtils.implementPositionGroups(mTableGroupInView));
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE + "(" + device + ")");
 		
-		return builder.toString();
+		return builder.toString().trim();
 	}
 	
 	public String declareImageIds() {
 		StringBuilder builder = new StringBuilder();
-		createHeaderCommentTemplate(builder, "image ids declare");
+		createHeaderCommentTemplate(builder, Constants.IMAGEIDS_DECLARING_CMM);
 		for(int i = 0 ; i < mImages.size(); i++) {
 			builder.append("\tstring " + mImages.get(i).getId().trim() + ";")
 				.append("\n");
@@ -184,12 +203,13 @@ public class View extends CommonObject {
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
 		
-		return builder.toString();
+		return builder.toString().trim();
 	}
 	
 	public String implementImageIds() {
 		StringBuilder builder = new StringBuilder();
-		createHeaderCommentTemplate(builder, "image ids init");
+		createHeaderCommentTemplate(builder, 
+				Constants.IMAGEIDS_IMPLEMENTING_CMM);
 		
 		for(int i = 0 ; i < mImages.size(); i++) {
 			builder.append("\t" + mImages.get(i).getId())
@@ -200,7 +220,7 @@ public class View extends CommonObject {
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
 		
-		return builder.toString();
+		return builder.toString().trim();
 	}
 	
 	public String createMenuItemTags() {
@@ -230,25 +250,22 @@ public class View extends CommonObject {
 				mImagesPath);
 	}
 	
-	public void exportXibTemplate(String pDevice, IProject pProject) {
+	public void exportXibTemplate(String pDevice, IProject pProject, boolean override) {
 			FileUtils fileUtils = new FileUtils();
 			IFile file = pProject.getFile("resources/xib/" 
 					+ pDevice + "/template.xib");
 			String xibContent = fileUtils.readFromFile(file);
-			xibContent = xibContent.replace("<!--{imageviews_tag}-->", createImageViewsTag())
+			
+			StringBuilder builder = new StringBuilder();
+			builder.append(createImageViewsTag())
+				.append("\n")
+				.append(createLabelsTagForXib());
+			xibContent = xibContent.replace("<!--{imageviews_tag}-->", builder.toString())
 				.replace("<!--{images_tag}-->", createImagesTag());
 			
 			final String xibFilePath = mXibContainerPath + "/" 
 					+ "/" + mClassName + ".xib";
-			fileUtils.setContent(xibContent).writeToFile(xibFilePath, true);
-//			XibFetcher xibFetcher = new XibFetcher(mImages);
-//			xibFetcher.fetchData(xibFilePath);
-//			String fileContent = fileUtils.readFromFile(pProject.getFile(mXmlFilePath));
-//			for(int i = 0 ; i < mImages.size() ; i++) {
-//				fileContent = XmlContentUtils.replaceSpritePosition(
-//					fileContent, mImages.get(i));
-//			}
-//	 		fileUtils.setContent(fileContent).replaceContent(mXmlFilePath);
+			fileUtils.setContent(xibContent).writeToFile(xibFilePath, override);
 							
 	}
 	
@@ -271,6 +288,7 @@ public class View extends CommonObject {
 // 		fileUtils.setContent(fileContent).replaceContent(mXmlFilePath);
 		
 	}
+
 	public void addImage(Image pImage) {
 		if(pImage.isBackground()) {
 			mBackgroundImage = pImage;
@@ -312,6 +330,14 @@ public class View extends CommonObject {
 		FileUtils fileUtils = new FileUtils();
 		String content = fileUtils.readFromFile(mDefinePath + ".h");
 		String replaceContent = this.declareImageIds();
+		
+		//delete old source code
+		String beginStr = "// " + mClassName + " " 
+				+ Constants.IMAGEIDS_DECLARING_CMM;
+		content = fileUtils.deleteSourceCode(content,
+				beginStr, Constants.DONT_DELETE_THIS_LINE);
+		
+		//append content
 		content = content.replace(Constants.DONT_DELETE_THIS_LINE, 
 				replaceContent);
 		
@@ -323,6 +349,13 @@ public class View extends CommonObject {
 		FileUtils fileUtils = new FileUtils();
 		String content = fileUtils.readFromFile(mDefinePath + ".cpp");
 		String replaceContent = this.implementImageIds();
+		
+		//delete old source code
+		String beginStr = "// " + mClassName + " " 
+				+ Constants.IMAGEIDS_IMPLEMENTING_CMM;
+		content = fileUtils.deleteSourceCode(content,
+				beginStr, Constants.DONT_DELETE_THIS_LINE);
+		
 		content = content.replace(Constants.DONT_DELETE_THIS_LINE, 
 				replaceContent);
 		fileUtils.setContent(content)
@@ -333,6 +366,13 @@ public class View extends CommonObject {
 		FileUtils fileUtils = new FileUtils();
 		String content = fileUtils.readFromFile(mParametersPath + ".h");
 		String replaceContent = this.declarePositions();
+		
+		//delete old source code
+		String beginStr = "// " + mClassName + " " 
+				+ Constants.POSITION_DECLARING_CMM;
+		content = fileUtils.deleteSourceCode(content,
+				beginStr, Constants.DONT_DELETE_THIS_LINE);
+		
 		content = content.replace(Constants.DONT_DELETE_THIS_LINE, 
 				replaceContent);
 		fileUtils.setContent(content)
@@ -344,6 +384,13 @@ public class View extends CommonObject {
 		String content = fileUtils.readFromFile(
 				mParametersPath + ".cpp");
 		String replaceContent = this.implementPositions();
+		
+		//delete old source code
+		String beginStr = "// " + mClassName + " " 
+				+ Constants.IMAGEIDS_IMPLEMENTING_CMM;
+		content = fileUtils.deleteSourceCode(content,
+				beginStr, Constants.DONT_DELETE_THIS_LINE);
+		
 		content = content.replace(Constants.DONT_DELETE_THIS_LINE, 
 				replaceContent);
 		fileUtils.setContent(content)
@@ -355,6 +402,13 @@ public class View extends CommonObject {
 		String content = fileUtils.readFromFile(
 				mParametersPath + ".cpp");
 		String replaceContent = this.implementPositions(device);
+		
+		//delete old source code
+		String beginStr = "// " + mClassName + " " 
+				+ Constants.POSITION_IMPLEMENTING_CMM + "(" + device + ")";
+		content = fileUtils.deleteSourceCode(content,
+				beginStr, Constants.DONT_DELETE_THIS_LINE + "(" + device + ")");
+		
 		content = content.replace(Constants.DONT_DELETE_THIS_LINE + "(" + device + ")", 
 				replaceContent);
 		fileUtils.setContent(content)
@@ -376,17 +430,55 @@ public class View extends CommonObject {
 				+ mDirectoryName + "/" + mClassName + ".cpp", false);
 	}
 	
+	public void refreshXMLFile() throws CoreException {
+		System.out.println("Interface Builder = " + mInterfaceBuilder);
+		
+		//if use XCode - Interface Builder
+		if(mInterfaceBuilder.equals(Constants.XIB)) {
+			final String xibFilePath = mXibContainerPath + "/" 
+					+ "/" + mClassName + ".xib";
+			
+			//check exist
+			File file = new File(xibFilePath);
+			if(!file.exists()) {
+				return; //if not exist
+			}
+			
+			this.setImagesIdsForXib();
+			this.setLabelsIdForXib();
+			
+			XibFetcher xibFetcher = new XibFetcher(mImages, mLabels);
+			xibFetcher.fetchData(xibFilePath);
+			FileUtils fileUtils = new FileUtils();
+			String fileContent = fileUtils.readFromFile(mXmlFile);
+			for(int i = 0 ; i < mImages.size() ; i++) {
+				mImages.get(i).alignFollowParrent();
+				fileContent = XmlContentUtils.replaceSpritePosition(
+					fileContent, mImages.get(i));
+			}
+			for(int i = 0 ; i < mLabels.size() ; i++) {
+				System.out.println("label text = " + mLabels.get(i).getText());
+				mLabels.get(i).alignFollowParrent();
+				fileContent = XmlContentUtils.replaceSpritePosition(
+						fileContent, mLabels.get(i));
+			}
+	 		ByteArrayInputStream inputStream = 
+	 				new ByteArrayInputStream(fileContent.getBytes());
+	 		mXmlFile.setContents(inputStream, true, false, null);
+		}
+	}
+	
 	private void exportDirectory() {
 		new FileUtils().createDirectory(mClassPath, 
 				mDirectoryName);
 	}
 	
 	private void setParentForMenuItems() {
-		CommonObject parent = new CommonObject();
+		CommonObject parent = new Menu();
 		parent.setName(Config.getInstance().getDefaultMenuItemParent());
-		for(int i = 0 ; i < mMenuItemsGroups.size() ; i++) {
-			for(int j = 0 ; j < mMenuItemsGroups.get(i).getItems().size() ; j++) {
-				mMenuItemsGroups.get(i).getItems().get(j).setParent(parent);
+		for(int i = 0 ; i < mMenuItemGroups.size() ; i++) {
+			for(int j = 0 ; j < mMenuItemGroups.get(i).getItems().size() ; j++) {
+				mMenuItemGroups.get(i).getItems().get(j).setParent(parent);
 			}
 		}
 	}
@@ -442,19 +534,26 @@ public class View extends CommonObject {
 	
 	private String createImageViewsTag() {
 		StringBuilder builder = new StringBuilder("\n");
+		setImagesIdsForXib();
 		for(int i = 0 ; i < mImages.size() ; i++) {
-			if(mImages.get(i).getRealPath().endsWith("active.png")) {
-				continue;
-			}
-			String id = "img-png-" + StringUtils.generateString(i);
 			try {
-				builder.append(mImages.get(i).createImageViewTag(id, mImagesPath));
+				builder.append(mImages.get(i).createImageViewTag(mImagesPath));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 		
 		return builder.toString();
+	}
+	
+	private void setImagesIdsForXib() {
+		for(int i = 0 ; i < mImages.size() ; i++) {
+			if(mImages.get(i).getRealPath().endsWith("active.png")) {
+				continue;
+			}
+			String id = "img-png-" + StringUtils.generateString(i);
+			mImages.get(i).setImageViewId(id);
+		}
 	}
 	
 	private String createImagesTag() {
@@ -562,22 +661,102 @@ public class View extends CommonObject {
 		this.mResources.add(pResources);
 	}
 	
+	public String getXibContainerPath() {
+		return mXibContainerPath;
+	}
+	
+	public void setXmlFile(IFile xmlFile) {
+		this.mXmlFile = xmlFile;
+	}
+	
+	public void setAndroidContainerPath(String path) {
+		this.mAndroidContainerPath = path;
+	}
+	
+	public String getAndroidContainerPath() {
+		return this.mAndroidContainerPath;
+	}
+	
+	public void setInterfaceBuilder(String ib) {
+		this.mInterfaceBuilder = ib;
+	}
+	
+	public String getInterfaceBuilder() {
+		return mInterfaceBuilder;
+	}
+	
+	//for label management
+	private void setLabelsIdForXib() {
+		for(int i = 0 ; i < mLabels.size() ; i++) {
+			mLabels.get(i).setLabelViewId(
+					"TVD-LB-" + StringUtils.generateString(i));
+		}
+ 	}
+	public String createLabelsTagForXib() {
+		setLabelsIdForXib();
+		StringBuilder builder = new StringBuilder();
+		for(int i = 0 ; i < mLabels.size() ; i++) {
+			builder.append(mLabels.get(i).createLabelTagForXib())
+				.append("\n");
+		}
+		
+		return builder.toString();
+	}
+	public void addLabel(Label label) {
+		this.mLabels.add(label);
+	}
+	
+	public List<Label> getLabels() {
+		return this.mLabels;
+	}
+	
+	//for items group management
+	public void pushBackLabelGroup(ItemGroup group) {
+		this.mLabelGroupInView.add(group);
+	}
+	public void pushBackSpriteGroup(ItemGroup group) {
+		this.mSpriteGroupInView.add(group);
+	}
+	public void pushBackMenuItemGroup(ItemGroup group) {
+		this.mMenuItemGroupInView.add(group);
+	}
+	public void pushBackMenuGroup(ItemGroup group) {
+		this.mMenuGroupInView.add(group);
+	}
+	public void pushBackTableGroup(ItemGroup group) {
+		this.mTableGroupInView.add(group);
+	}
+	
 	private String mDefinePath;
 	private String mParametersPath;
 	private String mImagesInputPath;
 	private String mImagesPath;
 	private String mXibContainerPath;
 	private String mClassPath;
+	private String mAndroidContainerPath;
+	
+	private String mInterfaceBuilder;
 	
 	private String mClassName;
 	private String mDirectoryName;
+	
+	@SuppressWarnings("unused")
 	private String mXmlFilePath;
 	
 	private Image mBackgroundImage;
 	private List<Image> mImages;
+	private List<Label> mLabels;
 	private List<String> mMenuItemTags;
 	private List<Parameter> mParameters;
 	private List<Property> mProperties;
 	private List<Resources> mResources;
 	private String mScreenContainerPath;
+	
+	private List<ItemGroup> mLabelGroupInView;
+	private List<ItemGroup> mSpriteGroupInView;
+	private List<ItemGroup> mMenuItemGroupInView;
+	private List<ItemGroup> mMenuGroupInView;
+	private List<ItemGroup> mTableGroupInView;
+	
+	private IFile mXmlFile;
 }

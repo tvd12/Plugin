@@ -15,10 +15,10 @@ public class Menu extends CommonObject {
 	@Override
 	public String declare() {
 		StringBuilder builder = new StringBuilder();
-		for(int i = 0 ; i < mMenuItemsGroups.size() ; i++) {
-			builder.append(mMenuItemsGroups.get(i).declare());
+		for(int i = 0 ; i < mMenuItemGroups.size() ; i++) {
+			builder.append(mMenuItemGroups.get(i).declare());
 		}
-		builder.append("\n\tCCMenu* " + mName + "; ");
+		builder.append("CCMenu* " + mName + "; ");
 		
 		return builder.toString();
 	}
@@ -31,7 +31,6 @@ public class Menu extends CommonObject {
 		}
 		
 		StringBuilder builder = new StringBuilder("\n");
-		builder.append(super.implement(pInfunction));
 		
 		String templateName = "CCMenu";
 		if(pInfunction) {

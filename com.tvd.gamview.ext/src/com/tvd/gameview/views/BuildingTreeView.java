@@ -1,5 +1,6 @@
 package com.tvd.gameview.views;
 
+import java.io.File;
 import java.net.URL;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
@@ -63,7 +65,7 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 				new LocalResourceManager(resourceManager, parent);
 		
 		ImageRegistry imageRegistry = new ImageRegistry(localResourceManager);
-		URL iconURL = this.getClass().getResource("/icons/sample.gif");
+		URL iconURL = this.getClass().getResource("/icons/3_menuitem.gif");
 		imageRegistry.put("iconURL", ImageDescriptor.createFromURL(iconURL));
 		FontRegistry fontRegistry = JFaceResources.getFontRegistry();
 		
@@ -117,7 +119,7 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 				exportIdentifiers(element, view);
 				
 				declarePositions(element, view);
-				implementPositionsForDevice(element, view);
+				implementPositionsForDevice(element, view, xmlFetcher, xmlFile);
 				
 				exportXibTemplateForDevice(element, view);
 				exportScreenTemplateForDevice(element, view);
@@ -181,7 +183,8 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 		}
 	}
 	
-	private void implementPositionsForDevice(BuildingListElement element, View view) {
+	private void implementPositionsForDevice(BuildingListElement element, View view,
+			XmlFetcher xmlFetcher, IFile xmlFile) {
 		String device = element.getDevice();
 		if(device != null && !device.equals("")) {
 			BuildingListElement parentOfDeviceElement = element.getParent();
@@ -189,6 +192,14 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 					.equals(Constant.TreeElement.IMPLEMENT_POSITIONS)) {
 				System.out.println("Implementing position for " + element.getDevice()
 						+ " device...");
+				//get position from Interface builder file
+				try {
+					view.refreshXMLFile();
+					view = xmlFetcher.fetchView(xmlFile);
+					view.setProject(element.getProject());
+				} catch(CoreException e) {
+					e.printStackTrace();
+				}
 				view.exportImplementedPositions(device);
 				System.out.println("Done!");
 				System.out.println("===============================================================");
@@ -204,7 +215,15 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 					.equals(Constant.TreeElement.EXPORT_XIB_TPL)) {
 				System.out.println("Implementing position for " + element.getDevice()
 						+ " device...");
-				view.exportXibTemplate(element.getDevice(), view.getProject());
+				File xibFile = new File(view.getXibContainerPath() + "/" 
+						+ view.getClassName() + ".xib");
+				boolean override = true;
+				if(xibFile.exists()) {
+					MessageDialog.openConfirm(this.getSite().getShell(), 
+						"Duplicate file", view.getClassName() + ".xib is exists. " 
+						+ "Do you want override?");
+				}
+				view.exportXibTemplate(element.getDevice(), view.getProject(), !override);
 				System.out.println("Done!");
 				System.out.println("===============================================================");
 			}

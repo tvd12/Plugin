@@ -18,8 +18,14 @@ public class XmlFileBuilder {
 		this.mImagesPath = pImagesPath;
 	}
 	
+	public XmlFileBuilder(String pImagePath, String pInterfaceBuilder) {
+		this(pImagePath);
+		this.mInterfaceBuilder = pInterfaceBuilder;
+	}
+	
 	public String buildFor(String pDevice) {
-		mXmlCreator = new XmlCreator(this.mImagesPath, pDevice);
+		mXmlCreator = new XmlCreator(this.mImagesPath, pDevice,
+				mInterfaceBuilder);
 		Document doc = mXmlCreator.parseFilePaths();
 		
 		this.mFileOutputPath = "resources/xml/" + pDevice 
@@ -64,6 +70,7 @@ public class XmlFileBuilder {
 	private String mFileOutputPath;
 	private String mImagesPath;
 	private String mFileOutputName;
+	private String mInterfaceBuilder;
 	
 	
 //	public static void main(String[] args) {

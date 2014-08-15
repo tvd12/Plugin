@@ -18,8 +18,8 @@ public class Sprite extends CommonObject {
 	
 	@Override
 	public String declare() {
-		StringBuilder builder = new StringBuilder(super.declare());
-		builder.append("\tCCSprite* " + mName + ";");
+		StringBuilder builder = new StringBuilder();
+		builder.append("CCSprite* " + mName + ";");
 		
 		return builder.toString();
 	}
@@ -37,7 +37,6 @@ public class Sprite extends CommonObject {
 			return "";
 		}
 		StringBuilder builder = new StringBuilder("\n");
-		builder.append(super.implement(pInfunction));
 		
 		String templateName = "CCSprite";
 		if(pInfunction) {

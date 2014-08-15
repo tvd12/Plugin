@@ -1,7 +1,0 @@
-package com.tvd.gameview.ui.builder;
-
-import org.eclipse.core.resources.IncrementalProjectBuilder;
-
-public class SdkFileBuilder extends IncrementalProjectBuilder {
-	
-}

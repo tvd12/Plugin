@@ -11,7 +11,7 @@
       	<view
             category="com.tvd.gameview.views"
             class="com.tvd.gameview.views.BuildingTreeView"
-            icon="icons/sample.gif"
+            icon="icons/4_viewer.gif"
             id="com.tvd.gameview.views.BuildingTreeView"
             name="Building list"
             restorable="true">
@@ -72,10 +72,22 @@
 	          id="com.tvd.gameview.plugin.category.wizards"
 	          name="Gext">
 	    </category>
-	    <wizard 
+	    
+	    <wizard
+			id="com.tvd.gamview.ext.wizards.GameViewProjectCreationWizard"
+			name="Game view project"
+			class="com.tvd.gamview.ext.wizards.GameViewProjectCreationWizard"
+			category="com.tvd.gameview.plugin.category.wizards"
+			project="true"
+			finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+			icon="icons/1_project.gif">
+			<description>Game view project</description>
+    	</wizard>
+    	
+    	<wizard 
 	    	class="com.tvd.gamview.ext.wizards.NewGameViewWizard"
-	    	icon="icons/sample.gif"
-	    	name="Game View"
+	    	icon="icons/2_view.gif"
+	    	name="Game view"
 	    	category="com.tvd.gameview.plugin.category.wizards"
            	id="com.tvd.study.linuxsagas.plugin.wizard.view">
            	<description>
@@ -85,24 +97,13 @@
                   class="org.eclipse.core.resources.IResource">
            	</selection>
 	    </wizard>
-	    
-	    <wizard
-			id="org.eclipse.jdt.ui.examples.gameviewprojectcreationwizard"
-			name="Game view project"
-			class="com.tvd.gamview.ext.wizards.GameViewProjectCreationWizard"
-			category="com.tvd.gameview.plugin.category.wizards"
-			project="true"
-			finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
-			icon="icons/sample.gif">
-			<description>Game view project</description>
-    	</wizard>
 	</extension>
 	
 	 <extension
 	       point="org.eclipse.ui.views">
 	    <view
 	          class="org.eclipse.ui.navigator.CommonNavigator"
-	          icon="icons/sample.gif"
+	          icon="icons/4_viewer.gif"
 	          id="com.tvd.gameview.ext.navigator"
 	          name="TVD Common Navigator">
 	    </view>

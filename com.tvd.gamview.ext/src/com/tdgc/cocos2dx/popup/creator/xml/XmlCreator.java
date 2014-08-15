@@ -10,6 +10,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
+import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.file.FileParser;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
@@ -24,6 +25,12 @@ public class XmlCreator {
 	public XmlCreator(String pInputPath, String pDevice) {
 		this(pInputPath);
 		this.mDevice = pDevice;
+		this.mInterfaceBuilder = "";
+	}
+	
+	public XmlCreator(String pInputPath, String pDevice, String pInterfaceBuilder) {
+		this(pInputPath, pDevice);
+		this.mInterfaceBuilder = pInterfaceBuilder;
 	}
 	
 	public Document parseFilePaths() {
@@ -112,15 +119,28 @@ public class XmlCreator {
 				Config.getInstance().getXibContainerPath() + "/" + mDevice));
 		rootElement.appendChild(xibContainerPath);
 		
+		Element screenContainerPath = mDocument.createElement(Tag.SCREENCONTAINER_PATH);
+		screenContainerPath.appendChild(mDocument.createTextNode(
+				Config.getInstance().getScreenContainerPath() + "/" + mDevice));
+		rootElement.appendChild(screenContainerPath);
+		
+		Element androidContainerPath = mDocument.createElement(Tag.ANDROIDCONTAINER_PATH);
+		androidContainerPath.appendChild(mDocument.createTextNode(
+				Config.getInstance().getAndroidContainerPath() + "/" + mDevice));
+		rootElement.appendChild(androidContainerPath);
+		
+		if(mInterfaceBuilder.equals(Constants.XIB)) {
+			xibContainerPath.setAttribute("used", "true");
+		} else if(mInterfaceBuilder.equals(Constants.SCREEN)) {
+			screenContainerPath.setAttribute("used", "true");
+		} else if(mInterfaceBuilder.equals(Constants.ANDROID)) {
+			androidContainerPath.setAttribute("used", "true");
+		}
+		
 		Element classPath = mDocument.createElement(Tag.CLASS_PATH);
 		classPath.appendChild(mDocument.createTextNode(
 				Config.getInstance().getClassPath()));
 		rootElement.appendChild(classPath);
-		
-		Element screenContainerPath = mDocument.createElement(Tag.SCREENCONTAINER_PATH);
-		screenContainerPath.appendChild(mDocument.createTextNode(
-				Config.getInstance().getScreenContainerPath() + mDevice));
-		rootElement.appendChild(screenContainerPath);
 		
 		return rootElement;
 	}
@@ -371,4 +391,5 @@ public class XmlCreator {
 	private Document mDocument;
 	private String mInputPath;
 	private String mDevice;
+	private String mInterfaceBuilder;
 }

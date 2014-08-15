@@ -15,23 +15,23 @@ public class Resources extends CommonObject {
 	public void addItemGroup(ItemGroup pItemGroup) {
 		switch (pItemGroup.getType()) {
 		case Type.MENU:
-			addMenuGroups(pItemGroup);
+			addMenuGroup(pItemGroup);
 			break;
 			
 		case Type.MENUITEM:
-			addMenuItemGroups(pItemGroup);
+			addMenuItemGroup(pItemGroup);
 			break;
 			
 		case Type.SPRITE:
-			addSpriteGroups(pItemGroup);
+			addSpriteGroup(pItemGroup);
 			break;
 			
 		case Type.TABLE:
-			addTableGroups(pItemGroup);
+			addTableGroup(pItemGroup);
 			break;
 			
 		case Type.LABLE:
-			addLabelGroups(pItemGroup);
+			addLabelGroup(pItemGroup);
 			break;
 		
 		default:
@@ -48,15 +48,15 @@ public class Resources extends CommonObject {
 		//setparent
 		String parentStr = "pParent";
 		String parentType = "CCNode*";
-		CommonObject parentArg = new CommonObject();
+		CommonObject parentArg = null;//new CommonObject();
 		parentArg.setName(parentStr);
 		
-		this.setParent(mSpritesGroups, parentArg);
-		this.setParent(mMenuItemsGroups, parentArg);
-		this.setParent(mMenusGroups, parentArg);
-		this.setParent(mLabelsGroups, parentArg);
+		this.setParent(mSpriteGroups, parentArg);
+		this.setParent(mMenuItemGroups, parentArg);
+		this.setParent(mMenuGroups, parentArg);
+		this.setParent(mLabelGroups, parentArg);
 		
-		String superImplement = super.implement(true);
+		String superImplement = "";//super.implement(true);
 		StringBuilder builder = new StringBuilder();
 		String template = new FileUtils().fetchTemplate("normal",
 				"src/com/template/new_function.template", getProject());
@@ -75,10 +75,10 @@ public class Resources extends CommonObject {
 	}
 	@Override
 	public CommonObject getBackground() {
-		for(int i = 0 ; i < mSpritesGroups.size() ; i++) {
-			for(int j = 0 ; j < mSpritesGroups.get(i).getItems().size() ; j++) {
-				if(mSpritesGroups.get(i).getItems().get(j).isBackground()) {
-					return mSpritesGroups.get(i).getItems().get(j);
+		for(int i = 0 ; i < mSpriteGroups.size() ; i++) {
+			for(int j = 0 ; j < mSpriteGroups.get(i).getItems().size() ; j++) {
+				if(mSpriteGroups.get(i).getItems().get(j).isBackground()) {
+					return mSpriteGroups.get(i).getItems().get(j);
 				}
 			}
 		}
@@ -96,6 +96,16 @@ public class Resources extends CommonObject {
 				pGroup.get(i).getItems().get(j).setParent(pParent);
 			}
 		}
+	}
+
+	@Override
+	public String declare() {
+		return null;
+	}
+
+	@Override
+	public String implement(boolean pInfunction) {
+		return null;
 	}
 	
 }

@@ -60,7 +60,7 @@ public class ItemGroup {
 	}
 	
 	public String declarePosition() {
-		StringBuilder builder = new StringBuilder("\n");
+		StringBuilder builder = new StringBuilder();
 		if(mIsArray && mItems.size() > 0) {
 			String declare = mItems.get(0).declarePositions()
 					.replaceAll("_\\d{0,32768}_", "_")
@@ -70,7 +70,7 @@ public class ItemGroup {
 			for(int i = 0 ; i < mItems.size() ; i++) {
 				String pos = mItems.get(i).declarePositions();
 				if(!pos.trim().equals("")) {
-					builder.append(pos);
+					builder.append("\t" + pos).append("\n");
 				}
 			}
 		}
@@ -85,7 +85,7 @@ public class ItemGroup {
 	}
 	
 	public String implementPosition() {
-		StringBuilder builder = new StringBuilder("\n");
+		StringBuilder builder = new StringBuilder();
 		for(int i = 0 ; i < mItems.size() ; i++) {
 			String positionName = mItems.get(i).getPositionName();
 			if(mIsArray && positionName != null && !positionName.equals("")) {
@@ -95,7 +95,7 @@ public class ItemGroup {
 			}
 			String pos = mItems.get(i).implementPositions();
 			if(!pos.trim().equals("")) {
-				builder.append(pos);
+				builder.append("\t" + pos).append("\n");
 			}
 		}
 		
@@ -112,23 +112,23 @@ public class ItemGroup {
 	public void pushBack() {
 		switch (mType) {
 		case Type.MENU:
-			mContainer.addMenuGroups(this);
+			mContainer.addMenuGroup(this);
 			break;
 			
 		case Type.MENUITEM:
-			mContainer.addMenuItemGroups(this);
+			mContainer.addMenuItemGroup(this);
 			break;
 			
 		case Type.SPRITE:
-			mContainer.addSpriteGroups(this);
+			mContainer.addSpriteGroup(this);
 			break;
 			
 		case Type.TABLE:
-			mContainer.addTableGroups(this);
+			mContainer.addTableGroup(this);
 			break;
 			
 		case Type.LABLE:
-			mContainer.addLabelGroups(this);
+			mContainer.addLabelGroup(this);
 			break;
 		default:
 			break;

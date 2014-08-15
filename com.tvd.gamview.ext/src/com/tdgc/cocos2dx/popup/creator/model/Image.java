@@ -17,7 +17,7 @@ public class Image implements Comparable<Image> {
 		this.mId = null;
 		this.mPhonyPath = null;
 		this.mRealPath = null;
-		this.mAnchorpoint = new Point(0.5f, 0.5f);
+		this.mAnchorPoint = new Point(0.5f, 0.5f);
 	}
 	
 	public Image(String pId, String pRealPath, String pPhonyPath) {
@@ -53,9 +53,8 @@ public class Image implements Comparable<Image> {
 		}
 	}
 	
-	public String createImageViewTag(String pId, String pImagePath) 
+	public String createImageViewTag(String pImagePath) 
 			throws IOException {
-		mImageViewId = pId;
 		BufferedImage image = ImageIO.read(new File(pImagePath + "/" + mRealPath));
 	    int width = image.getWidth();
 	    int height = image.getHeight();
@@ -64,7 +63,7 @@ public class Image implements Comparable<Image> {
 		StringBuilder builder = new StringBuilder(StringUtils.tab(5));
 		builder.append("<imageView opaque=\"NO\" clipsSubviews=\"YES\" ")
 			.append("multipleTouchEnabled=\"YES\" contentMode=\"scaleToFill\" ")
-			.append("image=\"" + mName + "\" id=\"" + pId + "\">\n")
+			.append("image=\"" + mName + "\" id=\"" + getImageViewId() + "\">\n")
 			.append(StringUtils.tab(6))
 			.append("<rect key=\"frame\" x=\"10\" y=\"10\" ")
 			.append("width=\"" + width/2 +"\" height=\""+ height/2 +"\" />\n")
@@ -119,17 +118,17 @@ public class Image implements Comparable<Image> {
 	}
 	
 	public void replaceWithAnother(Image another) {
-		another.mId = mId;
-		another.mImageViewId = mImageViewId;
-		another.mRealPath = mRealPath;
-		another.mPhonyPath = mPhonyPath;
-		another.mName = mName;
-		another.mIsBackground = mIsBackground;
-		another.mSize = mSize;
-		another.mX = mX;
-		another.mY = mY;
-		another.mParent = mParent;
-		another.mAnchorpoint = mAnchorpoint;
+		mId = another.mId;
+		mImageViewId = another.mImageViewId;
+		mRealPath = another.mRealPath;
+		mPhonyPath = another.mPhonyPath;
+		mName = another.mName;
+		mIsBackground = another.mIsBackground;
+		mSize = another.mSize;
+		mX = another.mX;
+		mY = another.mY;
+		mParent = another.mParent;
+		mAnchorPoint = another.mAnchorPoint;
 	}
 
 	public void setId(String pId) {
@@ -161,7 +160,7 @@ public class Image implements Comparable<Image> {
 	}
 	
 	public void setX(float pX) {
-		this.mX = pX + mAnchorpoint.getX()*mSize.getWidth()/2;
+		this.mX = pX + mAnchorPoint.getX()*mSize.getWidth()/2;
 	}
 	
 	public float getX() {
@@ -169,7 +168,40 @@ public class Image implements Comparable<Image> {
 	}
 	
 	public void setY(float pY) {
-		this.mY = pY + mAnchorpoint.getY()*mSize.getHeight()/2;
+		this.mY = pY + mAnchorPoint.getY()*mSize.getHeight()/2;
+	}
+	
+	public void setXY(float pX, float pY) {
+		this.mX = pX;// + mAnchorPoint.getX()*mSize.getWidth();
+		this.mY = pY;// + mAnchorPoint.getY()*mSize.getHeight();
+		this.mParent.setLocationInView(pX, pY);
+	}
+	
+	public void alignFollowParrent() {
+		try {
+			float x = mParent.getLocationInView().getX();
+			float y = mParent.getLocationInView().getY();
+			CommonObject parentOfParent = mParent.getParent();
+			if(parentOfParent != null) {
+				x = x - parentOfParent.getLocationInView().getX();
+				y = y - parentOfParent.getLocationInView().getY();
+				
+				parentOfParent = parentOfParent.getParent();
+			}
+			x = x + mAnchorPoint.getX()*mSize.getWidth();
+			if(mParent.getParent() != null) {
+				y = mParent.getParent().getSize().getHeight() - 
+					(y + mAnchorPoint.getY()*mSize.getHeight());
+			} else {
+				y = y + mAnchorPoint.getY()*mSize.getHeight();
+			}
+			
+			this.mX = x;
+			this.mY = y;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public float getY() {
@@ -192,12 +224,25 @@ public class Image implements Comparable<Image> {
 		}
 
 		String values[] = anchopointString.split(",");
-		mAnchorpoint = new Point(Float.parseFloat(values[0]),
+		mAnchorPoint = new Point(Float.parseFloat(values[0]),
 				Float.parseFloat(values[1]));
 	}
 	
 	public Size getSize() {
 		return this.mSize;
+	}
+	
+	public void setSize(Size size) {
+		this.mSize = size;
+		this.mParent.setSize(size);
+	}
+	
+	public void setSize(float w, float h) {
+		setSize(new Size(w, h));
+	}
+	
+	public void setImageViewId(String id) {
+		mImageViewId = id;
 	}
 	
 	private String mId;
@@ -210,5 +255,5 @@ public class Image implements Comparable<Image> {
 	private float mX;
 	private float mY;
 	private CommonObject mParent;
-	private Point mAnchorpoint;
+	private Point mAnchorPoint;
 }

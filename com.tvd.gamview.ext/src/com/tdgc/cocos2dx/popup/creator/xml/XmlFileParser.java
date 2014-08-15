@@ -7,6 +7,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
+import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.log.Log;
@@ -70,7 +71,9 @@ public class XmlFileParser extends DefaultHandler {
 				mCurrentObject = new MenuItem();
 			}
 			else if(qName.equals(Tag.LABEL)) {
-				mCurrentObject = new Label();
+				Label label = new Label();
+				mView.addLabel(label);
+				mCurrentObject = label;
 			} 
 			else if(qName.equals(Tag.RESOURCES)) {
 				mCurrentObject = new Resources();
@@ -81,6 +84,11 @@ public class XmlFileParser extends DefaultHandler {
 				mView.addResource(mCurrentResources);
 			}
 			mCurrentObject.setParent(parent);
+		}
+		
+		else if(qName.equals(Tag.FONT_SIZE)) {
+			Label label = (Label)mCurrentObject;
+			label.setFontSizeString(getAttributeValue(Attribute.S_VALUE, atts));
 		}
 		
 		else if(qName.equals(Tag.IMAGE)) {
@@ -128,6 +136,24 @@ public class XmlFileParser extends DefaultHandler {
 			mCurrentParameter.setType(getAttributeValue(Attribute.TYPE, atts));
 			mCurrentParameter.setKind(getAttributeValue(Attribute.KIND, atts));
 		}
+		else if(qName.equals(Tag.XIBCONTAINER_PATH)) {
+			boolean used = getBoolean(getAttributeValue(Attribute.USED, atts));
+			if(used) {
+				mView.setInterfaceBuilder(Constants.XIB);
+			}
+		}
+		else if(qName.equals(Tag.SCREENCONTAINER_PATH)) {
+			boolean used = getBoolean(getAttributeValue(Attribute.USED, atts));
+			if(used) {
+				mView.setInterfaceBuilder(Constants.SCREEN);
+			}
+		}
+		else if(qName.equals(Tag.ANDROIDCONTAINER_PATH)) {
+			boolean used = getBoolean(getAttributeValue(Attribute.USED, atts));
+			if(used) {
+				mView.setInterfaceBuilder(Constants.ANDROID);
+			}
+		}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -160,6 +186,9 @@ public class XmlFileParser extends DefaultHandler {
 		else if(qName.equals(Tag.SCREENCONTAINER_PATH)) {
 			mView.setScreenContainerPath(mCurrentText);
 		}
+		else if(qName.equals(Tag.ANDROIDCONTAINER_PATH)) {
+			mView.setAndroidContainerPath(mCurrentText);
+		}
 		else if(qName.equals(Tag.CLASS_PATH)) {
 			mView.setClassPath(mCurrentText);
 		}
@@ -187,7 +216,7 @@ public class XmlFileParser extends DefaultHandler {
 			((Label)mCurrentObject).setFont(mCurrentText);
 		}
 		else if(qName.equals(Tag.FONT_SIZE)) {
-			((Label)mCurrentObject).setFontSize(mCurrentText);
+			((Label)mCurrentObject).setFontSizeFloat(mCurrentText);
 		}
 		else if(qName.equals(Tag.Z_INDEX)) {
 			mCurrentObject.setZIndex(mCurrentText);
@@ -202,6 +231,21 @@ public class XmlFileParser extends DefaultHandler {
 				|| qName.equals(Tag.MENUITEMS)
 				|| qName.equals(Tag.LABELS)) {
 			mCurrentGroup.pushBack();
+			if(qName.equals(Tag.SPRITES)) {
+				mView.pushBackSpriteGroup(mCurrentGroup);
+			} 
+			else if(qName.equals(Tag.TABLES)) {
+				mView.pushBackTableGroup(mCurrentGroup);
+			} 
+			else if(qName.equals(Tag.MENUS)) {
+				mView.pushBackMenuGroup(mCurrentGroup);
+			} 
+			else if(qName.equals(Tag.MENUITEMS)) {
+				mView.pushBackMenuItemGroup(mCurrentGroup);
+			} 
+			else if(qName.equals(Tag.LABELS)) {
+				mView.pushBackLabelGroup(mCurrentGroup);
+			}
 			mCurrentGroup = mCurrentGroup.getBeforeGroup();
 		}
 		else if(qName.equals(Tag.SPRITE)
@@ -244,7 +288,7 @@ public class XmlFileParser extends DefaultHandler {
 		if(text.length() == 0) {
 			return;
 		}
-		mCurrentText = text;
+		mCurrentText = text.trim();
 	}
 	
 	private String getAttributeValue(String attName, Attributes atts) {

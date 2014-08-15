@@ -16,15 +16,14 @@ public class Table extends CommonObject {
 	
 	@Override
 	public String declare() {
-		StringBuilder builder = new StringBuilder(super.declare());
-		builder.append("\tCCTableView* " + mName + ";");
+		StringBuilder builder = new StringBuilder();
+		builder.append("CCTableView* " + mName + ";");
 		return builder.toString();
 	}
 	
 	@Override
 	public String implement(boolean pInfunction) {
 		StringBuilder builder = new StringBuilder("\n");
-		builder.append(super.implement(pInfunction));
 		String template = new FileUtils().fetchTemplate("TableView", 
 				"src/com/template/new_table.template", getProject());
 		
@@ -41,9 +40,9 @@ public class Table extends CommonObject {
 			.replace("{parent_name}", parentName)
 			.replace("{size}", mSizeString);
 		
-		if(mSpritesGroups.get(0).getNodesArrayName() != null) {
+		if(mSpriteGroups.get(0).getNodesArrayName() != null) {
 			template = template.replace("{nodes_array}", 
-					mSpritesGroups.get(0).getNodesArrayName());
+					mSpriteGroups.get(0).getNodesArrayName());
 		}
 		builder.append(template);
 		

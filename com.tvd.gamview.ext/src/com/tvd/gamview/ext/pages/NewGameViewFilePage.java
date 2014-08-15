@@ -11,6 +11,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
@@ -84,12 +85,21 @@ public class NewGameViewFilePage extends WizardPage {
 		} else if(!validateFieldValue(mImageOutputPathField.getText().getText(), "")) {
 			valid = false;
 			error = "Invalid image output path";
-		} else if(!validateFieldValue(mXibContainerPathField.getText().getText(), "")) {
+		} else if(mInterfaceBuilderCombo.getSelectionIndex() == 0) {
+			valid = false;
+			error = "You need select a interface builder";
+		} else if(mXibContainerPathField.isEnable()
+				&& !validateFieldValue(mXibContainerPathField.getText().getText(), "")) {
 			valid = false;
 			error = "Invalid xib container path";
-		} else if(!validateFieldValue(mScreenContainerPathField.getText().getText(), "")) {
+		} else if(mScreenContainerPathField.isEnable()
+				&& !validateFieldValue(mScreenContainerPathField.getText().getText(), "")) {
 			valid = false;
 			error = "Invalid screen container path";
+		} else if(mAndroidContainerPathField.isEnable()
+				&& !validateFieldValue(mAndroidContainerPathField.getText().getText(), "")) {
+			valid = false;
+			error = "Invalid android layout container path";
 		} else if(mProjectCombo.getSelectionIndex() == 0) {
 			valid = false;
 			error = "Please select a project";
@@ -178,8 +188,27 @@ public class NewGameViewFilePage extends WizardPage {
 		this.mScreenContainerPathField = new DirectorySelectionField.Builder(parent)
 			.setLabelText("Screen container path: ")
 			.build();
+		this.mAndroidContainerPathField = new DirectorySelectionField.Builder(parent)
+			.setLabelText("Android containter path: ")
+			.build();
+		
+		//set enable = false is default
+		//select Interface Builder combo to enable one
+		this.mXibContainerPathField.setEnable(false);
+		this.mScreenContainerPathField.setEnable(false);
+		this.mAndroidContainerPathField.setEnable(false);
+		
 		this.addModifyListenerForField(mXibContainerPathField.getText());
 		this.addModifyListenerForField(mScreenContainerPathField.getText());
+		this.addModifyListenerForField(mAndroidContainerPathField.getText());
+		
+		String tooltip = "Interface Builder for view.";
+        Label label = new Label(parent, SWT.NONE);
+        label.setText("Interface builder: ");
+        label.setToolTipText(tooltip);
+        this.mInterfaceBuilderCombo = new InterfaceBuilderCombo(parent);
+        emptyCell(parent);
+		
 	}
 	
 	private void createClassContainerGroup(final Composite parent) {
@@ -190,7 +219,7 @@ public class NewGameViewFilePage extends WizardPage {
 	}
 	
 	private void createProjectsGroup(Composite parent) {
-        String tooltip = "The Android Project where the new resource file will be created.";
+        String tooltip = "The View Project where the new resource file will be created.";
         Label label = new Label(parent, SWT.NONE);
         label.setText("Project: ");
         label.setToolTipText(tooltip);
@@ -272,6 +301,8 @@ public class NewGameViewFilePage extends WizardPage {
 						+ "/Resources/screenshots");
 				mScreenContainerPathField.getText().setText(gameProject
 						+ "/Wireframing/WireframingScreen");
+				mAndroidContainerPathField.getText().setText(gameProject
+						+ "/proj.android/res/layout");
 				mClassPathField.getText().setText(gameProject
 						+ "/Classes");
 				mImageOutputPathField.getText().setText(gameProject
@@ -299,17 +330,70 @@ public class NewGameViewFilePage extends WizardPage {
     	
     }
     
-	private DirectorySelectionField mClassPathField;
-	
-	private DirectorySelectionField mXibContainerPathField;
-	private DirectorySelectionField mScreenContainerPathField;
-	
-	private DirectorySelectionField mImageInputPathField;
-	private DirectorySelectionField mImageOutputPathField;
-	
-	private FileSelectionField mDefineSelectionField;
-	private FileSelectionField mParamsSelectionField;
-	
+    public class InterfaceBuilderCombo extends Combo implements SelectionListener {
+
+		public InterfaceBuilderCombo(Composite parent) {
+			super(parent, SWT.BORDER | SWT.FLAT | SWT.READ_ONLY);
+			String items[] = {
+				"--- Choose interface builder ---",
+				"Xib - Xcode Interface Builder",
+				"Screen - WireframeSketcher Wireframing Screen",
+				"Android - Android Development Layout"
+			};
+			this.setItems(items);
+			this.select(0);
+			
+			this.addSelectionListener(this);
+		}
+
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+			String str = null;
+			mXibContainerPathField.setEnable(false);
+			mScreenContainerPathField.setEnable(false);
+			mAndroidContainerPathField.setEnable(false);
+			switch (getSelectionIndex()) {
+			case 1:
+				str = "Xib";
+				mXibContainerPathField.setEnable(true);
+				break;
+			case 2:
+				str = "Screen";
+				mScreenContainerPathField.setEnable(true);
+				break;
+			case 3:
+				str = "Android";
+				mAndroidContainerPathField.setEnable(true);
+				break;
+			default:
+				str = null;
+				break;
+			}
+			setSelectedInterfaceBuilder(str);
+			validatePage();
+		}
+
+		@Override
+		public void widgetDefaultSelected(SelectionEvent e) {
+			
+		}
+		
+		public void setSelectedInterfaceBuilder(String str) {
+			mSelectedInterfaceBuilder = str;
+        }
+		
+		public String getSelectedInterfaceBuilder() {
+            return mSelectedInterfaceBuilder;
+        }
+		
+		@Override
+        protected void checkSubclass() {
+            // Disable the check that prevents subclassing of SWT components
+        }
+		
+		private String mSelectedInterfaceBuilder;
+	}
+    
 
 	public DirectorySelectionField getClassPathField() {
 		return mClassPathField;
@@ -346,9 +430,29 @@ public class NewGameViewFilePage extends WizardPage {
 	public Text getFileNameTextField() {
 		return mFileNameTextField;
 	}
+	
+	public String getInterfaceBuilder() {
+		return mInterfaceBuilderCombo.getSelectedInterfaceBuilder();
+	}
+	
+	public DirectorySelectionField getAndroidContainerPathField() {
+		return this.mAndroidContainerPathField;
+	}
 
 	private Combo mProjectCombo;
 	private Text mFileNameTextField;
 	private String mGameProjectPath;
+	private DirectorySelectionField mClassPathField;
+	
+	private DirectorySelectionField mXibContainerPathField;
+	private DirectorySelectionField mScreenContainerPathField;
+	private DirectorySelectionField mAndroidContainerPathField;
+	private InterfaceBuilderCombo mInterfaceBuilderCombo;
+	
+	private DirectorySelectionField mImageInputPathField;
+	private DirectorySelectionField mImageOutputPathField;
+	
+	private FileSelectionField mDefineSelectionField;
+	private FileSelectionField mParamsSelectionField;
 }
 

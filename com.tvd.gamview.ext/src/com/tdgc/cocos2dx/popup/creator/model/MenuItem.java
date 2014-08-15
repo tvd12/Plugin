@@ -60,7 +60,6 @@ public class MenuItem extends CommonObject {
 		}
 		
 		StringBuilder builder = new StringBuilder("\n");
-		builder.append(super.implement(pInfunction));
 		
 		String templateName = "CCMenuItemSprite";
 		if(pInfunction) {
@@ -95,9 +94,9 @@ public class MenuItem extends CommonObject {
 	}
 	
 	private String getSprite(String pKind) {
-		for(int i = 0 ; i < mSpritesGroups.size() ; i++) {
-			for(int j = 0 ; j < mSpritesGroups.get(i).getItems().size() ; j++) {
-				CommonObject item = mSpritesGroups.get(i).getItems().get(j);
+		for(int i = 0 ; i < mSpriteGroups.size() ; i++) {
+			for(int j = 0 ; j < mSpriteGroups.get(i).getItems().size() ; j++) {
+				CommonObject item = mSpriteGroups.get(i).getItems().get(j);
 				if(item.getName().contains(pKind)) {
 					return item.getName();
 				}
@@ -107,8 +106,8 @@ public class MenuItem extends CommonObject {
 	}
 	
 	public String declare() {
-		StringBuilder builder = new StringBuilder(super.declare());
-		builder.append("\tCCMenuItem* " + mName + ";");
+		StringBuilder builder = new StringBuilder();
+		builder.append("CCMenuItem* " + mName + ";");
 		
 		return builder.toString();
 	}

@@ -1,5 +1,0 @@
-package com.tvd.gameview.ui;
-
-public class SdkFileBuilder extends Icr {
-
-}

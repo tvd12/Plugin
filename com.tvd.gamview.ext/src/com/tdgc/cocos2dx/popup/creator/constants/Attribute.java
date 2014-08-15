@@ -19,8 +19,11 @@ public interface Attribute {
 	public static final String BACKGROUND		= "background";
 	public static final String KIND				= "kind";
 	public static final String VISIBLE			= "visible";
+	public static final String USED				= "used";
+	public static final String S_VALUE			= "s-value";
 	
-	
+	public static final String WIDTH			= "width";
+	public static final String HEIGHT			= "height";
 	public static final String X				= "x";
 	public static final String Y				= "y";
 }

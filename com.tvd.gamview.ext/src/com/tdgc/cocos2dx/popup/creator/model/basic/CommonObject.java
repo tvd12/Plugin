@@ -12,56 +12,31 @@ import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 
-public class CommonObject {
+public abstract class CommonObject {
 	
 	public CommonObject() {
-		mMenusGroups = new ArrayList<ItemGroup>();
-		mSpritesGroups = new ArrayList<ItemGroup>();
-		mLabelsGroups = new ArrayList<ItemGroup>();
-		mMenuItemsGroups = new ArrayList<ItemGroup>();
-		mTablesGroups = new ArrayList<ItemGroup>();
+		mMenuGroups = new ArrayList<ItemGroup>();
+		mSpriteGroups = new ArrayList<ItemGroup>();
+		mLabelGroups = new ArrayList<ItemGroup>();
+		mMenuItemGroups = new ArrayList<ItemGroup>();
+		mTableGroups = new ArrayList<ItemGroup>();
 		
 		mSuper = "PopUpLayer";
 		mZIndex = "0";
-		mAnchorPoint = null;
+		mAnchorPoint = new Point(0.5f, 0.5f);
 	}
 	
-	public String declare() {
-		StringBuilder builder = new StringBuilder("\n");
-		builder.append(declareObjects(mMenuItemsGroups))
-			.append(declareObjects(mSpritesGroups))
-			.append(declareObjects(mTablesGroups))
-			.append(declareObjects(mMenusGroups))
-			.append(declareObjects(mLabelsGroups));
-		
-		return builder.toString();
-	}
+	public abstract String declare();
 	
-	public String implement(boolean pInfunction) {
-		StringBuilder builder = new StringBuilder("\n");
-		builder.append(implementObjects(mSpritesGroups, pInfunction))
-			.append(implementObjects(mTablesGroups, pInfunction))
-			.append(implementObjects(mMenusGroups, pInfunction))
-			.append(implementObjects(mMenuItemsGroups, pInfunction))
-			.append(implementObjects(mLabelsGroups, pInfunction));
-		
-		return builder.toString();
-	}
+	public abstract String implement(boolean pInfunction);
 	
 	public String declarePositions() {
 		StringBuilder builder = new StringBuilder();
 		if(mPositionName != null 
 				&& mPositionString != null
 				&& !mPositionString.equals(Strings.DEFAULT)) {
-			builder.append("\tCCPoint " + mPositionName + ";");
+			builder.append("CCPoint " + mPositionName + ";");
 		}
-		builder.append("\n");
-		builder.append(declarePosition(mMenuItemsGroups))
-			.append(declarePosition(mSpritesGroups))
-			.append(declarePosition(mTablesGroups))
-			.append(declarePosition(mMenusGroups))
-			.append(declarePosition(mLabelsGroups));
-		
 		return builder.toString();
 	}
 	
@@ -69,26 +44,24 @@ public class CommonObject {
 		
 		String template = new FileUtils().fetchTemplate("MakePointCommon", 
 				"src/com/template/new_point.template", getProject());
-		StringBuilder builder = new StringBuilder("\n");
+		StringBuilder builder = new StringBuilder();
 		
 		if(mPositionString != null 
 				&& mPositionName != null
 				&& !mPositionString.equals(Strings.DEFAULT)) {
-			template = template.replaceAll("\\{var_name}", mPositionName)
-					.replaceAll("\\{position}", mPositionString);
-			builder.append("\t" + template);
+			template = template.replace("{var_name}", mPositionName)
+					.replace("{position}", mPositionString);
+			builder.append(template);
 		}
 		
-		builder.append(implementPosition(mMenuItemsGroups))
-			.append(implementPosition(mSpritesGroups))
-			.append(implementPosition(mTablesGroups))
-			.append(implementPosition(mMenusGroups))
-			.append(implementPosition(mLabelsGroups));
-		
-		return builder.toString();
+		return builder.toString().trim();
 	}
 	
 	public void setPositionName(String pPositionName) {
+		
+		//name of position in xml file, it must not change
+		mXmlPositionName = pPositionName;
+		
 		mName = StringUtils.convertToNormalProperty(pPositionName + "_" + mSuffix);
 		if(pPositionName.trim().equals(Strings.DEFAULT)
 				|| this.mIsBackground) {
@@ -157,24 +130,24 @@ public class CommonObject {
 	}
 	
 	
-	public void addMenuItemGroups(ItemGroup pMenuItemGroups) {
-		this.mMenuItemsGroups.add(pMenuItemGroups);
+	public void addMenuItemGroup(ItemGroup pMenuItemGroup) {
+		this.mMenuItemGroups.add(pMenuItemGroup);
 	}
 	
-	public void addMenuGroups(ItemGroup pMenuGroups) {
-		this.mMenusGroups.add(pMenuGroups);
+	public void addMenuGroup(ItemGroup pMenuGroup) {
+		this.mMenuGroups.add(pMenuGroup);
 	}
 	
-	public void addSpriteGroups(ItemGroup pSpriteGroups) {
-		this.mSpritesGroups.add(pSpriteGroups);
+	public void addSpriteGroup(ItemGroup pSpriteGroup) {
+		this.mSpriteGroups.add(pSpriteGroup);
 	}
 	
-	public void addLabelGroups(ItemGroup pLabelGroups) {
-		this.mLabelsGroups.add(pLabelGroups);
+	public void addLabelGroup(ItemGroup pLabelGroup) {
+		this.mLabelGroups.add(pLabelGroup);
 	}
 	
-	public void addTableGroups(ItemGroup pTableGroups) {
-		this.mTablesGroups.add(pTableGroups);
+	public void addTableGroup(ItemGroup pTableGroup) {
+		this.mTableGroups.add(pTableGroup);
 	}
 	
 	public void setComment(String pComment) {
@@ -223,6 +196,14 @@ public class CommonObject {
 	
 	public void setAnchorPoint(String pAnchorPoint) {
 		this.mAnchorPointString = pAnchorPoint;
+		
+		if(pAnchorPoint == null || pAnchorPoint.equals("default")) {
+			return;
+		}
+
+		String values[] = pAnchorPoint.split(",");
+		mAnchorPoint = new Point(Float.parseFloat(values[0]),
+				Float.parseFloat(values[1]));
 	}
 	
 	public String getAnchorPointString() {
@@ -343,7 +324,7 @@ public class CommonObject {
 	public IProject getProject() {
 		IProject project = mProject;
 		CommonObject parent = mParent;
-		if(mProject == null && parent != null) {
+		while(mProject == null && parent != null) {
 			project = parent.mProject;
 			parent = parent.getParent();
 		}
@@ -351,11 +332,43 @@ public class CommonObject {
 		return project;
 	}
 	
-	protected List<ItemGroup> mMenuItemsGroups;
-	protected List<ItemGroup> mLabelsGroups;
-	protected List<ItemGroup> mSpritesGroups;
-	protected List<ItemGroup> mMenusGroups;
-	protected List<ItemGroup> mTablesGroups;
+	public void setLocationInView(Point p) {
+		mLocationInView = p;
+	}
+	
+	public void setLocationInView(float x, float y) {
+		setLocationInView(new Point(x, y));
+	}
+	
+	public Point getLocationInView() {
+		return mLocationInView;
+	}
+	
+	public void setSize(Size size) {
+		this.mSize = size;
+	}
+	
+	public void setSize(float w, float h) {
+		setSize(new Size(w, h));
+	}
+	
+	public Size getSize() {
+		return mSize;
+	}
+	
+	public String getXmlPositionName() {
+		return mXmlPositionName;
+	}
+	
+	public String mXmlPositionName;
+	public Point mLocationInView;
+	public Size mSize;
+	
+	protected List<ItemGroup> mMenuItemGroups;
+	protected List<ItemGroup> mLabelGroups;
+	protected List<ItemGroup> mSpriteGroups;
+	protected List<ItemGroup> mMenuGroups;
+	protected List<ItemGroup> mTableGroups;
 	
 	protected String mPrefix;
 	protected String mSuffix;

@@ -1,7 +1,0 @@
-package com.tvd.gameview.ui.editors;
-
-import org.eclipse.ui.texteditor.AbstractDecoratedTextEditor;
-
-public class SdkXMLEditor extends AbstractDecoratedTextEditor {
-
-}

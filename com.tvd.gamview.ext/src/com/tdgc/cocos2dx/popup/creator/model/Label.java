@@ -5,6 +5,7 @@ import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Size;
+import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 
 public class Label extends CommonObject {
 	
@@ -17,8 +18,8 @@ public class Label extends CommonObject {
 	
 	@Override
 	public String declare() {
-		StringBuilder builder = new StringBuilder(super.declare());
-		builder.append("\tCCLabelTTF* " + mName + ";");
+		StringBuilder builder = new StringBuilder();
+		builder.append("CCLabelTTF* " + mName + ";");
 		
 		return builder.toString();
 	}
@@ -31,7 +32,6 @@ public class Label extends CommonObject {
 		}
 		
 		StringBuilder builder = new StringBuilder("\n");
-		builder.append(super.implement(pInfunction));
 		
 		String templateName = "CCLabelTTF";
 		if(pInfunction) {
@@ -50,6 +50,9 @@ public class Label extends CommonObject {
 		if(mParent != null) {
 			parentName = mParent.getName();
 		}
+		if(mFontSizeString == null) {
+			mFontSizeString = "" + mFontSizeFloat;
+		}
 		template = template.replace("{var_name}", mName)
 			.replace("{tab}", "\t")
 			.replace("{parent_name}", parentName)
@@ -57,11 +60,70 @@ public class Label extends CommonObject {
 			.replace("{position_name}", mPositionName)
 			.replace("{label_text}", mText)
 			.replace("{label_font}", mFont)
-			.replace("{label_font_size}", mFontSize)
+			.replace("{label_font_size}", mFontSizeString)
 			.replace("{z-index}", mZIndex);
 		builder.append(template);
 		
 		return builder.toString();
+	}
+	
+	public String createLabelTagForXib() {
+		StringBuilder builder = new StringBuilder(StringUtils.tab(4) + "<label")
+			.append(" opaque=\"NO\" clipsSubviews=\"YES\"")
+			.append(" userInteractionEnabled=\"NO\"")
+			.append(" contentMode=\"left\"")
+			.append(" horizontalHuggingPriority=\"251\"")
+			.append(" verticalHuggingPriority=\"251\"")
+			.append(" text=\"" + mText + "\"")
+			.append(" lineBreakMode=\"tailTruncation\"")
+			.append(" baselineAdjustment=\"alignBaselines\"")
+			.append(" adjustsFontSizeToFit=\"NO\"")
+			.append(" id=\""+ mLabelViewId + "\">");
+		float width = mText.length()*mFontSizeFloat;
+		builder.append(StringUtils.tab(5))
+			.append("\n<rect key=\"frame\" x=\"171\" y=\"162\" "
+				+ "width=\"" + width + "\" "
+				+ "height=\"" + mFontSizeFloat + "\" />");
+		builder.append(StringUtils.tab(5))
+			.append("\n<autoresizingMask key=\"autoresizingMask\""
+				+ " flexibleMaxX=\"YES\" flexibleMaxY=\"YES\" />");
+		builder.append(StringUtils.tab(5))
+			.append("\n<fontDescription key=\"fontDescription\" "
+				+ "name=\"HelveticaNeue\" family=\"Helvetica Neue\" pointSize=\"17\" />");
+		builder.append(StringUtils.tab(5))
+			.append("\n<color key=\"textColor\" white=\"1\" "
+				+ "alpha=\"1\" colorSpace=\"calibratedWhite\" />");
+		builder.append(StringUtils.tab(5))
+			.append("\n<nil key=\"highlightedColor\" />\n");
+		builder.append(StringUtils.tab(4) + "</label>");
+		
+		return builder.toString();
+	}
+	
+	public void alignFollowParrent() {
+		try {
+			float x = this.getLocationInView().getX();
+			float y = this.getLocationInView().getY();
+			CommonObject parent = getParent();
+			if(parent != null) {
+				x = x - parent.getLocationInView().getX();
+				y = y - parent.getLocationInView().getY();
+				
+				parent = parent.getParent();
+			}
+			
+			x = x + mAnchorPoint.getX()*mSize.getWidth();
+			if(mParent != null) {
+				y = mParent.getSize().getHeight() - 
+					(y + mAnchorPoint.getY()*mSize.getHeight());
+			} else {
+				y = y + mAnchorPoint.getY()*mSize.getHeight();
+			}
+			
+			this.setPosition(x, y);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void setText(String pText) {
@@ -80,11 +142,11 @@ public class Label extends CommonObject {
 		return this.mFont;
 	}
 	
-	public float getSizeFloat() {
-		return this.mSizeFloat;
+	public float getFontSizeFloat() {
+		return this.mFontSizeFloat;
 	}
 	
-	public String getSizeString() {
+	public String getFontSizeString() {
 		return this.mSizeString;
 	}
 	
@@ -96,13 +158,27 @@ public class Label extends CommonObject {
 		this.mDimension = pDimension;
 	}
 	
-	public void setFontSize(String pFontSize) {
-		this.mFontSize = pFontSize;
+	public void setFontSizeFloat(String pFontSize) {
+		mFontSizeFloat = Float.parseFloat(pFontSize);
 	}
+	
+	public void setFontSizeString(String pFontSize) {
+		this.mFontSizeString = pFontSize;
+	}
+	
+	public void setLabelViewId(String id) {
+		this.mLabelViewId = id;
+	}
+	
+	public String getLabelViewId() {
+		return this.mLabelViewId;
+	}
+	
+	protected String mLabelViewId;
 	protected Size mDimension;
 	protected boolean mIsShadow;
 	protected String mText;
 	protected String mFont;
-	protected String mFontSize;
-	protected float mSizeFloat;
+	protected String mFontSizeString;
+	protected float mFontSizeFloat;
 }

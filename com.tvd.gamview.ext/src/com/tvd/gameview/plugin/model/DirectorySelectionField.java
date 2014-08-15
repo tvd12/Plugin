@@ -40,6 +40,18 @@ public class DirectorySelectionField {
 		});
 	}
 	
+	public void setEnable(boolean enabled) {
+		mText.setEnabled(enabled);
+		mText.setEnabled(enabled);
+		mBrowseButton.setEnabled(enabled);
+	}
+	
+	public boolean isEnable() {
+		return mLabel.isEnabled()
+				&& mText.isEnabled()
+				&& mBrowseButton.isEnabled();
+	}
+	
 	public Label getLabel() {
 		return mLabel;
 	}

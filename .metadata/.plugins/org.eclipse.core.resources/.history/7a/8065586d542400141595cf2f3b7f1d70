@@ -1,0 +1,19 @@
+package com.tdgc.cocos2dx.popup.creator.utils;
+
+import java.util.List;
+
+import com.tdgc.cocos2dx.popup.creator.model.Label;
+
+public class ViewUtils {
+
+	public static String implementLabels(List<Label> labels) {
+		StringBuilder builder = new StringBuilder("\n");
+		for(Label label : labels) {
+			builder.append(label.implement(false))
+				.append("\n");
+		}
+		
+		return builder.toString();
+	}
+	
+}

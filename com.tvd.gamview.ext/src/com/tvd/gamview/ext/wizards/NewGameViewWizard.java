@@ -58,7 +58,8 @@ public class NewGameViewWizard extends Wizard implements INewWizard {
 			
 			//create new xml file corresponding to game viw
 			XmlFileBuilder xmlBuilder = new XmlFileBuilder(gameViewPage
-					.getImageInputPathField().getText().getText());
+					.getImageInputPathField().getText().getText(),
+					gameViewPage.getInterfaceBuilder());
 			
 			//build for device
 			IProject project = ((ProjectCombo)gameViewPage.getProjectCombo()).getSelectedProject();
@@ -116,6 +117,7 @@ public class NewGameViewWizard extends Wizard implements INewWizard {
 		config.setScreenContainerPath(gameViewPage.getScreenContainerPathField().getText().getText());
 		config.setXibContainerPath(gameViewPage.getXibContainerPathField().getText().getText());
 		config.setParametersPath(gameViewPage.getParamsSelectionField().getText().getText());
+		config.setAndroidContainerPath(gameViewPage.getAndroidContainerPathField().getText().getText());
 	}
 	
 	/**

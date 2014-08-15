@@ -59,7 +59,7 @@ public class ScreenFileParser extends DefaultHandler {
 	private String getAttributeValue(String attName, Attributes atts) {
 		String result = null;
 		for(int i = 0 ; i < atts.getLength() ; i++) {
-			String thisAtt = atts.getLocalName(i);
+			String thisAtt = atts.getQName(i);
 			if(attName.equals(thisAtt)) {
 				result = atts.getValue(i);
 				return result.trim();

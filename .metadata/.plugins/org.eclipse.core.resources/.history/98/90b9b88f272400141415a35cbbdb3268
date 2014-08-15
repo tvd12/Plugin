@@ -1,0 +1,60 @@
+package com.tdgc.cocos2dx.popup.creator.utils;
+
+import com.tdgc.cocos2dx.popup.creator.constants.Tag;
+import com.tdgc.cocos2dx.popup.creator.model.Image;
+import com.tdgc.cocos2dx.popup.creator.model.Label;
+
+public class XmlContentUtils {
+	public static String replaceSpritePosition(String pFileContent, Image pImg) {
+		String contents[] = pFileContent.split("\n");
+		String newPosition = pImg.getX() + ", " + pImg.getY();
+		String openTag = "<" + Tag.POSITION + ">";
+		String closeTag = "</" + Tag.POSITION + ">";
+		for(int i = 0 ; i < contents.length ; i++) {
+			if(contents[i].contains(pImg.getPhonyPath())) {
+				while(!contents[--i].contains(openTag));
+				String currentPosition = contents[i].substring(
+						contents[i].indexOf(openTag) + openTag.length(),
+						contents[i].indexOf(closeTag));
+				if(!currentPosition.equals("default")) {
+					contents[i] = contents[i].replace(currentPosition, newPosition);
+				}
+				break;
+			}
+		}
+		StringBuilder builder = new StringBuilder();
+		for(int i = 0 ; i < contents.length ; i++) {
+			builder.append(contents[i])
+				.append("\n");
+		}
+		
+		return builder.toString();
+	}
+	
+	public static String replaceSpritePosition(String pFileContent, Label plabel) {
+		String contents[] = pFileContent.split("\n");
+		String newPosition = plabel.getPosition().getX() + ", " 
+				+ plabel.getPosition().getY();
+		String openTag = "<" + Tag.POSITION + ">";
+		String closeTag = "</" + Tag.POSITION + ">";
+		for(int i = 0 ; i < contents.length ; i++) {
+			if(contents[i].contains(pImg.getPhonyPath())) {
+				while(!contents[--i].contains(openTag));
+				String currentPosition = contents[i].substring(
+						contents[i].indexOf(openTag) + openTag.length(),
+						contents[i].indexOf(closeTag));
+				if(!currentPosition.equals("default")) {
+					contents[i] = contents[i].replace(currentPosition, newPosition);
+				}
+				break;
+			}
+		}
+		StringBuilder builder = new StringBuilder();
+		for(int i = 0 ; i < contents.length ; i++) {
+			builder.append(contents[i])
+				.append("\n");
+		}
+		
+		return builder.toString();
+	}
+}

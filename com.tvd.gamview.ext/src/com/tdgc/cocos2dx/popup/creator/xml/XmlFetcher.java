@@ -75,7 +75,8 @@ public class XmlFetcher {
 	public View fetchView(IFile xmlFile) {
 		fetchData(xmlFile);
 		View view = ((XmlFileParser)mHandler).getView();
-		
+		view.setXmlFilePath(xmlFile.getProjectRelativePath().toString());
+		view.setXmlFile(xmlFile);
 		return view;
 	}
 	
