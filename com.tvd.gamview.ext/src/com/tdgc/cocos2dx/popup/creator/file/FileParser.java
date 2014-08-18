@@ -27,10 +27,12 @@ public class FileParser {
 		  }
 	}
 	
-	public List<String> getFilePaths() {
+	public List<String> getFilePaths(boolean sort) {
 		this.mRootDirectory = mRootPath.substring(mRootPath.lastIndexOf("/") + 1);
 		parseFilePaths(mRootPath);
-		Collections.sort(mFilePaths);
+		if(sort) {
+			Collections.sort(mFilePaths);
+		}
 		
 		return mFilePaths;
 	}

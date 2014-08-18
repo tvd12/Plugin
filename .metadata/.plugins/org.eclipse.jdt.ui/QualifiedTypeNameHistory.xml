@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.eclipse.jface.viewers.TreeViewer"/>
-<fullyQualifiedTypeName name="com.tvd.gameview.views.BuildingTreeView"/>
-<fullyQualifiedTypeName name="org.eclipse.core.runtime.QualifiedName"/>
 <fullyQualifiedTypeName name="com.tvd.gamview.ext.utils.MessageUtils"/>
 <fullyQualifiedTypeName name="org.eclipse.jface.viewers.IDoubleClickListener"/>
 <fullyQualifiedTypeName name="org.eclipse.jface.viewers.DoubleClickEvent"/>
 <fullyQualifiedTypeName name="org.eclipse.jface.viewers.Viewer"/>
 <fullyQualifiedTypeName name="org.eclipse.jface.viewers.ISelection"/>
-<fullyQualifiedTypeName name="java.lang.Object"/>
 <fullyQualifiedTypeName name="org.eclipse.jface.viewers.IStructuredSelection"/>
 <fullyQualifiedTypeName name="org.eclipse.core.resources.IFolder"/>
 <fullyQualifiedTypeName name="org.eclipse.core.resources.IResource"/>
@@ -32,9 +28,7 @@
 <fullyQualifiedTypeName name="org.eclipse.core.resources.IProject"/>
 <fullyQualifiedTypeName name="com.tvd.gameview.views.BuildingListElement"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.View"/>
-<fullyQualifiedTypeName name="com.tvd.gamview.ext.constants.Constant"/>
 <fullyQualifiedTypeName name="com.tvd.gamview.ext.constants.Constant.TreeElement"/>
-<fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="org.eclipse.swt.widgets.MessageBox"/>
 <fullyQualifiedTypeName name="org.eclipse.jface.dialogs.ErrorDialog"/>
 <fullyQualifiedTypeName name="org.eclipse.jface.dialogs.MessageDialog"/>
@@ -51,13 +45,19 @@
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Label"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.constants.Attribute"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.MenuItem"/>
-<fullyQualifiedTypeName name="java.lang.SuppressWarnings"/>
 <fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.ItemGroup"/>
 <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
-<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.utils.ViewUtils"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Menu"/>
+<fullyQualifiedTypeName name="javax.xml.validation.SchemaFactory"/>
+<fullyQualifiedTypeName name="javax.xml.XMLConstants"/>
+<fullyQualifiedTypeName name="javax.xml.validation.Schema"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.lang.Object"/>
+<fullyQualifiedTypeName name="com.tvd.gamview.ext.constants.Constant"/>
+<fullyQualifiedTypeName name="java.lang.SuppressWarnings"/>
 </qualifiedTypeNameHistroy>

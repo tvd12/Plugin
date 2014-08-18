@@ -28,6 +28,7 @@ public interface Tag {
 	public static final String CLASS_PATH		= "class-path";
 	public static final String Z_INDEX			= "z-index";
 	public static final String PARAMETER		= "parameter";
+	public static final String CELL				= "cell";
 	
 	public static final String IMAGE_VIEW		= "imageView";
 	public static final String RECT				= "rect";

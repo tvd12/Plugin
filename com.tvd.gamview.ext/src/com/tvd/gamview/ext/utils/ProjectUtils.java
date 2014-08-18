@@ -270,27 +270,6 @@ public class ProjectUtils {
 		return devices;
 	}
 	
-	public static void copyXMLFileToDevicesFolder(IProject project, String fileName,
-			boolean override) {
-		try {
-			String devices[] = getDevices(project);
-			if(devices == null || devices.length == 0) {
-				return;
-			}
-			InputStream inputStream = project.getFile("resources/xml/" 
-					+ devices[0].trim() + "/" + fileName).getContents();
-			for(int i = 1 ; i < devices.length ; i++) {
-				String filePath = "resources/xml/" + devices[i].trim() + "/" + fileName;
-				IFile file = project.getFile(filePath);
-				if((file.exists() && override) || (!file.exists())) {
-					file.create(inputStream, true, null);
-				}
-			}
-		} catch(CoreException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public static void createXMLFileWithBuilder(IProject project, XmlFileBuilder builder,
 			boolean override) {
 		try {
@@ -300,6 +279,11 @@ public class ProjectUtils {
 			}
 			for(int i = 0 ; i < devices.length ; i++) {
 				String xmlContent = builder.buildFor(devices[i]);
+				StringBuilder strBuilder = new StringBuilder("<view ");
+				strBuilder.append("xmlns=\"http://www.tvd.com/tools\"\n");
+				strBuilder.append("\t\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n");
+				strBuilder.append("\t\txsi:schemaLocation=\"http://www.tvd.com/tools ../xsd/view.xsd\"\n\t\t");
+				xmlContent = xmlContent.replace("<view ", strBuilder.toString());
 				IFile newFile = project.getFile(
 						new Path(builder.getOutputFilePath()));
 				if(newFile.exists()) {
