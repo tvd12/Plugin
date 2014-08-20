@@ -105,7 +105,7 @@ public class XmlCreator {
 		
 		Element imagesPath = mDocument.createElement(Tag.IMAGES_PATH);
 		imagesPath.appendChild(mDocument.createTextNode(
-				Config.getInstance().getImagesPath()));
+				Config.getInstance().getImagesPath() + "/" + mDevice));
 		rootElement.appendChild(imagesPath);
 		
 		Element xibContainerPath = mDocument.createElement(Tag.XIBCONTAINER_PATH);
@@ -148,8 +148,9 @@ public class XmlCreator {
 				Element image = mDocument.createElement("image");
 				pRoot.appendChild(image);
 				image.setAttribute("id", StringUtils.convertPhonyPathToId(mFilePaths.get(i)));
-				image.appendChild(mDocument.createTextNode(createTextNodeWithTabs(
-						image, mFilePaths.get(i))));
+				image.setAttribute(Attribute.PHONY_PATH, mFilePaths.get(i));
+//				image.appendChild(mDocument.createTextNode(createTextNodeWithTabs(
+//						image, mFilePaths.get(i))));
 				mFilePaths.remove(i);
 				return;
 			}
@@ -169,7 +170,7 @@ public class XmlCreator {
 	 */
 	private void createSpriteElements(Element pParent, String pParentPath,
 			boolean pSetPosition) {
-		Element items = createGroupElement(pParent, Tag.SPRITES, pParentPath);
+		Element items = createGroupElement(pParent, Tag.SPRITES);
 		if(items == null) {
 			return;
 		}
@@ -215,8 +216,9 @@ public class XmlCreator {
 				Element image = mDocument.createElement("image");
 				sprite.appendChild(image);
 				image.setAttribute("id", StringUtils.convertPhonyPathToId(fullPath));
-				image.appendChild(mDocument.createTextNode(
-						createTextNodeWithTabs(image, fullPath)));
+				image.setAttribute(Attribute.PHONY_PATH, fullPath);
+//				image.appendChild(mDocument.createTextNode(
+//						createTextNodeWithTabs(image, fullPath)));
 				mFilePaths.remove(i);
 				
 			}
@@ -226,7 +228,7 @@ public class XmlCreator {
 	
 	private void createMenuItemElements(Element pParent, String pParentPath) {
 		System.out.println("createMenuItemElements::parentpath = " + pParentPath);
-		Element items = createGroupElement(pParent, Tag.MENUITEMS, pParentPath);
+		Element items = createGroupElement(pParent, Tag.MENUITEMS);
 		for(int i = 0 ; i < mFilePaths.size() ; ) {
 			String fullPath = mFilePaths.get(i);
 			System.out.println("createMenuItemElements::fullpath = " + fullPath);
@@ -242,7 +244,7 @@ public class XmlCreator {
 	}
 	
 	private void createMenuElements(Element pParent, String pParentPath) {
-		Element items = createGroupElement(pParent, Tag.MENUS, pParentPath);
+		Element items = createGroupElement(pParent, Tag.MENUS);
 		for(int i = 0 ; i < mFilePaths.size() ; ) {
 			String fullPath = mFilePaths.get(i);
 			System.out.println("createMenuElements::fullpath = " + fullPath);
@@ -256,18 +258,27 @@ public class XmlCreator {
 	}
 	
 	private void createTableElements(Element pParent, String pParentPath) {
-		Element items = createGroupElement(pParent, Tag.TABLES, pParentPath);
+		Element items = createGroupElement(pParent, Tag.TABLES);
+		
 		for(int i = 0 ; i < mFilePaths.size() ; ) {
 			String fullPath = mFilePaths.get(i);
 			System.out.println("createTableElements::fullpath = " + fullPath);
 			if(!fullPath.contains(pParentPath)) {
 				break;
 			}
+			Element element = createElement(Tag.TABLE, fullPath, items, "5, 10");
+			Element sizeElement = mDocument.createElement(Tag.SIZE);
+			sizeElement.appendChild(mDocument.createTextNode(300 + ", " + 350));
+			element.appendChild(sizeElement);
+			Element imageElement = mDocument.createElement(Tag.IMAGE);
+			imageElement.setAttribute(Attribute.ID, StringUtils.convertPhonyPathToId(
+					fullPath + "/background"));
+			imageElement.setAttribute(Attribute.WIDTH, "300");
+			imageElement.setAttribute(Attribute.HEIGHT, "350");
+			element.appendChild(imageElement);
 			
-			Element element = createElement(Tag.TABLE, fullPath, items);
 			element.setAttribute(Attribute.ROWS, "1");
 			element.setAttribute(Attribute.COLUMNS, "1");
-			element.setAttribute(Attribute.SIZE, "100, 150");
 			element.setAttribute("comment", "");
 			mFilePaths.remove(i);
 			createCellElements(element, fullPath);
@@ -278,8 +289,38 @@ public class XmlCreator {
 	
 	private void createCellElements(Element pParent, String pParentPath) {
 		Element element = mDocument.createElement(Tag.CELL);
+		
+		//add basic element
+		Element anchorPoint = mDocument.createElement(Tag.ANCHORPOINT);
+		anchorPoint.appendChild(mDocument.createTextNode("default"));
+		element.appendChild(anchorPoint);
+			
+		Element position = mDocument.createElement(Tag.POSITION);
+		position.appendChild(mDocument.createTextNode("50, 50"));
+		element.appendChild(position);
+		
+		Element sizeElement = mDocument.createElement(Tag.SIZE);
+		sizeElement.appendChild(mDocument.createTextNode(200 + ", " + 100));
+		element.appendChild(sizeElement);
+		
+		//add image element
+		Element imageElement = mDocument.createElement(Tag.IMAGE);
+		imageElement.setAttribute(Attribute.ID, StringUtils.convertPhonyPathToId(
+				pParentPath + "/cell/background"));
+		imageElement.setAttribute(Attribute.WIDTH, "200");
+		imageElement.setAttribute(Attribute.HEIGHT, "100");
+		element.appendChild(imageElement);
+		
+		//add attributes
+		element.setAttribute(Attribute.CLASS_NAME, 
+				StringUtils.convertToClassName(mRootPath + "_cell", "View"));
+		element.setAttribute(Attribute.SUPER, "default");
+		element.setAttribute(Attribute.PREFIX,
+				StringUtils.detectPrefix("cell") + "_" +
+				mRootPath);
 		element.setAttribute("comment", "");
 		pParent.appendChild(element);
+		
 		for(int i = 0 ; i < mFilePaths.size() ; ) {
 			String fullPath = mFilePaths.get(i);
 			System.out.println("createCellElements::fullpath = " + fullPath);
@@ -303,6 +344,7 @@ public class XmlCreator {
 		return mRootPath + ".xml";
 	}
 	
+	@SuppressWarnings("unused")
 	private String createTextNodeWithTabs(Node pParent, String pText) {
 		StringBuilder builder = new StringBuilder();
 		int numberOfParent = 0;
@@ -320,15 +362,21 @@ public class XmlCreator {
 		return builder.toString();
 	}
 	
-	private Element createGroupElement(Element pParent, String pGroupName, String pParentPath) {
+	private Element createGroupElement(Element pParent, String pGroupName) {
 		Element group = mDocument.createElement(pGroupName);
 		group.setAttribute("array", "false");
 		group.setAttribute(Attribute.COMMENT, "create group of elements");
 		pParent.appendChild(group);
+		
 		return group;
 	}
 	
 	private Element createElement(String pTag, String pFullPath, Element pGroup) {
+		return createElement(pTag, pFullPath, pGroup, "0, 0");
+	}
+	
+	private Element createElement(String pTag, String pFullPath, Element pGroup,
+			String pPositionString) {
 		Element element = mDocument.createElement(pTag);
 		element.setAttribute("comment", "");
 		
@@ -342,7 +390,7 @@ public class XmlCreator {
 		element.appendChild(anchorPoint);
 			
 		Element position = mDocument.createElement(Tag.POSITION);
-		position.appendChild(mDocument.createTextNode("0, 0"));
+		position.appendChild(mDocument.createTextNode(pPositionString));
 		element.appendChild(position);
 		
 		Element zindex = mDocument.createElement(Tag.Z_INDEX);
@@ -403,10 +451,11 @@ public class XmlCreator {
 			String imageName = fullPath.substring(lastIndexOfParentPath);
 			System.out.println("imageName = " + imageName);
 			if(!imageName.contains("/") && imageName.endsWith(".png")) {
-				Element image = mDocument.createElement("image");
+				Element image = mDocument.createElement(Tag.IMAGE);
 				parent.appendChild(image);
-				image.setAttribute("id", StringUtils.convertPhonyPathToId(fullPath));
-				image.appendChild(mDocument.createTextNode(createTextNodeWithTabs(image, fullPath)));
+				image.setAttribute(Attribute.ID, StringUtils.convertPhonyPathToId(fullPath));
+				image.setAttribute(Attribute.PHONY_PATH, fullPath);
+//				image.appendChild(mDocument.createTextNode(createTextNodeWithTabs(image, fullPath)));
 				mFilePaths.remove(i);
 				
 				return;

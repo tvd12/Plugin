@@ -21,6 +21,7 @@ public interface Attribute {
 	public static final String VISIBLE			= "visible";
 	public static final String USED				= "used";
 	public static final String S_VALUE			= "s-value";
+	public static final String PHONY_PATH		= "phony-path";
 	
 	public static final String WIDTH			= "width";
 	public static final String HEIGHT			= "height";

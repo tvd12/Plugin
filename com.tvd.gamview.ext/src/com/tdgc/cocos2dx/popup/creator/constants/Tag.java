@@ -35,4 +35,8 @@ public interface Tag {
 	public static final String SCREENCONTAINER_PATH = "screencontainer-path";
 	public static final String WIDGETS			= "widgets";
 	public static final String ANDROIDCONTAINER_PATH = "androidcontainer-path";
+	
+	public static final String SIZE				= "size";
+	public static final String CELL_POSITION	= "cell-position";
+	public static final String CELL_SIZE		= "cell-size";
 }

@@ -10,9 +10,21 @@ public class XmlContentUtils {
 		String newPosition = pImg.getX() + ", " + pImg.getY();
 		String openTag = "<" + Tag.POSITION + ">";
 		String closeTag = "</" + Tag.POSITION + ">";
+		
+		String newSize = pImg.getSize().toString();
+		String sizeOpenTag = "<" + Tag.SIZE + ">";
+ 		String sizeCloseTag = "</" + Tag.SIZE + ">";
+		
 		for(int i = 0 ; i < contents.length ; i++) {
 			if(contents[i].contains(pImg.getId())) {
-				while(!contents[--i].contains(openTag));
+				while(!contents[--i].contains(openTag)) {
+					if(contents[i].contains(sizeOpenTag)) {
+						String currentSize = contents[i].substring(
+								contents[i].indexOf(sizeOpenTag) + sizeOpenTag.length(),
+								contents[i].indexOf(sizeCloseTag));
+						contents[i] = contents[i].replace(currentSize, newSize);
+					}
+				}
 				String currentPosition = contents[i].substring(
 						contents[i].indexOf(openTag) + openTag.length(),
 						contents[i].indexOf(closeTag));

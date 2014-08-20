@@ -136,7 +136,10 @@
 					<xs:attribute name="background" 
 						type="xs:boolean" use="optional" />
 					<xs:attribute name="id" type="xs:string" use="optional" />
+					<xs:attribute name="phony-path" type="xs:string" />
 					<xs:attribute name="real-path" type="xs:string" use="optional" />
+					<xs:attribute name="width" type="xs:float" use="optional" />
+					<xs:attribute name="height" type="xs:float" use="optional" />
 				</xs:extension>
 			</xs:simpleContent>
 		</xs:complexType>
@@ -249,12 +252,13 @@
 				<xs:element name="anchorpoint" type="xs:string" maxOccurs="1" minOccurs="0" />
 				<xs:element ref="position" maxOccurs="1" minOccurs="0" />
 				<xs:element name="z-index" type="xs:integer" maxOccurs="1" minOccurs="0" />
+				<xs:element ref="size" maxOccurs="1" minOccurs="1" />
+				<xs:element ref="image" maxOccurs="1" minOccurs="1" />
 				<xs:element ref="cell" maxOccurs="1" minOccurs="1" />
 			</xs:sequence>
 			<xs:attribute name="columns" type="xs:integer" use="required" />
 			<xs:attribute name="comment" type="xs:string" use="optional" />
 			<xs:attribute name="rows" type="xs:integer" use="required" />
-			<xs:attribute name="size" type="xs:string" use="required" />
 			<xs:attribute name="visible" type="xs:boolean" use="optional" />
 		</xs:complexType>
 	</xs:element>
@@ -305,14 +309,41 @@
 	<xs:element name="cell">
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element ref="position" maxOccurs="1" minOccurs="0" />
+				<xs:element ref="size" maxOccurs="1" minOccurs="0" />
+				<xs:element ref="image" maxOccurs="1" minOccurs="1" />
 				<xs:element ref="menuitems" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="labels" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="menus" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="sprites" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="tables" maxOccurs="unbounded" minOccurs="0" />
 			</xs:sequence>
+			<xs:attribute name="class-name" type="xs:string" use="required" />
 			<xs:attribute name="comment" type="xs:string" use="optional" />
+			<xs:attribute name="prefix" type="xs:string" use="optional" />
+			<xs:attribute name="super" type="xs:string" use="optional" />
 			<xs:attribute name="visible" type="xs:boolean" use="optional" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cell-position">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string" />
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="size">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string" />
+			</xs:simpleContent> 
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cell-size">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string" />
+			</xs:simpleContent>
 		</xs:complexType>
 	</xs:element>
 	<xs:simpleType name="uppertype">

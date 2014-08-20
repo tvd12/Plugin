@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -16,24 +15,20 @@ import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.file.ImageFileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
-import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
-import com.tdgc.cocos2dx.popup.creator.model.basic.Parameter;
-import com.tdgc.cocos2dx.popup.creator.model.basic.Property;
+import com.tdgc.cocos2dx.popup.creator.model.basic.AdvancedObject;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 import com.tdgc.cocos2dx.popup.creator.utils.ViewUtils;
 import com.tdgc.cocos2dx.popup.creator.utils.XmlContentUtils;
 import com.tdgc.cocos2dx.popup.creator.xml.XibFetcher;
 
-public class View extends CommonObject {
+public class View extends AdvancedObject {
 
 	public View() {
 		super();
+		this.mViewType = Constants.ViewType.VIEW;
 		this.mSuffix = "popup";
 		this.mName = Config.getInstance().getDefaultParentPopup();
 		this.mImages = new ArrayList<Image>();
-		this.mMenuItemTags = new ArrayList<String>();
-		this.mParameters = new ArrayList<Parameter>();
-		this.mProperties = new ArrayList<Property>();
 		this.mResources = new ArrayList<Resources>();
 		this.mScreenContainerPath = 
 				Config.getInstance().getScreenContainerPath();
@@ -44,96 +39,47 @@ public class View extends CommonObject {
 		this.mImages.add(mBackgroundImage);
 		this.mLabels = new ArrayList<Label>();
 		this.mPrefix = "";
-		
-		this.mLabelGroupInView = new ArrayList<ItemGroup>();
-		this.mSpriteGroupInView = new ArrayList<ItemGroup>();
-		this.mMenuItemGroupInView = new ArrayList<ItemGroup>();
-		this.mMenuGroupInView = new ArrayList<ItemGroup>();
-		this.mTableGroupInView = new ArrayList<ItemGroup>();
+		this.mSuper = Config.getInstance().getDefautSuper(mSuffix);
+
 	}
 	
 	@Override
 	public String declare() {
-		String superDeclare = new StringBuilder()
-			.append(ViewUtils.declareGroups(mLabelGroupInView))
-			.append("\n")
-			.append(ViewUtils.declareGroups(mSpriteGroupInView))
-			.append("\n")
-			.append(ViewUtils.declareGroups(mMenuItemGroupInView))
-			.append("\n")
-			.append(ViewUtils.declareGroups(mMenuGroupInView))
-			.append("\n")
-			.append(ViewUtils.declareGroups(mTableGroupInView))
-			.toString();
+		if(mTableGroupInView.size() > 0) {
+			super.mHeaderTemplate = "extend table";
+		}
+		String srcCode = super.declare()
+				.replace("{background_id}", mBackgroundImage.getId());
 		
-		Date createdDate = Calendar.getInstance().getTime();
-		String classNamePrefix = StringUtils.convertToClassName(
-				mPrefix.substring(mPrefix.indexOf("_") + 1), "");
-		char firstChar = ("" + classNamePrefix.charAt(0)).toLowerCase().charAt(0);
-		classNamePrefix = classNamePrefix.replace(classNamePrefix.charAt(0), firstChar);
-		
-		String propertiesDeclare = StringUtils.standardizeCode(superDeclare
-				+ declareProperties());
-		String template = new FileUtils().readFromFile(
-				getProject().getFile("src/com/template/popup_default_header.template"));
-		String result = template.replace("{class_name}", mClassName)
-				.replace("{author}", System.getProperty("user.name"))
-				.replace("{project_name}", Config.getInstance().getProjectName())
-				.replace("{created_date}", createdDate.toString())
-				.replace("{super_name}", Config.getInstance().getDefautSuper(mSuffix))
-				.replace("//{properties_declare}", propertiesDeclare)
-				.replace("//{menuitem_tags}", createMenuItemTags())
-				.replace("//{extend_functions}", StringUtils.standardizeCode(
-						createExtendFunctions(true)))
-				.replace("{class_name_prefix}", classNamePrefix)
-				.replace("{background_id}", mBackgroundImage.getId())
-				.replace("//{parameters},", declareParameters())
-				.replace("//{n}", "\n");
-
-		return StringUtils.standardizeCode(result);
+		if(mTableGroupInView.size() > 0) {
+			Cell cell = ((Table)(mTableGroupInView.get(0)
+					.getItems().get(0))).getCell();
+			srcCode = srcCode.replace("{super_table_name}", 
+					mTableGroupInView.get(0).getItems().get(0).getSuper());
+			srcCode = srcCode.replace("{super_cell_name}", cell.getSuper())
+					.replace("{table_view_name}", Config.getInstance().getTableViewName());
+		}
+		return srcCode;
 	}
 	
 	@Override
 	public String implement(boolean pInfunction) {
-		this.setParentForMenuItems();
-		
-		Date createdDate = Calendar.getInstance().getTime();
-		String classNamePrefix = StringUtils.convertToClassName(
-				mPrefix.substring(mPrefix.indexOf("_") + 1), "");
-		char firstChar = ("" + classNamePrefix.charAt(0)).toLowerCase().charAt(0);
-		classNamePrefix = classNamePrefix.replace(classNamePrefix.charAt(0), firstChar);
-		
-		String template = new FileUtils().fetchTemplate("implement", 
-				"src/com/template/popup_default_implement.template", getProject());
-		
-		String result = template.replace("{author}", System.getProperty("user.name"))
-				.replace("{project_name}", Config.getInstance().getProjectName())
-				.replace("{created_date}", createdDate.toString())
-				.replace("{super_name}", Config.getInstance().getDefautSuper(mSuffix))
-				.replace("//{add_menuitems}", StringUtils.standardizeCode(
-						ViewUtils.implementGroups(mMenuItemGroupInView)))
-				.replace("//{add_sprites}", StringUtils.standardizeCode(
-						ViewUtils.implementGroups(mSpriteGroupInView)))
-				.replace("{class_name_prefix}", classNamePrefix)
-				.replace("//{add_labels}", StringUtils.standardizeCode(
-						ViewUtils.implementGroups(mLabelGroupInView)))
-				.replace("//{add_tables}", StringUtils.standardizeCode(
-						ViewUtils.implementGroups(mTableGroupInView)))
-				.replace("//{extend_functions}", StringUtils.standardizeCode(
-						createExtendFunctions(false)))
-				.replace("{callback_function}", classNamePrefix + "MenuItemCallback")
-				.replace("{class_name}", mClassName)
-				.replace("//{parameters},", declareParameters())
-				.replace("//{importing_params}", importingParams())
-				.replace("//{assigning_area}", assigningArea())
-				.replace("//{n}", "\n");
-		
-		for(int i = 0 ; i < mProperties.size() ; i++) {
-			String mark = "\"${param" + i + "}\"";
-			result = result.replace(mark, mProperties.get(i).getName());
+		super.mImplementingTemplate = "implement";
+		if(mTableGroupInView.size() > 0) {
+			super.mImplementingTemplate = "extend table";
 		}
-
-		return StringUtils.standardizeCode(result);
+		String srcCode = super.implement(pInfunction);
+		
+		if(mTableGroupInView.size() > 0) {
+			Cell cell = ((Table)(mTableGroupInView.get(0)
+					.getItems().get(0))).getCell();
+			srcCode = srcCode.replace("//{extend_class}", 
+					cell.declareAndImplement())
+					.replace("{super_cell_name}", cell.getSuper())
+					.replace("{table_view_name}", Config.getInstance().getTableViewName())
+					.replace("{cell_class_name}", cell.getClassName()); 
+		}
+		return srcCode;
 	}
 	
 	@Override
@@ -141,52 +87,46 @@ public class View extends CommonObject {
 		
 		StringBuilder builder = new StringBuilder("\n");
 		createHeaderCommentTemplate(builder, Constants.POSITION_DECLARING_CMM);
-		builder.append(ViewUtils.declarePositionGroups(mLabelGroupInView))
-			.append("\n")
-			.append(ViewUtils.declarePositionGroups(mSpriteGroupInView))
-			.append("\n")
-			.append(ViewUtils.declarePositionGroups(mMenuItemGroupInView))
-			.append("\n")
-			.append(ViewUtils.declarePositionGroups(mMenuGroupInView))
-			.append("\n")
-			.append(ViewUtils.declarePositionGroups(mTableGroupInView));
+		builder.append(super.declarePositions());
+		
+		if(mTableGroupInView.size() > 0) {
+			Cell cell = ((Table)(mTableGroupInView.get(0)
+				.getItems().get(0))).getCell();
+			builder.append(cell.declarePositions());
+		}
+		
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
-		return builder.toString().trim();
+		return StringUtils.standardizeCode(builder.toString());
 	}
 	
 	@Override
 	public String implementPositions() {
 		StringBuilder builder = new StringBuilder("\n");
 		createHeaderCommentTemplate(builder, Constants.POSITION_IMPLEMENTING_CMM);
-		builder.append(ViewUtils.declarePositionGroups(mLabelGroupInView))
-			.append("\n")
-			.append(ViewUtils.declarePositionGroups(mSpriteGroupInView))
-			.append("\n")
-			.append(ViewUtils.declarePositionGroups(mMenuItemGroupInView))
-			.append("\n")
-			.append(ViewUtils.declarePositionGroups(mMenuGroupInView))
-			.append("\n")
-			.append(ViewUtils.declarePositionGroups(mTableGroupInView));
+		builder.append(super.implementPositions());
+		if(mTableGroupInView.size() > 0) {
+			Cell cell = ((Table)(mTableGroupInView.get(0)
+					.getItems().get(0))).getCell();
+			builder.append(cell.implementPositions());
+		}
+			
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
 		
-		return builder.toString().trim();
+		return StringUtils.standardizeCode(builder.toString());
 	}
 	
 	public String implementPositions(String device) {
 		StringBuilder builder = new StringBuilder("\n");
 		createHeaderCommentTemplate(builder, 
 				Constants.POSITION_IMPLEMENTING_CMM + "(" + device + ")");
-		builder.append(ViewUtils.implementPositionGroups(mLabelGroupInView))
-			.append("\n")
-			.append(ViewUtils.implementPositionGroups(mSpriteGroupInView))
-			.append("\n")
-			.append(ViewUtils.implementPositionGroups(mMenuItemGroupInView))
-			.append("\n")
-			.append(ViewUtils.implementPositionGroups(mMenuGroupInView))
-			.append("\n")
-			.append(ViewUtils.implementPositionGroups(mTableGroupInView));
+		builder.append(super.implementPositions());
+		if(mTableGroupInView.size() > 0) {
+			Cell cell = ((Table)(mTableGroupInView.get(0)
+					.getItems().get(0))).getCell();
+			builder.append(cell.implementPositions());
+		}
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE + "(" + device + ")");
 		
@@ -223,17 +163,6 @@ public class View extends CommonObject {
 		return builder.toString().trim();
 	}
 	
-	public String createMenuItemTags() {
-		StringBuilder builder = new StringBuilder("\n");
-		for(int i = 0 ; i < mMenuItemTags.size() ; i++) {
-			builder.append("\t\t")
-				.append(mMenuItemTags.get(i))
-				.append("\t= " + (1000 + i))
-				.append(",\n");
-		}
-		return builder.toString();
-	}
-	
 	public void export() {
 		this.exportDeclaringImageIds();
 		this.exportImplementedImageIds();
@@ -250,10 +179,15 @@ public class View extends CommonObject {
 				mImagesPath);
 	}
 	
+//	public void exportXibTemplate(String pDevice, boolean override) {
 	public void exportXibTemplate(String pDevice, IProject pProject, boolean override) {
 			FileUtils fileUtils = new FileUtils();
+//			String path = "resources/xib/" 
+//					+ pDevice + "/template.xib";
 			IFile file = pProject.getFile("resources/xib/" 
 					+ pDevice + "/template.xib");
+			
+			//String xibContent = fileUtils.readFromFile(path);
 			String xibContent = fileUtils.readFromFile(file);
 			
 			StringBuilder builder = new StringBuilder();
@@ -269,8 +203,12 @@ public class View extends CommonObject {
 							
 	}
 	
+//	public void exportScreenTemplate(String pDevice) {
 	public void exportScreenTemplate(String pDevice, IProject pProject) {
 		FileUtils fileUtils = new FileUtils();
+//		String path = "resources/screen/" 
+//				+ pDevice + "/template.screen";
+//		String screenContent = fileUtils.readFromFile(path);
 		IFile file = pProject.getFile("resources/screen/" 
 				+ pDevice + "/template.screen");
 		String screenContent = fileUtils.readFromFile(file);
@@ -290,21 +228,12 @@ public class View extends CommonObject {
 	}
 
 	public void addImage(Image pImage) {
-		if(pImage.isBackground()) {
+		if(pImage.getParent() instanceof View) {
 			mBackgroundImage = pImage;
 			this.mImages.get(0).replaceWithAnother(pImage);
 		} else {
 			this.mImages.add(pImage);
 		}
-	}
-	
-	public void addParameter(Parameter pParameter) {
-		this.mParameters.add(pParameter);
-		this.mProperties.add(new Property(pParameter));
-	}
-	
-	public void addMenuItemTag(String pTag) {
-		this.mMenuItemTags.add(pTag);
 	}
 	
 	@Override
@@ -450,6 +379,8 @@ public class View extends CommonObject {
 			XibFetcher xibFetcher = new XibFetcher(mImages, mLabels);
 			xibFetcher.fetchData(xibFilePath);
 			FileUtils fileUtils = new FileUtils();
+			
+//			String fileContent = fileUtils.readFromFile(mXmlFilePath);
 			String fileContent = fileUtils.readFromFile(mXmlFile);
 			for(int i = 0 ; i < mImages.size() ; i++) {
 				mImages.get(i).alignFollowParrent();
@@ -462,7 +393,9 @@ public class View extends CommonObject {
 				fileContent = XmlContentUtils.replaceSpritePosition(
 						fileContent, mLabels.get(i));
 			}
-	 		ByteArrayInputStream inputStream = 
+			
+//			fileUtils.setContent(fileContent).writeToFile(mXmlFilePath, false);
+			ByteArrayInputStream inputStream = 
 	 				new ByteArrayInputStream(fileContent.getBytes());
 	 		mXmlFile.setContents(inputStream, true, false, null);
 		}
@@ -471,65 +404,6 @@ public class View extends CommonObject {
 	private void exportDirectory() {
 		new FileUtils().createDirectory(mClassPath, 
 				mDirectoryName);
-	}
-	
-	private void setParentForMenuItems() {
-		CommonObject parent = new Menu();
-		parent.setName(Config.getInstance().getDefaultMenuItemParent());
-		for(int i = 0 ; i < mMenuItemGroups.size() ; i++) {
-			for(int j = 0 ; j < mMenuItemGroups.get(i).getItems().size() ; j++) {
-				mMenuItemGroups.get(i).getItems().get(j).setParent(parent);
-			}
-		}
-	}
-	
-	private String declareParameters() {
-		StringBuilder builder = new StringBuilder();
-		for(int i = 0 ; i < mParameters.size() ; i++) {
-			if(i > 0) {
-				builder.append("\t\t\t\t\t\t\t");
-			}
-			builder.append(mParameters.get(i))
-				.append("\n");
-		}
-		
-		return builder.toString().trim();
-	}
-	
-	private String declareProperties() {
-		StringBuilder builder = new StringBuilder("\n");
-		for(int i = 0 ; i < mProperties.size() ; i++) {
-			builder.append("\t" + mProperties.get(i))
-				.append("\n");
-		}
-		
-		return builder.toString();
-	}
-	
-	private String importingParams() {
-		StringBuilder builder = new StringBuilder();
-		for(int i = 0 ; i < mParameters.size() ; i++) {
-			if(i > 0) {
-				builder.append("\t\t\t");
-			}
-			builder.append(mParameters.get(i).getName() + ",")
-				.append("\n");
-			
-		}
-		
-		return builder.toString().trim();
-	}
-	
-	private String assigningArea() {
-		StringBuilder builder = new StringBuilder("\n");
-		for(int i = 0 ; i < mProperties.size() ; i++) {
-			builder.append("\tthis->" + mProperties.get(i).getName())
-				.append(" = ")
-				.append(mParameters.get(i).getName())
-				.append(";\n");
-		}
-		
-		return builder.toString();
 	}
 	
 	private String createImageViewsTag() {
@@ -548,7 +422,8 @@ public class View extends CommonObject {
 	
 	private void setImagesIdsForXib() {
 		for(int i = 0 ; i < mImages.size() ; i++) {
-			if(mImages.get(i).getRealPath().endsWith("active.png")) {
+			if(mImages.get(i).getRealPath() != null && 
+					mImages.get(i).getRealPath().endsWith("active.png")) {
 				continue;
 			}
 			String id = "img-png-" + StringUtils.generateString(i);
@@ -559,7 +434,8 @@ public class View extends CommonObject {
 	private String createImagesTag() {
 		StringBuilder builder = new StringBuilder("\n");
 		for(int i = 0 ; i < mImages.size() ; i++) {
-			if(mImages.get(i).getRealPath().endsWith("active.png")) {
+			if(mImages.get(i).getRealPath() != null 
+					&& mImages.get(i).getRealPath().endsWith("active.png")) {
 				continue;
 			}
 			builder.append(mImages.get(i).createImageTag());
@@ -585,32 +461,9 @@ public class View extends CommonObject {
 		return builder.toString();
 	}
 	
-	private String createExtendFunctions(boolean pInHeader) {
-		StringBuilder builder = new StringBuilder();
-		for(int i = 0 ; i < mResources.size() ; i++) {
-			if(pInHeader) {
-				builder.append(mResources.get(i).declareExtendFunction());
-			} else {
-				builder.append(mResources.get(i).createExtendFunction());
-			}
-			
-			builder.append("//{n}");
-		}
-		
-		return builder.toString();
-	}
-	
 	@Override
 	public void setPositionName(String pPositionName) {
 		
-	}
-	
-	public void setClassName(String pClassName) {
-		this.mClassName = pClassName;
-	}
-	
-	public String getClassName() {
-		return this.mClassName;
 	}
 	
 	public void setDefinePath(String mDefinePath) {
@@ -665,10 +518,6 @@ public class View extends CommonObject {
 		return mXibContainerPath;
 	}
 	
-	public void setXmlFile(IFile xmlFile) {
-		this.mXmlFile = xmlFile;
-	}
-	
 	public void setAndroidContainerPath(String path) {
 		this.mAndroidContainerPath = path;
 	}
@@ -710,23 +559,15 @@ public class View extends CommonObject {
 		return this.mLabels;
 	}
 	
-	//for items group management
-	public void pushBackLabelGroup(ItemGroup group) {
-		this.mLabelGroupInView.add(group);
-	}
-	public void pushBackSpriteGroup(ItemGroup group) {
-		this.mSpriteGroupInView.add(group);
-	}
-	public void pushBackMenuItemGroup(ItemGroup group) {
-		this.mMenuItemGroupInView.add(group);
-	}
-	public void pushBackMenuGroup(ItemGroup group) {
-		this.mMenuGroupInView.add(group);
-	}
-	public void pushBackTableGroup(ItemGroup group) {
-		this.mTableGroupInView.add(group);
+	public void setXmlFile(IFile xmlFile) {
+		this.mXmlFile = xmlFile;
 	}
 	
+	public IFile getXmlFile() {
+		return this.mXmlFile;
+	}
+	
+	private IFile mXmlFile;
 	private String mDefinePath;
 	private String mParametersPath;
 	private String mImagesInputPath;
@@ -737,7 +578,6 @@ public class View extends CommonObject {
 	
 	private String mInterfaceBuilder;
 	
-	private String mClassName;
 	private String mDirectoryName;
 	
 	@SuppressWarnings("unused")
@@ -746,17 +586,7 @@ public class View extends CommonObject {
 	private Image mBackgroundImage;
 	private List<Image> mImages;
 	private List<Label> mLabels;
-	private List<String> mMenuItemTags;
-	private List<Parameter> mParameters;
-	private List<Property> mProperties;
 	private List<Resources> mResources;
 	private String mScreenContainerPath;
 	
-	private List<ItemGroup> mLabelGroupInView;
-	private List<ItemGroup> mSpriteGroupInView;
-	private List<ItemGroup> mMenuItemGroupInView;
-	private List<ItemGroup> mMenuGroupInView;
-	private List<ItemGroup> mTableGroupInView;
-	
-	private IFile mXmlFile;
 }

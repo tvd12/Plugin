@@ -117,14 +117,7 @@ public class StringUtils {
 	}
 	
 	public static String detectPrefix(String pViewType) {
-		String result = "pop", temp = pViewType.toLowerCase();
-		if(temp.equals("layer")) {
-			result = "layer";
-		} else if(temp.equals("scene")){
-			result = "scene";
-		}
-		
-		return result;
+		return pViewType.toLowerCase();
 	}
 	
 	public static String standardizeCode(String pCode) {

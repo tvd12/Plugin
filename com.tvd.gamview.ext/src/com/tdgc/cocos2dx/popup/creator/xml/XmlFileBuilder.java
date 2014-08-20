@@ -34,7 +34,8 @@ public class XmlFileBuilder {
 		
 		// write the content into xml file
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		transformerFactory.setAttribute("indent-number", 4);
+		System.out.println("transformerFactory: " + transformerFactory.getClass().getName());
+		transformerFactory.setAttribute("indent-number", new Integer(4));
 		Transformer transformer = null;
 		try {
 			transformer = transformerFactory.newTransformer();

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -25,6 +26,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 import com.tdgc.cocos2dx.popup.creator.xml.XmlFileBuilder;
+import com.tdgc.cocos2dx.popup.creator.xml.XmlFormatter;
 import com.tvd.gameview.plugin.model.ViewModel;
 import com.tvd.gameview.views.BuildingTreeView;
 
@@ -151,23 +153,28 @@ public class ProjectUtils {
 	public static List<ViewModel> getViewInProject(IProject project) {
 		List<ViewModel> results = new ArrayList<ViewModel>();
 		try {
-			String propertyValue = project.getPersistentProperty(new QualifiedName("tvd", "views"));
-			if(propertyValue != null && !propertyValue.equals("")) {
-				String strs[] = {propertyValue};
-				if(propertyValue.contains(";")) {
-					strs = propertyValue.split(";");
-				}
-				for(int i = 0 ; i < strs.length ; i++) {
-					String name = strs[i];
-					if(name.trim().equals("")) {
-						continue;
+			IFolder xmlFolder = project.getFolder("resources/xml");
+			if(xmlFolder.exists()) {
+				IResource deviceFolders[] = xmlFolder.members();
+				for(int i = 0 ; i < deviceFolders.length ; i++) {
+					if(deviceFolders[i].getType() == IResource.FOLDER) {
+						IResource viewFiles[] = ((IFolder)deviceFolders[i]).members();
+						for(int j = 0 ; j < viewFiles.length ; j++) {
+							if(viewFiles[j].getType() == IResource.FILE
+									&& viewFiles[j].getName().endsWith(".xml")) {
+								boolean contain = false;
+								for(int k = 0 ; k < results.size() ; k++) {
+									if(results.get(k).getName().equals(viewFiles[j].getName())) {
+										contain = true;
+									}
+								}
+								if(!contain) {
+									results.add(new ViewModel(viewFiles[j].getName(), false));
+								}
+							}
+						}
 					}
-					boolean isDone = false;
-					if(strs[i].contains(":done")) {
-						name = strs[i].split(":")[0];
-						isDone = true;
-					}
-					results.add(new ViewModel(name, isDone));
+					
 				}
 			}
 		} catch (CoreException e) {
@@ -175,50 +182,6 @@ public class ProjectUtils {
 		}
 		
 		return results;
-	}
-	
-	public static void deleteXMLViewFileInProject(IProject project, String fileName) {
-		try {
-			String propertyValue = project.getPersistentProperty(
-					new QualifiedName("tvd", "views"));
-			if(propertyValue != null && !propertyValue.equals("")) {
-				if(propertyValue.contains(fileName + ":done")) {
-					propertyValue = propertyValue.replace(fileName + ":done;", "");
-				} else if(propertyValue.contains(fileName)) {
-					propertyValue = propertyValue.replace(fileName + ";", "");
-				}
-				project.setPersistentProperty(
-						new QualifiedName("tvd", "views"), propertyValue);
-			}
-		} catch (CoreException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void checkViewsInProject() {
-		List<IProject> projects = getSdkProjects();
-		for(int i = 0 ; i < projects.size() ; i++) {
-			IProject project = projects.get(i);
-			List<ViewModel> models = getViewInProject(project);
-			String listFile = "";
-			for(int k = 0 ; k < models.size() ; k++) {
-				IFile file = project.getFile(models.get(k).getRealName());
-//				System.out.println("checkViewsInProject::file ("
-//						+ models.get(k).getRealName() + ") exists = " + file.exists()
-//						+ " size = " + models.size());
-				if(file.exists()) {
-					listFile += models.get(k) + ";";
-				}
-			}
-			if(listFile.length() > 0 && listFile.contains(";")) {
-				listFile = listFile.substring(0, listFile.length() - 1);
-			}
-			try {
-				project.setPersistentProperty(new QualifiedName("tvd", "views"), listFile);
-			} catch (CoreException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 	
 	/**
@@ -270,6 +233,26 @@ public class ProjectUtils {
 		return devices;
 	}
 	
+	public static List<String> getDeviceFolderNames(IProject project) {
+		List<String> results = new ArrayList<String>();
+		IResource xmlResource = project.getFolder("resources/xml");
+		if(xmlResource.exists()) {
+			try {
+				IResource deviceResources[] = ((IFolder)xmlResource).members();
+				for(int i = 0 ; i < deviceResources.length ; i++) {
+					if(deviceResources[i].getType() == IResource.FOLDER) {
+						results.add(deviceResources[i].getName());
+					}
+				}
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return results;
+	}
+	
 	public static void createXMLFileWithBuilder(IProject project, XmlFileBuilder builder,
 			boolean override) {
 		try {
@@ -284,6 +267,7 @@ public class ProjectUtils {
 				strBuilder.append("\t\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n");
 				strBuilder.append("\t\txsi:schemaLocation=\"http://www.tvd.com/tools ../xsd/view.xsd\"\n\t\t");
 				xmlContent = xmlContent.replace("<view ", strBuilder.toString());
+				xmlContent = XmlFormatter.format(xmlContent);
 				IFile newFile = project.getFile(
 						new Path(builder.getOutputFilePath()));
 				if(newFile.exists()) {

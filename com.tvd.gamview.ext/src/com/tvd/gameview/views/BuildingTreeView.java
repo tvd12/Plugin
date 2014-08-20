@@ -355,9 +355,6 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 							+ sdkProjects.get(i).getName() + " project",
 							sdkProjects.get(i));
 			
-			//check exists views
-			ProjectUtils.checkViewsInProject();
-			
 			//get all view in project
 			List<ViewModel> viewModels = 
 					ProjectUtils.getViewInProject(sdkProjects.get(i)); 
@@ -372,20 +369,23 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 			if(devices == null || devices.length == 0) {
 				return new Object[] {new BuildingListElement("iphone")};
 			}
-			BuildingListElement elements[] = 
-					new BuildingListElement[strs.length];
 			
-		    for(int j = 0 ; j < elements.length ; j++) {
-		    	elements[j] = new BuildingListElement(strs[j]);
-		    }
-		    
-		    elements[4].addChild(new BuildingListElement(Constant.TreeElement.DECLARE_IDS));
-		    elements[4].addChild(new BuildingListElement(Constant.TreeElement.IMPLEMENT_IDS));
-		    elements[5].addChild(new BuildingListElement("declare positions"));
-		    elements[5].addChild(new BuildingListElement("implement positions"));
-		    elements[6].addChild(new BuildingListElement("declare class"));
-		    elements[6].addChild(new BuildingListElement("implement class"));
 			for(int k = 0 ; k < viewModels.size() ; k++) {
+				
+				BuildingListElement elements[] = 
+						new BuildingListElement[strs.length];
+				
+			    for(int j = 0 ; j < elements.length ; j++) {
+			    	elements[j] = new BuildingListElement(strs[j]);
+			    }
+			    
+			    elements[4].addChild(new BuildingListElement(Constant.TreeElement.DECLARE_IDS));
+			    elements[4].addChild(new BuildingListElement(Constant.TreeElement.IMPLEMENT_IDS));
+			    elements[5].addChild(new BuildingListElement("declare positions"));
+			    elements[5].addChild(new BuildingListElement("implement positions"));
+			    elements[6].addChild(new BuildingListElement("declare class"));
+			    elements[6].addChild(new BuildingListElement("implement class"));
+				
 				if(!viewModels.get(k).isDone()) {
 					String name = "export building list of " + 
 							viewModels.get(k).getName() + " view";

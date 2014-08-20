@@ -31,11 +31,6 @@ public class Sprite extends CommonObject {
 
 	@Override
 	public String implement(boolean pInfunction) {
-		if((pInfunction && isBackground())
-				|| mName == null || mPositionName == null
-				) {
-			return "";
-		}
 		StringBuilder builder = new StringBuilder("\n");
 		
 		String templateName = "CCSprite";
@@ -43,14 +38,14 @@ public class Sprite extends CommonObject {
 			templateName += " in function";
 			mName = getInfunctionName();
 		} else {
-			if(mParent != null && mParent.getType().equals(ModelType.TABLE)) {
-				templateName = "CCSprite non-add";
-			}
+
 		}
 		if(mIsUnlocated) {
 			templateName += " unlocated";
 		}
 		
+//		String template = new FileUtils().fetchTemplate(templateName, 
+//				"src/com/template/new_sprite.template");
 		String template = new FileUtils().fetchTemplate(templateName, 
 				"src/com/template/new_sprite.template", getProject());
 		

@@ -1,6 +1,7 @@
 package com.tvd.gameview.ui.internal;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -11,11 +12,11 @@ import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.IResourceProxy;
 import org.eclipse.core.resources.IResourceProxyVisitor;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.Status;
 
 import com.tvd.gamview.ext.Activator;
 import com.tvd.gamview.ext.utils.MessageUtils;
+import com.tvd.gamview.ext.utils.ProjectUtils;
 
 
 public class SdkPropetiesFileVisitor implements IResourceProxyVisitor,
@@ -40,7 +41,7 @@ public class SdkPropetiesFileVisitor implements IResourceProxyVisitor,
 	
 	@Override
 	public boolean visit(IResourceProxy proxy) throws CoreException {
-		System.out.println("SdkPropetiesFileVisitor::visit::proxy");
+//		System.out.println("SdkPropetiesFileVisitor::visit::proxy");
 		String name = proxy.getName();
 		if(name != null && name.endsWith(""))
 			processPropertiesResource(proxy.requestResource());
@@ -87,7 +88,6 @@ public class SdkPropetiesFileVisitor implements IResourceProxyVisitor,
 	
 	private void createNewDevices(IProject project, String devices[]) 
 			throws CoreException {
-		String newDeviceStr = "";
 		for(int i = 0 ; i < devices.length ; i++) {
 			String device = devices[i].trim();
 			IFolder xml = project.getFolder("resources/xml/" + device);
@@ -106,39 +106,19 @@ public class SdkPropetiesFileVisitor implements IResourceProxyVisitor,
 			if(!android.exists()) {
 				android.create(true, true, null);
 			}
-			newDeviceStr += device;
-			if(i < devices.length - 1) {
-				newDeviceStr += ", ";
-			}
 		}
 		//deleted device if have any device deleted
 		deleteDevices(project, devices);
 		
-		//save new devices
-		project.setPersistentProperty(new QualifiedName("tvd", "devices"), newDeviceStr);
 	}
 	
 	private void deleteDevices(IProject project, String devices[]) 
 			throws CoreException {
 		
-		//get saved devices
-		String savedDevicesStr = project.getPersistentProperty(
-				new QualifiedName("tvd", "devices"));
+		List<String> deviceFolderNames = ProjectUtils.getDeviceFolderNames(project);
 		
-		//if have no device saved, do nothing
-		if(savedDevicesStr == null || savedDevicesStr.equals("")) {
-			return;
-		}
-		
-		String savedDevices[] = (savedDevicesStr.contains(",")) 
-				? savedDevicesStr.split(",") : new String[] {savedDevicesStr};
-				
-		//if no change
-		if(devices.length == savedDevices.length) {
-			return;
-		}
-		for(int i = 0 ; i < savedDevices.length ; i++) {
-			String savedDevice = savedDevices[i].trim();
+		for(int i = 0 ; i < deviceFolderNames.size() ; i++) {
+			String savedDevice = deviceFolderNames.get(i);
 			boolean deleted = true;
 			for(int k = 0 ; k < devices.length ; k++) {
 				if(savedDevice.equals(devices[k].trim())) {

@@ -5,7 +5,6 @@ import java.io.File;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -88,15 +87,6 @@ public class NewGameViewWizard extends Wizard implements INewWizard {
 			}
 			
 			ProjectUtils.createXMLFileWithBuilder(project, xmlBuilder, true);
-			
-			//add this file to list file in project
-			String propertyValue = project.getPersistentProperty(new QualifiedName("tvd", "views"));
-			
-			//if this is first or no
-			propertyValue = (propertyValue == null) ? "" : (propertyValue + ";");
-			propertyValue += xmlBuilder.getOutputFilePath();
-				
-			project.setPersistentProperty(new QualifiedName("tvd", "views"), propertyValue);
 			
 			//update tree view part
 			if(!duplicate) {

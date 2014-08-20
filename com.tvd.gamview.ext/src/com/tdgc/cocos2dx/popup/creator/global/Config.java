@@ -10,6 +10,8 @@ public class Config {
 		mDefaultSupers = new HashMap<String, String>();
 		mProjectName = "DragonVideoPoker";
 		mDefaultSupers.put("popup", "PopUpLayer");
+		mDefaultSupers.put("cell", "ITableCellView");
+		mDefaultSupers.put("table", "ITableViewBuilder");
 	}
 
 	public static Config getInstance() {
@@ -135,6 +137,10 @@ public class Config {
 	public String getAndroidContainerPath() {
 		return this.mAndroidContainerPath;
 	}
+	
+	public String getTableViewName() {
+		return "TableView";
+	}
 
 	private String mProjectName;
 	private String mNormalPropertyPrefix;
@@ -146,7 +152,6 @@ public class Config {
 	private String mImagesPath;
 	private String mXibContainerPath;
 	private String mClassPath;
-//	private String mProjectPath;
 	private String mDefaultMenuItemParent;
 	private String mScreenContainerPath;
 	private String mAndroidContainerPath;

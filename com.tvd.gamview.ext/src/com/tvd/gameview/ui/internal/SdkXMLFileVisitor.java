@@ -16,7 +16,7 @@ public class SdkXMLFileVisitor implements IResourceProxyVisitor,
 
 	@Override
 	public boolean visit(IResourceDelta delta) throws CoreException {
-		System.out.println("SdkXMLFileVisitor::visit::delta");
+//		System.out.println("SdkXMLFileVisitor::visit::delta");
 		boolean deleted = (IResourceDelta.REMOVED & delta.getKind()) != 0;
 		IResource resource = delta.getResource();
 		String name = resource.getName();
@@ -41,7 +41,7 @@ public class SdkXMLFileVisitor implements IResourceProxyVisitor,
 	
 	@Override
 	public boolean visit(IResourceProxy proxy) throws CoreException {
-		System.out.println("SdkXMLFileVisitor::visit::proxy");
+//		System.out.println("SdkXMLFileVisitor::visit::proxy");
 		return true;
 	}
 	

@@ -43,6 +43,9 @@ public class Label extends CommonObject {
 			}
 		}
 		
+//		String template = new FileUtils().fetchTemplate(templateName, 
+//				"src/com/template/new_label.template");
+		
 		String template = new FileUtils().fetchTemplate(templateName, 
 				"src/com/template/new_label.template", getProject());
 		
@@ -112,12 +115,13 @@ public class Label extends CommonObject {
 				parent = parent.getParent();
 			}
 			
+			float anchorpointY = 1 - mAnchorPoint.getY();
 			x = x + mAnchorPoint.getX()*mSize.getWidth();
 			if(mParent != null) {
 				y = mParent.getSize().getHeight() - 
-					(y + mAnchorPoint.getY()*mSize.getHeight());
+					(y + anchorpointY*mSize.getHeight());
 			} else {
-				y = y + mAnchorPoint.getY()*mSize.getHeight();
+				y = y + anchorpointY*mSize.getHeight();
 			}
 			
 			this.setPosition(x, y);

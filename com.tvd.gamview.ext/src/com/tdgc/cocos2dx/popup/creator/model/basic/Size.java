@@ -15,6 +15,11 @@ public class Size {
 		return this.mHeight;
 	}
 	
+	@Override
+	public String toString() {
+		return mWidth + ", " + mHeight;
+	}
+	
 	protected float mWidth;
 	protected float mHeight;
 	

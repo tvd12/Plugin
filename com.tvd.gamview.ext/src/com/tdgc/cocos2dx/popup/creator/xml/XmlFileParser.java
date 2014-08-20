@@ -11,6 +11,7 @@ import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.log.Log;
+import com.tdgc.cocos2dx.popup.creator.model.Cell;
 import com.tdgc.cocos2dx.popup.creator.model.Image;
 import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
 import com.tdgc.cocos2dx.popup.creator.model.Label;
@@ -20,6 +21,7 @@ import com.tdgc.cocos2dx.popup.creator.model.Resources;
 import com.tdgc.cocos2dx.popup.creator.model.Sprite;
 import com.tdgc.cocos2dx.popup.creator.model.Table;
 import com.tdgc.cocos2dx.popup.creator.model.View;
+import com.tdgc.cocos2dx.popup.creator.model.basic.AdvancedObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Parameter;
 
@@ -48,21 +50,19 @@ public class XmlFileParser extends DefaultHandler {
 				|| qName.equals(Tag.MENU)
 				|| qName.equals(Tag.MENUITEM)
 				|| qName.equals(Tag.LABEL)
-				|| qName.equals(Tag.RESOURCES)) {
+				|| qName.equals(Tag.RESOURCES)
+				|| qName.equals(Tag.CELL)) {
 			CommonObject parent = mCurrentObject;
 			if(qName.equals(Tag.SPRITE)) {
 				mCurrentObject = new Sprite();
 				mCurrentObject.setIsBackground(
 						getBoolean(getAttributeValue(Attribute.BACKGROUND, atts)));
-				mCurrentObject.setComment(
-						getAttributeValue(Attribute.COMMENT, atts));
 			}
 			else if(qName.equals(Tag.TABLE)) {
 				mCurrentObject = new Table();
 				Table table = (Table)mCurrentObject;
 				table.setRows(getNumber(getAttributeValue(Attribute.ROWS, atts)));
 				table.setColumns(getNumber(getAttributeValue(Attribute.COLUMNS, atts)));
-				table.setSize(getAttributeValue(Attribute.SIZE, atts));
 			}
 			else if(qName.equals(Tag.MENU)) {
 				mCurrentObject = new Menu();
@@ -83,6 +83,15 @@ public class XmlFileParser extends DefaultHandler {
 				mCurrentResources.setCurrentGroup(mCurrentGroup);
 				mView.addResource(mCurrentResources);
 			}
+			else if(qName.equals(Tag.CELL)) {
+				mCell = new Cell();
+				mCell.setClassName(getAttributeValue(Attribute.CLASS_NAME, atts));
+				mCell.setPrefix(getAttributeValue(Attribute.PREFIX, atts));
+				mCell.setSuper(getAttributeValue(Attribute.SUPER, atts));
+				mCurrentObject = mCell;
+			}
+			mCurrentObject.setComment(
+					getAttributeValue(Attribute.COMMENT, atts));
 			mCurrentObject.setParent(parent);
 		}
 		
@@ -95,9 +104,16 @@ public class XmlFileParser extends DefaultHandler {
 			mCurrentImage = new Image();
 			mCurrentImage.setId(getAttributeValue(Attribute.ID, atts));
 			mCurrentImage.setRealPath(getAttributeValue(Attribute.REAL_PATH, atts));
+			mCurrentImage.setPhonyPath(getAttributeValue(Attribute.PHONY_PATH, atts));
 			mCurrentImage.setIsBackground(
 					getBoolean(getAttributeValue(Attribute.BACKGROUND, atts)));
 			mCurrentImage.setParent(mCurrentObject);
+			String width = getAttributeValue(Attribute.WIDTH, atts);
+			String height = getAttributeValue(Attribute.HEIGHT, atts);
+			if(width != null && height != null) {
+				mCurrentImage.setSize(getNumber(width), getNumber(height));
+			}
+			mView.addImage(mCurrentImage); 
 		}
 		else if(qName.equals(Tag.SPRITES)
 				|| qName.equals(Tag.TABLES)
@@ -192,14 +208,6 @@ public class XmlFileParser extends DefaultHandler {
 		else if(qName.equals(Tag.CLASS_PATH)) {
 			mView.setClassPath(mCurrentText);
 		}
-		else if(qName.equals(Tag.IMAGE)) {
-			mCurrentImage.setPhonyPath(mCurrentText);
-			mView.addImage(mCurrentImage);
-			
-			if(mCurrentObject instanceof Sprite) {
-				((Sprite)mCurrentObject).setImage(mCurrentImage);
-			}
-		} 
 		else if(qName.equals(Tag.POSITION_NAME)) {
 			mCurrentObject.setPositionName(mCurrentText);
 		} 
@@ -225,6 +233,9 @@ public class XmlFileParser extends DefaultHandler {
 			mCurrentParameter.setName(mCurrentText);
 			mView.addParameter(mCurrentParameter);
 		}
+		else if(qName.equals(Tag.SIZE)) {
+			mCurrentObject.setSize(mCurrentText);
+		}
 		else if(qName.equals(Tag.SPRITES)
 				|| qName.equals(Tag.TABLES)
 				|| qName.equals(Tag.MENUS)
@@ -232,19 +243,19 @@ public class XmlFileParser extends DefaultHandler {
 				|| qName.equals(Tag.LABELS)) {
 			mCurrentGroup.pushBack();
 			if(qName.equals(Tag.SPRITES)) {
-				mView.pushBackSpriteGroup(mCurrentGroup);
+				addGroupToView(mCurrentGroup);
 			} 
 			else if(qName.equals(Tag.TABLES)) {
-				mView.pushBackTableGroup(mCurrentGroup);
+				addGroupToView(mCurrentGroup);
 			} 
 			else if(qName.equals(Tag.MENUS)) {
-				mView.pushBackMenuGroup(mCurrentGroup);
+				addGroupToView(mCurrentGroup);
 			} 
 			else if(qName.equals(Tag.MENUITEMS)) {
-				mView.pushBackMenuItemGroup(mCurrentGroup);
+				addGroupToView(mCurrentGroup);
 			} 
 			else if(qName.equals(Tag.LABELS)) {
-				mView.pushBackLabelGroup(mCurrentGroup);
+				addGroupToView(mCurrentGroup);
 			}
 			mCurrentGroup = mCurrentGroup.getBeforeGroup();
 		}
@@ -267,13 +278,17 @@ public class XmlFileParser extends DefaultHandler {
 				}
 			}
 			else if(qName.equals(Tag.MENUITEM)) {
-				mView.addMenuItemTag(((MenuItem)mCurrentObject).getTagName());
 			} 
 			if(!qName.equals(Tag.RESOURCES) && valid) {
 				mCurrentGroup.addItem(mCurrentObject);
 			}
 			mCurrentObject = mCurrentGroup.getContainer();
 		} 
+		else if(qName.equals(Tag.CELL)) {
+			((Table)mCurrentObject.getParent())
+				.addCell((Cell)mCurrentObject);
+			mCurrentObject = mCurrentObject.getParent();
+		}
 		else if(qName.equals(Tag.VIEW)) {
 			Collections.sort(mView.getImages());
 		}
@@ -329,6 +344,23 @@ public class XmlFileParser extends DefaultHandler {
 		return result;
 	}
 	
+	private void addGroupToView(ItemGroup group) {
+		CommonObject container = group.getContainer();
+		while(container != null) {
+			switch (container.getViewType()) {
+			case Constants.ViewType.CELL:
+				((AdvancedObject)mCell).pushBackGroup(group);
+				return;
+			case Constants.ViewType.VIEW:
+				((AdvancedObject)mView).pushBackGroup(group);
+				return;
+			default:
+				break;
+			}
+			container = container.getParent();
+		}
+	}
+	
 	public View getView() {
 		return this.mView;
 	}
@@ -339,6 +371,7 @@ public class XmlFileParser extends DefaultHandler {
 //	private ItemGroup mResourceGroup;
 	private String mCurrentText;
     private View mView;
+    private Cell mCell;
     private Image mCurrentImage;
     private Parameter mCurrentParameter;
 }

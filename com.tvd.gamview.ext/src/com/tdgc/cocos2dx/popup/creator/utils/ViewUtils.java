@@ -43,4 +43,14 @@ public class ViewUtils {
 		
 		return builder.toString();
 	}
+	
+	public static String createElementTags(List<ItemGroup> groups, int begin) {
+		StringBuilder builder = new StringBuilder();
+		for(int i = 0 ; i < groups.size() ; i++) {
+			int tag = (i > 0) ? (groups.size() + i + 2) : (i + 1);
+			builder.append(groups.get(i).createElementTags(tag));
+		}
+		
+		return builder.toString();
+	}
 }

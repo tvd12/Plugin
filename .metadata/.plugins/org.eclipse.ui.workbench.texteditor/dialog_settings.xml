@@ -3,26 +3,26 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="316" key="DIALOG_WIDTH"/>
 		<item value="23" key="DIALOG_Y_ORIGIN"/>
-		<item value="399" key="DIALOG_HEIGHT"/>
 		<item value="952" key="DIALOG_X_ORIGIN"/>
+		<item value="399" key="DIALOG_HEIGHT"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="true" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="true" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="super" key="selection"/>
+		<item value="imple" key="selection"/>
 		<list key="findhistory">
-			<item value="super"/>
-			<item value="FONT_SIZE"/>
-			<item value="implement"/>
-			<item value="mAnchorpoint"/>
-			<item value="setPositionName"/>
-			<item value="mFontSizeStringFloat"/>
-			<item value="mFontSize"/>
-			<item value="mSizeFloat"/>
+			<item value="imple"/>
+			<item value="sze"/>
+			<item value="size"/>
+			<item value="setPo"/>
+			<item value="setPos"/>
+			<item value="align"/>
+			<item value="alignAllow"/>
+			<item value="setAn"/>
 		</list>
 		<list key="replacehistory">
 			<item value="mAnchorPoint"/>

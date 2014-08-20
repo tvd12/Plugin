@@ -21,7 +21,7 @@ public abstract class CommonObject {
 		mMenuItemGroups = new ArrayList<ItemGroup>();
 		mTableGroups = new ArrayList<ItemGroup>();
 		
-		mSuper = "PopUpLayer";
+		mSuper = Config.getInstance().getDefautSuper(mPrefix);
 		mZIndex = "0";
 		mAnchorPoint = new Point(0.5f, 0.5f);
 	}
@@ -61,6 +61,8 @@ public abstract class CommonObject {
 		
 		//name of position in xml file, it must not change
 		mXmlPositionName = pPositionName;
+		
+		mTagName = StringUtils.convertToTagName(pPositionName, this.getType());
 		
 		mName = StringUtils.convertToNormalProperty(pPositionName + "_" + mSuffix);
 		if(pPositionName.trim().equals(Strings.DEFAULT)
@@ -159,7 +161,9 @@ public abstract class CommonObject {
 	}
 	
 	public void setSuper(String pSuper) {
-		this.mSuper = pSuper;
+		if(!pSuper.equals("default")) {
+			this.mSuper = pSuper;
+		}
 	}
 	
 	public String getSuper() {
@@ -360,6 +364,20 @@ public abstract class CommonObject {
 		return mXmlPositionName;
 	}
 	
+	public int getViewType() {
+		return mViewType;
+	}
+	
+	public String getTagName() {
+		return this.mTagName;
+	}
+	
+	public Point getAnchorPoint() {
+		return mAnchorPoint;
+	}
+ 	
+	protected String mTagName;
+	protected int mViewType;
 	public String mXmlPositionName;
 	public Point mLocationInView;
 	public Size mSize;

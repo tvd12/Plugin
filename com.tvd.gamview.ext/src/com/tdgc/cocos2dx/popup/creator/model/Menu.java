@@ -42,6 +42,8 @@ public class Menu extends CommonObject {
 			}
 		}
 		
+//		String template = new FileUtils().fetchTemplate(templateName, 
+//				"src/com/template/new_menu.template");
 		String template = new FileUtils().fetchTemplate(templateName, 
 				"src/com/template/new_menu.template", getProject());
 		

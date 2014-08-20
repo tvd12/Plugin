@@ -1,0 +1,14 @@
+package com.tdgc.cocos2dx.popup.creator.xml;
+
+public class XmlFormatter {
+	public XmlFormatter(String xml) {
+		mXmlContent = xml;
+	}
+	
+	public void setLineWidth(int width) {
+		mLineWidth = width;
+	}
+	
+	private int mLineWidth;
+	private String mXmlContent;
+}

@@ -37,7 +37,11 @@ public class Image implements Comparable<Image> {
 		this.setParent(pParent);
 	}
 	
+	//change
 	public void setPhonyPath(String pPhonyPath) {
+		if(pPhonyPath == null) {
+			return;
+		}
 		this.mPhonyPath = pPhonyPath.trim();
 		if(this.mRealPath == null) {
 			this.mRealPath = this.mPhonyPath;
@@ -55,23 +59,36 @@ public class Image implements Comparable<Image> {
 	
 	public String createImageViewTag(String pImagePath) 
 			throws IOException {
-		BufferedImage image = ImageIO.read(new File(pImagePath + "/" + mRealPath));
-	    int width = image.getWidth();
-	    int height = image.getHeight();
-	    mSize = new Size(width, height);
-	    
 		StringBuilder builder = new StringBuilder(StringUtils.tab(5));
-		builder.append("<imageView opaque=\"NO\" clipsSubviews=\"YES\" ")
-			.append("multipleTouchEnabled=\"YES\" contentMode=\"scaleToFill\" ")
-			.append("image=\"" + mName + "\" id=\"" + getImageViewId() + "\">\n")
-			.append(StringUtils.tab(6))
-			.append("<rect key=\"frame\" x=\"10\" y=\"10\" ")
-			.append("width=\"" + width/2 +"\" height=\""+ height/2 +"\" />\n")
-			.append(StringUtils.tab(6))
-			.append("<autoresizingMask key=\"autoresizingMask\"/>\n")
-			.append(StringUtils.tab(5))
-            .append("</imageView>\n");
-		
+		if(mRealPath == null) {
+			builder.append("<imageView userInteractionEnabled=\"NO\" contentMode=\"scaleToFill\" ")
+				.append("horizontalHuggingPriority=\"251\" verticalHuggingPriority=\"251\" ")
+				.append("id=\"" + getImageViewId() + "\">\n")
+				.append(StringUtils.tab(6))
+				.append("<rect key=\"frame\" x=\"10\" y=\"10\" ")
+				.append("width=\"" + mSize.getWidth() +"\" height=\""+ mSize.getHeight() +"\" />\n")
+				.append(StringUtils.tab(6))
+				.append("<autoresizingMask key=\"autoresizingMask\" flexibleMaxX=\"YES\" " +
+						"flexibleMaxY=\"YES\" />\n")
+				.append(StringUtils.tab(5))
+	            .append("</imageView>\n");
+		} else {
+			BufferedImage image = ImageIO.read(new File(pImagePath + "/" + mRealPath));
+		    int width = image.getWidth();
+		    int height = image.getHeight();
+		    mSize = new Size(width, height);
+		    
+			builder.append("<imageView opaque=\"NO\" clipsSubviews=\"YES\" ")
+				.append("multipleTouchEnabled=\"YES\" contentMode=\"scaleToFill\" ")
+				.append("image=\"" + mName + "\" id=\"" + getImageViewId() + "\">\n")
+				.append(StringUtils.tab(6))
+				.append("<rect key=\"frame\" x=\"10\" y=\"10\" ")
+				.append("width=\"" + width/2 +"\" height=\""+ height/2 +"\" />\n")
+				.append(StringUtils.tab(6))
+				.append("<autoresizingMask key=\"autoresizingMask\"/>\n")
+				.append(StringUtils.tab(5))
+	            .append("</imageView>\n");
+		}
 		return builder.toString();
 	}
 	
@@ -175,6 +192,9 @@ public class Image implements Comparable<Image> {
 		this.mX = pX;// + mAnchorPoint.getX()*mSize.getWidth();
 		this.mY = pY;// + mAnchorPoint.getY()*mSize.getHeight();
 		this.mParent.setLocationInView(pX, pY);
+		if(mParent instanceof Table) {
+			((Table)mParent).getCell().setLocationInView(pX, pY);
+		}
 	}
 	
 	public void alignFollowParrent() {
@@ -188,14 +208,15 @@ public class Image implements Comparable<Image> {
 				
 				parentOfParent = parentOfParent.getParent();
 			}
+			mAnchorPoint = mParent.getAnchorPoint();
+			float anchorpointY = 1 - mAnchorPoint.getY();
 			x = x + mAnchorPoint.getX()*mSize.getWidth();
 			if(mParent.getParent() != null) {
 				y = mParent.getParent().getSize().getHeight() - 
-					(y + mAnchorPoint.getY()*mSize.getHeight());
+					(y + anchorpointY*mSize.getHeight());
 			} else {
-				y = y + mAnchorPoint.getY()*mSize.getHeight();
+				y = y + anchorpointY*mSize.getHeight();
 			}
-			
 			this.mX = x;
 			this.mY = y;
 			
@@ -213,6 +234,13 @@ public class Image implements Comparable<Image> {
 	}
 	
 	public void setParent(CommonObject pParent) {
+		
+		if(pParent instanceof Sprite) {
+			((Sprite)pParent).setImage(this);
+		} else if(pParent instanceof Table) {
+			((Table)pParent).setImage(this);
+		}
+		
 		this.mParent = pParent;
 		String anchopointString = null;
 		while (pParent != null && anchopointString == null) {
@@ -243,6 +271,10 @@ public class Image implements Comparable<Image> {
 	
 	public void setImageViewId(String id) {
 		mImageViewId = id;
+	}
+	
+	public CommonObject getParent() {
+		return this.mParent;
 	}
 	
 	private String mId;
