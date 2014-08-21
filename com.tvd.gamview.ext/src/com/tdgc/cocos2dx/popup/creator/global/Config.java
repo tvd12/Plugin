@@ -3,6 +3,8 @@ package com.tdgc.cocos2dx.popup.creator.global;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.tdgc.cocos2dx.popup.creator.constants.Constants;
+
 public class Config {
 	
 	private Config() {
@@ -140,6 +142,10 @@ public class Config {
 	
 	public String getTableViewName() {
 		return "TableView";
+	}
+	
+	public int getProgrammingType() {
+		return Constants.PLUGIN;
 	}
 
 	private String mProjectName;

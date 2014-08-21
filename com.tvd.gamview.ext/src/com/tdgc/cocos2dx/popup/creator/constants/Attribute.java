@@ -27,4 +27,6 @@ public interface Attribute {
 	public static final String HEIGHT			= "height";
 	public static final String X				= "x";
 	public static final String Y				= "y";
+	public static final String LENGTH			= "length";
+	public static final String VALUE			= "value";
 }

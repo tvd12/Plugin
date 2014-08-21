@@ -1,0 +1,116 @@
+package com.tdgc.cocos2dx.popup.creator.model;
+
+import com.tdgc.cocos2dx.popup.creator.constants.ModelType;
+import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
+import com.tdgc.cocos2dx.popup.creator.global.Config;
+import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
+
+public class MenuItem extends CommonObject {
+	
+	public MenuItem() {
+		super();
+		mSuffix = "MenuItem";
+		mDeclareObjectName = "CCMenuItem";
+		mType = ModelType.MENUITEM;
+	}
+	
+	public MenuItem(String pName) {
+		super();
+		this.mName = pName;
+		mSuffix = "MenuItem";
+	}
+	
+	public MenuItem(String pName, String pNormalImage, String pSelectedImage) {
+		super();
+		this.mName = pName;
+		mSuffix = "MenuItem";
+		this.mNormalImage = pNormalImage;
+		this.mSelectedImage = pSelectedImage;
+	}
+	
+	public void setNormalImage(String pNormalImage) {
+		this.mNormalImage = pNormalImage;
+	}
+	
+	public void setSelectedImage(String pSelectedImage) {
+		this.mSelectedImage = pSelectedImage;
+	}
+	
+	public String getNormalImage() {
+		return this.mNormalImage;
+	}
+	
+	public String getSelectedImage() {
+		return this.mSelectedImage;
+	}
+	
+	@Override
+	public void setPositionName(String pPositionName) {
+		super.setPositionName(pPositionName);
+		mName = mName.replace("Menuitem", "MenuItem");
+	}
+	
+	@Override
+	public String implement(boolean pInfunction) {
+		
+		if(pInfunction && isBackground()) {
+			return "";
+		}
+		
+		StringBuilder builder = new StringBuilder("\n");
+		
+		String templateName = "CCMenuItemSprite";
+		if(pInfunction) {
+			templateName += " in function";
+			mName = getInfunctionName();
+		} 
+		String template = new FileUtils().fetchTemplate(templateName, 
+				"src/com/template/new_menuitem.template");
+		
+		String parentName = Config.getInstance().getDefaultParentPopup();
+		if(mParent != null) {
+			parentName = mParent.getName();
+		}
+		template = template.replace("{var_name}", mName)
+			.replace("{tab}", "\t")
+			.replace("{normal_sprite}", getSprite("Normal"))
+			.replace("{selected_sprite}", getSprite("Active"))
+			.replace("{position_name}", mPositionName)
+			.replace("{parent_name}", parentName)
+			.replace("{z-index}", mZIndex)
+			.replace("{tag_name}", mTagName);
+		builder.append(template);
+		
+		return builder.toString();
+	}
+	
+	private String getSprite(String pKind) {
+		for(int i = 0 ; i < mSpriteGroups.size() ; i++) {
+			for(int j = 0 ; j < mSpriteGroups.get(i).getItems().size() ; j++) {
+				CommonObject item = mSpriteGroups.get(i).getItems().get(j);
+				if(item.getName().contains(pKind)) {
+					return item.getName();
+				}
+			}
+		}
+		return "";
+	}
+	
+	public String declare() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("CCMenuItem* " + mName + ";");
+		
+		return builder.toString();
+	}
+	
+	@Override
+	public CommonObject clone() {
+		MenuItem menuItem = new MenuItem();
+		this.setAllPropertiesForObject(menuItem);
+		
+		return menuItem;
+	}
+	
+	protected String mNormalImage;
+	protected String mSelectedImage;
+}

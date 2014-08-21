@@ -15,9 +15,6 @@ public class Menu extends CommonObject {
 	@Override
 	public String declare() {
 		StringBuilder builder = new StringBuilder();
-		for(int i = 0 ; i < mMenuItemGroups.size() ; i++) {
-			builder.append(mMenuItemGroups.get(i).declare());
-		}
 		builder.append("CCMenu* " + mName + "; ");
 		
 		return builder.toString();
@@ -36,14 +33,8 @@ public class Menu extends CommonObject {
 		if(pInfunction) {
 			templateName += " in function";
 			mName = getInfunctionName();
-		} else {
-			if(mParent != null && mParent.getType().equals(ModelType.TABLE)) {
-				templateName = "CCMenu non-add";
-			}
-		}
+		} 
 		
-//		String template = new FileUtils().fetchTemplate(templateName, 
-//				"src/com/template/new_menu.template");
 		String template = new FileUtils().fetchTemplate(templateName, 
 				"src/com/template/new_menu.template", getProject());
 		
@@ -57,5 +48,12 @@ public class Menu extends CommonObject {
 		builder.append(template);
 		
 		return builder.toString();
+	}
+	
+	@Override
+	public CommonObject clone() {
+		Menu menu = new Menu();
+		this.setAllPropertiesForObject(menu);
+		return menu;
 	}
 }

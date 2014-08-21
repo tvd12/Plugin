@@ -3,36 +3,36 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="316" key="DIALOG_WIDTH"/>
 		<item value="23" key="DIALOG_Y_ORIGIN"/>
-		<item value="952" key="DIALOG_X_ORIGIN"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
+		<item value="326" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="true" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="imple" key="selection"/>
+		<item value="parseFilePaths" key="selection"/>
 		<list key="findhistory">
-			<item value="imple"/>
-			<item value="sze"/>
-			<item value="size"/>
-			<item value="setPo"/>
-			<item value="setPos"/>
-			<item value="align"/>
-			<item value="alignAllow"/>
-			<item value="setAn"/>
+			<item value="parseFilePaths"/>
+			<item value="setT"/>
+			<item value="set"/>
+			<item value="setTa"/>
+			<item value="setNew"/>
+			<item value="clone"/>
+			<item value="setSize"/>
+			<item value="setSi"/>
 		</list>
 		<list key="replacehistory">
+			<item value=" = ;"/>
+			<item value=""/>
+			<item value="protected String "/>
+			<item value="public Point "/>
+			<item value="&lt;xs:attribute name=&quot;array&quot; type=&quot;xs:boolean&quot; use=&quot;optional&quot; /&gt;"/>
 			<item value="mAnchorPoint"/>
 			<item value="mFontSizeFloat"/>
 			<item value="mFontSizeString"/>
-			<item value=""/>
-			<item value="SdkResourceDeltaVisitor"/>
-			<item value="mFontRegistry"/>
-			<item value="mImageRegistry"/>
-			<item value="set"/>
 		</list>
 	</section>
 </section>

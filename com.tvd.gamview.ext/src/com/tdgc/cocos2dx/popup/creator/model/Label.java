@@ -178,6 +178,13 @@ public class Label extends CommonObject {
 		return this.mLabelViewId;
 	}
 	
+	@Override
+	public CommonObject clone() {
+		Label label = new Label();
+		this.setAllPropertiesForObject(label);
+		return label;
+	}
+	
 	protected String mLabelViewId;
 	protected Size mDimension;
 	protected boolean mIsShadow;

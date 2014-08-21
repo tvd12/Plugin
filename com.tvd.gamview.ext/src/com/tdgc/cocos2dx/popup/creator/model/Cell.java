@@ -3,6 +3,8 @@ package com.tdgc.cocos2dx.popup.creator.model;
 import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.AdvancedObject;
+import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
+import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
 import com.tdgc.cocos2dx.popup.creator.utils.ViewUtils;
 
 public class Cell extends AdvancedObject {
@@ -26,7 +28,7 @@ public class Cell extends AdvancedObject {
 		StringBuilder tagBuilder = new StringBuilder()
 			.append(ViewUtils.createElementTags(mLabelGroupInView, 100))
 			.append(ViewUtils.createElementTags(mMenuGroupInView, 200))
-			.append(ViewUtils.createElementTags(mMenuItemGroups, 300))
+			.append(ViewUtils.createElementTags(mMenuItemGroupInView, 300))
 			.append(ViewUtils.createElementTags(mSpriteGroupInView, 400));
 		srcCode = srcCode.replace("//{element_tags}", tagBuilder.toString());
 		
@@ -40,6 +42,27 @@ public class Cell extends AdvancedObject {
 		return super.implement(pInfunction);
 	}
 	
+	@Override
+	public String implementPositions() {
+		for(int i = 0 ; i < mSpriteGroupInView.size() ; i++) {
+			ItemGroup itemGroup = mSpriteGroupInView.get(i);
+			if(!itemGroup.isArray()) {
+				continue;
+			}
+			itemGroup.mLength = ((Table)getParent()).mColumns;
+			if(!itemGroup.mValidArray) {
+				itemGroup.checkArray();
+			}
+			for(int j = 1 ; j < itemGroup.mLength ; j++) {
+				CommonObject itemAt0 = itemGroup.getItems().get(0);
+				float x = itemAt0.getPosition().getX() 
+						+ (int)(j*getSize().getWidth()/itemGroup.mLength);
+				float y = itemAt0.getPosition().getY();
+				itemGroup.getItems().get(j).setPosition(new Point(x, y).toString());;
+			}
+		}
+		return super.implementPositions();
+	}
 	public String declareAndImplement() {
 		StringBuilder builder = new StringBuilder(declare())
 			.append(implement(false));

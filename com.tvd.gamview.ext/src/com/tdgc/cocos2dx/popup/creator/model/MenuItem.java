@@ -4,7 +4,6 @@ import com.tdgc.cocos2dx.popup.creator.constants.ModelType;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
-import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 
 public class MenuItem extends CommonObject {
 	
@@ -47,7 +46,6 @@ public class MenuItem extends CommonObject {
 	
 	@Override
 	public void setPositionName(String pPositionName) {
-		mTagName = StringUtils.convertToTagName(pPositionName, "MenuItem");
 		super.setPositionName(pPositionName);
 		mName = mName.replace("Menuitem", "MenuItem");
 	}
@@ -65,14 +63,7 @@ public class MenuItem extends CommonObject {
 		if(pInfunction) {
 			templateName += " in function";
 			mName = getInfunctionName();
-		} else {
-			if(mParent != null
-					&& mParent.getType() != null
-					&& mParent.getType().equals(ModelType.TABLE)) {
-				templateName = "CCMenuItemSprite non-add";
-			}
-		}
-		
+		} 
 		String template = new FileUtils().fetchTemplate(templateName, 
 				"src/com/template/new_menuitem.template", getProject());
 		
@@ -112,11 +103,14 @@ public class MenuItem extends CommonObject {
 		return builder.toString();
 	}
 	
-	public String getTagName() {
-		return this.mTagName;
+	@Override
+	public CommonObject clone() {
+		MenuItem menuItem = new MenuItem();
+		this.setAllPropertiesForObject(menuItem);
+		
+		return menuItem;
 	}
 	
-	protected String mTagName;
 	protected String mNormalImage;
 	protected String mSelectedImage;
 }

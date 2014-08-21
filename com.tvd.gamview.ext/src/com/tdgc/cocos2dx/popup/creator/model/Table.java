@@ -146,6 +146,14 @@ public class Table extends CommonObject {
 		return mImage;
 	}
 	
+	@Override
+	public CommonObject clone() {
+		Table table = new Table();
+		this.setAllPropertiesForObject(table);
+		
+		return table;
+	}
+	
 	protected Image mImage;
 	protected String mCellSizeName;
 	protected String mCellPositionName;

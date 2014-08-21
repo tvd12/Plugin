@@ -108,4 +108,9 @@ public class Resources extends CommonObject {
 		return null;
 	}
 	
+	@Override
+	public CommonObject clone() {
+		return null;
+	}
+	
 }

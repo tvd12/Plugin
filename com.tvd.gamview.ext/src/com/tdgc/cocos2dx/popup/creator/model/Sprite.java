@@ -1,6 +1,7 @@
 package com.tdgc.cocos2dx.popup.creator.model;
 
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
+import com.tdgc.cocos2dx.popup.creator.model.basic.Size;
 import com.tdgc.cocos2dx.popup.creator.constants.ModelType;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
@@ -72,12 +73,37 @@ public class Sprite extends CommonObject {
 		return builder.toString();
 	}
 	
+	@Override
+	public void setLocationInView(float x, float y) {
+		if(mParent != null && mParent instanceof MenuItem) {
+			mParent.setLocationInView(mParent.getParent().getParent().getLocationInView());
+		}
+		super.setLocationInView(x, y);
+	}
+	
+	@Override
+	public void setSize(Size size) {
+		if(mParent != null && mParent instanceof MenuItem) {
+			mParent.setSize(mParent.getParent().getParent().getSize());
+		}
+		super.setSize(size);
+	}
+	
 	public void setImage(Image pImage) {
 		this.mImage = pImage;
 	}
 	
 	public Image getImage() {
 		return this.mImage;
+	}
+	
+	@Override
+	public CommonObject clone() {
+		Sprite sprite = new Sprite();
+		sprite.mImage = mImage;
+		this.setAllPropertiesForObject(sprite);
+		
+		return sprite;
 	}
 	
 	protected Image mImage;

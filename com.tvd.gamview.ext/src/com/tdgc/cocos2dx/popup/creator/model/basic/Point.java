@@ -9,7 +9,7 @@ public class Point {
 	
 	@Override
 	public String toString() {
-		return "CCPoint(" + mX + ", " + mY + ")";
+		return mX + ", " + mY;
 	}
 	
 	public float getX() {

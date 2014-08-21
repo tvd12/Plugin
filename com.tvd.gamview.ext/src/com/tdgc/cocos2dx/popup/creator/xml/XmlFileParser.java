@@ -138,6 +138,7 @@ public class XmlFileParser extends DefaultHandler {
 			}
 			mCurrentGroup.setIsArray(getBoolean(
 					getAttributeValue(Attribute.ARRAY, atts)));
+			mCurrentGroup.setArrayLength(getAttributeValue(Attribute.LENGTH, atts));
 			mCurrentGroup.setContainer(mCurrentObject);
 			mCurrentGroup.setBlockComment(
 					getAttributeValue(Attribute.COMMENT, atts));
@@ -170,6 +171,9 @@ public class XmlFileParser extends DefaultHandler {
 				mView.setInterfaceBuilder(Constants.ANDROID);
 			}
 		}
+		else if(qName.equals(Tag.POSITION)) {
+			mCurrentObject.setPosition(getAttributeValue(Attribute.VALUE, atts));
+		} 
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -213,9 +217,6 @@ public class XmlFileParser extends DefaultHandler {
 		} 
 		else if(qName.equals(Tag.ANCHORPOINT)) {
 			mCurrentObject.setAnchorPoint(mCurrentText);
-		} 
-		else if(qName.equals(Tag.POSITION)) {
-			mCurrentObject.setPosition(mCurrentText);
 		} 
 		else if(qName.equals(Tag.TEXT)) {
 			((Label)mCurrentObject).setText(mCurrentText);

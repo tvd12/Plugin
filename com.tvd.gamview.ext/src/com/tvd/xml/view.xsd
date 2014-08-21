@@ -151,6 +151,7 @@
 				<xs:element ref="sprite" maxOccurs="unbounded" minOccurs="1" />
 			</xs:sequence>
 			<xs:attribute name="array" type="xs:boolean" use="optional" />
+			<xs:attribute name="length" type="xs:integer" />
 			<xs:attribute name="comment" type="xs:string" use="optional" />
 		</xs:complexType>
 	</xs:element>
@@ -160,6 +161,7 @@
 				<xs:element ref="menuitem" maxOccurs="unbounded" minOccurs="1" />
 			</xs:sequence>
 			<xs:attribute name="array" type="xs:boolean" use="optional" />
+			<xs:attribute name="length" type="xs:integer" />
 			<xs:attribute name="comment" type="xs:string" use="optional" />
 		</xs:complexType>
 	</xs:element>
@@ -169,6 +171,7 @@
 				<xs:element ref="menu" maxOccurs="unbounded" minOccurs="1" />
 			</xs:sequence>
 			<xs:attribute name="array" type="xs:boolean" use="optional" />
+			<xs:attribute name="length" type="xs:integer" />
 			<xs:attribute name="comment" type="xs:string" use="optional" />
 		</xs:complexType>
 	</xs:element>
@@ -178,6 +181,7 @@
 				<xs:element ref="table" maxOccurs="unbounded" minOccurs="1" />
 			</xs:sequence>
 			<xs:attribute name="array" type="xs:boolean" use="optional" />
+			<xs:attribute name="length" type="xs:integer" />
 			<xs:attribute name="comment" type="xs:string" use="optional" />
 		</xs:complexType>
 	</xs:element>
@@ -187,6 +191,7 @@
 				<xs:element ref="label" maxOccurs="unbounded" minOccurs="1" />
 			</xs:sequence>
 			<xs:attribute name="array" type="xs:boolean" use="optional" />
+			<xs:attribute name="length" type="xs:integer" />
 			<xs:attribute name="comment" type="xs:string" use="optional" />
 		</xs:complexType>
 	</xs:element>

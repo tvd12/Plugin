@@ -93,10 +93,10 @@ public class AdvancedObject extends CommonObject {
 				.replace("{project_name}", Config.getInstance().getProjectName())
 				.replace("{created_date}", createdDate.toString())
 				.replace("{super_name}", mSuper)
-				.replace("//{add_menuitems}", StringUtils.standardizeCode(
-						ViewUtils.implementGroups(mMenuItemGroupInView)))
 				.replace("//{add_sprites}", StringUtils.standardizeCode(
 						ViewUtils.implementGroups(mSpriteGroupInView)))
+				.replace("//{add_menuitems}", StringUtils.standardizeCode(
+						ViewUtils.implementGroups(mMenuItemGroupInView)))
 				.replace("{class_name_prefix}", classNamePrefix)
 				.replace("//{add_labels}", StringUtils.standardizeCode(
 						ViewUtils.implementGroups(mLabelGroupInView)))
@@ -269,6 +269,27 @@ public class AdvancedObject extends CommonObject {
 	
 	public String getClassName() {
 		return this.mClassName;
+	}
+	
+	@Override
+	public CommonObject clone() {
+		AdvancedObject obj = new AdvancedObject();
+		this.setAllPropertiesForObject(obj);
+		obj.mImplementingTemplate = mImplementingTemplate;
+		obj.mHeaderTemplate = mHeaderTemplate;
+		obj.mImplementingTplPath = mImplementingTplPath;
+		obj.mHeaderTplPath = mHeaderTplPath;
+		obj.mClassName = mClassName;
+		obj.mParameters = mParameters;
+		obj.mProperties = mProperties;
+		obj.mLabelGroupInView = mLabelGroupInView;
+		obj.mSpriteGroupInView = mSpriteGroupInView;
+		obj.mMenuGroupInView = mMenuGroupInView;
+		obj.mMenuItemGroupInView = mMenuItemGroupInView;
+		obj.mTableGroupInView = mTableGroupInView;
+		
+		return obj;
+		
 	}
 	
 	protected String mImplementingTemplate;

@@ -240,7 +240,8 @@ public class ProjectUtils {
 			try {
 				IResource deviceResources[] = ((IFolder)xmlResource).members();
 				for(int i = 0 ; i < deviceResources.length ; i++) {
-					if(deviceResources[i].getType() == IResource.FOLDER) {
+					if(deviceResources[i].getType() == IResource.FOLDER
+							&& !deviceResources[i].getName().equals("xsd")) {
 						results.add(deviceResources[i].getName());
 					}
 				}

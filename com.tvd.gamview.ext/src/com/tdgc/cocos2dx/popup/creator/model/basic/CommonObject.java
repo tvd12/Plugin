@@ -30,6 +30,8 @@ public abstract class CommonObject {
 	
 	public abstract String implement(boolean pInfunction);
 	
+	public abstract CommonObject clone();
+	
 	public String declarePositions() {
 		StringBuilder builder = new StringBuilder();
 		if(mPositionName != null 
@@ -49,6 +51,7 @@ public abstract class CommonObject {
 		if(mPositionString != null 
 				&& mPositionName != null
 				&& !mPositionString.equals(Strings.DEFAULT)) {
+			System.out.println("positionString " + mPositionString);
 			template = template.replace("{var_name}", mPositionName)
 					.replace("{position}", mPositionString);
 			builder.append(template);
@@ -76,6 +79,10 @@ public abstract class CommonObject {
 		this.mPositionName = pPositionName.toUpperCase() + "_" + mSuffix.toUpperCase();
 		this.mPositionName = Config.getInstance().getPrefix().toUpperCase() + "_" + mPositionName 
 				+ "_POSITION";
+	}
+	
+	public void setNewPositionName(String pPositionName) {
+		mPositionName = pPositionName;
 	}
 	
 	public String toAnchorPointString() {
@@ -188,6 +195,12 @@ public abstract class CommonObject {
 	
 	public void setPosition(String pPosition) {
 		this.mPositionString = pPosition;
+		
+		if(pPosition != null && !pPosition.equals(Strings.DEFAULT)) {
+			String strs[] = pPosition.split(",");
+			setPosition(Float.parseFloat(strs[0]), 
+					Float.parseFloat(strs[1]));
+		}
 	}
 	
 	public Point getPosition() {
@@ -228,6 +241,7 @@ public abstract class CommonObject {
 	
 	public void setSize(String pSize) {
 		this.mSizeString = pSize;
+		
 	}
 	
 	public String getSizeString() {
@@ -357,6 +371,11 @@ public abstract class CommonObject {
 	}
 	
 	public Size getSize() {
+		if(mSizeString != null) {
+			String strs[] = mSizeString.split(", ");
+			setSize(Float.parseFloat(strs[0]), 
+					Float.parseFloat(strs[1]));
+		}
 		return mSize;
 	}
 	
@@ -372,9 +391,72 @@ public abstract class CommonObject {
 		return this.mTagName;
 	}
 	
+	public void setTagName(String tagName) {
+		this.mTagName = tagName;
+	}
+	
 	public Point getAnchorPoint() {
 		return mAnchorPoint;
 	}
+	
+	public List<ItemGroup> getLabelGroups() {
+		return this.mLabelGroups;
+	}
+	
+	public List<ItemGroup> getMenuGroups() {
+		return this.mMenuGroups;
+	}
+	
+	public List<ItemGroup> getSpriteGroups() {
+		return this.mSpriteGroups;
+	}
+	
+	public List<ItemGroup> getMenuItemGroups() {
+		return this.mMenuItemGroups;
+	}
+	
+	public List<ItemGroup> getTableGroups() {
+		return this.mTableGroups;
+	}
+	
+	public void setAllPropertiesForObject(CommonObject obj) {
+		obj.mTagName = mTagName;
+		obj.mViewType = mViewType;
+		obj.mXmlPositionName = mXmlPositionName;
+		obj.mLocationInView = mLocationInView;
+		obj.mSize = mSize;
+		
+		obj.mMenuItemGroups = mMenuItemGroups;
+		obj.mLabelGroups = mLabelGroups;
+		obj.mSpriteGroups = mSpriteGroups;
+		obj.mMenuGroups = mMenuGroups;
+		obj.mTableGroups = mTableGroups;
+		
+		obj.mPrefix = mPrefix;
+		obj.mSuffix = mSuffix;
+		obj.mPositionName = mPositionName;
+		obj.mName = mName;
+		obj.mAnchorPoint = mAnchorPoint;
+		obj.mAnchorPointString = mAnchorPointString;
+		obj.mSuper = mSuper;
+		obj.mComment = mComment;
+		obj.mType = mType;
+		obj.mPositionString = mPositionString;
+		obj.mPosition = mPosition;
+		obj.mSizeString = mSizeString;
+		obj.mBackground = mBackground;
+		
+		obj.mParent = mParent;
+		
+		obj.mDeclareObjectName = mDeclareObjectName;
+		
+		obj.mIsBackground = mIsBackground;
+		obj.mIsUnlocated = mIsUnlocated;
+		obj.mZIndex = mZIndex;
+		
+		obj.mProject = mProject;
+	}
+	
  	
 	protected String mTagName;
 	protected int mViewType;

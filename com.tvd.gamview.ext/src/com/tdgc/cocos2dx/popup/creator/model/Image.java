@@ -73,7 +73,11 @@ public class Image implements Comparable<Image> {
 				.append(StringUtils.tab(5))
 	            .append("</imageView>\n");
 		} else {
-			BufferedImage image = ImageIO.read(new File(pImagePath + "/" + mRealPath));
+			File file = new File(pImagePath + "/" + mRealPath);
+			if(!file.exists()) {
+				System.out.println("file " + file + " not exists");
+			}
+			BufferedImage image = ImageIO.read(file);
 		    int width = image.getWidth();
 		    int height = image.getHeight();
 		    mSize = new Size(width, height);
@@ -199,6 +203,11 @@ public class Image implements Comparable<Image> {
 	
 	public void alignFollowParrent() {
 		try {
+			if(mParent.getLocationInView() == null) {
+				System.err.println("ERROR:: name = " + this.getRealPath() + " has "
+						+ "parent.getLocationInView == null");
+				return;
+			}
 			float x = mParent.getLocationInView().getX();
 			float y = mParent.getLocationInView().getY();
 			CommonObject parentOfParent = mParent.getParent();

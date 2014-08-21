@@ -12,6 +12,9 @@ public interface Constants {
 	public static final String SCREEN					= "Screen";
 	public static final String ANDROID					= "Android";
 	
+	public static final int PLUGIN						= 1001;
+	public static final int NORMAL						= 1002;
+	
 	public static interface ViewType {
 		public static final int VIEW = 1001;
 		public static final int CELL = 1002;

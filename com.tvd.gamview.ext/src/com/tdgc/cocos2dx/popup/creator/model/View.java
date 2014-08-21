@@ -160,7 +160,7 @@ public class View extends AdvancedObject {
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
 		
-		return builder.toString().trim();
+		return StringUtils.standardizeCode(builder.toString());
 	}
 	
 	public void export() {
@@ -411,6 +411,10 @@ public class View extends AdvancedObject {
 		setImagesIdsForXib();
 		for(int i = 0 ; i < mImages.size() ; i++) {
 			try {
+				if(mImages.get(i).getRealPath() != null 
+						&& mImages.get(i).getRealPath().endsWith("active.png")) {
+					continue;
+				}
 				builder.append(mImages.get(i).createImageViewTag(mImagesPath));
 			} catch (IOException e) {
 				e.printStackTrace();
