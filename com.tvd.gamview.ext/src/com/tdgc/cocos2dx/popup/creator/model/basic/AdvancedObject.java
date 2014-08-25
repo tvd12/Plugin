@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import com.tdgc.cocos2dx.popup.creator.constants.Strings;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
@@ -28,7 +29,8 @@ public class AdvancedObject extends CommonObject {
 		this.mHeaderTplPath = "src/com/template/popup_default_header.template";
 		this.mImplementingTemplate = "implement";
 		this.mHeaderTemplate = "declare";
-		mSuper = Config.getInstance().getDefautSuper(mSuffix);
+		this.mSuper = Config.getInstance().getDefautSuper(mSuffix);
+		this.mBackgroundName = Strings.DEFAULT;
 		
 	}
 	
@@ -93,10 +95,12 @@ public class AdvancedObject extends CommonObject {
 				.replace("{project_name}", Config.getInstance().getProjectName())
 				.replace("{created_date}", createdDate.toString())
 				.replace("{super_name}", mSuper)
-				.replace("//{add_sprites}", StringUtils.standardizeCode(
-						ViewUtils.implementGroups(mSpriteGroupInView)))
+				.replace("//{add_menus}", StringUtils.standardizeCode(
+						ViewUtils.implementGroups(mMenuGroupInView)))
 				.replace("//{add_menuitems}", StringUtils.standardizeCode(
 						ViewUtils.implementGroups(mMenuItemGroupInView)))
+				.replace("//{add_sprites}", StringUtils.standardizeCode(
+						ViewUtils.implementGroups(mSpriteGroupInView)))
 				.replace("{class_name_prefix}", classNamePrefix)
 				.replace("//{add_labels}", StringUtils.standardizeCode(
 						ViewUtils.implementGroups(mLabelGroupInView)))
@@ -271,6 +275,17 @@ public class AdvancedObject extends CommonObject {
 		return this.mClassName;
 	}
 	
+	public void setBackgroundName(String bgName) {
+		this.mBackgroundName = bgName;
+	}
+	
+	public String getBackgroundName() {
+		if(mBackgroundName == null) {
+			mBackgroundName = Strings.DEFAULT;
+		}
+		return mBackgroundName;
+	}
+	
 	@Override
 	public CommonObject clone() {
 		AdvancedObject obj = new AdvancedObject();
@@ -292,6 +307,7 @@ public class AdvancedObject extends CommonObject {
 		
 	}
 	
+	protected String mBackgroundName;
 	protected String mImplementingTemplate;
 	protected String mHeaderTemplate;
 	protected String mImplementingTplPath;

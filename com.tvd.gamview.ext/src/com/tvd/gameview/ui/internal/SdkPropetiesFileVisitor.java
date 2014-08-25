@@ -24,7 +24,7 @@ public class SdkPropetiesFileVisitor implements IResourceProxyVisitor,
 
 	@Override
 	public boolean visit(IResourceDelta delta) throws CoreException {
-		System.out.println("SdkPropetiesFileVisitor::visit::delta.getKind = " + delta.getKind());
+//		System.out.println("SdkPropetiesFileVisitor::visit::delta.getKind = " + delta.getKind());
 		boolean deleted = (IResourceDelta.REMOVED & delta.getKind()) != 0;
 		boolean changed = (IResourceDelta.CHANGED & delta.getKind()) != 0;
 		IResource resource = delta.getResource();

@@ -1,11 +1,14 @@
 package com.tdgc.cocos2dx.popup.creator.model;
 
+import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.ModelType;
+import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Size;
+import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 
 public class Table extends CommonObject {
 
@@ -16,6 +19,8 @@ public class Table extends CommonObject {
 		this.mType = ModelType.TABLE;
 		this.mSuper = Config.getInstance().getDefautSuper("table");
 		this.mAnchorPoint = new Point(0, 0);
+		this.mAnchorPointString = this.mAnchorPoint.toString();
+		this.mXmlTagName = Tag.TABLE;
 	}
 	
 	@Override
@@ -28,10 +33,10 @@ public class Table extends CommonObject {
 	@Override
 	public String implement(boolean pInfunction) {
 		StringBuilder builder = new StringBuilder("\n");
-//		String template = new FileUtils().fetchTemplate("TableView", 
-//				"src/com/template/new_table.template");
 		String template = new FileUtils().fetchTemplate("TableView", 
 				"src/com/template/new_table.template", getProject());
+//		String template = new FileUtils().fetchTemplate("TableView", 
+//				"src/com/template/new_table.template", getProject());
 		
 		String parentName = Config.getInstance().getDefaultParentPopup();
 		if(mParent != null) {
@@ -101,14 +106,17 @@ public class Table extends CommonObject {
 	@Override
 	public void setSize(String size) {
 		this.mSizeString = size;
-		String[] strs = mSizeString.split(",");
-		float w = Float.parseFloat(strs[0].trim());
-		float h = Float.parseFloat(strs[1].trim());
-		this.mSize = new Size(w, h);
+		if(size != null && size.contains(",")) {
+			String[] strs = mSizeString.split(",");
+			float w = Float.parseFloat(strs[0].trim());
+			float h = Float.parseFloat(strs[1].trim());
+			this.mSize = new Size(w, h);
+		}
 	}
 	
 	@Override
 	public void setSize(Size size) {
+		super.setSize(size);
 		if(size != null && mCell != null) {
 			mCell.setSize(size.getWidth(), (int)size.getHeight()/mRows);
 		}
@@ -132,6 +140,7 @@ public class Table extends CommonObject {
 	
 	public void addCell(Cell cell) {
 		this.mCell = cell;
+		this.mCell.setTabCount(mTabCount + 1);
 	}
 	
 	public Cell getCell() {
@@ -152,6 +161,43 @@ public class Table extends CommonObject {
 		this.setAllPropertiesForObject(table);
 		
 		return table;
+	}
+	
+	@Override
+	public String toXML() {
+		String tab = StringUtils.tab(mTabCount);
+		StringBuilder builder = new StringBuilder(tab);
+		builder.append("<" + mXmlTagName + " " + Attribute.ROWS + "=\"" + mRows + "\" ")
+			.append(Attribute.COLUMNS + "=\" " + mColumns + "\" ")
+			.append(Attribute.VISIBLE + "=\"true\" ")
+			.append("\n" + tab + "\t\t" + Attribute.COMMENT + "=\"\">");
+		builder.append("\n" + tab + "\t")
+			.append("<" + Tag.POSITION_NAME + " " + Attribute.VALUE 
+					+ "=\"" + mXmlPositionName + "\" />");
+		builder.append("\n" + tab + "\t")
+		.append("<" + Tag.ANCHORPOINT + " " + Attribute.VALUE 
+				+ "=\"" + mAnchorPointString + "\" />");
+		builder.append("\n" + tab + "\t")
+		.append("<" + Tag.POSITION + " " + Attribute.VALUE 
+				+ "=\"" + mPosition + "\" />");
+		builder.append("\n" + tab + "\t")
+		.append("<" + Tag.SIZE + " " + Attribute.VALUE 
+				+ "=\"" + mSize + "\" />");
+		builder.append("\n" + tab + "\t")
+		.append("<" + Tag.Z_INDEX + " " + Attribute.VALUE 
+				+ "=\"" + mZIndex + "\" />");
+		
+		builder.append("\n" + mImage.toXML());
+		builder.append("\n" + mCell.toXML());
+		
+		builder.append("\n")
+			.append(super.toXML())
+			.append(tab)
+			.append("</" + mXmlTagName + ">");
+		
+		builder.append("\n");
+		
+		return builder.toString();
 	}
 	
 	protected Image mImage;

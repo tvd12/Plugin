@@ -49,18 +49,25 @@ public class XibFileParser extends DefaultHandler {
 			}
 			mParentQName = qName;
 		}
-		else if(qName.equals(Tag.RECT) && mCurrentImage != null) {
+		else if(qName.equals(Tag.RECT)) {
 			float x = getNumber(getAttributeValue(Attribute.X, atts));
 			float y = getNumber(getAttributeValue(Attribute.Y, atts));
 			float width = getNumber(getAttributeValue(Attribute.WIDTH, atts));
 			float height = getNumber(getAttributeValue(Attribute.HEIGHT, atts));
-			if(mParentQName.equals(Tag.IMAGE_VIEW)) {
+			if(mParentQName.equals(Tag.IMAGE_VIEW) && mCurrentImage != null) {
 				mCurrentImage.setSize(width, height);
 				mCurrentImage.setXY(x, y);
 			} 
 			else if(mParentQName.equals(Tag.LABEL)) {
 				mCurrentLabel.setSize(width, height);
 				mCurrentLabel.setLocationInView(x, y);
+			}
+		}
+		else if(qName.equals(Tag.FONT_DESCRIPTION)) {
+			if(mParentQName.equals(Tag.LABEL) && mCurrentLabel != null) {
+				mCurrentLabel.setFontName(getAttributeValue(Attribute.NAME, atts));
+				mCurrentLabel.setFontFamily(getAttributeValue(Attribute.FAMILY, atts));
+				mCurrentLabel.setFontSizeFloat(getAttributeValue(Attribute.POINT_SIZE, atts));
 			}
 		}
 

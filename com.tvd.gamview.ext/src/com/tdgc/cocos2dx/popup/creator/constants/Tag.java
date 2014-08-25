@@ -39,4 +39,7 @@ public interface Tag {
 	public static final String SIZE				= "size";
 	public static final String CELL_POSITION	= "cell-position";
 	public static final String CELL_SIZE		= "cell-size";
+	public static final String LOCATION_IN_INTERFACEBUILDER = "location-in-interfacebuilder";
+	
+	public static final String FONT_DESCRIPTION = "fontDescription";
 }

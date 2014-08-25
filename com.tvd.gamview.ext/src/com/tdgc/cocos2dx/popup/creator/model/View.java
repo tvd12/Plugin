@@ -7,18 +7,28 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//import org.eclipse.core.resources.IFile;
+//import org.eclipse.core.resources.IProject;
+//import org.eclipse.core.runtime.CoreException;
+
+
+
+
+
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 
+import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.Constants;
+import com.tdgc.cocos2dx.popup.creator.constants.Strings;
+import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.file.ImageFileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.AdvancedObject;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
-import com.tdgc.cocos2dx.popup.creator.utils.ViewUtils;
-import com.tdgc.cocos2dx.popup.creator.utils.XmlContentUtils;
 import com.tdgc.cocos2dx.popup.creator.xml.XibFetcher;
 
 public class View extends AdvancedObject {
@@ -40,6 +50,7 @@ public class View extends AdvancedObject {
 		this.mLabels = new ArrayList<Label>();
 		this.mPrefix = "";
 		this.mSuper = Config.getInstance().getDefautSuper(mSuffix);
+		this.mXmlTagName = Tag.VIEW;
 
 	}
 	
@@ -130,7 +141,7 @@ public class View extends AdvancedObject {
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE + "(" + device + ")");
 		
-		return builder.toString().trim();
+		return StringUtils.standardizeCode(builder.toString());
 	}
 	
 	public String declareImageIds() {
@@ -160,17 +171,7 @@ public class View extends AdvancedObject {
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
 		
-		return StringUtils.standardizeCode(builder.toString());
-	}
-	
-	public void export() {
-		this.exportDeclaringImageIds();
-		this.exportImplementedImageIds();
-		this.exportDeclaringPositions();
-		this.exportImplementedPositions();
-		this.exportDirectory();
-		this.exportHeaderCode();
-		this.exportImplementedCode();
+		return builder.toString().trim();
 	}
 	
 	public void exportImages() {
@@ -187,7 +188,7 @@ public class View extends AdvancedObject {
 			IFile file = pProject.getFile("resources/xib/" 
 					+ pDevice + "/template.xib");
 			
-			//String xibContent = fileUtils.readFromFile(path);
+//			String xibContent = fileUtils.readFromFile(path);
 			String xibContent = fileUtils.readFromFile(file);
 			
 			StringBuilder builder = new StringBuilder();
@@ -200,18 +201,17 @@ public class View extends AdvancedObject {
 			final String xibFilePath = mXibContainerPath + "/" 
 					+ "/" + mClassName + ".xib";
 			fileUtils.setContent(xibContent).writeToFile(xibFilePath, override);
-							
 	}
 	
 //	public void exportScreenTemplate(String pDevice) {
 	public void exportScreenTemplate(String pDevice, IProject pProject) {
 		FileUtils fileUtils = new FileUtils();
-//		String path = "resources/screen/" 
-//				+ pDevice + "/template.screen";
-//		String screenContent = fileUtils.readFromFile(path);
-		IFile file = pProject.getFile("resources/screen/" 
-				+ pDevice + "/template.screen");
-		String screenContent = fileUtils.readFromFile(file);
+		String path = "resources/screen/" 
+				+ pDevice + "/template.screen";
+		String screenContent = fileUtils.readFromFile(path);
+//		IFile file = pProject.getFile("resources/screen/" 
+//				+ pDevice + "/template.screen");
+//		String screenContent = fileUtils.readFromFile(file);
 		screenContent = screenContent.replace("<!--{widgets}-->", createWidgetsTag());
 		final String screenPath = mScreenContainerPath
 				+ "/" + mClassName + ".screen";
@@ -359,6 +359,7 @@ public class View extends AdvancedObject {
 				+ mDirectoryName + "/" + mClassName + ".cpp", false);
 	}
 	
+//	public void refreshXMLFile() {
 	public void refreshXMLFile() throws CoreException {
 		System.out.println("Interface Builder = " + mInterfaceBuilder);
 		
@@ -370,6 +371,7 @@ public class View extends AdvancedObject {
 			//check exist
 			File file = new File(xibFilePath);
 			if(!file.exists()) {
+				System.err.println("ERROR::refreshXMLFile " + file + " not exists");
 				return; //if not exist
 			}
 			
@@ -378,32 +380,22 @@ public class View extends AdvancedObject {
 			
 			XibFetcher xibFetcher = new XibFetcher(mImages, mLabels);
 			xibFetcher.fetchData(xibFilePath);
-			FileUtils fileUtils = new FileUtils();
+//			FileUtils fileUtils = new FileUtils();
 			
-//			String fileContent = fileUtils.readFromFile(mXmlFilePath);
-			String fileContent = fileUtils.readFromFile(mXmlFile);
+//			String fileContent = fileUtils.readFromFile(mXmlFile);
 			for(int i = 0 ; i < mImages.size() ; i++) {
 				mImages.get(i).alignFollowParrent();
-				fileContent = XmlContentUtils.replaceSpritePosition(
-					fileContent, mImages.get(i));
 			}
 			for(int i = 0 ; i < mLabels.size() ; i++) {
-				System.out.println("label text = " + mLabels.get(i).getText());
 				mLabels.get(i).alignFollowParrent();
-				fileContent = XmlContentUtils.replaceSpritePosition(
-						fileContent, mLabels.get(i));
 			}
+			String xmlContent = this.toXML();
 			
-//			fileUtils.setContent(fileContent).writeToFile(mXmlFilePath, false);
+//			fileUtils.setContent(xmlContent).writeToFile(mXmlFilePath, false);
 			ByteArrayInputStream inputStream = 
-	 				new ByteArrayInputStream(fileContent.getBytes());
+	 				new ByteArrayInputStream(xmlContent.getBytes());
 	 		mXmlFile.setContents(inputStream, true, false, null);
 		}
-	}
-	
-	private void exportDirectory() {
-		new FileUtils().createDirectory(mClassPath, 
-				mDirectoryName);
 	}
 	
 	private String createImageViewsTag() {
@@ -411,8 +403,9 @@ public class View extends AdvancedObject {
 		setImagesIdsForXib();
 		for(int i = 0 ; i < mImages.size() ; i++) {
 			try {
-				if(mImages.get(i).getRealPath() != null 
-						&& mImages.get(i).getRealPath().endsWith("active.png")) {
+				if(mImages.get(i) == null || !mImages.get(i).isAddToInterfaceBuilder()) {
+					System.err.println("ERROR::setImagesIdsForXib something is wrong! " 
+							+ mImages.get(i));
 					continue;
 				}
 				builder.append(mImages.get(i).createImageViewTag(mImagesPath));
@@ -426,8 +419,9 @@ public class View extends AdvancedObject {
 	
 	private void setImagesIdsForXib() {
 		for(int i = 0 ; i < mImages.size() ; i++) {
-			if(mImages.get(i).getRealPath() != null && 
-					mImages.get(i).getRealPath().endsWith("active.png")) {
+			if(mImages.get(i) == null || !mImages.get(i).isAddToInterfaceBuilder()) {
+				System.err.println("ERROR::setImagesIdsForXib something is wrong! " 
+						+ mImages.get(i));
 				continue;
 			}
 			String id = "img-png-" + StringUtils.generateString(i);
@@ -438,8 +432,9 @@ public class View extends AdvancedObject {
 	private String createImagesTag() {
 		StringBuilder builder = new StringBuilder("\n");
 		for(int i = 0 ; i < mImages.size() ; i++) {
-			if(mImages.get(i).getRealPath() != null 
-					&& mImages.get(i).getRealPath().endsWith("active.png")) {
+			if(mImages.get(i) == null || !mImages.get(i).isAddToInterfaceBuilder()) {
+				System.err.println("ERROR::setImagesIdsForXib something is wrong! " 
+						+ mImages.get(i));
 				continue;
 			}
 			builder.append(mImages.get(i).createImageTag());
@@ -451,7 +446,9 @@ public class View extends AdvancedObject {
 	private String createWidgetsTag() {
 		StringBuilder builder = new StringBuilder("\n");
 		for(int i = 0 ; i < mImages.size() ; i++) {
-			if(mImages.get(i).getRealPath().endsWith("active.png")) {
+			if(mImages.get(i) == null || !mImages.get(i).isAddToInterfaceBuilder()) {
+				System.err.println("ERROR::setImagesIdsForXib something is wrong! " 
+						+ mImages.get(i));
 				continue;
 			}
 			String id = (i + 1) + "";
@@ -466,8 +463,16 @@ public class View extends AdvancedObject {
 	}
 	
 	@Override
+	public String getName() {
+		if(mBackgroundName == null || mBackgroundName.equals(Strings.DEFAULT)) {
+			mBackgroundName = Config.getInstance().getDefaultParentForProperty(mType);
+		}
+		return mBackgroundName;
+	}
+	
+	@Override
 	public void setPositionName(String pPositionName) {
-		
+		super.setPositionName(pPositionName);
 	}
 	
 	public void setDefinePath(String mDefinePath) {
@@ -563,12 +568,82 @@ public class View extends AdvancedObject {
 		return this.mLabels;
 	}
 	
+	public void setBackgroundImage(Image img) {
+		this.mBackgroundImage = img;
+	}
+	
 	public void setXmlFile(IFile xmlFile) {
 		this.mXmlFile = xmlFile;
 	}
 	
 	public IFile getXmlFile() {
 		return this.mXmlFile;
+	}
+	
+	@Override
+	public String toXML() {
+		StringBuilder builder = new StringBuilder("<?xml version=\"1.0\" " +
+				"encoding=\"UTF-8\" standalone=\"no\"?>\n");
+		
+		//append class-name attribute
+		builder.append("<view " + Attribute.CLASS_NAME + "=\"" + mClassName + "\" ")
+			.append(Attribute.PREFIX + "=\"" + mPrefix + "\" ")
+			.append(Attribute.TYPE + "=\"" + mType + "\" ")
+			.append("\n\t\t" + Attribute.SUPER + "=\"" + mSuper + "\" ")
+			.append(Attribute.BACKGROUND_NAME + "=\"" + getBackgroundName() + "\"")
+			.append("\n\t\t" + Attribute.COMMENT + "=\"" + mComment + "\"")
+			.append("\n\t\txmlns=\"http://www.tvd.com/tools\"")
+			.append("\n\t\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"")
+			.append("\n\t\txsi:schemaLocation=\"http://www.tvd.com/tools ../xsd/view_2_0.xsd\">")
+			.append("\n");
+		//position
+		builder.append("\t<" + Tag.POSITION_NAME + " " + Attribute.VALUE + "=\"")
+			.append(mXmlPositionName + "\" />\n");
+		builder.append("\t<" + Tag.POSITION + " " + Attribute.VALUE + "=\"default\" />\n");
+		
+		//define group
+		builder.append("\t<" + Tag.DEFINE_PATH + " " + Attribute.VALUE + "=\"")
+			.append(mDefinePath + "\" />\n");
+		builder.append("\t<" + Tag.PARAMETERS_PATH + " " + Attribute.VALUE + "=\"")
+			.append(mParametersPath + "\" />\n");
+		
+		//image group
+		builder.append("\t<" + Tag.IMAGES_INPUTPATH + " " + Attribute.VALUE + "=\"")
+			.append(mImagesInputPath + "\" />\n");
+		builder.append("\t<" + Tag.IMAGES_PATH + " " + Attribute.VALUE + "=\"")
+			.append(mImagesPath + "\" />\n");
+		
+		//screen container group
+		builder.append("\t<" + Tag.XIBCONTAINER_PATH + " " + Attribute.VALUE + "=\"")
+			.append(mXibContainerPath + "\" ");
+		if(mInterfaceBuilder.equals(Constants.XIB)) {
+			builder.append(Attribute.USED + "=\"true" + "\" ");
+		}
+		builder.append("/>\n");
+		builder.append("\t<" + Tag.SCREENCONTAINER_PATH + " " + Attribute.VALUE + "=\"")
+			.append(mScreenContainerPath + "\" ");
+		if(mInterfaceBuilder.equals(Constants.SCREEN)) {
+			builder.append(Attribute.USED + "=\"true" + "\" ");
+		}
+		builder.append("/>\n");
+		builder.append("\t<" + Tag.ANDROIDCONTAINER_PATH + " " + Attribute.VALUE + "=\"")
+			.append(mAndroidContainerPath + "\" ");
+		if(mInterfaceBuilder.equals(Constants.ANDROID)) {
+			builder.append(Attribute.USED + "=\"true" + "\" ");
+		}
+		builder.append("/>\n");
+		
+		//class group
+		builder.append("\t<" + Tag.CLASS_PATH + " " + Attribute.VALUE + "=\"")
+			.append(mClassPath + "\" />\n");
+		
+		builder.append("\n")
+			.append(super.toXML())
+			.append("</" + mXmlTagName + ">");
+	
+		builder.append("\n");
+		
+		return builder.toString();
 	}
 	
 	private IFile mXmlFile;

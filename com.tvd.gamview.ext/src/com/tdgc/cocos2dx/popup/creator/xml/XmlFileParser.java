@@ -9,7 +9,6 @@ import org.xml.sax.helpers.DefaultHandler;
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
-import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.log.Log;
 import com.tdgc.cocos2dx.popup.creator.model.Cell;
 import com.tdgc.cocos2dx.popup.creator.model.Image;
@@ -39,12 +38,13 @@ public class XmlFileParser extends DefaultHandler {
 			mView = new View();
 			mView.setClassName(getAttributeValue(Attribute.CLASS_NAME, atts));
 			mView.setPrefix(getAttributeValue(Attribute.PREFIX, atts));
-			Config.getInstance().setPrefix(mView.getPrefix());
 			mView.setSuper(getAttributeValue(Attribute.SUPER, atts));
 			mView.setSuffix(getAttributeValue(Attribute.TYPE, atts));
 			mView.setType(getAttributeValue(Attribute.TYPE, atts));
+			mView.setBackgroundName(getAttributeValue(Attribute.BACKGROUND_NAME, atts));
 			mView.setComment(getAttributeValue(Attribute.COMMENT, atts));
 			mCurrentObject = mView;
+			mPositionPrefix = mView.getPositionNamePrefix();
 		} else if(qName.equals(Tag.SPRITE)
 				|| qName.equals(Tag.TABLE)
 				|| qName.equals(Tag.MENU)
@@ -55,14 +55,12 @@ public class XmlFileParser extends DefaultHandler {
 			CommonObject parent = mCurrentObject;
 			if(qName.equals(Tag.SPRITE)) {
 				mCurrentObject = new Sprite();
-				mCurrentObject.setIsBackground(
-						getBoolean(getAttributeValue(Attribute.BACKGROUND, atts)));
 			}
 			else if(qName.equals(Tag.TABLE)) {
 				mCurrentObject = new Table();
 				Table table = (Table)mCurrentObject;
-				table.setRows(getNumber(getAttributeValue(Attribute.ROWS, atts)));
-				table.setColumns(getNumber(getAttributeValue(Attribute.COLUMNS, atts)));
+				table.setRows(getIntNumber(getAttributeValue(Attribute.ROWS, atts)));
+				table.setColumns(getIntNumber(getAttributeValue(Attribute.COLUMNS, atts)));
 			}
 			else if(qName.equals(Tag.MENU)) {
 				mCurrentObject = new Menu();
@@ -90,14 +88,15 @@ public class XmlFileParser extends DefaultHandler {
 				mCell.setSuper(getAttributeValue(Attribute.SUPER, atts));
 				mCurrentObject = mCell;
 			}
+			
+			if(!qName.equals(Tag.CELL)) {
+				mCurrentGroup.addItem(mCurrentObject);
+			}
 			mCurrentObject.setComment(
 					getAttributeValue(Attribute.COMMENT, atts));
+			mCurrentObject.setVisible(getBoolean(
+					getAttributeValue(Attribute.VISIBLE, atts)));
 			mCurrentObject.setParent(parent);
-		}
-		
-		else if(qName.equals(Tag.FONT_SIZE)) {
-			Label label = (Label)mCurrentObject;
-			label.setFontSizeString(getAttributeValue(Attribute.S_VALUE, atts));
 		}
 		
 		else if(qName.equals(Tag.IMAGE)) {
@@ -108,10 +107,12 @@ public class XmlFileParser extends DefaultHandler {
 			mCurrentImage.setIsBackground(
 					getBoolean(getAttributeValue(Attribute.BACKGROUND, atts)));
 			mCurrentImage.setParent(mCurrentObject);
+			mCurrentImage.setLocationInInterfaceBuilder(
+					getAttributeValue(Attribute.LOCATION_IN_INTERFACEBUILDER, atts));
 			String width = getAttributeValue(Attribute.WIDTH, atts);
 			String height = getAttributeValue(Attribute.HEIGHT, atts);
 			if(width != null && height != null) {
-				mCurrentImage.setSize(getNumber(width), getNumber(height));
+				mCurrentImage.setSize(getFloatNumber(width), getFloatNumber(height));
 			}
 			mView.addImage(mCurrentImage); 
 		}
@@ -145,35 +146,83 @@ public class XmlFileParser extends DefaultHandler {
 			mCurrentGroup.setBeforeGroup(beforGroup);
 		} 
 		else if(qName.equals(Tag.POSITION_NAME)) {
+			mCurrentObject.setPositionName(mPositionPrefix, 
+					getAttributeValue(Attribute.VALUE, atts));
 			mCurrentObject.setIsUnlocated(
 					getBoolean(getAttributeValue(Attribute.UNLOCATED, atts)));
 		}
 		else if(qName.equals(Tag.PARAMETER)) {
 			mCurrentParameter = new Parameter();
+			mCurrentParameter.setName(getAttributeValue(Attribute.NAME, atts));
 			mCurrentParameter.setType(getAttributeValue(Attribute.TYPE, atts));
 			mCurrentParameter.setKind(getAttributeValue(Attribute.KIND, atts));
+			mView.addParameter(mCurrentParameter);
 		}
 		else if(qName.equals(Tag.XIBCONTAINER_PATH)) {
 			boolean used = getBoolean(getAttributeValue(Attribute.USED, atts));
 			if(used) {
 				mView.setInterfaceBuilder(Constants.XIB);
 			}
+			mView.setXibContainerPath(getAttributeValue(Attribute.VALUE, atts));
 		}
 		else if(qName.equals(Tag.SCREENCONTAINER_PATH)) {
 			boolean used = getBoolean(getAttributeValue(Attribute.USED, atts));
 			if(used) {
 				mView.setInterfaceBuilder(Constants.SCREEN);
 			}
+			mView.setScreenContainerPath(getAttributeValue(Attribute.VALUE, atts));
 		}
 		else if(qName.equals(Tag.ANDROIDCONTAINER_PATH)) {
 			boolean used = getBoolean(getAttributeValue(Attribute.USED, atts));
 			if(used) {
 				mView.setInterfaceBuilder(Constants.ANDROID);
 			}
+			mView.setAndroidContainerPath(getAttributeValue(Attribute.VALUE, atts));
+		} else if(qName.equals(Tag.DEFINE_PATH)) {
+			mView.setDefinePath(getAttributeValue(Attribute.VALUE, atts));
 		}
+		else if(qName.equals(Tag.PARAMETERS_PATH)) {
+			mView.setParametersPath(getAttributeValue(Attribute.VALUE, atts));
+		}
+		else if(qName.equals(Tag.IMAGES_INPUTPATH)) {
+			mView.setImagesInputPath(getAttributeValue(Attribute.VALUE, atts));
+		}
+		else if(qName.equals(Tag.IMAGES_PATH)) {
+			mView.setImagesPath(getAttributeValue(Attribute.VALUE, atts));
+		}
+		else if(qName.equals(Tag.CLASS_PATH)) {
+			mView.setClassPath(getAttributeValue(Attribute.VALUE, atts));
+		}
+		else if(qName.equals(Tag.ANCHORPOINT)) {
+			mCurrentObject.setAnchorPoint(getAttributeValue(Attribute.VALUE, atts));
+		} 
 		else if(qName.equals(Tag.POSITION)) {
 			mCurrentObject.setPosition(getAttributeValue(Attribute.VALUE, atts));
 		} 
+		else if(qName.equals(Tag.TEXT)) {
+			((Label)mCurrentObject).setText(getAttributeValue(Attribute.VALUE, atts));
+		}
+		else if(qName.equals(Tag.FONT)) {
+			Label label = (Label)mCurrentObject;
+			label.setFontName(getAttributeValue(Attribute.NAME, atts));
+			label.setFontFamily(getAttributeValue(Attribute.FAMILY, atts));
+			label.setFontSizeVar(getAttributeValue(Attribute.VARNAME, atts));
+		}
+		else if(qName.equals(Tag.FONT_SIZE)) {
+			Label label = (Label)mCurrentObject;
+			label.setFontSizeFloat(getAttributeValue(Attribute.VALUE, atts));
+			label.setFontSizeVar(getAttributeValue(Attribute.VARNAME, atts));
+		}
+		else if(qName.equals(Tag.LOCATION_IN_INTERFACEBUILDER)) {
+			Label label = (Label)mCurrentObject;
+			label.setLocationInView(getAttributeValue(Attribute.VALUE, atts));
+		}
+		else if(qName.equals(Tag.Z_INDEX)) {
+			mCurrentObject.setZIndex(getAttributeValue(Attribute.VALUE, atts));
+		}
+		else if(qName.equals(Tag.SIZE)) {
+			mCurrentObject.setSize(getAttributeValue(Attribute.VALUE, atts));
+		}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -188,56 +237,7 @@ public class XmlFileParser extends DefaultHandler {
 	public void endElement(String namespaceURI, String localName, 
 			String qName) throws SAXException {
 		try {
-		if(qName.equals(Tag.DEFINE_PATH)) {
-			mView.setDefinePath(mCurrentText);
-		}
-		else if(qName.equals(Tag.PARAMETERS_PATH)) {
-			mView.setParametersPath(mCurrentText);
-		}
-		else if(qName.equals(Tag.IMAGES_INPUTPATH)) {
-			mView.setImagesInputPath(mCurrentText);
-		}
-		else if(qName.equals(Tag.IMAGES_PATH)) {
-			mView.setImagesPath(mCurrentText);
-		}
-		else if(qName.equals(Tag.XIBCONTAINER_PATH)) {
-			mView.setXibContainerPath(mCurrentText);
-		}
-		else if(qName.equals(Tag.SCREENCONTAINER_PATH)) {
-			mView.setScreenContainerPath(mCurrentText);
-		}
-		else if(qName.equals(Tag.ANDROIDCONTAINER_PATH)) {
-			mView.setAndroidContainerPath(mCurrentText);
-		}
-		else if(qName.equals(Tag.CLASS_PATH)) {
-			mView.setClassPath(mCurrentText);
-		}
-		else if(qName.equals(Tag.POSITION_NAME)) {
-			mCurrentObject.setPositionName(mCurrentText);
-		} 
-		else if(qName.equals(Tag.ANCHORPOINT)) {
-			mCurrentObject.setAnchorPoint(mCurrentText);
-		} 
-		else if(qName.equals(Tag.TEXT)) {
-			((Label)mCurrentObject).setText(mCurrentText);
-		}
-		else if(qName.equals(Tag.FONT)) {
-			((Label)mCurrentObject).setFont(mCurrentText);
-		}
-		else if(qName.equals(Tag.FONT_SIZE)) {
-			((Label)mCurrentObject).setFontSizeFloat(mCurrentText);
-		}
-		else if(qName.equals(Tag.Z_INDEX)) {
-			mCurrentObject.setZIndex(mCurrentText);
-		}
-		else if(qName.equals(Tag.PARAMETER)) {
-			mCurrentParameter.setName(mCurrentText);
-			mView.addParameter(mCurrentParameter);
-		}
-		else if(qName.equals(Tag.SIZE)) {
-			mCurrentObject.setSize(mCurrentText);
-		}
-		else if(qName.equals(Tag.SPRITES)
+		if(qName.equals(Tag.SPRITES)
 				|| qName.equals(Tag.TABLES)
 				|| qName.equals(Tag.MENUS)
 				|| qName.equals(Tag.MENUITEMS)
@@ -266,23 +266,6 @@ public class XmlFileParser extends DefaultHandler {
 				|| qName.equals(Tag.MENU)
 				|| qName.equals(Tag.LABEL)
 				|| qName.equals(Tag.RESOURCES)) {
-			boolean valid = true;
-			if(qName.equals(Tag.SPRITE)) {
-				Sprite sprite = (Sprite)mCurrentObject;
-				if(sprite.getImage() != null
-						&& sprite.getParent() instanceof Sprite) {
-					Sprite parentSprite = ((Sprite)sprite.getParent());
-					if(parentSprite.getImage() == null) {
-						parentSprite.setImage(sprite.getImage());
-						valid = false;
-					}
-				}
-			}
-			else if(qName.equals(Tag.MENUITEM)) {
-			} 
-			if(!qName.equals(Tag.RESOURCES) && valid) {
-				mCurrentGroup.addItem(mCurrentObject);
-			}
 			mCurrentObject = mCurrentGroup.getContainer();
 		} 
 		else if(qName.equals(Tag.CELL)) {
@@ -304,7 +287,6 @@ public class XmlFileParser extends DefaultHandler {
 		if(text.length() == 0) {
 			return;
 		}
-		mCurrentText = text.trim();
 	}
 	
 	private String getAttributeValue(String attName, Attributes atts) {
@@ -319,17 +301,20 @@ public class XmlFileParser extends DefaultHandler {
 		return result;
 	}
 	
-	private int getNumber(String value) {
-		int result = 0;
+	private int getIntNumber(String value) {
+		return (int)getFloatNumber(value);
+	}
+	
+	private float getFloatNumber(String value) {
+		float result = 0;
 		try {
-			result = Integer.parseInt(value);
+			result = Float.parseFloat(value);
 		} catch(NumberFormatException e) {
 			Log.e(e);
 		} catch (NullPointerException e) {
 			Log.e(e);
 		}
 		return result;
-		
 	}
 	
 	private boolean getBoolean(String pValue) {
@@ -369,10 +354,9 @@ public class XmlFileParser extends DefaultHandler {
 	private Resources mCurrentResources;
 	private CommonObject mCurrentObject;
 	private ItemGroup mCurrentGroup;
-//	private ItemGroup mResourceGroup;
-	private String mCurrentText;
     private View mView;
     private Cell mCell;
     private Image mCurrentImage;
     private Parameter mCurrentParameter;
+    private String mPositionPrefix;
 }

@@ -11,8 +11,10 @@ public class ViewUtils {
 	public static String implementGroups(List<ItemGroup> groups) {
 		StringBuilder builder = new StringBuilder();
 		for(int i = groups.size() - 1 ; i >= 0 ; i--) {
-			builder.append(groups.get(i).implement(false))
-				.append("\n");
+			if(groups.get(i).isAddToView()) {
+				builder.append(groups.get(i).implement(false))
+					.append("\n");
+			}
 		}
 		
 		return builder.toString();
@@ -65,6 +67,7 @@ public class ViewUtils {
 		groups.add(obj.getSpriteGroups());
 		groups.add(obj.getMenuGroups());
 		groups.add(obj.getMenuItemGroups());
+		groups.add(obj.getLabelGroups()); 
 		for(int k = 0 ; k < groups.size() ; k++) {
 			List<ItemGroup> group = groups.get(k);
 			for(int i = group.size() - 1 ; i >= 0  ; i--) {
@@ -78,6 +81,31 @@ public class ViewUtils {
 					implementObject(group.get(i).getItems().get(j), builder);
 				}
 				group.get(i).setReferenceCount(1);
+			}
+		}
+	}
+	
+	public static void blockAddingGroupToView(CommonObject obj) {
+		if(obj == null) {
+			return;
+		}
+		
+		List<List<ItemGroup>> groups = new ArrayList<List<ItemGroup>>();
+		groups.add(obj.getSpriteGroups());
+		groups.add(obj.getMenuGroups());
+		groups.add(obj.getMenuItemGroups());
+		groups.add(obj.getLabelGroups()); 
+		for(int k = 0 ; k < groups.size() ; k++) {
+			List<ItemGroup> group = groups.get(k);
+			for(int i = group.size() - 1 ; i >= 0  ; i--) {
+				if(group.get(i) == null) {
+					continue;
+				}
+				for(int j = group.get(i).getItems().size() - 1 ; 
+						 j >= 0 ; j--) {
+					blockAddingGroupToView(group.get(i).getItems().get(j));
+				}
+				group.get(i).setAddToView(false);
 			}
 		}
 	}

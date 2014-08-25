@@ -27,6 +27,13 @@ public interface Attribute {
 	public static final String HEIGHT			= "height";
 	public static final String X				= "x";
 	public static final String Y				= "y";
+	
 	public static final String LENGTH			= "length";
 	public static final String VALUE			= "value";
+	public static final String VARNAME			= "varname";
+	public static final String LOCATION_IN_INTERFACEBUILDER = "location-in-interfacebuilder";
+	public static final String POINT_SIZE		= "pointSize";
+	public static final String FAMILY			= "family";
+	
+	public static final String BACKGROUND_NAME 	= "background-name";
 }

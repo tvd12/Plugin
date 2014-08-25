@@ -3,9 +3,12 @@ package com.tdgc.cocos2dx.popup.creator.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
+import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 import com.tdgc.cocos2dx.popup.creator.utils.ViewUtils;
+import com.tdgc.cocos2dx.popup.creator.validate.Validator;
 
 public class ItemGroup {
 	public ItemGroup(int pType) {
@@ -13,9 +16,10 @@ public class ItemGroup {
 		this.mType = pType;
 		this.mItems = new ArrayList<CommonObject>();
 		this.mIsArray = false;
-		this.mLength = 1;
+		this.mArrayLength = 0;
 		this.mValidArray = false;
 		this.mReferenceCount = 0;
+		this.mIsAddToView = true;
 	}
 	
 	public String declare() {
@@ -52,25 +56,26 @@ public class ItemGroup {
 			String newName = name.substring(0, name.lastIndexOf('[')) + "[i]";
 			String positionName = mItems.get(0).getPositionName();
 			String newPositionName = positionName.substring(0, positionName.lastIndexOf('[')) + "[i]";
-			for(int i = 0 ; i < mLength ; i++) {
+			for(int i = 0 ; i < mArrayLength ; i++) {
 				mItems.get(i).setName(newName);
 				mItems.get(i).setNewPositionName(newPositionName);
 			}
-			
-			builder.append("\tfor(int i = 0 ; i < " + mLength + " ; i++) {");
+			builder.append("\tfor(int i = 0 ; i < " + mArrayLength + " ; i++) {");
 			
 			StringBuilder builderForObj = new StringBuilder();
 			builderForObj.append(mItems.get(0).implement(false))
 				.append("\n");
-			ViewUtils.implementObject(mItems.get(0), builderForObj);
 			
-			String strs[] = builderForObj.toString().split("\n");
+			ViewUtils.implementObject(mItems.get(0), builderForObj);
+			String strs[] = builderForObj.toString()
+					.replace("//{n}", "\n")
+					.split("\n");
 			for(int i = 0 ; i < strs.length ; i++) {
 				builder.append("\t" + strs[i] + "\n");
 			}
 			builder.append("\t}");
 			
-			for(int i = 0 ; i < mLength ; i++) {
+			for(int i = 0 ; i < mArrayLength ; i++) {
 				String oldName = mItems.get(i).getName().replace("[i]", 
 						"[" + i + "]");
 				String oldPositionName = mItems.get(i).getPositionName().replace("[i]", 
@@ -139,30 +144,39 @@ public class ItemGroup {
 		switch (mType) {
 		case Type.MENU:
 			mContainer.addMenuGroup(this);
+			mXmlTagName = Tag.MENUS;
 			break;
 			
 		case Type.MENUITEM:
 			mContainer.addMenuItemGroup(this);
+			mXmlTagName = Tag.MENUITEMS;
 			break;
 			
 		case Type.SPRITE:
 			mContainer.addSpriteGroup(this);
+			mXmlTagName = Tag.SPRITES;
 			break;
 			
 		case Type.TABLE:
 			mContainer.addTableGroup(this);
+			mXmlTagName = Tag.TABLES;
 			break;
 			
 		case Type.LABLE:
 			mContainer.addLabelGroup(this);
+			mXmlTagName = Tag.LABELS;
 			break;
 		default:
 			break;
 		}
+		if(mIsArray && mArrayLength > 0 && mItems.size() == 1) {
+			ViewUtils.blockAddingGroupToView(mItems.get(0));
+		}
+		
 	}
 	
 	protected boolean checkArray() {
-		if(mIsArray && mLength > 1 && mItems.size() == 1) {
+		if(mIsArray && mArrayLength > 0 && mItems.size() == 1) {
 			mValidArray = true;
 			processArray();
 		}
@@ -173,10 +187,10 @@ public class ItemGroup {
 	private void processArray() {
 		if(mValidArray) {
 			CommonObject obj = mItems.get(0);
-			this.mArrayName = obj.getName() + "s[" + mLength + "]";
+			this.mArrayName = obj.getName() + "s[" + mArrayLength + "]";
 			this.mPositionArrayName = obj.getPositionName()
-					+ "S[" + mLength + "]";
-			for(int i = 1 ; i < mLength ; i++) {
+					+ "S[" + mArrayLength + "]";
+			for(int i = 1 ; i < mArrayLength ; i++) {
 				CommonObject newObj = obj.clone();
 				newObj.setName(newObj.getName() + "s[" + i + "]");
 				newObj.setNewPositionName(newObj.getPositionName() + "S[" + i + "]");
@@ -199,6 +213,7 @@ public class ItemGroup {
 	
 	public void addItem(CommonObject pObject) {
 		this.mItems.add(pObject);
+		pObject.setTabCount(mTabCount + 1);
 	}
 	
 	public void setBlockComment(String pBlockComment) {
@@ -241,6 +256,7 @@ public class ItemGroup {
 	
 	public void setContainer(CommonObject pContainer) {
 		this.mContainer = pContainer;
+		this.mTabCount = mContainer.getTabCount() + 1;
 	}
 	
 	public CommonObject getContainer() {
@@ -259,12 +275,6 @@ public class ItemGroup {
 		}
 	}
 	
-	public void setPrefix(String pPrefix) {
-		for(int i = 0 ; i < mItems.size() ; i++) {
-			mItems.get(i).setPrefix(pPrefix);
-		}
-	}
-	
 	public String getNodesArrayName() {
 		return this.mNodesArrayName;
 	}
@@ -274,13 +284,17 @@ public class ItemGroup {
 	}
 	
 	public void setArrayLength(int length) {
-		mLength = length;
+		mArrayLength = length;
 	}
 	
 	public void setArrayLength(String length) {
-		if(length != null) {
+		if(length != null && Validator.isNumeric(length)) {
 			setArrayLength(Integer.parseInt(length));
 		}
+	}
+	
+	public int getArrayLength() {
+		return this.mArrayLength;
 	}
 	
 	public void setReferenceCount(int rfc) {
@@ -305,6 +319,74 @@ public class ItemGroup {
 		return builder.toString();
 	}
 	
+	public String toXML() {
+		String comment = "create group of " + mXmlTagName; 
+		String tab = StringUtils.tab(mTabCount);
+		StringBuilder builder = new StringBuilder(tab);
+		builder.append("<" + mXmlTagName + " " + Attribute.ARRAY + "=\"" + mIsArray + "\" ");
+		if(mArrayLength > 1) {
+			builder.append(Attribute.LENGTH + "=\"" + mArrayLength + "\" ");
+		}
+		builder.append(Attribute.COMMENT + "=\"" + comment + "\">")
+			.append("\n");
+		for(int i = 0 ; i < mItems.size() ; i++) {
+			builder.append(mItems.get(i).toXML());
+		}
+		builder.append(tab + "</" + mXmlTagName + ">").append("\n");
+		
+		return builder.toString();
+	}
+	
+	public CommonObject createNewItem(boolean addToGroup) {
+		CommonObject obj = null;
+		switch (mType) {
+		case Type.MENU:
+			obj = new Menu();
+			break;
+			
+		case Type.MENUITEM:
+			obj = new MenuItem();
+			break;
+			
+		case Type.SPRITE:
+			obj = new Sprite();
+			break;
+			
+		case Type.TABLE:
+			obj = new Table();
+			break;
+			
+		case Type.LABLE:
+			obj = new Label();
+			break;
+		default:
+			break;
+		}
+		this.addItem(obj);
+		return obj;
+	}
+	
+	public CommonObject createNewItem() {
+		return createNewItem(false);
+	}
+	
+	public int getTabCount() {
+		return mTabCount;
+	}
+	
+	public void setTabCount(int tabCount) {
+		mTabCount = tabCount;
+	}
+	
+	public void setAddToView(boolean addToView) {
+		this.mIsAddToView = addToView;
+	}
+	
+	public boolean isAddToView() {
+		return this.mIsAddToView;
+	}
+	
+	protected int mTabCount;
 	protected List<CommonObject> mItems;
 	protected String mBlockComment;
 	protected Resources mResources;
@@ -313,9 +395,12 @@ public class ItemGroup {
 	protected CommonObject mContainer;
 	protected ItemGroup mBeforeGroup;
 	protected String mNodesArrayName;
-	protected int mLength;
+	protected int mArrayLength;
 	protected boolean mValidArray;
 	protected String mArrayName;
 	protected String mPositionArrayName;
+	protected boolean mIsAddToView;
+	
 	private int mReferenceCount;
+	private String mXmlTagName;
 }

@@ -1,9 +1,15 @@
 package com.tdgc.cocos2dx.popup.creator.model;
 
+import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.ModelType;
+import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
+import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
+import com.tdgc.cocos2dx.popup.creator.model.basic.Size;
+import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
+import com.tdgc.cocos2dx.popup.creator.utils.ViewUtils;
 
 public class MenuItem extends CommonObject {
 	
@@ -12,6 +18,7 @@ public class MenuItem extends CommonObject {
 		mSuffix = "MenuItem";
 		mDeclareObjectName = "CCMenuItem";
 		mType = ModelType.MENUITEM;
+		mXmlTagName = Tag.MENUITEM;
 	}
 	
 	public MenuItem(String pName) {
@@ -64,6 +71,8 @@ public class MenuItem extends CommonObject {
 			templateName += " in function";
 			mName = getInfunctionName();
 		} 
+//		String template = new FileUtils().fetchTemplate(templateName, 
+//				"src/com/template/new_menuitem.template");
 		String template = new FileUtils().fetchTemplate(templateName, 
 				"src/com/template/new_menuitem.template", getProject());
 		
@@ -71,6 +80,7 @@ public class MenuItem extends CommonObject {
 		if(mParent != null) {
 			parentName = mParent.getName();
 		}
+		ViewUtils.implementObject(this, builder);
 		template = template.replace("{var_name}", mName)
 			.replace("{tab}", "\t")
 			.replace("{normal_sprite}", getSprite("Normal"))
@@ -109,6 +119,74 @@ public class MenuItem extends CommonObject {
 		this.setAllPropertiesForObject(menuItem);
 		
 		return menuItem;
+	}
+	
+	@Override
+	public void addSpriteGroup(ItemGroup group) {
+		super.addSpriteGroup(group);
+		if(validate()) {
+			ItemGroup spriteGroup = this.mSpriteGroups.get(0);
+			for(int i = 1 ; i < spriteGroup.getItems().size() ; i++) {
+				((Sprite)spriteGroup.getItems().get(i))
+					.getImage().setAddToInterfaceBuilder(false);
+			}
+			group.setAddToView(false);
+		}
+	}
+	
+	@Override
+	public Point getLocationInView() {
+		return mParent.getLocationInView();
+	}
+	
+	@Override
+	public Size getSize() {
+		return mParent.getSize();
+	}
+	
+	@Override
+	public String toXML() {
+		String tab = StringUtils.tab(mTabCount);
+		StringBuilder builder = new StringBuilder(tab);
+		builder.append("<" + mXmlTagName + " " + Attribute.VISIBLE + "=\"true\" ")
+			.append(Attribute.COMMENT + "=\"\">");
+		builder.append("\n" + tab + "\t")
+			.append("<" + Tag.POSITION_NAME + " " + Attribute.VALUE 
+					+ "=\"" + mXmlPositionName + "\" />");
+		builder.append("\n" + tab + "\t")
+		.append("<" + Tag.ANCHORPOINT + " " + Attribute.VALUE 
+				+ "=\"" + mAnchorPointString + "\" />");
+		builder.append("\n" + tab + "\t")
+		.append("<" + Tag.POSITION + " " + Attribute.VALUE 
+				+ "=\"" + mPosition + "\" />");
+		builder.append("\n" + tab + "\t")
+		.append("<" + Tag.Z_INDEX + " " + Attribute.VALUE 
+				+ "=\"" + mZIndex + "\" />");
+		
+		builder.append("\n")
+			.append(super.toXML())
+			.append(tab)
+			.append("</" + mXmlTagName + ">");
+		
+		builder.append("\n");
+		
+		return builder.toString();
+	}
+	
+	public boolean validate() {
+		boolean valid = true;
+		if(mSpriteGroups.size() != 1) {
+			valid = false;
+		} else {
+			int size = mSpriteGroups.get(0).getItems().size();
+			if(size < 2 || size > 3) {
+				valid = false;
+			} else {
+				
+			}
+		}
+		
+		return valid;
 	}
 	
 	protected String mNormalImage;

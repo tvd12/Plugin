@@ -224,6 +224,7 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 						+ "Do you want override?");
 				}
 				view.exportXibTemplate(element.getDevice(), view.getProject(), !override);
+				System.out.println();
 				System.out.println("Done!");
 				System.out.println("===============================================================");
 			}

@@ -1,6 +1,7 @@
 package com.tvd.gamview.ext.utils;
 
 import java.io.ByteArrayInputStream;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +27,11 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 import com.tdgc.cocos2dx.popup.creator.xml.XmlFileBuilder;
-import com.tdgc.cocos2dx.popup.creator.xml.XmlFormatter;
 import com.tvd.gameview.plugin.model.ViewModel;
 import com.tvd.gameview.views.BuildingTreeView;
 
 public class ProjectUtils {
-
+	
 	public static IProject[] getProjects() {
 		IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
 		
@@ -255,20 +255,23 @@ public class ProjectUtils {
 	}
 	
 	public static void createXMLFileWithBuilder(IProject project, XmlFileBuilder builder,
-			boolean override) {
+			String type, boolean override) {
 		try {
 			String devices[] = getDevices(project);
 			if(devices == null || devices.length == 0) {
 				return;
 			}
 			for(int i = 0 ; i < devices.length ; i++) {
-				String xmlContent = builder.buildFor(devices[i]);
-				StringBuilder strBuilder = new StringBuilder("<view ");
-				strBuilder.append("xmlns=\"http://www.tvd.com/tools\"\n");
-				strBuilder.append("\t\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n");
-				strBuilder.append("\t\txsi:schemaLocation=\"http://www.tvd.com/tools ../xsd/view.xsd\"\n\t\t");
-				xmlContent = xmlContent.replace("<view ", strBuilder.toString());
-				xmlContent = XmlFormatter.format(xmlContent);
+				
+				//version 1.0
+//				String xmlContent = builder.buildFor(devices[i]);
+//				StringBuilder strBuilder = new StringBuilder("<view ");
+//				strBuilder.append("xmlns=\"http://www.tvd.com/tools\"\n");
+//				strBuilder.append("\t\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n");
+//				strBuilder.append("\t\txsi:schemaLocation=\"http://www.tvd.com/tools ../xsd/view.xsd\"\n\t\t");
+//				xmlContent = xmlContent.replace("<view ", strBuilder.toString());
+//				xmlContent = XmlFormatter.format(xmlContent);
+				String xmlContent = builder.buildXMLViewFor(type, devices[i]);
 				IFile newFile = project.getFile(
 						new Path(builder.getOutputFilePath()));
 				if(newFile.exists()) {
@@ -288,4 +291,5 @@ public class ProjectUtils {
 			e.printStackTrace();
 		}
 	}
+	
 }

@@ -23,8 +23,9 @@ public class XmlFileBuilder {
 		this.mInterfaceBuilder = pInterfaceBuilder;
 	}
 	
+	@Deprecated
 	public String buildFor(String pDevice) {
-		mXmlCreator = new XmlCreator(this.mImagesPath, pDevice,
+		mXmlCreator = new XmlCreator_1_0(this.mImagesPath, pDevice,
 				mInterfaceBuilder);
 		Document doc = mXmlCreator.parseFilePaths();
 		
@@ -59,6 +60,20 @@ public class XmlFileBuilder {
 		return null;
 	}
 	
+	//from 2.0
+	public String buildXMLViewFor(String pType, String pDevice) {
+		XmlViewCreator xmlViewCreator = 
+				new XmlViewCreator(this.mImagesPath, pType, pDevice, mInterfaceBuilder);
+		
+		String result = xmlViewCreator.fetchView().toXML();
+		
+		this.mFileOutputPath = "resources/xml/" + pDevice 
+				+ "/" + xmlViewCreator.getOutputFileName();
+		this.mFileOutputName = xmlViewCreator.getOutputFileName();
+		
+		return result;
+	}
+	
 	public String getOutputFilePath() {
 		return this.mFileOutputPath;
 	}
@@ -67,7 +82,7 @@ public class XmlFileBuilder {
 		return this.mFileOutputName;
 	}
 	
-	private XmlCreator mXmlCreator;
+	private XmlCreator_1_0 mXmlCreator;
 	private String mFileOutputPath;
 	private String mImagesPath;
 	private String mFileOutputName;

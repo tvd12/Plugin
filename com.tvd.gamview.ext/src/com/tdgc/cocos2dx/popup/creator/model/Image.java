@@ -6,10 +6,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Size;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
+import com.tdgc.cocos2dx.popup.creator.validate.Validator;
 
 public class Image implements Comparable<Image> {
 	
@@ -18,6 +20,9 @@ public class Image implements Comparable<Image> {
 		this.mPhonyPath = null;
 		this.mRealPath = null;
 		this.mAnchorPoint = new Point(0.5f, 0.5f);
+		this.mXmlTagName = "image";
+		this.mIsAddToInterfaceBuilder = true;
+		this.mLocationInInterfaceBuilder = new Point(10, 10);
 	}
 	
 	public Image(String pId, String pRealPath, String pPhonyPath) {
@@ -60,12 +65,13 @@ public class Image implements Comparable<Image> {
 	public String createImageViewTag(String pImagePath) 
 			throws IOException {
 		StringBuilder builder = new StringBuilder(StringUtils.tab(5));
+		Point point = this.mLocationInInterfaceBuilder;
 		if(mRealPath == null) {
 			builder.append("<imageView userInteractionEnabled=\"NO\" contentMode=\"scaleToFill\" ")
 				.append("horizontalHuggingPriority=\"251\" verticalHuggingPriority=\"251\" ")
 				.append("id=\"" + getImageViewId() + "\">\n")
 				.append(StringUtils.tab(6))
-				.append("<rect key=\"frame\" x=\"10\" y=\"10\" ")
+				.append("<rect key=\"frame\" x=\"" + point.getX() + "\" y=\"" + point.getY() + "\" ")
 				.append("width=\"" + mSize.getWidth() +"\" height=\""+ mSize.getHeight() +"\" />\n")
 				.append(StringUtils.tab(6))
 				.append("<autoresizingMask key=\"autoresizingMask\" flexibleMaxX=\"YES\" " +
@@ -75,7 +81,8 @@ public class Image implements Comparable<Image> {
 		} else {
 			File file = new File(pImagePath + "/" + mRealPath);
 			if(!file.exists()) {
-				System.out.println("file " + file + " not exists");
+				System.err.println("ERROR::createImageViewTag::file " + file + " not exists");
+				return "";
 			}
 			BufferedImage image = ImageIO.read(file);
 		    int width = image.getWidth();
@@ -86,7 +93,7 @@ public class Image implements Comparable<Image> {
 				.append("multipleTouchEnabled=\"YES\" contentMode=\"scaleToFill\" ")
 				.append("image=\"" + mName + "\" id=\"" + getImageViewId() + "\">\n")
 				.append(StringUtils.tab(6))
-				.append("<rect key=\"frame\" x=\"10\" y=\"10\" ")
+				.append("<rect key=\"frame\" x=\"" + point.getX() + "\" y=\"" + point.getY() + "\" ")
 				.append("width=\"" + width/2 +"\" height=\""+ height/2 +"\" />\n")
 				.append(StringUtils.tab(6))
 				.append("<autoresizingMask key=\"autoresizingMask\"/>\n")
@@ -97,6 +104,11 @@ public class Image implements Comparable<Image> {
 	}
 	
 	public String createImageTag() {
+		if(mSize == null) {
+			System.err.println("ERROR::createImageTag image " 
+					+ mRealPath + " has size = " + mSize);
+			return "";
+		}
 		StringBuilder builder = new StringBuilder(StringUtils.tab(2));
 		builder.append("<image name=\"" + mName + "\" ")
 			.append("width=\"" + mSize.getWidth() + "\" ")
@@ -125,6 +137,24 @@ public class Image implements Comparable<Image> {
 			.append("src=\"assets/" + imageDirectory + "/" + mRealPath + "\" ")
 			.append("/>\n");
 		return builder.toString();
+	}
+	
+	public void fetchSize(String physicalPath) {
+		File file = new File(physicalPath);
+		if(!file.exists()) {
+			System.err.println("ERROR::fetchSize::file " + file + " not exists");
+			return;
+		}
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(file);
+			int width = image.getWidth();
+		    int height = image.getHeight();
+		    setSize(width, height);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    
 	}
 	
 	@Override
@@ -196,14 +226,12 @@ public class Image implements Comparable<Image> {
 		this.mX = pX;// + mAnchorPoint.getX()*mSize.getWidth();
 		this.mY = pY;// + mAnchorPoint.getY()*mSize.getHeight();
 		this.mParent.setLocationInView(pX, pY);
-		if(mParent instanceof Table) {
-			((Table)mParent).getCell().setLocationInView(pX, pY);
-		}
+		this.setLocationInInterfaceBuilder(pX, pY);
 	}
 	
 	public void alignFollowParrent() {
 		try {
-			if(mParent.getLocationInView() == null) {
+			if(mParent.getLocationInView() == null || !mIsAddToInterfaceBuilder) {
 				System.err.println("ERROR:: name = " + this.getRealPath() + " has "
 						+ "parent.getLocationInView == null");
 				return;
@@ -228,6 +256,41 @@ public class Image implements Comparable<Image> {
 			}
 			this.mX = x;
 			this.mY = y;
+			mParent.setPosition(x, y);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void fetchLocationInViewFromParent() {
+		try {
+			if(mParent.getLocationInView() == null || !mIsAddToInterfaceBuilder) {
+				System.err.println("ERROR:: name = " + this.getRealPath() + " has "
+						+ "parent.getLocationInView == null");
+				return;
+			}
+			float x = mParent.getLocationInView().getX();
+			float y = mParent.getLocationInView().getY();
+			CommonObject parentOfParent = mParent.getParent();
+			if(parentOfParent != null) {
+				x = x - parentOfParent.getLocationInView().getX();
+				y = y - parentOfParent.getLocationInView().getY();
+				
+				parentOfParent = parentOfParent.getParent();
+			}
+			mAnchorPoint = mParent.getAnchorPoint();
+			float anchorpointY = 1 - mAnchorPoint.getY();
+			x = x + mAnchorPoint.getX()*mSize.getWidth();
+			if(mParent.getParent() != null) {
+				y = mParent.getParent().getSize().getHeight() - 
+					(y + anchorpointY*mSize.getHeight());
+			} else {
+				y = y + anchorpointY*mSize.getHeight();
+			}
+			this.mX = x;
+			this.mY = y;
+			mParent.setPosition(x, y);
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -244,10 +307,14 @@ public class Image implements Comparable<Image> {
 	
 	public void setParent(CommonObject pParent) {
 		
+		this.mTabCount = pParent.getTabCount() + 1;
+		
 		if(pParent instanceof Sprite) {
 			((Sprite)pParent).setImage(this);
 		} else if(pParent instanceof Table) {
 			((Table)pParent).setImage(this);
+		} else if(pParent instanceof Cell) {
+			((Cell)pParent).setImage(this);
 		}
 		
 		this.mParent = pParent;
@@ -269,6 +336,14 @@ public class Image implements Comparable<Image> {
 		return this.mSize;
 	}
 	
+	public void setSize(String size) {
+		if(Validator.isValidDoubleValueString(size)) {
+			String wh[] = size.split(",");
+			this.setSize(Float.parseFloat(wh[0]), 
+					Float.parseFloat(wh[1]));
+		}
+	}
+	
 	public void setSize(Size size) {
 		this.mSize = size;
 		this.mParent.setSize(size);
@@ -286,6 +361,72 @@ public class Image implements Comparable<Image> {
 		return this.mParent;
 	}
 	
+	public void setTabCount(int tabCount) {
+		this.mTabCount = tabCount;
+	}
+	
+	public int getTabCount() {
+		return this.mTabCount;
+	}
+	
+	public String toXML(boolean includeSize) {
+		String tab = StringUtils.tab(mTabCount);
+		StringBuilder builder = new StringBuilder(tab);
+		builder.append("<" + mXmlTagName + " ")
+			.append(Attribute.ID + "=\"" + mId + "\" ")
+			.append("\n" + tab + "\t");
+		builder.append(Attribute.LOCATION_IN_INTERFACEBUILDER + "=\"") 
+			.append(mLocationInInterfaceBuilder + "\"");
+			
+		if(includeSize && mSize != null) {
+			builder.append("\n" + tab + "\t");
+			builder.append(Attribute.WIDTH + "=\"" + mSize.getWidth() + "\" ")
+				.append(Attribute.HEIGHT + "=\"" + mSize.getHeight() + "\"");
+		} 
+		if(mPhonyPath != null) {
+			builder.append("\n" + tab + "\t")
+				.append(Attribute.PHONY_PATH + "=\"" + mPhonyPath + "\" ");
+		}
+		builder.append(" />");
+		
+		return builder.toString();
+	}
+	
+	public String toXML() {
+		return toXML(true);
+	}
+	
+	public void setAddToInterfaceBuilder(boolean value) {
+		this.mIsAddToInterfaceBuilder = value;
+	}
+	
+	public boolean isAddToInterfaceBuilder() {
+		return this.mIsAddToInterfaceBuilder;
+	}
+	
+	public void setLocationInInterfaceBuilder(String location) {
+		if(Validator.isValidDoubleValueString(location)) {
+			String strs[] = location.split(", ");
+			this.setLocationInInterfaceBuilder(
+					Float.parseFloat(strs[0]), Float.parseFloat(strs[1]));
+		}
+	}
+	
+	public void setLocationInInterfaceBuilder(float x, float y) {
+		this.setLocationInInterfaceBuilder(new Point(x, y));
+	}
+	
+	public void setLocationInInterfaceBuilder(Point location) {
+		this.mLocationInInterfaceBuilder = location;
+		this.mParent.setLocationInView(location);
+	}
+	
+	public Point getLocationInInterfaceBuilder() {
+		return this.mLocationInInterfaceBuilder;
+	}
+	
+	protected boolean mIsAddToInterfaceBuilder;
+	
 	private String mId;
 	private String mImageViewId;
 	private String mRealPath;
@@ -297,4 +438,7 @@ public class Image implements Comparable<Image> {
 	private float mY;
 	private CommonObject mParent;
 	private Point mAnchorPoint;
+	private int mTabCount;
+	private String mXmlTagName;
+	private Point mLocationInInterfaceBuilder;
 }

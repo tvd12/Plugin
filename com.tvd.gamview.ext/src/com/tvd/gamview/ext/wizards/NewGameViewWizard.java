@@ -23,6 +23,7 @@ public class NewGameViewWizard extends Wizard implements INewWizard {
 
 	public NewGameViewWizard() {
 		this.setWindowTitle(MessageUtils.getString("window_title"));
+		this.mType = "popup";
 	}
 
 	@Override
@@ -86,7 +87,7 @@ public class NewGameViewWizard extends Wizard implements INewWizard {
 				duplicate = true;
 			}
 			
-			ProjectUtils.createXMLFileWithBuilder(project, xmlBuilder, true);
+			ProjectUtils.createXMLFileWithBuilder(project, xmlBuilder, mType, true);
 			
 			//update tree view part
 			if(!duplicate) {
@@ -121,5 +122,7 @@ public class NewGameViewWizard extends Wizard implements INewWizard {
 	private WizardPage mNewGameViewFilePage;
 //	private IWorkbench workbench;
 	private IStructuredSelection selection;
+	
+	protected String mType;
 
 }

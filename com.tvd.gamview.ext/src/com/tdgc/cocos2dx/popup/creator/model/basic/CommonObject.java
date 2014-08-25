@@ -11,6 +11,7 @@ import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
+import com.tdgc.cocos2dx.popup.creator.validate.Validator;
 
 public abstract class CommonObject {
 	
@@ -24,6 +25,10 @@ public abstract class CommonObject {
 		mSuper = Config.getInstance().getDefautSuper(mPrefix);
 		mZIndex = "0";
 		mAnchorPoint = new Point(0.5f, 0.5f);
+		mAnchorPointString = "0.5, 0.5";
+		mPosition = new Point(0, 0);
+		mTabCount = 0;
+		mPositionNamePrefix = "";
 	}
 	
 	public abstract String declare();
@@ -51,7 +56,6 @@ public abstract class CommonObject {
 		if(mPositionString != null 
 				&& mPositionName != null
 				&& !mPositionString.equals(Strings.DEFAULT)) {
-			System.out.println("positionString " + mPositionString);
 			template = template.replace("{var_name}", mPositionName)
 					.replace("{position}", mPositionString);
 			builder.append(template);
@@ -60,8 +64,13 @@ public abstract class CommonObject {
 		return builder.toString().trim();
 	}
 	
+	//change
+	public void setPositionName(String pPrefix, String pPositionName) {
+		this.mPositionNamePrefix = pPrefix;
+		this.setPositionName(pPositionName);
+	}
 	public void setPositionName(String pPositionName) {
-		
+		try {
 		//name of position in xml file, it must not change
 		mXmlPositionName = pPositionName;
 		
@@ -77,20 +86,16 @@ public abstract class CommonObject {
 			pPositionName = pPositionName.replace(Tag.POSITION, "place");
 		}
 		this.mPositionName = pPositionName.toUpperCase() + "_" + mSuffix.toUpperCase();
-		this.mPositionName = Config.getInstance().getPrefix().toUpperCase() + "_" + mPositionName 
+		this.mPositionName = mPositionNamePrefix.toUpperCase() + "_" + mPositionName 
 				+ "_POSITION";
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setNewPositionName(String pPositionName) {
 		mPositionName = pPositionName;
-	}
-	
-	public String toAnchorPointString() {
-		String result = "";
-		if(mAnchorPoint != null) {
-			result = mName + "->setAnchorPoint(" + mAnchorPoint + ");";
-		}
-		return result;
 	}
 	
 	public String getInfunctionName() {
@@ -130,14 +135,10 @@ public abstract class CommonObject {
 		return this.mSuffix;
 	}
 	
-	public void setAnchorPoint(Point pPoint) {
-		this.mAnchorPoint = pPoint;
+	public void addItemGroup(ItemGroup group) {
+		group.setContainer(this);
+		group.pushBack();
 	}
-	
-	public void setAnchorPoint(float pX, float pY) {
-		this.mAnchorPoint  = new Point(pX, pY);
-	}
-	
 	
 	public void addMenuItemGroup(ItemGroup pMenuItemGroup) {
 		this.mMenuItemGroups.add(pMenuItemGroup);
@@ -179,24 +180,27 @@ public abstract class CommonObject {
 	
 	public void setType(String pType) {
 		this.mType = pType;
+		this.mPositionNamePrefix = pType;
 	}
 	
 	public String getType() {
 		return this.mType;
 	}
 	
+	//==========set and get position==========
 	public void setPosition(Point pPosition) {
 		this.mPosition = pPosition;
+		this.mPositionString = pPosition.toString();
 	}
 	
 	public void setPosition(float pX, float pY) {
-		this.mPosition = new Point(pX, pY);
+		this.setPosition(new Point(pX, pY));
 	}
 	
 	public void setPosition(String pPosition) {
 		this.mPositionString = pPosition;
-		
-		if(pPosition != null && !pPosition.equals(Strings.DEFAULT)) {
+		if(!pPosition.equals(Strings.DEFAULT)
+				&& Validator.isValidDoubleValueString(pPosition)) {
 			String strs[] = pPosition.split(",");
 			setPosition(Float.parseFloat(strs[0]), 
 					Float.parseFloat(strs[1]));
@@ -211,16 +215,25 @@ public abstract class CommonObject {
 		return this.mPositionString;
 	}
 	
+	//========== end set and get position==========
+	
+	//========== set and get anchorpoint==========
+	public void setAnchorPoint(Point pPoint) {
+		this.mAnchorPoint = pPoint;
+		this.mAnchorPointString = pPoint.toString();
+	}
+	
+	public void setAnchorPoint(float pX, float pY) {
+		setAnchorPoint(new Point(pX, pY));
+	}
+	
 	public void setAnchorPoint(String pAnchorPoint) {
-		this.mAnchorPointString = pAnchorPoint;
-		
-		if(pAnchorPoint == null || pAnchorPoint.equals("default")) {
-			return;
+		if(!pAnchorPoint.equals(Strings.DEFAULT)
+				&& Validator.isValidDoubleValueString(pAnchorPoint)) {
+			String values[] = pAnchorPoint.split(",");
+			this.setAnchorPoint(new Point(Float.parseFloat(values[0]),
+					Float.parseFloat(values[1])));
 		}
-
-		String values[] = pAnchorPoint.split(",");
-		mAnchorPoint = new Point(Float.parseFloat(values[0]),
-				Float.parseFloat(values[1]));
 	}
 	
 	public String getAnchorPointString() {
@@ -231,6 +244,39 @@ public abstract class CommonObject {
 		return this.mDeclareObjectName;
 	}
 	
+	//========== end set and get anchorpoint==========
+	
+	//========== set and get size==========
+	public void setSize(Size size) {
+		this.mSize = size;
+		this.mSizeString = size.toString();
+	}
+	
+	public void setSize(float w, float h) {
+		setSize(new Size(w, h));
+	}
+	
+	public Size getSize() {
+		return mSize;
+	}
+	
+	public void setSize(String pSize) {
+		this.mSizeString = pSize;
+		
+		if(!pSize.equals(Strings.DEFAULT)
+				&& Validator.isValidDoubleValueString(pSize)) {
+			String strs[] = pSize.split(",");
+			setSize(Float.parseFloat(strs[0]), 
+					Float.parseFloat(strs[1]));
+		}
+	}
+	
+	public String getSizeString() {
+		return this.mSizeString;
+	}
+	
+	//========== end set and get size==========
+	
 	public void setParent(CommonObject pParent) {
 		this.mParent = pParent;
 	}
@@ -239,14 +285,6 @@ public abstract class CommonObject {
 		return this.mParent;
 	}
 	
-	public void setSize(String pSize) {
-		this.mSizeString = pSize;
-		
-	}
-	
-	public String getSizeString() {
-		return this.mSizeString;
-	}
 	
 	public CommonObject getBackground() {
 		return this.mBackground;
@@ -271,7 +309,13 @@ public abstract class CommonObject {
 	}
 	
 	public void setZIndex(String pZIndex) {
-		this.mZIndex = pZIndex;
+		if(Validator.isNumeric(pZIndex)) {
+			this.mZIndex = pZIndex;
+		}
+	}
+	
+	public void setZIndex(int zIndex) {
+		this.mZIndex = "" + zIndex;
 	}
 	
 	public String getZIndex() {
@@ -320,21 +364,6 @@ public abstract class CommonObject {
 		return builder.toString();
 	}
 	
-	protected String creatExtendFunctionsByGroup(List<ItemGroup> pObjs) {
-		StringBuilder builder = new StringBuilder();
-		for(int i = 0 ; i < pObjs.size() ; i++) {
-			builder.append(pObjs.get(i).createExtendFunction())
-				.append("\n");
-		}
-		return builder.toString();
-	}
-	
-	protected void setPrefixForItemsGroup(List<ItemGroup> pObjs) {
-		for(int i = 0 ; i < pObjs.size() ; i++) {
-			pObjs.get(i).setPrefix(mPrefix);
-		}
-	}
-	
 	public void setProject(IProject project) {
 		this.mProject = project;
 	}
@@ -358,25 +387,16 @@ public abstract class CommonObject {
 		setLocationInView(new Point(x, y));
 	}
 	
+	public void setLocationInView(String location) {
+		if(Validator.isValidDoubleValueString(location)) {
+			String xy[] = location.split(",");
+			this.setLocationInView(Float.parseFloat(xy[0]), 
+					Float.parseFloat(xy[1]));
+		}
+	}
+	
 	public Point getLocationInView() {
 		return mLocationInView;
-	}
-	
-	public void setSize(Size size) {
-		this.mSize = size;
-	}
-	
-	public void setSize(float w, float h) {
-		setSize(new Size(w, h));
-	}
-	
-	public Size getSize() {
-		if(mSizeString != null) {
-			String strs[] = mSizeString.split(", ");
-			setSize(Float.parseFloat(strs[0]), 
-					Float.parseFloat(strs[1]));
-		}
-		return mSize;
 	}
 	
 	public String getXmlPositionName() {
@@ -419,6 +439,51 @@ public abstract class CommonObject {
 		return this.mTableGroups;
 	}
 	
+	public void setTabCount(int tabCount) {
+		this.mTabCount = tabCount;
+	}
+	
+	public int getTabCount() {
+		return this.mTabCount;
+	}
+	
+	/**
+	 * to xml implement
+	 * @return
+	 */
+	public String toXML() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(buildXMLFromItemGroups(mSpriteGroups))
+			.append(buildXMLFromItemGroups(mLabelGroups))
+			.append(buildXMLFromItemGroups(mMenuGroups))
+			.append(buildXMLFromItemGroups(mMenuItemGroups))
+			.append(buildXMLFromItemGroups(mTableGroups));
+		
+		return builder.toString();
+		
+	}
+	
+	private StringBuilder buildXMLFromItemGroups(List<ItemGroup> groups) {
+		StringBuilder builder = new StringBuilder();
+		for(int i = 0 ; i < groups.size() ; i++) {
+			builder.append(groups.get(i).toXML());
+		}
+		
+		return builder;
+	}
+	
+	public void setVisible(boolean visible) {
+		this.mVisible = visible;
+	}
+	
+	public boolean getVisible() {
+		return this.mVisible;
+	}
+	
+	public String getPositionNamePrefix() {
+		return mPositionNamePrefix;
+	}
+	
 	public void setAllPropertiesForObject(CommonObject obj) {
 		obj.mTagName = mTagName;
 		obj.mViewType = mViewType;
@@ -457,12 +522,11 @@ public abstract class CommonObject {
 		obj.mProject = mProject;
 	}
 	
- 	
 	protected String mTagName;
 	protected int mViewType;
-	public String mXmlPositionName;
-	public Point mLocationInView;
-	public Size mSize;
+	protected String mXmlPositionName;
+	protected Point mLocationInView;
+	protected Size mSize;
 	
 	protected List<ItemGroup> mMenuItemGroups;
 	protected List<ItemGroup> mLabelGroups;
@@ -491,6 +555,10 @@ public abstract class CommonObject {
 	protected boolean mIsBackground;
 	protected boolean mIsUnlocated;
 	protected String mZIndex;
+	protected int mTabCount;
+	protected String mXmlTagName;
+	protected boolean mVisible;
+	protected String mPositionNamePrefix;
 	
 	protected IProject mProject;
 }
