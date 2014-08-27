@@ -36,4 +36,6 @@ public interface Attribute {
 	public static final String FAMILY			= "family";
 	
 	public static final String BACKGROUND_NAME 	= "background-name";
+	public static final String TEMPLATE			= "template";
+	
 }

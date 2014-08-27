@@ -309,6 +309,7 @@ public class ItemGroup {
 		public static final int LABLE 		= 1004;
 		public static final int VIEW 		= 1005;
 		public static final int RESOURCE 	= 1006;
+		public static final int PROGRESSBAR = 1007;
 	}
 	
 	private String comment(int pNumberOfTab) {

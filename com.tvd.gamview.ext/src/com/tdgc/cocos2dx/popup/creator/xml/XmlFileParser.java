@@ -16,6 +16,7 @@ import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
 import com.tdgc.cocos2dx.popup.creator.model.Label;
 import com.tdgc.cocos2dx.popup.creator.model.Menu;
 import com.tdgc.cocos2dx.popup.creator.model.MenuItem;
+import com.tdgc.cocos2dx.popup.creator.model.Progressbar;
 import com.tdgc.cocos2dx.popup.creator.model.Resources;
 import com.tdgc.cocos2dx.popup.creator.model.Sprite;
 import com.tdgc.cocos2dx.popup.creator.model.Table;
@@ -45,13 +46,15 @@ public class XmlFileParser extends DefaultHandler {
 			mView.setComment(getAttributeValue(Attribute.COMMENT, atts));
 			mCurrentObject = mView;
 			mPositionPrefix = mView.getPositionNamePrefix();
+			mAdvancedObject = mView;
 		} else if(qName.equals(Tag.SPRITE)
 				|| qName.equals(Tag.TABLE)
 				|| qName.equals(Tag.MENU)
 				|| qName.equals(Tag.MENUITEM)
 				|| qName.equals(Tag.LABEL)
 				|| qName.equals(Tag.RESOURCES)
-				|| qName.equals(Tag.CELL)) {
+				|| qName.equals(Tag.CELL)
+				|| qName.equals(Tag.PROGRESSBAR)) {
 			CommonObject parent = mCurrentObject;
 			if(qName.equals(Tag.SPRITE)) {
 				mCurrentObject = new Sprite();
@@ -87,16 +90,25 @@ public class XmlFileParser extends DefaultHandler {
 				mCell.setPrefix(getAttributeValue(Attribute.PREFIX, atts));
 				mCell.setSuper(getAttributeValue(Attribute.SUPER, atts));
 				mCurrentObject = mCell;
+				mCell.setAdvanceParent(mAdvancedObject);
+				mAdvancedObject = mCell;
+			}
+			else if(qName.equals(Tag.PROGRESSBAR)) {
+				Progressbar progressbar = new Progressbar();
+				progressbar.setTemplateName(getAttributeValue(Attribute.TEMPLATE, atts));
+				mCurrentObject = progressbar;
+				mAdvancedObject.addProgressbars(progressbar);
 			}
 			
-			if(!qName.equals(Tag.CELL)) {
-				mCurrentGroup.addItem(mCurrentObject);
-			}
 			mCurrentObject.setComment(
 					getAttributeValue(Attribute.COMMENT, atts));
 			mCurrentObject.setVisible(getBoolean(
 					getAttributeValue(Attribute.VISIBLE, atts)));
 			mCurrentObject.setParent(parent);
+			
+			if(mCurrentObject.isAddToGroup()) {
+				mCurrentGroup.addItem(mCurrentObject);
+			}
 		}
 		
 		else if(qName.equals(Tag.IMAGE)) {
@@ -206,7 +218,6 @@ public class XmlFileParser extends DefaultHandler {
 			Label label = (Label)mCurrentObject;
 			label.setFontName(getAttributeValue(Attribute.NAME, atts));
 			label.setFontFamily(getAttributeValue(Attribute.FAMILY, atts));
-			label.setFontSizeVar(getAttributeValue(Attribute.VARNAME, atts));
 		}
 		else if(qName.equals(Tag.FONT_SIZE)) {
 			Label label = (Label)mCurrentObject;
@@ -222,6 +233,24 @@ public class XmlFileParser extends DefaultHandler {
 		}
 		else if(qName.equals(Tag.SIZE)) {
 			mCurrentObject.setSize(getAttributeValue(Attribute.VALUE, atts));
+		}
+		else if(qName.equals(Tag.TYPE)
+				|| qName.equals(Tag.MID_POINT)
+				|| qName.equals(Tag.BAR_CHANGE_RATE)
+				|| qName.equals(Tag.PERCENT)) {
+			if(mCurrentObject instanceof Progressbar) {
+				Progressbar progressbar = (Progressbar)mCurrentObject;
+				String value = getAttributeValue(Attribute.VALUE, atts);
+				if(qName.equals(Tag.TYPE)) {
+					progressbar.setType(value);
+				} else if(qName.equals(Tag.MID_POINT)) {
+					progressbar.setMidPoint(value);
+				} else if(qName.equals(Tag.BAR_CHANGE_RATE)) {
+					progressbar.setBarChangeRate(value);
+				} else if(qName.equals(Tag.PERCENT)) {
+					progressbar.setPercent(value);
+				}
+			}
 		}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -265,13 +294,16 @@ public class XmlFileParser extends DefaultHandler {
 				|| qName.equals(Tag.MENUITEM)
 				|| qName.equals(Tag.MENU)
 				|| qName.equals(Tag.LABEL)
-				|| qName.equals(Tag.RESOURCES)) {
-			mCurrentObject = mCurrentGroup.getContainer();
+				|| qName.equals(Tag.RESOURCES)
+				|| qName.equals(Tag.PROGRESSBAR)) {
+			mCurrentObject.update();
+			mCurrentObject = mCurrentObject.getParent();
 		} 
 		else if(qName.equals(Tag.CELL)) {
 			((Table)mCurrentObject.getParent())
 				.addCell((Cell)mCurrentObject);
 			mCurrentObject = mCurrentObject.getParent();
+			mAdvancedObject = mAdvancedObject.getAdvanceParent();
 		}
 		else if(qName.equals(Tag.VIEW)) {
 			Collections.sort(mView.getImages());
@@ -331,32 +363,20 @@ public class XmlFileParser extends DefaultHandler {
 	}
 	
 	private void addGroupToView(ItemGroup group) {
-		CommonObject container = group.getContainer();
-		while(container != null) {
-			switch (container.getViewType()) {
-			case Constants.ViewType.CELL:
-				((AdvancedObject)mCell).pushBackGroup(group);
-				return;
-			case Constants.ViewType.VIEW:
-				((AdvancedObject)mView).pushBackGroup(group);
-				return;
-			default:
-				break;
-			}
-			container = container.getParent();
-		}
+		mAdvancedObject.pushBackGroup(group);
 	}
 	
 	public View getView() {
 		return this.mView;
 	}
 	
-	private Resources mCurrentResources;
-	private CommonObject mCurrentObject;
-	private ItemGroup mCurrentGroup;
-    private View mView;
-    private Cell mCell;
-    private Image mCurrentImage;
-    private Parameter mCurrentParameter;
-    private String mPositionPrefix;
+	protected Resources mCurrentResources;
+	protected CommonObject mCurrentObject;
+	protected ItemGroup mCurrentGroup;
+	protected View mView;
+	protected Cell mCell;
+	protected AdvancedObject mAdvancedObject;
+	protected Image mCurrentImage;
+	protected Parameter mCurrentParameter;
+	protected String mPositionPrefix;
 }

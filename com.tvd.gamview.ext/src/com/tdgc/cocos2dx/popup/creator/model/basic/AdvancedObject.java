@@ -10,6 +10,7 @@ import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
 import com.tdgc.cocos2dx.popup.creator.model.Menu;
+import com.tdgc.cocos2dx.popup.creator.model.Progressbar;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 import com.tdgc.cocos2dx.popup.creator.utils.ViewUtils;
 
@@ -24,6 +25,7 @@ public class AdvancedObject extends CommonObject {
 		this.mMenuItemGroupInView = new ArrayList<ItemGroup>();
 		this.mMenuGroupInView = new ArrayList<ItemGroup>();
 		this.mTableGroupInView = new ArrayList<ItemGroup>();
+		this.mProgressGroup = new ItemGroup(ItemGroup.Type.PROGRESSBAR);
 		
 		this.mImplementingTplPath = "src/com/template/popup_default_implementing.template";
 		this.mHeaderTplPath = "src/com/template/popup_default_header.template";
@@ -31,6 +33,7 @@ public class AdvancedObject extends CommonObject {
 		this.mHeaderTemplate = "declare";
 		this.mSuper = Config.getInstance().getDefautSuper(mSuffix);
 		this.mBackgroundName = Strings.DEFAULT;
+		this.mIsNewClass = true;
 		
 	}
 	
@@ -46,6 +49,8 @@ public class AdvancedObject extends CommonObject {
 			.append(ViewUtils.declareGroups(mMenuGroupInView))
 			.append("\n")
 			.append(ViewUtils.declareGroups(mTableGroupInView))
+			.append("\n")
+			.append(mProgressGroup.declare())
 			.toString();
 		
 		Date createdDate = Calendar.getInstance().getTime();
@@ -106,6 +111,7 @@ public class AdvancedObject extends CommonObject {
 						ViewUtils.implementGroups(mLabelGroupInView)))
 				.replace("//{add_tables}", StringUtils.standardizeCode(
 						ViewUtils.implementGroups(mTableGroupInView)))
+				.replace("//{add_progressbars}", mProgressGroup.implement(false))
 				.replace("//{extend_functions}", StringUtils.standardizeCode(
 						createExtendFunctions(false)))
 				.replace("{callback_function}", classNamePrefix + "MenuItemCallback")
@@ -286,6 +292,22 @@ public class AdvancedObject extends CommonObject {
 		return mBackgroundName;
 	}
 	
+	public void addProgressbars(Progressbar bar) {
+		this.mProgressGroup.addItem(bar);
+	}
+	
+	public ItemGroup getProgressbars() {
+		return this.mProgressGroup;
+	}
+	
+	public void setAdvanceParent(AdvancedObject parent) {
+		this.mAdvanceParent = parent;
+	}
+	
+	public AdvancedObject getAdvanceParent() {
+		return this.mAdvanceParent;
+	}
+	
 	@Override
 	public CommonObject clone() {
 		AdvancedObject obj = new AdvancedObject();
@@ -320,5 +342,7 @@ public class AdvancedObject extends CommonObject {
 	protected List<ItemGroup> mMenuItemGroupInView;
 	protected List<ItemGroup> mMenuGroupInView;
 	protected List<ItemGroup> mTableGroupInView;
+	private ItemGroup mProgressGroup;
+	private AdvancedObject mAdvanceParent;
 	
 }

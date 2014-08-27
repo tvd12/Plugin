@@ -13,26 +13,26 @@
 		<item value="true" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="LocationInView" key="selection"/>
+		<item value="mProgressGroup" key="selection"/>
 		<list key="findhistory">
-			<item value="LocationInView"/>
-			<item value="mSize"/>
-			<item value="positionString"/>
-			<item value="mArrayLength"/>
-			<item value="&gt; 1"/>
-			<item value="fet"/>
-			<item value="fetc"/>
-			<item value="fetcg"/>
+			<item value="mProgressbars"/>
+			<item value="setParent"/>
+			<item value="setSi"/>
+			<item value="setPa"/>
+			<item value="setP"/>
+			<item value="anchorpointtype"/>
+			<item value="image"/>
+			<item value="progressbar"/>
 		</list>
 		<list key="replacehistory">
+			<item value="mProgressGroup"/>
+			<item value="xs:string"/>
+			<item value="createItemGroup"/>
+			<item value="&lt;xs:attribute name=&quot;length&quot; type=&quot;xs:integer&quot; use=&quot;optional&quot; /&gt;"/>
 			<item value="mArrayLength"/>
 			<item value="setFontSizeVar"/>
 			<item value=" = ;"/>
 			<item value=""/>
-			<item value="protected String "/>
-			<item value="public Point "/>
-			<item value="&lt;xs:attribute name=&quot;array&quot; type=&quot;xs:boolean&quot; use=&quot;optional&quot; /&gt;"/>
-			<item value="mAnchorPoint"/>
 		</list>
 	</section>
 </section>

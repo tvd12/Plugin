@@ -54,7 +54,8 @@ public class Label extends CommonObject {
 		String template = new FileUtils().fetchTemplate(templateName, 
 				"src/com/template/new_label.template", getProject());
 		
-		String parentName = Config.getInstance().getDefaultParentPopup();
+		String parentName = Config.getInstance()
+				.getDefaultParentForProperties(mParent.getType());
 		if(mParent != null) {
 			parentName = mParent.getName();
 		}

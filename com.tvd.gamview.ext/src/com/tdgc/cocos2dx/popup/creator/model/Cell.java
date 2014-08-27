@@ -24,6 +24,7 @@ public class Cell extends AdvancedObject {
 		mSuper = Config.getInstance()
 				.getDefaultSupers().get(mSuffix);
 		mXmlTagName = Tag.CELL;
+		mIsAddToGroup = false;
 	}
 	
 	@Override

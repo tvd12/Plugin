@@ -36,12 +36,8 @@ public class Config {
 		return mDefaultSupers.get(pViewType);
 	}
 	
-	public String getDefaultParentForProperty(String pViewType) {
+	public String getDefaultParentForProperties(String pViewType) {
 		return mDefaultParentsForProperties.get(pViewType);
-	}
-	
-	public String getDefaultParentPopup() {
-		return "mBackgroundSprite";
 	}
 	
 	public String getProjectName() {

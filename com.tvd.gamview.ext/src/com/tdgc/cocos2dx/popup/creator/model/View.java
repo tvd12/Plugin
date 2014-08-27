@@ -37,7 +37,6 @@ public class View extends AdvancedObject {
 		super();
 		this.mViewType = Constants.ViewType.VIEW;
 		this.mSuffix = "popup";
-		this.mName = Config.getInstance().getDefaultParentPopup();
 		this.mImages = new ArrayList<Image>();
 		this.mResources = new ArrayList<Resources>();
 		this.mScreenContainerPath = 
@@ -465,7 +464,7 @@ public class View extends AdvancedObject {
 	@Override
 	public String getName() {
 		if(mBackgroundName == null || mBackgroundName.equals(Strings.DEFAULT)) {
-			mBackgroundName = Config.getInstance().getDefaultParentForProperty(mType);
+			mBackgroundName = Config.getInstance().getDefaultParentForProperties(mType);
 		}
 		return mBackgroundName;
 	}

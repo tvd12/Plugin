@@ -369,33 +369,6 @@ public class Image implements Comparable<Image> {
 		return this.mTabCount;
 	}
 	
-	public String toXML(boolean includeSize) {
-		String tab = StringUtils.tab(mTabCount);
-		StringBuilder builder = new StringBuilder(tab);
-		builder.append("<" + mXmlTagName + " ")
-			.append(Attribute.ID + "=\"" + mId + "\" ")
-			.append("\n" + tab + "\t");
-		builder.append(Attribute.LOCATION_IN_INTERFACEBUILDER + "=\"") 
-			.append(mLocationInInterfaceBuilder + "\"");
-			
-		if(includeSize && mSize != null) {
-			builder.append("\n" + tab + "\t");
-			builder.append(Attribute.WIDTH + "=\"" + mSize.getWidth() + "\" ")
-				.append(Attribute.HEIGHT + "=\"" + mSize.getHeight() + "\"");
-		} 
-		if(mPhonyPath != null) {
-			builder.append("\n" + tab + "\t")
-				.append(Attribute.PHONY_PATH + "=\"" + mPhonyPath + "\" ");
-		}
-		builder.append(" />");
-		
-		return builder.toString();
-	}
-	
-	public String toXML() {
-		return toXML(true);
-	}
-	
 	public void setAddToInterfaceBuilder(boolean value) {
 		this.mIsAddToInterfaceBuilder = value;
 	}
@@ -423,6 +396,35 @@ public class Image implements Comparable<Image> {
 	
 	public Point getLocationInInterfaceBuilder() {
 		return this.mLocationInInterfaceBuilder;
+	}
+	
+	public String toXML(boolean includeSize) {
+		String tab = StringUtils.tab(mTabCount);
+		StringBuilder builder = new StringBuilder(tab);
+		builder.append("<" + mXmlTagName + " ")
+			.append(Attribute.ID + "=\"" + mId + "\" ");
+		if(!mParent.isUnlocated()) {
+			builder.append("\n" + tab + "\t")
+				.append(Attribute.LOCATION_IN_INTERFACEBUILDER + "=\"") 
+				.append(mLocationInInterfaceBuilder + "\"");
+				
+			if(includeSize && mSize != null) {
+				builder.append("\n" + tab + "\t");
+				builder.append(Attribute.WIDTH + "=\"" + mSize.getWidth() + "\" ")
+					.append(Attribute.HEIGHT + "=\"" + mSize.getHeight() + "\"");
+			} 
+		}
+		if(mPhonyPath != null) {
+			builder.append("\n" + tab + "\t")
+				.append(Attribute.PHONY_PATH + "=\"" + mPhonyPath + "\" ");
+		}
+		builder.append(" />");
+		
+		return builder.toString();
+	}
+	
+	public String toXML() {
+		return toXML(true);
 	}
 	
 	protected boolean mIsAddToInterfaceBuilder;

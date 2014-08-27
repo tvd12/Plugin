@@ -38,7 +38,8 @@ public class Table extends CommonObject {
 //		String template = new FileUtils().fetchTemplate("TableView", 
 //				"src/com/template/new_table.template", getProject());
 		
-		String parentName = Config.getInstance().getDefaultParentPopup();
+		String parentName = Config.getInstance()
+				.getDefaultParentForProperties(mParent.getType());
 		if(mParent != null) {
 			parentName = mParent.getName();
 		}

@@ -62,7 +62,8 @@ public class Sprite extends CommonObject {
 			imageName = mImage.getId();
 		}
 		
-		String parentName = Config.getInstance().getDefaultParentPopup();
+		String parentName = Config.getInstance()
+				.getDefaultParentForProperties(mParent.getType());
 		if(mParent != null) {
 			parentName = mParent.getName();
 		}
@@ -100,6 +101,11 @@ public class Sprite extends CommonObject {
 		super.setSize(size);
 	}
 	
+	@Override
+	public void setParent(CommonObject parent) {
+		super.setParent(parent);
+	}
+	
 	public void setImage(Image pImage) {
 		this.mImage = pImage;
 	}
@@ -110,6 +116,14 @@ public class Sprite extends CommonObject {
 	
 	public void setUnlocated(boolean unlocated) {
 		this.mIsUnlocated = unlocated;
+	}
+	
+	public void setProgressbar(Progressbar bar) {
+		this.mProgressbar = bar;
+	}
+	
+	public Progressbar getProgressbar() {
+		return this.mProgressbar;
 	}
 	
 	@Override
@@ -144,12 +158,15 @@ public class Sprite extends CommonObject {
 		} else {
 			builder.append(Attribute.UNLOCATED + "=\"true\" />");
 		}
-		
 		builder.append("\n" + mImage.toXML());
 		
 		builder.append("\n")
-			.append(super.toXML())
-			.append(tab)
+			.append(super.toXML());
+			
+		if(mProgressbar != null) {
+			builder.append(mProgressbar.toXML());
+		}
+		builder.append(tab)
 			.append("</" + mXmlTagName + ">");
 		
 		builder.append("\n");
@@ -157,14 +174,6 @@ public class Sprite extends CommonObject {
 		return builder.toString();
 	}
 	
-	@Override
-	public void setParent(CommonObject parent) {
-		super.setParent(parent);
-		if(parent instanceof MenuItem) {
-			mIsUnlocated = true;
-		}
-	}
-	
-	protected boolean mIsUnlocated;
 	protected Image mImage;
+	protected Progressbar mProgressbar;
 }

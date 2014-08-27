@@ -27,30 +27,6 @@ public class MenuItem extends CommonObject {
 		mSuffix = "MenuItem";
 	}
 	
-	public MenuItem(String pName, String pNormalImage, String pSelectedImage) {
-		super();
-		this.mName = pName;
-		mSuffix = "MenuItem";
-		this.mNormalImage = pNormalImage;
-		this.mSelectedImage = pSelectedImage;
-	}
-	
-	public void setNormalImage(String pNormalImage) {
-		this.mNormalImage = pNormalImage;
-	}
-	
-	public void setSelectedImage(String pSelectedImage) {
-		this.mSelectedImage = pSelectedImage;
-	}
-	
-	public String getNormalImage() {
-		return this.mNormalImage;
-	}
-	
-	public String getSelectedImage() {
-		return this.mSelectedImage;
-	}
-	
 	@Override
 	public void setPositionName(String pPositionName) {
 		super.setPositionName(pPositionName);
@@ -76,7 +52,8 @@ public class MenuItem extends CommonObject {
 		String template = new FileUtils().fetchTemplate(templateName, 
 				"src/com/template/new_menuitem.template", getProject());
 		
-		String parentName = Config.getInstance().getDefaultParentPopup();
+		String parentName = Config.getInstance()
+				.getDefaultParentForProperties(mParent.getType());
 		if(mParent != null) {
 			parentName = mParent.getName();
 		}
@@ -124,14 +101,23 @@ public class MenuItem extends CommonObject {
 	@Override
 	public void addSpriteGroup(ItemGroup group) {
 		super.addSpriteGroup(group);
+	}
+	
+	@Override
+	public void update() {
 		if(validate()) {
 			ItemGroup spriteGroup = this.mSpriteGroups.get(0);
 			for(int i = 1 ; i < spriteGroup.getItems().size() ; i++) {
 				((Sprite)spriteGroup.getItems().get(i))
 					.getImage().setAddToInterfaceBuilder(false);
 			}
-			group.setAddToView(false);
+			spriteGroup.setAddToView(false);
 		}
+	}
+	
+	@Override
+	public void addChild(CommonObject child) {
+		child.setIsUnlocated(true);
 	}
 	
 	@Override
@@ -142,6 +128,22 @@ public class MenuItem extends CommonObject {
 	@Override
 	public Size getSize() {
 		return mParent.getSize();
+	}
+	
+	public boolean validate() {
+		boolean valid = true;
+		if(mSpriteGroups.size() != 1) {
+			valid = false;
+		} else {
+			int size = mSpriteGroups.get(0).getItems().size();
+			if(size < 2 || size > 3) {
+				valid = false;
+			} else {
+				
+			}
+		}
+		
+		return valid;
 	}
 	
 	@Override
@@ -172,23 +174,5 @@ public class MenuItem extends CommonObject {
 		
 		return builder.toString();
 	}
-	
-	public boolean validate() {
-		boolean valid = true;
-		if(mSpriteGroups.size() != 1) {
-			valid = false;
-		} else {
-			int size = mSpriteGroups.get(0).getItems().size();
-			if(size < 2 || size > 3) {
-				valid = false;
-			} else {
-				
-			}
-		}
-		
-		return valid;
-	}
-	
-	protected String mNormalImage;
-	protected String mSelectedImage;
+
 }

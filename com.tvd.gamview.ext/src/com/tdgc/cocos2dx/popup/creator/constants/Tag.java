@@ -42,4 +42,12 @@ public interface Tag {
 	public static final String LOCATION_IN_INTERFACEBUILDER = "location-in-interfacebuilder";
 	
 	public static final String FONT_DESCRIPTION = "fontDescription";
+	
+	//progressbar
+	public static final String PROGRESSBARS		= "progressbars";
+	public static final String PROGRESSBAR		= "progressbar";
+	public static final String TYPE				= "type";
+	public static final String MID_POINT		= "mid-point";
+	public static final String BAR_CHANGE_RATE	= "bar-change-rate";
+	public static final String PERCENT			= "percent";
 }

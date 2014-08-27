@@ -11,6 +11,7 @@ import com.tdgc.cocos2dx.popup.creator.model.Image;
 import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
 import com.tdgc.cocos2dx.popup.creator.model.Menu;
 import com.tdgc.cocos2dx.popup.creator.model.MenuItem;
+import com.tdgc.cocos2dx.popup.creator.model.Progressbar;
 import com.tdgc.cocos2dx.popup.creator.model.Resources;
 import com.tdgc.cocos2dx.popup.creator.model.Sprite;
 import com.tdgc.cocos2dx.popup.creator.model.Table;
@@ -109,14 +110,19 @@ public class XmlViewCreator {
 	 */
 	private void createSpriteItems(CommonObject pParent, String pParentPath,
 			boolean pSetPosition) {
-		ItemGroup items = createGroupItem(pParent, ItemGroup.Type.SPRITE);
+		ItemGroup items = createItemGroup(pParent, ItemGroup.Type.SPRITE);
+		Sprite sprite = null;
 		for(int i = 0 ; i < mFilePaths.size() ;) {
 			String fullPath = mFilePaths.get(i);
-//			System.out.println("createSpriteItems::fullpath = " + fullPath);
+			System.out.println("createSpriteItems::fullpath = " + fullPath);
 			if(!fullPath.contains(pParentPath)) {
 				break;
-			}
-			Sprite sprite = new Sprite();
+			} else if(fullPath.endsWith(Tag.PROGRESSBAR)) {
+				mFilePaths.remove(i);
+				createProgressbarItem(sprite, fullPath);
+				continue;
+			} 
+			sprite = new Sprite();
 			sprite.setParent(pParent);
 			items.addItem(sprite);
 			sprite.setVisible(true);
@@ -133,11 +139,10 @@ public class XmlViewCreator {
 			String posName = StringUtils.getSpritePostionName(fullPath);
 			sprite.setPositionName(mType, posName);
 			sprite.setZIndex(0);
-			
-			if(!fullPath.contains(".png")) {
+			if(!fullPath.endsWith(".png")) {
 				createImageTag(sprite, fullPath);
 				createNextItems(sprite, i, true);
-			} else if(fullPath.contains(".png")) {
+			} else if(fullPath.endsWith(".png")) {
 				Image image = createImageItem(sprite, fullPath);
 				sprite.setImage(image);
 				mFilePaths.remove(i);
@@ -149,7 +154,7 @@ public class XmlViewCreator {
 	
 	private void createMenuItemItems(CommonObject pParent, String pParentPath) {
 //		System.out.println("createMenuItemItems::parentpath = " + pParentPath);
-		ItemGroup items = createGroupItem(pParent, ItemGroup.Type.MENUITEM);
+		ItemGroup items = createItemGroup(pParent, ItemGroup.Type.MENUITEM);
 		for(int i = 0 ; i < mFilePaths.size() ; ) {
 			String fullPath = mFilePaths.get(i);
 //			System.out.println("createMenuItemItems::fullpath = " + fullPath);
@@ -165,7 +170,7 @@ public class XmlViewCreator {
 	}
 	
 	private void createMenuItems(CommonObject pParent, String pParentPath) {
-		ItemGroup items = createGroupItem(pParent, ItemGroup.Type.MENU);
+		ItemGroup items = createItemGroup(pParent, ItemGroup.Type.MENU);
 		for(int i = 0 ; i < mFilePaths.size() ; ) {
 			String fullPath = mFilePaths.get(i);
 //			System.out.println("createMenuItems::fullpath = " + fullPath);
@@ -181,7 +186,7 @@ public class XmlViewCreator {
 	}
 	
 	private void createTableItems(CommonObject pParent, String pParentPath) {
-		ItemGroup items = createGroupItem(pParent, ItemGroup.Type.TABLE);
+		ItemGroup items = createItemGroup(pParent, ItemGroup.Type.TABLE);
 		
 		for(int i = 0 ; i < mFilePaths.size() ; ) {
 			String fullPath = mFilePaths.get(i);
@@ -205,13 +210,13 @@ public class XmlViewCreator {
 			item.setComment("");
 			
 			mFilePaths.remove(i);
-			createCellItems(item, fullPath);
+			createCellItem(item, fullPath);
 			break;
 		}
 		createNextItems(pParent, 0, false);
 	}
 	
-	private void createCellItems(CommonObject pParent, String pParentPath) {
+	private void createCellItem(CommonObject pParent, String pParentPath) {
 		Cell item = new Cell();
 		item.setParent(pParent);
 		
@@ -246,6 +251,32 @@ public class XmlViewCreator {
 		}
 	}
 	
+	private void createProgressbarItem(CommonObject pParent, String pParentPath) {
+		Progressbar item = new Progressbar();
+		item.setParent(pParent);
+		item.setComment("");
+		item.setParent(pParent);
+		
+		for(int i = 0 ; i < mFilePaths.size() ; ) {
+			String fullPath = mFilePaths.get(i);
+			System.out.println("createProgressbarItem::fullpath = " + fullPath);
+			if(!fullPath.contains(pParentPath)) {
+				break;
+			}
+			Sprite sprite = new Sprite();
+			item.setSprite(sprite);
+			sprite.setParent(item);
+			
+			String posName = StringUtils.getSpritePostionName(fullPath);
+			sprite.setPositionName(mType, posName);
+			item.setPositionName(mType, posName);
+			sprite.setImage(createImageItem(sprite, fullPath));
+			item.getSprite().getImage().setAddToInterfaceBuilder(false);
+			createNextItems(sprite, i, true);
+			break;
+		}
+	}
+	
 	@SuppressWarnings("unused")
 	private void createResourceItem(CommonObject pParent, String pParentPath) {
 		Resources item = new Resources();
@@ -262,13 +293,19 @@ public class XmlViewCreator {
 		return mRootPath + ".xml";
 	}
 	
-	private ItemGroup createGroupItem(CommonObject pParent, int pType) {
+	private ItemGroup createItemGroup(CommonObject pParent, int pType, boolean addGroup) {
 		ItemGroup group = new ItemGroup(pType);
 		group.setIsArray(false);
-		pParent.addItemGroup(group);
+		if(addGroup) { 
+			pParent.addItemGroup(group);
+		}
 		group.setTabCount(pParent.getTabCount() + 1);
 		
 		return group;
+	}
+	
+	private ItemGroup createItemGroup(CommonObject pParent, int pType) {
+		return createItemGroup(pParent, pType, true);
 	}
 	
 	private CommonObject createItem(String pTag, String pFullPath, ItemGroup pGroup) {
@@ -316,7 +353,7 @@ public class XmlViewCreator {
 			else if(fullPath.equals(parentPath + "/" + Tag.MENUITEMS)) {
 				this.mFilePaths.remove(i);
 				createMenuItemItems(pParent, fullPath);
-			}
+			} 
 			else {
 				i++;
 			}

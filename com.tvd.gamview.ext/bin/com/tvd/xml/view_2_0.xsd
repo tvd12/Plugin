@@ -159,7 +159,7 @@
 					<xs:attribute name="width" type="xs:float" use="optional" />
 					<xs:attribute name="height" type="xs:float" use="optional" />
 					<xs:attribute name="location-in-interfacebuilder" 
-						type="xs:string" use="required" />
+						type="xs:string" use="optional" />
 				</xs:extension>
 			</xs:simpleContent>
 		</xs:complexType>
@@ -170,7 +170,7 @@
 				<xs:element ref="sprite" maxOccurs="unbounded" minOccurs="1" />
 			</xs:sequence>
 			<xs:attribute name="array" type="xs:boolean" use="optional" />
-			<xs:attribute name="length" type="xs:integer" />
+			<xs:attribute name="length" type="xs:integer" use="optional" />
 			<xs:attribute name="comment" type="xs:string" use="optional" />
 		</xs:complexType>
 	</xs:element>
@@ -180,7 +180,7 @@
 				<xs:element ref="menuitem" maxOccurs="unbounded" minOccurs="1" />
 			</xs:sequence>
 			<xs:attribute name="array" type="xs:boolean" use="optional" />
-			<xs:attribute name="length" type="xs:integer" />
+			<xs:attribute name="length" type="xs:integer" use="optional" />
 			<xs:attribute name="comment" type="xs:string" use="optional" />
 		</xs:complexType>
 	</xs:element>
@@ -190,7 +190,7 @@
 				<xs:element ref="menu" maxOccurs="unbounded" minOccurs="1" />
 			</xs:sequence>
 			<xs:attribute name="array" type="xs:boolean" use="optional" />
-			<xs:attribute name="length" type="xs:integer" />
+			<xs:attribute name="length" type="xs:integer" use="optional" />
 			<xs:attribute name="comment" type="xs:string" use="optional" />
 		</xs:complexType>
 	</xs:element>
@@ -200,7 +200,7 @@
 				<xs:element ref="table" maxOccurs="unbounded" minOccurs="1" />
 			</xs:sequence>
 			<xs:attribute name="array" type="xs:boolean" use="optional" />
-			<xs:attribute name="length" type="xs:integer" />
+			<xs:attribute name="length" type="xs:integer" use="optional" />
 			<xs:attribute name="comment" type="xs:string" use="optional" />
 		</xs:complexType>
 	</xs:element>
@@ -210,7 +210,7 @@
 				<xs:element ref="label" maxOccurs="unbounded" minOccurs="1" />
 			</xs:sequence>
 			<xs:attribute name="array" type="xs:boolean" use="optional" />
-			<xs:attribute name="length" type="xs:integer" />
+			<xs:attribute name="length" type="xs:integer" use="optional" />
 			<xs:attribute name="comment" type="xs:string" use="optional" />
 		</xs:complexType>
 	</xs:element>
@@ -227,6 +227,7 @@
 				<xs:element ref="menus" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="menuitems" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="tables" maxOccurs="unbounded" minOccurs="0" />
+				<xs:element ref="progressbar" maxOccurs="1" minOccurs="0" />
 			</xs:sequence>
 			<xs:attribute name="comment" type="xs:string" use="optional" />
 			<xs:attribute name="visible" type="xs:boolean" use="optional" />
@@ -320,6 +321,22 @@
 			<xs:attribute name="visible" type="xs:boolean" use="optional" />
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="progressbar">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="type" maxOccurs="1" minOccurs="1" />
+				<xs:element ref="mid-point" maxOccurs="1" minOccurs="1" />
+				<xs:element ref="bar-change-rate" maxOccurs="1" minOccurs="1" />
+				<xs:element ref="percent" maxOccurs="1" minOccurs="1" />
+				<xs:element ref="position-name" maxOccurs="1" minOccurs="1" />
+				<xs:element ref="anchorpoint" maxOccurs="1" minOccurs="1" />
+				<xs:element ref="sprite" maxOccurs="1" minOccurs="1" />
+			</xs:sequence>
+			<xs:attribute name="template" type="xs:string" use="required" />
+			<xs:attribute name="comment" type="xs:string" use="optional" />
+			<xs:attribute name="visible" type="xs:boolean" use="optional" />
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="resources">
 		<xs:complexType>
 			<xs:sequence>
@@ -344,7 +361,7 @@
 	</xs:element>
 	<xs:element name="anchorpoint">
 		<xs:complexType>
-			<xs:attribute name="value" type="anchorpointtype" />
+			<xs:attribute name="value" type="xs:string" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="text">
@@ -408,17 +425,35 @@
 	</xs:element>
 	<xs:element name="location-in-interfacebuilder">
 		<xs:complexType>
-			<xs:attribute name="value" />
+			<xs:attribute name="value" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="mid-point">
+		<xs:complexType>
+			<xs:attribute name="value" type="xs:string" use="required" />
+			<xs:attribute name="varname" type="xs:string" use="optional" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bar-change-rate">
+		<xs:complexType>
+			<xs:attribute name="value" type="xs:string" use="required" />
+			<xs:attribute name="varname" type="xs:string" use="optional" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="percent">
+		<xs:complexType>
+			<xs:attribute name="value" type="xs:float" use="required" />
+			<xs:attribute name="varname" type="xs:string" use="optional" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="type">
+		<xs:complexType>
+		<xs:attribute name="value" type="xs:string" use="required" />
 		</xs:complexType>
 	</xs:element>
 	<xs:simpleType name="uppertype">
 		<xs:restriction base="xs:string">
     		<xs:pattern value="[A-Z]*"/>
  		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="anchorpointtype">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="default|([0-1],[0-1])|([0-1], [0-1])|(0.[0-999],0.[0-999])|(0.[0-999], 0.[0-999])|([0-1],0.[0-999])|([0-1], 0.[0-999])|(0.[0-999],[0-1])|(0.[0-999], [0-1])" />
-		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>

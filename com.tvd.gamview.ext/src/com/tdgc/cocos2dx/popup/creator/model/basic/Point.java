@@ -1,5 +1,7 @@
 package com.tdgc.cocos2dx.popup.creator.model.basic;
 
+import com.tdgc.cocos2dx.popup.creator.validate.Validator;
+
 public class Point {
 
 	public Point(float pX, float pY) {
@@ -18,6 +20,19 @@ public class Point {
 	
 	public float getY() {
 		return this.mY;
+	}
+	
+	public static Point parsePoint(String str) {
+		Point point = null;
+		if(str != null && Validator.isValidDoubleValueString(str)) {
+			String xy[] = str.split(",");
+			point = new Point(Float.parseFloat(xy[0]), 
+					Float.parseFloat(xy[1]));
+		} else {
+			System.err.println("ERROR::parsePoint " + str + " is invalid point");
+		}
+		
+		return point;
 	}
 	
 	private float mX, mY;

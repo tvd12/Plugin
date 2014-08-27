@@ -29,6 +29,12 @@ public abstract class CommonObject {
 		mPosition = new Point(0, 0);
 		mTabCount = 0;
 		mPositionNamePrefix = "";
+		mVisible = true;
+		mIsBackground = false;
+		mComment = "";
+		mReferenceCount = 0;
+		mIsAddToGroup = true;
+		mIsNewClass = false;
 	}
 	
 	public abstract String declare();
@@ -36,6 +42,8 @@ public abstract class CommonObject {
 	public abstract String implement(boolean pInfunction);
 	
 	public abstract CommonObject clone();
+	
+	public void update() {}
 	
 	public String declarePositions() {
 		StringBuilder builder = new StringBuilder();
@@ -279,10 +287,15 @@ public abstract class CommonObject {
 	
 	public void setParent(CommonObject pParent) {
 		this.mParent = pParent;
+		this.mParent.addChild(this);
 	}
 	
 	public CommonObject getParent() {
 		return this.mParent;
+	}
+	
+	public void addChild(CommonObject child) {
+		
 	}
 	
 	
@@ -306,6 +319,10 @@ public abstract class CommonObject {
 	
 	public void setIsUnlocated(boolean pIsUnlocated) {
 		this.mIsUnlocated = pIsUnlocated;
+	}
+	
+	public boolean isUnlocated() {
+		return this.mIsUnlocated;
 	}
 	
 	public void setZIndex(String pZIndex) {
@@ -484,6 +501,46 @@ public abstract class CommonObject {
 		return mPositionNamePrefix;
 	}
 	
+	public void setTemplateName(String template) {
+		this.mTemplateName = template;
+	}
+	
+	public void setTemplateFile(String file) {
+		this.mTemplateFile = file;
+	}
+	
+	public String getTemplateName() {
+		return mTemplateName;
+	}
+	
+	public String getTemplateFile() {
+		return mTemplateFile;
+	}
+	
+	public void setReferenceCount(int rfc) {
+		this.mReferenceCount = rfc;
+	}
+	
+	public int getReferenceCount() {
+		return this.mReferenceCount;
+	}
+	
+	public void setAddToGroup(boolean isAddToGroup) {
+		this.mIsAddToGroup = isAddToGroup;
+	}
+	
+	public boolean isAddToGroup() {
+		return this.mIsAddToGroup;
+	}
+	
+	public void setNewClass(boolean isNewClass) {
+		this.mIsNewClass = isNewClass;
+	}
+	
+	public boolean isNewClass() {
+		return this.mIsNewClass;
+	}
+	
 	public void setAllPropertiesForObject(CommonObject obj) {
 		obj.mTagName = mTagName;
 		obj.mViewType = mViewType;
@@ -561,4 +618,9 @@ public abstract class CommonObject {
 	protected String mPositionNamePrefix;
 	
 	protected IProject mProject;
+	protected String mTemplateName;
+	protected String mTemplateFile;
+	protected int mReferenceCount;
+	protected boolean mIsAddToGroup;
+	protected boolean mIsNewClass;
 }
