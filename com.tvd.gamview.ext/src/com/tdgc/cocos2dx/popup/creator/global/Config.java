@@ -3,21 +3,20 @@ package com.tdgc.cocos2dx.popup.creator.global;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+
 import com.tdgc.cocos2dx.popup.creator.constants.Constants;
+import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 
 public class Config {
 	
 	private Config() {
-		mNormalPropertyPrefix = "m";
+		mDefaultNormalPrefix = "m";
 		mDefaultSupers = new HashMap<String, String>();
-		mProjectName = "DragonVideoPoker";
-		mDefaultSupers.put("popup", "PopUpLayer");
-		mDefaultSupers.put("cell", "ITableCellView");
-		mDefaultSupers.put("table", "ITableViewBuilder");
-		
-		mDefaultParentsForProperties = new HashMap<String, String>();
-		mDefaultParentsForProperties.put("popup", "mBackgroundSprite");
-		
+		mDefaultBackgroundOnSupers = new HashMap<String, String>();
+		mDefaultMenuOnSupers = new HashMap<String, String>();
+		mDefaultTemplateNames = new HashMap<String, String>();
 	}
 
 	public static Config getInstance() {
@@ -32,12 +31,47 @@ public class Config {
 		return sInstance;
 	}
 	
+	public void loadConfigs() {
+		IFile file = mProject.getFile("src/com/config/default.properties");
+		FileUtils fileUtils = new FileUtils();
+		String fileContent = fileUtils.readFromFile(file);
+		mDefaultTemplateNames.putAll(fileUtils.fetchDefaultKeyValues(
+				"Template name", fileContent));
+		mDefaultSupers.putAll(fileUtils.fetchDefaultKeyValues(
+				"Super name", fileContent));
+		mDefaultBackgroundOnSupers.putAll(fileUtils.fetchDefaultKeyValues(
+				"Background on super", fileContent));
+		mDefaultMenuOnSupers.putAll(fileUtils.fetchDefaultKeyValues(
+				"Menu on super", fileContent));
+		mDefaultNormalPrefix = fileUtils.fetchDefaultValue(
+				"normal_prefix", "Prefix and Suffix", fileContent);
+		mDefaultViewSuffix = fileUtils.fetchDefaultValue(
+				"view_suffix", "Prefix and Suffix", fileContent);
+		System.out.println("Config just have loaded");
+	}
+	
+	public void reloadConfigs() {
+		loadConfigs();
+		System.out.println("Config just have reloaded");
+	}
+	
+	public void setProject(IProject project) {
+		if(mProject != project) {
+			this.mProject = project;
+			this.loadConfigs();
+		}
+	}
+	
+	public IProject getProject() {
+		return mProject;
+	}
+	
 	public String getDefautSuper(String pViewType) {
 		return mDefaultSupers.get(pViewType);
 	}
 	
-	public String getDefaultParentForProperties(String pViewType) {
-		return mDefaultParentsForProperties.get(pViewType);
+	public String getDefaultBackgroundOnSupers(String pViewType) {
+		return mDefaultBackgroundOnSupers.get(pViewType);
 	}
 	
 	public String getProjectName() {
@@ -48,12 +82,12 @@ public class Config {
 		this.mProjectName = mProjectName;
 	}
 
-	public String getNormalPropertyPrefix() {
-		return mNormalPropertyPrefix;
+	public String getDefaultNormalPrefix() {
+		return mDefaultNormalPrefix;
 	}
 
-	public void setNormalPropertyPrefix(String mNormalPropertyPrefix) {
-		this.mNormalPropertyPrefix = mNormalPropertyPrefix;
+	public void setDefaultNormalPrefix(String mDefaultNormalPrefix) {
+		this.mDefaultNormalPrefix = mDefaultNormalPrefix;
 	}
 
 	public Map<String, String> getDefaultSupers() {
@@ -112,14 +146,6 @@ public class Config {
 		this.mClassPath = mClassPath;
 	}
 
-	public String getDefaultMenuItemParent() {
-		return mDefaultMenuItemParent;
-	}
-
-	public void setDefaultMenuItemParent(String mDefaultMenuItemParent) {
-		this.mDefaultMenuItemParent = mDefaultMenuItemParent;
-	}
-
 	public String getScreenContainerPath() {
 		return mScreenContainerPath;
 	}
@@ -136,31 +162,41 @@ public class Config {
 		return this.mAndroidContainerPath;
 	}
 	
-	public String getTableViewName() {
-		return "TableView";
-	}
-	
 	public int getProgrammingType() {
-		return Constants.PLUGIN;
+		return Constants.NORMAL;
 	}
 	
-	public String getViewSuffix() {
-		return "View";
+	public String getDefaultMenuOnSuper(String superType) {
+		return mDefaultMenuOnSupers.get(superType);
 	}
-
+	
+	public String getDefaultTemplateName(String superType) {
+		return mDefaultTemplateNames.get(superType);
+	}
+	
+	public String getDefaultViewSuffix() {
+		return mDefaultViewSuffix;
+	}
+	
 	private String mProjectName;
-	private String mNormalPropertyPrefix;
+	private String mDefaultNormalPrefix;
+	private String mDefaultViewSuffix;
+	
 	private Map<String, String> mDefaultSupers;
-	private Map<String, String> mDefaultParentsForProperties;
+	private Map<String, String> mDefaultBackgroundOnSupers;
+	private Map<String, String> mDefaultMenuOnSupers;
+	private Map<String, String> mDefaultTemplateNames;
+	
 	private String mDefinePath;
 	private String mParametersPath;
 	private String mImagesInputPath;
 	private String mImagesPath;
 	private String mXibContainerPath;
 	private String mClassPath;
-	private String mDefaultMenuItemParent;
 	private String mScreenContainerPath;
 	private String mAndroidContainerPath;
+	
+	private IProject mProject;
 	
 	private static Config sInstance;
 	

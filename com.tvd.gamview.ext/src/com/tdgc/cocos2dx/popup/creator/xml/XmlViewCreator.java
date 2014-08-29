@@ -58,7 +58,7 @@ public class XmlViewCreator {
 	private View createView(String fullPath) {
 		View view = new View();
 		view.setClassName(StringUtils.convertToClassName(fullPath, 
-				Config.getInstance().getViewSuffix()));
+				Config.getInstance().getDefaultViewSuffix()));
 		view.setSuper(Strings.DEFAULT);
 		view.setBackgroundName(Strings.DEFAULT);
 		

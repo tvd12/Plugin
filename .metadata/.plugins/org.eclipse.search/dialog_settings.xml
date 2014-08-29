@@ -45,7 +45,7 @@
 		<item value="12" key="HISTORY_SIZE"/>
 		<section name="HISTORY11">
 			<item value="false" key="isRegExSearch"/>
-			<item value="Time Zone Tree" key="textPattern"/>
+			<item value="src/com/template/new_point.template" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="true" key="ignoreCase"/>
 			<item value="false" key="isWholeWord"/>
@@ -57,7 +57,7 @@
 		</section>
 		<section name="HISTORY2">
 			<item value="false" key="isRegExSearch"/>
-			<item value="implement(true)" key="textPattern"/>
+			<item value="DefaultParentForProperties" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="true" key="ignoreCase"/>
 			<item value="false" key="isWholeWord"/>
@@ -72,7 +72,7 @@
 		</section>
 		<section name="HISTORY3">
 			<item value="false" key="isRegExSearch"/>
-			<item value="fetchTemplate" key="textPattern"/>
+			<item value="setProject" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="true" key="ignoreCase"/>
 			<item value="false" key="isWholeWord"/>
@@ -84,7 +84,7 @@
 		</section>
 		<section name="HISTORY0">
 			<item value="false" key="isRegExSearch"/>
-			<item value="&quot;positionString" key="textPattern"/>
+			<item value="BackgroundOnSupers" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="true" key="ignoreCase"/>
 			<item value="false" key="isWholeWord"/>
@@ -96,7 +96,7 @@
 		</section>
 		<section name="HISTORY10">
 			<item value="false" key="isRegExSearch"/>
-			<item value="MinimarkVisitor" key="textPattern"/>
+			<item value="DONT_DELETE_THIS_LINE + " key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="true" key="ignoreCase"/>
 			<item value="false" key="isWholeWord"/>
@@ -108,7 +108,7 @@
 		</section>
 		<section name="HISTORY1">
 			<item value="false" key="isRegExSearch"/>
-			<item value="abc =" key="textPattern"/>
+			<item value="DefaultBackgrounds" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="true" key="ignoreCase"/>
 			<item value="false" key="isWholeWord"/>
@@ -120,7 +120,7 @@
 		</section>
 		<section name="HISTORY9">
 			<item value="false" key="isRegExSearch"/>
-			<item value="MinimarkBuilder" key="textPattern"/>
+			<item value="fetchTemplate" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="true" key="ignoreCase"/>
 			<item value="false" key="isWholeWord"/>
@@ -132,7 +132,7 @@
 		</section>
 		<section name="HISTORY8">
 			<item value="false" key="isRegExSearch"/>
-			<item value="SdkXMLFileBuilder" key="textPattern"/>
+			<item value="implement(true)" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="true" key="ignoreCase"/>
 			<item value="false" key="isWholeWord"/>
@@ -144,7 +144,7 @@
 		</section>
 		<section name="HISTORY5">
 			<item value="false" key="isRegExSearch"/>
-			<item value="src/com/template/new_point.template" key="textPattern"/>
+			<item value="comment to your source code" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="true" key="ignoreCase"/>
 			<item value="false" key="isWholeWord"/>
@@ -156,7 +156,7 @@
 		</section>
 		<section name="HISTORY4">
 			<item value="false" key="isRegExSearch"/>
-			<item value="DONT_DELETE_THIS_LINE + " key="textPattern"/>
+			<item value="IProject" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="true" key="ignoreCase"/>
 			<item value="false" key="isWholeWord"/>
@@ -168,7 +168,7 @@
 		</section>
 		<section name="HISTORY7">
 			<item value="false" key="isRegExSearch"/>
-			<item value="checkViewsInProject" key="textPattern"/>
+			<item value="abc =" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="true" key="ignoreCase"/>
 			<item value="false" key="isWholeWord"/>
@@ -180,7 +180,7 @@
 		</section>
 		<section name="HISTORY6">
 			<item value="false" key="isRegExSearch"/>
-			<item value="getDivices" key="textPattern"/>
+			<item value="&quot;positionString" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="true" key="ignoreCase"/>
 			<item value="false" key="isWholeWord"/>
@@ -196,6 +196,9 @@
 	</section>
 	<section name="ReplaceDialog2">
 		<list key="replace_with">
+			<item value="DefaultBackgroundOnSupers"/>
+			<item value="BackgroundOnSupers"/>
+			<item value="DefaultBackgrounds"/>
 			<item value="getDevices"/>
 		</list>
 	</section>

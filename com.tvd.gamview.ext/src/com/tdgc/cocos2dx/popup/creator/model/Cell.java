@@ -25,12 +25,13 @@ public class Cell extends AdvancedObject {
 				.getDefaultSupers().get(mSuffix);
 		mXmlTagName = Tag.CELL;
 		mIsAddToGroup = false;
+		
+		mTemplateName = "ITableCellView";
+		mTemplateFile = "cell.template";
 	}
 	
 	@Override
 	public String declare() {
-		super.mHeaderTemplate = "default cell class";
-		super.mHeaderTplPath = "src/com/template/cell_class_header.template";
 		this.checkColumnArray();
 		String srcCode = super.declare();
 		StringBuilder tagBuilder = new StringBuilder()
@@ -45,8 +46,6 @@ public class Cell extends AdvancedObject {
 
 	@Override
 	public String implement(boolean pInfunction) {
-		super.mImplementingTemplate = "default cell class";
-		super.mImplementingTplPath = "src/com/template/cell_class_implementing.template";
 		this.checkColumnArray();
 		return super.implement(pInfunction);
 	}
@@ -66,8 +65,8 @@ public class Cell extends AdvancedObject {
 					(itemAt0.getLocationInView().getX()
 					- this.getLocationInView().getX());
 			for(int j = 1 ; j < itemGroup.getArrayLength() ; j++) {
-				float x = itemAt0.getPosition().getX() 
-						+ (j*width/itemGroup.getArrayLength());
+				float x = (int)(itemAt0.getPosition().getX() 
+						+ (j*width/itemGroup.getArrayLength()));
 				float y = itemAt0.getPosition().getY();
 				itemGroup.getItems().get(j).setPosition(new Point(x, y).toString());;
 			}

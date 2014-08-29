@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.part.ViewPart;
 
+import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.View;
 import com.tdgc.cocos2dx.popup.creator.xml.XmlFetcher;
 import com.tvd.gameview.plugin.model.ViewModel;
@@ -107,6 +108,7 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 						|| element.getFilePath().equals("")) {
 					return;
 				}
+				Config.getInstance().setProject(element.getProject());
 				IFile xmlFile = element.getProject().getFile(element.getFilePath());
 				XmlFetcher xmlFetcher = new XmlFetcher();
 				View view = xmlFetcher.fetchView(xmlFile);

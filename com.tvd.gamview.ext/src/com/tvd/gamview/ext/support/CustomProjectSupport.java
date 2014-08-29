@@ -35,7 +35,7 @@ public class CustomProjectSupport {
         IProject project = createBaseProject(projectName, location);
         try {
             String[] paths = { "src", "src/com/template",
-            		"resources/xml/xsd"}; //$NON-NLS-1$ //$NON-NLS-2$
+            		"resources/xml/xsd", "src/com/config"}; //$NON-NLS-1$ //$NON-NLS-2$
             addToProjectStructure(project, paths);
         } catch (CoreException e) {
             e.printStackTrace();

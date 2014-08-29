@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.utils.XmlContentUtils"/>
-<fullyQualifiedTypeName name="java.lang.StringBuffer"/>
-<fullyQualifiedTypeName name="javax.xml.validation.SchemaFactory"/>
 <fullyQualifiedTypeName name="javax.xml.XMLConstants"/>
 <fullyQualifiedTypeName name="javax.xml.validation.Schema"/>
 <fullyQualifiedTypeName name="java.lang.Object"/>
@@ -41,16 +38,12 @@
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Cell"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.constants.Tag"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.utils.StringUtils"/>
-<fullyQualifiedTypeName name="org.eclipse.core.resources.IFile"/>
-<fullyQualifiedTypeName name="java.io.ByteArrayInputStream"/>
-<fullyQualifiedTypeName name="org.eclipse.core.resources.IProject"/>
 <fullyQualifiedTypeName name="java.lang.SuppressWarnings"/>
 <fullyQualifiedTypeName name="java.lang.Deprecated"/>
 <fullyQualifiedTypeName name="com.tvd.gamview.ext.utils.ProjectUtils"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.constants.Attribute"/>
 <fullyQualifiedTypeName name="java.lang.Float"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.global.Config"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.constants.Strings"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.Point"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.utils.ViewUtils"/>
@@ -60,4 +53,11 @@
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.ItemGroup.Type"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.ItemGroup"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.BasicObject"/>
+<fullyQualifiedTypeName name="java.io.ByteArrayInputStream"/>
+<fullyQualifiedTypeName name="org.eclipse.core.resources.IFile"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.file.FileUtils"/>
+<fullyQualifiedTypeName name="org.eclipse.core.resources.IProject"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.global.Config"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
 </qualifiedTypeNameHistroy>

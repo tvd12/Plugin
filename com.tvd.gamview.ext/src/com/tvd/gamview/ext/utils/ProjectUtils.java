@@ -271,6 +271,8 @@ public class ProjectUtils {
 //				strBuilder.append("\t\txsi:schemaLocation=\"http://www.tvd.com/tools ../xsd/view.xsd\"\n\t\t");
 //				xmlContent = xmlContent.replace("<view ", strBuilder.toString());
 //				xmlContent = XmlFormatter.format(xmlContent);
+				
+				//version 2.0
 				String xmlContent = builder.buildXMLViewFor(type, devices[i]);
 				IFile newFile = project.getFile(
 						new Path(builder.getOutputFilePath()));

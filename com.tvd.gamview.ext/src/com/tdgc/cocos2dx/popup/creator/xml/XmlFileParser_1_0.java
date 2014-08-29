@@ -9,7 +9,6 @@ import org.xml.sax.helpers.DefaultHandler;
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
-import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.log.Log;
 import com.tdgc.cocos2dx.popup.creator.model.Cell;
 import com.tdgc.cocos2dx.popup.creator.model.Image;

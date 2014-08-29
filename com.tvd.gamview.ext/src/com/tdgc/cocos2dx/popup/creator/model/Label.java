@@ -3,7 +3,6 @@ package com.tdgc.cocos2dx.popup.creator.model;
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.ModelType;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
-import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
@@ -23,14 +22,9 @@ public class Label extends CommonObject {
 		this.mFontName = "HelveticaNeue";
 		this.mFontFamily = "Helvetica Neue";
 		this.mFontSizeFloat = 17.0f;
-	}
-	
-	@Override
-	public String declare() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("CCLabelTTF* " + mName + ";");
 		
-		return builder.toString();
+		this.mTemplateName = "CCLabelTTF";
+		this.mTemplateFile = "label.template";
 	}
 	
 	@Override
@@ -41,21 +35,10 @@ public class Label extends CommonObject {
 		}
 		
 		StringBuilder builder = new StringBuilder("\n");
-		
-		String templateName = "CCLabelTTF";
-		if(pInfunction) {
-			templateName += " in function";
-			mName = getInfunctionName();
-		} 
-		
-//		String template = new FileUtils().fetchTemplate(templateName, 
-//				"src/com/template/new_label.template");
-		
-		String template = new FileUtils().fetchTemplate(templateName, 
-				"src/com/template/new_label.template", getProject());
+		String template = fetchTemplate(pInfunction);
 		
 		String parentName = Config.getInstance()
-				.getDefaultParentForProperties(mParent.getType());
+				.getDefaultBackgroundOnSupers(mParent.getType());
 		if(mParent != null) {
 			parentName = mParent.getName();
 		}

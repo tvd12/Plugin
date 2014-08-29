@@ -103,7 +103,9 @@ public class ItemGroup {
 			checkArray();
 		}
 		if(mValidArray) {
-			builder.append("\tCCPoint " + mPositionArrayName).append(";\n");
+			builder.append("\t")
+			.append(mItems.get(0).declarePositions().trim()
+				.replace(mItems.get(0).getPositionName(), mPositionArrayName));
 		} else {
 			for(int i = 0 ; i < mItems.size() ; i++) {
 				String pos = mItems.get(i).declarePositions();

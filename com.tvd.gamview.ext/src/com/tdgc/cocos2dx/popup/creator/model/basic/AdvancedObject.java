@@ -27,10 +27,6 @@ public class AdvancedObject extends CommonObject {
 		this.mTableGroupInView = new ArrayList<ItemGroup>();
 		this.mProgressGroup = new ItemGroup(ItemGroup.Type.PROGRESSBAR);
 		
-		this.mImplementingTplPath = "src/com/template/popup_default_implementing.template";
-		this.mHeaderTplPath = "src/com/template/popup_default_header.template";
-		this.mImplementingTemplate = "implement";
-		this.mHeaderTemplate = "declare";
 		this.mSuper = Config.getInstance().getDefautSuper(mSuffix);
 		this.mBackgroundName = Strings.DEFAULT;
 		this.mIsNewClass = true;
@@ -63,11 +59,12 @@ public class AdvancedObject extends CommonObject {
 				+ declareProperties());
 //		String template = new FileUtils().fetchTemplate(mHeaderTemplate,
 //				mHeaderTplPath);
-		String template = new FileUtils().fetchTemplate(mHeaderTemplate,
-				mHeaderTplPath, getProject());
+		String template = new FileUtils().fetchTemplate(
+				getClassDeclaringTemplateName(),
+				getClassTemplateFilePath(), getProject());
 		String result = template.replace("{class_name}", mClassName)
 				.replace("{author}", System.getProperty("user.name"))
-				.replace("{project_name}", Config.getInstance().getProjectName())
+				.replace("{project_name}", getProject().getName())
 				.replace("{created_date}", createdDate.toString())
 				.replace("{super_name}", mSuper)
 				.replace("//{properties_declare}", propertiesDeclare)
@@ -91,13 +88,12 @@ public class AdvancedObject extends CommonObject {
 		char firstChar = ("" + classNamePrefix.charAt(0)).toLowerCase().charAt(0);
 		classNamePrefix = classNamePrefix.replace(classNamePrefix.charAt(0), firstChar);
 		
-//		String template = new FileUtils().fetchTemplate(mImplementingTemplate, 
-//				mImplementingTplPath);
-		String template = new FileUtils().fetchTemplate(mImplementingTemplate, 
-				mImplementingTplPath, getProject());		
+		String template = new FileUtils().fetchTemplate(
+				getClassImplementingTemplateName(), 
+				getClassTemplateFilePath(), getProject());	
 		
 		String result = template.replace("{author}", System.getProperty("user.name"))
-				.replace("{project_name}", Config.getInstance().getProjectName())
+				.replace("{project_name}", getProject().getName())
 				.replace("{created_date}", createdDate.toString())
 				.replace("{super_name}", mSuper)
 				.replace("//{add_menus}", StringUtils.standardizeCode(
@@ -221,7 +217,7 @@ public class AdvancedObject extends CommonObject {
 	
 	protected void setParentForMenuItems() {
 		CommonObject parent = new Menu();
-		parent.setName(Config.getInstance().getDefaultMenuItemParent());
+		parent.setName(Config.getInstance().getDefaultMenuOnSuper(mType));
 		for(int i = 0 ; i < mMenuItemGroups.size() ; i++) {
 			for(int j = 0 ; j < mMenuItemGroups.get(i).getItems().size() ; j++) {
 				mMenuItemGroups.get(i).getItems().get(j).setParent(parent);
@@ -308,15 +304,25 @@ public class AdvancedObject extends CommonObject {
 		return this.mAdvanceParent;
 	}
 	
+	public String getClassDeclaringTemplateName() {
+		return this.mTemplateName + " class declaring";
+	}
+	
+	public String getClassImplementingTemplateName() {
+		return this.mTemplateName + " class implementing";
+	}
+	
+	public String getClassTemplateFilePath() {
+		return this.getTemplateFilePath();
+	}
+	
 	@Override
 	public CommonObject clone() {
 		AdvancedObject obj = new AdvancedObject();
 		this.setAllPropertiesForObject(obj);
-		obj.mImplementingTemplate = mImplementingTemplate;
-		obj.mHeaderTemplate = mHeaderTemplate;
-		obj.mImplementingTplPath = mImplementingTplPath;
-		obj.mHeaderTplPath = mHeaderTplPath;
+		obj.mBackgroundName = mBackgroundName;
 		obj.mClassName = mClassName;
+		
 		obj.mParameters = mParameters;
 		obj.mProperties = mProperties;
 		obj.mLabelGroupInView = mLabelGroupInView;
@@ -325,15 +331,14 @@ public class AdvancedObject extends CommonObject {
 		obj.mMenuItemGroupInView = mMenuItemGroupInView;
 		obj.mTableGroupInView = mTableGroupInView;
 		
-		return obj;
+		obj.mProgressGroup = mProgressGroup;
 		
+		obj.mAdvanceParent = mAdvanceParent;
+		
+		return obj;
 	}
 	
 	protected String mBackgroundName;
-	protected String mImplementingTemplate;
-	protected String mHeaderTemplate;
-	protected String mImplementingTplPath;
-	protected String mHeaderTplPath;
 	protected String mClassName;
 	protected List<Parameter> mParameters;
 	protected List<Property> mProperties;
@@ -343,6 +348,7 @@ public class AdvancedObject extends CommonObject {
 	protected List<ItemGroup> mMenuGroupInView;
 	protected List<ItemGroup> mTableGroupInView;
 	private ItemGroup mProgressGroup;
+	
 	private AdvancedObject mAdvanceParent;
 	
 }

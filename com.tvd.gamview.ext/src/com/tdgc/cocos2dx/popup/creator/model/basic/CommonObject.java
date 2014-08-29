@@ -3,6 +3,9 @@ package com.tdgc.cocos2dx.popup.creator.model.basic;
 import java.util.ArrayList;
 import java.util.List;
 
+//import org.eclipse.core.resources.IProject;
+
+
 import org.eclipse.core.resources.IProject;
 
 import com.tdgc.cocos2dx.popup.creator.constants.Strings;
@@ -13,7 +16,7 @@ import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 import com.tdgc.cocos2dx.popup.creator.validate.Validator;
 
-public abstract class CommonObject {
+public abstract class CommonObject extends BasicObject {
 	
 	public CommonObject() {
 		mMenuGroups = new ArrayList<ItemGroup>();
@@ -29,7 +32,7 @@ public abstract class CommonObject {
 		mPosition = new Point(0, 0);
 		mTabCount = 0;
 		mPositionNamePrefix = "";
-		mVisible = true;
+		mIsVisible = true;
 		mIsBackground = false;
 		mComment = "";
 		mReferenceCount = 0;
@@ -37,36 +40,50 @@ public abstract class CommonObject {
 		mIsNewClass = false;
 	}
 	
-	public abstract String declare();
-	
 	public abstract String implement(boolean pInfunction);
 	
 	public abstract CommonObject clone();
 	
 	public void update() {}
 	
+	public String declare() {
+		StringBuilder builder = new StringBuilder();
+		String template = new FileUtils().fetchTemplate(
+				getDeclaringTemplateName(), 
+				getTemplateFilePath(), getProject());
+		template = template.replace("{var_name}", mName)
+				.replace("{tab}", "");
+		builder.append(template.trim());
+		return builder.toString();
+	}
+	
 	public String declarePositions() {
 		StringBuilder builder = new StringBuilder();
 		if(mPositionName != null 
 				&& mPositionString != null
 				&& !mPositionString.equals(Strings.DEFAULT)) {
-			builder.append("CCPoint " + mPositionName + ";");
+			String template = new FileUtils().fetchTemplate(
+					getDeclaringPositionTemplateName(), 
+					getPostionTemplateFilePath(), getProject());
+			builder.append(template.replace("{var_name}", mPositionName)
+					.replace("{tab}", "").trim());
 		}
 		return builder.toString();
 	}
 	
 	public String implementPositions() {
 		
-		String template = new FileUtils().fetchTemplate("MakePointCommon", 
-				"src/com/template/new_point.template", getProject());
+		String template = new FileUtils().fetchTemplate(
+				getImplementingPositionTemplateName(), 
+				getPostionTemplateFilePath(), getProject());
 		StringBuilder builder = new StringBuilder();
-		
 		if(mPositionString != null 
 				&& mPositionName != null
 				&& !mPositionString.equals(Strings.DEFAULT)) {
 			template = template.replace("{var_name}", mPositionName)
-					.replace("{position}", mPositionString);
-			builder.append(template);
+					.replace("{position}", mPositionString)
+					.replace("{tab}", "\t");
+			builder.append(template.trim());
 		}
 		
 		return builder.toString().trim();
@@ -189,6 +206,13 @@ public abstract class CommonObject {
 	public void setType(String pType) {
 		this.mType = pType;
 		this.mPositionNamePrefix = pType;
+		
+		if(mTemplateFile == null && pType != null) {
+			mTemplateFile = pType + ".template";
+		}
+		if(mTemplateName == null && pType != null) {
+			mTemplateName = Config.getInstance().getDefaultTemplateName(pType);
+		}
 	}
 	
 	public String getType() {
@@ -207,8 +231,8 @@ public abstract class CommonObject {
 	
 	public void setPosition(String pPosition) {
 		this.mPositionString = pPosition;
-		if(!pPosition.equals(Strings.DEFAULT)
-				&& Validator.isValidDoubleValueString(pPosition)) {
+		if(!pPosition.equals(Strings.DEFAULT) &&
+				Validator.isValidDoubleValueString(pPosition)) {
 			String strs[] = pPosition.split(",");
 			setPosition(Float.parseFloat(strs[0]), 
 					Float.parseFloat(strs[1]));
@@ -288,6 +312,21 @@ public abstract class CommonObject {
 	public void setParent(CommonObject pParent) {
 		this.mParent = pParent;
 		this.mParent.addChild(this);
+		if(pParent == null) {
+			return;
+		}
+		if(mPositionTemplateName == null) {
+			this.mPositionTemplateName = pParent.getPositionTemplateName();
+		}
+		if(mPositionTemplateFile == null) {
+			this.mPositionTemplateFile = pParent.getPositionTemplateFile();
+		}
+		if(mSizeTemplateName == null) {
+			this.mSizeTemplateName = pParent.getSizeTemplateName();
+		}
+		if(mSizeTemplateFile == null) {
+			this.mSizeTemplateFile = pParent.getSizeTemplateFile();
+		}
 	}
 	
 	public CommonObject getParent() {
@@ -490,31 +529,15 @@ public abstract class CommonObject {
 	}
 	
 	public void setVisible(boolean visible) {
-		this.mVisible = visible;
+		this.mIsVisible = visible;
 	}
 	
 	public boolean getVisible() {
-		return this.mVisible;
+		return this.mIsVisible;
 	}
 	
 	public String getPositionNamePrefix() {
 		return mPositionNamePrefix;
-	}
-	
-	public void setTemplateName(String template) {
-		this.mTemplateName = template;
-	}
-	
-	public void setTemplateFile(String file) {
-		this.mTemplateFile = file;
-	}
-	
-	public String getTemplateName() {
-		return mTemplateName;
-	}
-	
-	public String getTemplateFile() {
-		return mTemplateFile;
 	}
 	
 	public void setReferenceCount(int rfc) {
@@ -541,11 +564,45 @@ public abstract class CommonObject {
 		return this.mIsNewClass;
 	}
 	
+	public String getTemplateName(boolean pInfunction) {
+		String templateName = mTemplateName;
+		if(mIsUnlocated) {
+			templateName += " unlocated";
+		}
+		if(pInfunction) {
+			templateName += " in function";
+			mName = getInfunctionName();
+		} else {
+			templateName += " implementing";
+		}
+		
+		return templateName;
+	}
+	
+	public String fetchTemplate(boolean pInfunction) {
+		String template = new FileUtils().fetchTemplate(
+				getTemplateName(pInfunction), 
+				getTemplateFilePath(), getProject());
+		
+		return template;
+	}
+	
 	public void setAllPropertiesForObject(CommonObject obj) {
-		obj.mTagName = mTagName;
+		super.setAllPropertiesForObject(obj);
+		obj.mTabCount = mTabCount;
 		obj.mViewType = mViewType;
-		obj.mXmlPositionName = mXmlPositionName;
+		obj.mReferenceCount = mReferenceCount;
+		
+		obj.mIsAddToGroup = mIsAddToGroup;
+		obj.mIsNewClass = mIsNewClass;
+		obj.mIsBackground = mIsBackground;
+		obj.mIsUnlocated = mIsUnlocated;
+		obj.mIsVisible = mIsVisible;
+		
+		obj.mPosition = mPosition;
+		obj.mAnchorPoint = mAnchorPoint;
 		obj.mLocationInView = mLocationInView;
+		
 		obj.mSize = mSize;
 		
 		obj.mMenuItemGroups = mMenuItemGroups;
@@ -554,35 +611,43 @@ public abstract class CommonObject {
 		obj.mMenuGroups = mMenuGroups;
 		obj.mTableGroups = mTableGroups;
 		
+		obj.mBackground = mBackground;
+		obj.mParent = mParent;
+		
+		obj.mXmlPositionName = mXmlPositionName;
 		obj.mPrefix = mPrefix;
+		obj.mTagName = mTagName;
 		obj.mSuffix = mSuffix;
 		obj.mPositionName = mPositionName;
 		obj.mName = mName;
-		obj.mAnchorPoint = mAnchorPoint;
 		obj.mAnchorPointString = mAnchorPointString;
 		obj.mSuper = mSuper;
 		obj.mComment = mComment;
 		obj.mType = mType;
 		obj.mPositionString = mPositionString;
-		obj.mPosition = mPosition;
 		obj.mSizeString = mSizeString;
-		obj.mBackground = mBackground;
-		
-		obj.mParent = mParent;
 		
 		obj.mDeclareObjectName = mDeclareObjectName;
-		
-		obj.mIsBackground = mIsBackground;
-		obj.mIsUnlocated = mIsUnlocated;
 		obj.mZIndex = mZIndex;
-		
-		obj.mProject = mProject;
+		obj.mXmlTagName = mXmlTagName;
+		obj.mPositionNamePrefix = mPositionNamePrefix;
 	}
+ 	
 	
-	protected String mTagName;
+	protected int mTabCount;
 	protected int mViewType;
-	protected String mXmlPositionName;
+	protected int mReferenceCount;
+	
+	protected boolean mIsAddToGroup;
+	protected boolean mIsNewClass;
+	protected boolean mIsBackground;
+	protected boolean mIsUnlocated;
+	protected boolean mIsVisible;
+	
+	protected Point mPosition;
+	protected Point mAnchorPoint;
 	protected Point mLocationInView;
+	
 	protected Size mSize;
 	
 	protected List<ItemGroup> mMenuItemGroups;
@@ -591,36 +656,26 @@ public abstract class CommonObject {
 	protected List<ItemGroup> mMenuGroups;
 	protected List<ItemGroup> mTableGroups;
 	
+	protected CommonObject mBackground;
+	protected CommonObject mParent;
+	
+	protected String mXmlPositionName;
 	protected String mPrefix;
+	protected String mTagName;
 	protected String mSuffix;
 	protected String mPositionName;
 	protected String mName;
-	protected Point mAnchorPoint;
 	protected String mAnchorPointString;
 	protected String mSuper;
 	protected String mComment;
 	protected String mType;
 	protected String mPositionString;
-	protected Point mPosition;
 	protected String mSizeString;
-	protected CommonObject mBackground;
-	
-	protected CommonObject mParent;
-	
+
 	protected String mDeclareObjectName;
-	
-	protected boolean mIsBackground;
-	protected boolean mIsUnlocated;
 	protected String mZIndex;
-	protected int mTabCount;
 	protected String mXmlTagName;
-	protected boolean mVisible;
 	protected String mPositionNamePrefix;
 	
 	protected IProject mProject;
-	protected String mTemplateName;
-	protected String mTemplateFile;
-	protected int mReferenceCount;
-	protected boolean mIsAddToGroup;
-	protected boolean mIsNewClass;
 }

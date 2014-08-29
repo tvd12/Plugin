@@ -20,7 +20,7 @@ public class Property extends Parameter {
 		if(mType == null || mName == null) {
 			return "";
 		}
-		String result = Config.getInstance().getNormalPropertyPrefix();
+		String result = Config.getInstance().getDefaultNormalPrefix();
 
 		if(mKind.equals(Kind.POINTER)
 				|| mKind.equals(Kind.CONSTANT_POINTER)) {
@@ -35,7 +35,7 @@ public class Property extends Parameter {
 	
 	@Override
 	public String getName() {
-		return Config.getInstance().getNormalPropertyPrefix() 
+		return Config.getInstance().getDefaultNormalPrefix() 
 				+ this.mName;
 	}
 }

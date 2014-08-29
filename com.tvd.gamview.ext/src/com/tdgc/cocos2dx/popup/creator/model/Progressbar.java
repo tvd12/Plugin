@@ -3,7 +3,6 @@ package com.tdgc.cocos2dx.popup.creator.model;
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.ModelType;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
-import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
@@ -25,8 +24,10 @@ public class Progressbar extends CommonObject {
 		mAnchorPointString = mAnchorPoint.toString();
 		mMidPoint = new Point(0, 0);
 		mBarChangeRate = new Point(1, 0);
+		
 		mTemplateName = "CCProgressTimer";
 		mTemplateFile = "progressbar.template";
+		
 		mPercent = 30;
 		mIsAddToGroup = false;
 	}
@@ -49,16 +50,10 @@ public class Progressbar extends CommonObject {
 		}
 		
 		StringBuilder builder = new StringBuilder("\n");
-		
-		if(pInfunction) {
-			mTemplateName += " in function";
-			mName = getInfunctionName();
-		} 
-		String template = new FileUtils().fetchTemplate(mTemplateName + " implementing", 
-				"src/com/template/" + mTemplateFile, getProject());
+		String template = fetchTemplate(pInfunction);
 		
 		String parentName = Config.getInstance()
-				.getDefaultParentForProperties(mParent.getType());
+				.getDefaultBackgroundOnSupers(mParent.getType());
 		if(mParent != null) {
 			parentName = mParent.getName();
 		}
@@ -76,17 +71,6 @@ public class Progressbar extends CommonObject {
 			.replace("{var_name}", mName)
 			.replace("{z-index}", mZIndex);
 			
-		builder.append(template);
-		
-		return builder.toString();
-	}
-	
-	public String declare() {
-		StringBuilder builder = new StringBuilder();
-		String template = new FileUtils().fetchTemplate(mTemplateName + " declaring", 
-				"src/com/template/" + mTemplateFile, getProject());
-		template = template.replace("{tab}", "")
-				.replace("{var_name}", mName);
 		builder.append(template);
 		
 		return builder.toString();

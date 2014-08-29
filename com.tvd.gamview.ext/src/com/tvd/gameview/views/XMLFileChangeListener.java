@@ -13,6 +13,7 @@ import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ui.part.ViewPart;
 
+import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tvd.gamview.ext.utils.ProjectUtils;
 
 public class XMLFileChangeListener implements IResourceChangeListener {
@@ -94,6 +95,14 @@ public class XMLFileChangeListener implements IResourceChangeListener {
 	               System.out.println(" has changed.");
 	               if(res.getName().equals("global.properties")) {
 	            	   updateTreeViewer();
+	               } else if(res.getFullPath().toString()
+	            		   .endsWith("src/com/config/default.properties")) {
+	            	   Config config = Config.getInstance();
+	            	   if(config.getProject() == null) {
+	            		   config.setProject(res.getProject());
+	            	   } else {
+	            		   config.reloadConfigs();
+	            	   }
 	               }
 	               break;
 	         }

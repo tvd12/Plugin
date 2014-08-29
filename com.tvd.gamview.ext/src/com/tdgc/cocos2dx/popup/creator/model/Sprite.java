@@ -7,7 +7,6 @@ import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.ModelType;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
-import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 
 public class Sprite extends CommonObject {
@@ -20,14 +19,9 @@ public class Sprite extends CommonObject {
 		this.mImage = null;
 		this.mXmlTagName = Tag.SPRITE;
 		this.mIsUnlocated = false;
-	}
-	
-	@Override
-	public String declare() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("CCSprite* " + mName + ";");
 		
-		return builder.toString();
+		this.mTemplateName = "CCSprite";
+		this.mTemplateFile = "sprite.template";
 	}
 	
 	@Override
@@ -38,22 +32,7 @@ public class Sprite extends CommonObject {
 	@Override
 	public String implement(boolean pInfunction) {
 		StringBuilder builder = new StringBuilder("\n");
-		
-		String templateName = "CCSprite";
-		if(pInfunction) {
-			templateName += " in function";
-			mName = getInfunctionName();
-		} else {
-
-		}
-		if(mIsUnlocated) {
-			templateName += " unlocated";
-		}
-		
-//		String template = new FileUtils().fetchTemplate(templateName, 
-//				"src/com/template/new_sprite.template");
-		String template = new FileUtils().fetchTemplate(templateName, 
-				"src/com/template/new_sprite.template", getProject());
+		String template = fetchTemplate(pInfunction);
 		
 		String imageName = "";
 		if(mImage == null) {
@@ -63,7 +42,7 @@ public class Sprite extends CommonObject {
 		}
 		
 		String parentName = Config.getInstance()
-				.getDefaultParentForProperties(mParent.getType());
+				.getDefaultBackgroundOnSupers(mParent.getType());
 		if(mParent != null) {
 			parentName = mParent.getName();
 		}
@@ -77,11 +56,6 @@ public class Sprite extends CommonObject {
 		builder.append(template);
 		
 		return builder.toString();
-	}
-	
-	@Override
-	public String implementPositions() {
-		return super.implementPositions();
 	}
 	
 	@Override

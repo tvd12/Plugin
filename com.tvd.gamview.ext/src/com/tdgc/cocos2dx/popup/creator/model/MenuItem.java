@@ -3,7 +3,6 @@ package com.tdgc.cocos2dx.popup.creator.model;
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.ModelType;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
-import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
@@ -19,6 +18,9 @@ public class MenuItem extends CommonObject {
 		mDeclareObjectName = "CCMenuItem";
 		mType = ModelType.MENUITEM;
 		mXmlTagName = Tag.MENUITEM;
+		
+		mTemplateName = "CCMenuItemSprite";
+		mTemplateFile = "menuitem.template";
 	}
 	
 	public MenuItem(String pName) {
@@ -41,19 +43,10 @@ public class MenuItem extends CommonObject {
 		}
 		
 		StringBuilder builder = new StringBuilder("\n");
-		
-		String templateName = "CCMenuItemSprite";
-		if(pInfunction) {
-			templateName += " in function";
-			mName = getInfunctionName();
-		} 
-//		String template = new FileUtils().fetchTemplate(templateName, 
-//				"src/com/template/new_menuitem.template");
-		String template = new FileUtils().fetchTemplate(templateName, 
-				"src/com/template/new_menuitem.template", getProject());
+		String template = fetchTemplate(pInfunction);
 		
 		String parentName = Config.getInstance()
-				.getDefaultParentForProperties(mParent.getType());
+				.getDefaultBackgroundOnSupers(mParent.getType());
 		if(mParent != null) {
 			parentName = mParent.getName();
 		}
@@ -83,13 +76,6 @@ public class MenuItem extends CommonObject {
 		return "";
 	}
 	
-	public String declare() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("CCMenuItem* " + mName + ";");
-		
-		return builder.toString();
-	}
-	
 	@Override
 	public CommonObject clone() {
 		MenuItem menuItem = new MenuItem();
@@ -107,9 +93,13 @@ public class MenuItem extends CommonObject {
 	public void update() {
 		if(validate()) {
 			ItemGroup spriteGroup = this.mSpriteGroups.get(0);
+			((Sprite)spriteGroup.getItems().get(0)).setIsUnlocated(true);
+			((Sprite)spriteGroup.getItems().get(0))
+				.getImage().setAddToInterfaceBuilder(true);
 			for(int i = 1 ; i < spriteGroup.getItems().size() ; i++) {
-				((Sprite)spriteGroup.getItems().get(i))
-					.getImage().setAddToInterfaceBuilder(false);
+				Sprite sprite = ((Sprite)spriteGroup.getItems().get(i));
+				sprite.setIsUnlocated(true);
+				sprite.getImage().setAddToInterfaceBuilder(false);
 			}
 			spriteGroup.setAddToView(false);
 		}
@@ -174,5 +164,5 @@ public class MenuItem extends CommonObject {
 		
 		return builder.toString();
 	}
-
+	
 }

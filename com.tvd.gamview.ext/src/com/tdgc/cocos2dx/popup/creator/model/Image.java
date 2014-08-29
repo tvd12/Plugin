@@ -23,6 +23,7 @@ public class Image implements Comparable<Image> {
 		this.mXmlTagName = "image";
 		this.mIsAddToInterfaceBuilder = true;
 		this.mLocationInInterfaceBuilder = new Point(10, 10);
+		this.mIsExists = false;
 	}
 	
 	public Image(String pId, String pRealPath, String pPhonyPath) {
@@ -398,6 +399,14 @@ public class Image implements Comparable<Image> {
 		return this.mLocationInInterfaceBuilder;
 	}
 	
+	public void setExists(boolean isExists) {
+		this.mIsExists = isExists;
+	}
+	
+	public boolean isExists() {
+		return mIsExists;
+	}
+	
 	public String toXML(boolean includeSize) {
 		String tab = StringUtils.tab(mTabCount);
 		StringBuilder builder = new StringBuilder(tab);
@@ -443,4 +452,5 @@ public class Image implements Comparable<Image> {
 	private int mTabCount;
 	private String mXmlTagName;
 	private Point mLocationInInterfaceBuilder;
+	private boolean mIsExists;
 }

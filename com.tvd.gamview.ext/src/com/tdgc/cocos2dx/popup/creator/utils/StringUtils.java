@@ -64,7 +64,7 @@ public class StringUtils {
 	
 	public static String convertToNormalProperty(String pStr) {
 		pStr = pStr.toLowerCase();
-		String result = Config.getInstance().getNormalPropertyPrefix();
+		String result = Config.getInstance().getDefaultNormalPrefix();
 		String strs[] = pStr.split("_");
 		for(int i = 0 ; i < strs.length ; i++) {
 			result += strs[i].toUpperCase().charAt(0)

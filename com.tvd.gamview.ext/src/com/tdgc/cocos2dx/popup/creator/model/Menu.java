@@ -3,7 +3,6 @@ package com.tdgc.cocos2dx.popup.creator.model;
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.ModelType;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
-import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
@@ -20,13 +19,9 @@ public class Menu extends CommonObject {
 		this.mIsUnlocated = true;
 		this.mAnchorPoint = new Point(0, 0);
 		this.mPosition = new Point(0, 0);
-	}
-	@Override
-	public String declare() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("CCMenu* " + mName + "; ");
 		
-		return builder.toString();
+		this.mTemplateName = "CCMenu";
+		this.mTemplateFile = "menu.template";
 	}
 
 	@Override
@@ -37,20 +32,10 @@ public class Menu extends CommonObject {
 		}
 		
 		StringBuilder builder = new StringBuilder("\n");
-		
-		String templateName = "CCMenu";
-		if(pInfunction) {
-			templateName += " in function";
-			mName = getInfunctionName();
-		} 
-		
-//		String template = new FileUtils().fetchTemplate(templateName, 
-//				"src/com/template/new_menu.template");
-		String template = new FileUtils().fetchTemplate(templateName, 
-				"src/com/template/new_menu.template", getProject());
+		String template = fetchTemplate(pInfunction);
 		
 		String parentName = Config.getInstance()
-				.getDefaultParentForProperties(mParent.getType());
+				.getDefaultBackgroundOnSupers(mParent.getType());
 		if(mParent != null) {
 			parentName = mParent.getName();
 		}

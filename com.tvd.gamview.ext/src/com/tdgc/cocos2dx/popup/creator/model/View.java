@@ -7,15 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//import org.eclipse.core.resources.IFile;
-//import org.eclipse.core.resources.IProject;
-//import org.eclipse.core.runtime.CoreException;
-
-
-
-
-
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -37,6 +28,7 @@ public class View extends AdvancedObject {
 		super();
 		this.mViewType = Constants.ViewType.VIEW;
 		this.mSuffix = "popup";
+		this.mType = "popup";
 		this.mImages = new ArrayList<Image>();
 		this.mResources = new ArrayList<Resources>();
 		this.mScreenContainerPath = 
@@ -45,19 +37,22 @@ public class View extends AdvancedObject {
 				"pop_common_bg.png", 
 				"pop_common_bg.png",
 				true, this);
+		this.mBackgroundImage.setExists(true);
 		this.mImages.add(mBackgroundImage);
 		this.mLabels = new ArrayList<Label>();
 		this.mPrefix = "";
-		this.mSuper = Config.getInstance().getDefautSuper(mSuffix);
+		this.mSuper = Config.getInstance().getDefautSuper(mType);
 		this.mXmlTagName = Tag.VIEW;
-
+		this.mPositionTemplateName = 
+				Config.getInstance().getDefaultTemplateName("position");
+		this.mPositionTemplateFile = "point.template";
+		this.mSizeTemplateName = 
+				Config.getInstance().getDefaultTemplateName("size");
+		this.mSizeTemplateFile = "size.template";
 	}
 	
 	@Override
 	public String declare() {
-		if(mTableGroupInView.size() > 0) {
-			super.mHeaderTemplate = "extend table";
-		}
 		String srcCode = super.declare()
 				.replace("{background_id}", mBackgroundImage.getId());
 		
@@ -66,18 +61,13 @@ public class View extends AdvancedObject {
 					.getItems().get(0))).getCell();
 			srcCode = srcCode.replace("{super_table_name}", 
 					mTableGroupInView.get(0).getItems().get(0).getSuper());
-			srcCode = srcCode.replace("{super_cell_name}", cell.getSuper())
-					.replace("{table_view_name}", Config.getInstance().getTableViewName());
+			srcCode = srcCode.replace("{super_cell_name}", cell.getSuper());
 		}
 		return srcCode;
 	}
 	
 	@Override
 	public String implement(boolean pInfunction) {
-		super.mImplementingTemplate = "implement";
-		if(mTableGroupInView.size() > 0) {
-			super.mImplementingTemplate = "extend table";
-		}
 		String srcCode = super.implement(pInfunction);
 		
 		if(mTableGroupInView.size() > 0) {
@@ -86,7 +76,6 @@ public class View extends AdvancedObject {
 			srcCode = srcCode.replace("//{extend_class}", 
 					cell.declareAndImplement())
 					.replace("{super_cell_name}", cell.getSuper())
-					.replace("{table_view_name}", Config.getInstance().getTableViewName())
 					.replace("{cell_class_name}", cell.getClassName()); 
 		}
 		return srcCode;
@@ -107,7 +96,8 @@ public class View extends AdvancedObject {
 		
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
-		return StringUtils.standardizeCode(builder.toString());
+		return StringUtils.standardizeCode(
+				builder.toString().trim());
 	}
 	
 	@Override
@@ -124,7 +114,8 @@ public class View extends AdvancedObject {
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
 		
-		return StringUtils.standardizeCode(builder.toString());
+		return StringUtils.standardizeCode(
+				builder.toString().trim());
 	}
 	
 	public String implementPositions(String device) {
@@ -140,15 +131,23 @@ public class View extends AdvancedObject {
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE + "(" + device + ")");
 		
-		return StringUtils.standardizeCode(builder.toString());
+		return StringUtils.standardizeCode(
+				builder.toString().trim());
 	}
 	
 	public String declareImageIds() {
 		StringBuilder builder = new StringBuilder();
 		createHeaderCommentTemplate(builder, Constants.IMAGEIDS_DECLARING_CMM);
+		String template = new FileUtils().fetchTemplate(
+				"Image identifiers declaring", 
+				"src/com/template/id.template", getProject()).trim();
 		for(int i = 0 ; i < mImages.size(); i++) {
-			builder.append("\tstring " + mImages.get(i).getId().trim() + ";")
-				.append("\n");
+			if(mImages.get(i) == null || mImages.get(i).isExists()) {
+				continue;
+			}
+			builder.append(template.replace("{id}", mImages.get(i).getId().trim())
+						.replace("{tab}", "\t"))
+					.append("\n");
 		}
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
@@ -161,11 +160,18 @@ public class View extends AdvancedObject {
 		createHeaderCommentTemplate(builder, 
 				Constants.IMAGEIDS_IMPLEMENTING_CMM);
 		
+		String template = new FileUtils().fetchTemplate(
+				"Image identifiers implementing", 
+				"src/com/template/id.template", getProject()).trim();
 		for(int i = 0 ; i < mImages.size(); i++) {
-			builder.append("\t" + mImages.get(i).getId())
-				.append("\t\t= ")
-				.append("\"" + mImages.get(i).getRealPath() + "\";")
-				.append("\n");
+			if(mImages.get(i) == null || mImages.get(i).isExists()
+					|| mImages.get(i).getRealPath() == null) {
+				continue;
+			}
+			builder.append(template.replace("{id}", mImages.get(i).getId())
+						.replace("{value}", mImages.get(i).getRealPath())
+						.replace("{tab}", "\t"))
+					.append("\n");
 		}
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
@@ -199,18 +205,21 @@ public class View extends AdvancedObject {
 			
 			final String xibFilePath = mXibContainerPath + "/" 
 					+ "/" + mClassName + ".xib";
+//			System.out.println(xibContent);
+			
 			fileUtils.setContent(xibContent).writeToFile(xibFilePath, override);
+							
 	}
 	
 //	public void exportScreenTemplate(String pDevice) {
 	public void exportScreenTemplate(String pDevice, IProject pProject) {
 		FileUtils fileUtils = new FileUtils();
-		String path = "resources/screen/" 
-				+ pDevice + "/template.screen";
-		String screenContent = fileUtils.readFromFile(path);
-//		IFile file = pProject.getFile("resources/screen/" 
-//				+ pDevice + "/template.screen");
-//		String screenContent = fileUtils.readFromFile(file);
+//		String path = "resources/screen/" 
+//				+ pDevice + "/template.screen";
+//		String screenContent = fileUtils.readFromFile(path);
+		IFile file = pProject.getFile("resources/screen/" 
+				+ pDevice + "/template.screen");
+		String screenContent = fileUtils.readFromFile(file);
 		screenContent = screenContent.replace("<!--{widgets}-->", createWidgetsTag());
 		final String screenPath = mScreenContainerPath
 				+ "/" + mClassName + ".screen";
@@ -464,7 +473,7 @@ public class View extends AdvancedObject {
 	@Override
 	public String getName() {
 		if(mBackgroundName == null || mBackgroundName.equals(Strings.DEFAULT)) {
-			mBackgroundName = Config.getInstance().getDefaultParentForProperties(mType);
+			mBackgroundName = Config.getInstance().getDefaultBackgroundOnSupers(mType);
 		}
 		return mBackgroundName;
 	}
@@ -589,7 +598,7 @@ public class View extends AdvancedObject {
 			.append(Attribute.PREFIX + "=\"" + mPrefix + "\" ")
 			.append(Attribute.TYPE + "=\"" + mType + "\" ")
 			.append("\n\t\t" + Attribute.SUPER + "=\"" + mSuper + "\" ")
-			.append(Attribute.BACKGROUND_NAME + "=\"" + getBackgroundName() + "\"")
+			.append(Attribute.BACKGROUND_NAME + "=\"" + mBackgroundName + "\"")
 			.append("\n\t\t" + Attribute.COMMENT + "=\"" + mComment + "\"")
 			.append("\n\t\txmlns=\"http://www.tvd.com/tools\"")
 			.append("\n\t\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"")
@@ -666,5 +675,4 @@ public class View extends AdvancedObject {
 	private List<Label> mLabels;
 	private List<Resources> mResources;
 	private String mScreenContainerPath;
-	
 }

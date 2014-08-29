@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -59,6 +61,11 @@ public class FileUtils {
 		DataInputStream inputStream = null;
 		BufferedReader bufferedReader = null;
 		try {
+			if(!file.exists()) {
+				System.err.println("ERROR::readFromFile file " 
+						+ file.getFullPath() + " is not exists");
+				return "";
+			}
 			inputStream = new DataInputStream(file.getContents());
 			bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 			
@@ -141,7 +148,9 @@ public class FileUtils {
 		StringBuilder builder = new StringBuilder();
 		String contentLines[] = readFromFile(pTemplateFilePath).split("\n");
 		pTemplateName = "#" + pTemplateName.trim() + " template";
+		boolean isNotExistsTemplate = true;
 		for(int i = 0 ; i < contentLines.length ; i++) {
+			isNotExistsTemplate = false;
 			if(contentLines[i].trim().equals(pTemplateName)) {
 				while(!contentLines[++i].trim().equals("#end")) {
 					if(!contentLines[i].equals("")) {
@@ -152,7 +161,66 @@ public class FileUtils {
 				break;
 			}
 		}
+		if(isNotExistsTemplate) {
+			System.err.println("ERROR::fetchTemplate template '" 
+					+ pTemplateName + "' is not exists!");
+		}
 		return builder.toString();
+	}
+	
+	public String fetchDefaultValue(String pKey, String pGroupName, 
+			String pFileContent) {
+		String contentLines[] = pFileContent.split("\n");
+		String groupRealName = "#" + pGroupName + " default";
+		for(int i = 0 ; i < contentLines.length ; i++) {
+			contentLines[i] = contentLines[i].trim();
+			if(contentLines[i].equals(groupRealName)) {
+				while(!contentLines[++i].trim().equals("#end")) {
+					contentLines[i] = contentLines[i].trim();
+					if(contentLines[i].length() > 0 
+							&& contentLines[i].contains("=")) {
+						String keyValue[] = contentLines[i].split("=");
+						String key = keyValue[0].trim();
+						String value = keyValue[1].trim();
+						if(pKey.equals(key)) {
+							return value;
+						}
+					}
+				}
+				break;
+			}
+		}
+		
+		System.err.println("ERROR::fetchTemplate defaultValue key '" 
+				+ pKey + "' or group '" + pGroupName + "' is not exists!");
+		return "default";
+	}
+	
+	public Map<String, String> fetchDefaultKeyValues(String pGroupName, 
+			String pFileContent) {
+		Map<String, String> result = new HashMap<String, String>();
+		String contentLines[] = pFileContent.split("\n");
+		String groupRealName = "#" + pGroupName + " default";
+		for(int i = 0 ; i < contentLines.length ; i++) {
+			contentLines[i] = contentLines[i].trim();
+			if(contentLines[i].equals(groupRealName)) {
+				while(!contentLines[++i].trim().equals("#end")) {
+					contentLines[i] = contentLines[i].trim();
+					if(contentLines[i].length() > 0 
+							&& contentLines[i].contains("=")) {
+						String keyValue[] = contentLines[i].split("=");
+						String key = keyValue[0].trim();
+						String value = keyValue[1].trim();
+						if(key.length() > 0 && value.length() > 0) {
+							result.put(key, value);
+						}
+					}
+				}
+				break;
+			}
+		}
+		
+		return result;
 	}
 	
 	public String fetchTemplate(String pTemplateName, String pTemplatePath, 

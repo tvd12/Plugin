@@ -21,25 +21,18 @@ public class Table extends CommonObject {
 		this.mAnchorPoint = new Point(0, 0);
 		this.mAnchorPointString = this.mAnchorPoint.toString();
 		this.mXmlTagName = Tag.TABLE;
-	}
-	
-	@Override
-	public String declare() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("CCTableView* " + mName + ";");
-		return builder.toString();
+		
+		this.mTemplateName = "CCTableView";
+		this.mTemplateFile = "table.template";
 	}
 	
 	@Override
 	public String implement(boolean pInfunction) {
 		StringBuilder builder = new StringBuilder("\n");
-		String template = new FileUtils().fetchTemplate("TableView", 
-				"src/com/template/new_table.template", getProject());
-//		String template = new FileUtils().fetchTemplate("TableView", 
-//				"src/com/template/new_table.template", getProject());
+		String template = fetchTemplate(pInfunction);
 		
 		String parentName = Config.getInstance()
-				.getDefaultParentForProperties(mParent.getType());
+				.getDefaultBackgroundOnSupers(mParent.getType());
 		if(mParent != null) {
 			parentName = mParent.getName();
 		}
@@ -69,9 +62,21 @@ public class Table extends CommonObject {
 	@Override
 	public String declarePositions() {
 		StringBuilder builder = new StringBuilder(super.declarePositions());
-		builder.append("\n\tCCPoint " + mCellPositionName + ";\n")
-			.append("\tCCSize " + mSizeName + ";\n")
-			.append("\tCCSize " + mCellSizeName + ";\n");
+		FileUtils fileUtils = new FileUtils();
+		String pointTemplate = fileUtils.fetchTemplate(
+				getDeclaringPositionTemplateName(), 
+				getPostionTemplateFilePath(), getProject());
+		String sizeTemplate = fileUtils.fetchTemplate(
+				getDeclaringSizeTemplateName(), 
+				getSizeTemplateFilePath(), getProject());
+		pointTemplate = pointTemplate.replace("{var_name}", mCellPositionName)
+				.replace("{tab}", "\t");
+		builder.append("\n")
+			.append(pointTemplate)
+			.append(sizeTemplate.replace("{tab}", "\t")
+					.replace("{var_name}", mSizeName))
+			.append(sizeTemplate.replace("{tab}", "\t")
+					.replace("{var_name}", mCellSizeName));
 		
 		return builder.toString();
 	}
@@ -83,14 +88,14 @@ public class Table extends CommonObject {
 		String cellPositionString = mCell.getPositionString();
 		String cellSizeString = mCell.getSizeString();
 		
-//		String pointTemplate = new FileUtils().fetchTemplate("CCPoint", 
-//				"src/com/template/new_point.template");
-//		String sizeTemplate = new FileUtils().fetchTemplate("CCSizeMake", 
-//				"src/com/template/new_size.template");
-		String pointTemplate = new FileUtils().fetchTemplate("CCPoint", 
-				"src/com/template/new_point.template", getProject());
-		String sizeTemplate = new FileUtils().fetchTemplate("CCSizeMake", 
-				"src/com/template/new_size.template", getProject());
+		FileUtils fileUtils = new FileUtils();
+		String pointTemplate = fileUtils.fetchTemplate(
+				getImplementingPositionTemplateName(), 
+				getPostionTemplateFilePath(), getProject());
+		
+		String sizeTemplate = fileUtils.fetchTemplate(
+				getImplementingSizeTemplateName(), 
+				getSizeTemplateFilePath(), getProject());
 		
 		builder.append(pointTemplate.replace("{var_name}", mPositionName)
 				.replace("{position}", mPositionString))
@@ -101,7 +106,7 @@ public class Table extends CommonObject {
 			.append("\t" + sizeTemplate.replace("{var_name}", mCellSizeName)
 				.replace("{size}", cellSizeString));
 		
-		return builder.toString();
+		return builder.toString().replace("{tab}", "\t");
 	}
 	
 	@Override

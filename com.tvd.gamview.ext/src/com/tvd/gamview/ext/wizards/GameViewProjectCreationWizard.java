@@ -132,6 +132,7 @@ public class GameViewProjectCreationWizard extends Wizard
 			mJavaPage.init(jproject, outputLocation, buildPath, false);	
 			
 			String paths[] = {"src/com/template", "src/com/properties",
+					"src/com/config",
 					"resources/screen/iphone", "resources/screen/ipadhd",
 					"resources/xib/iphone", "resources/xib/ipadhd",
 					"resources/xml/iphone", "resources/xml/ipadhd",
