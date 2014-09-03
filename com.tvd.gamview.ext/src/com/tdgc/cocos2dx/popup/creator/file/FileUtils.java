@@ -17,8 +17,11 @@ import java.util.Map;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.json.JSONObject;
 
+import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.log.Log;
+import com.tdgc.cocos2dx.popup.creator.model.Image;
 
 public class FileUtils {
 	
@@ -194,6 +197,24 @@ public class FileUtils {
 		System.err.println("ERROR::fetchTemplate defaultValue key '" 
 				+ pKey + "' or group '" + pGroupName + "' is not exists!");
 		return "default";
+	}
+	
+	public Map<String, Image> fetchDefaultBackgroundImages(String pGroupName,
+			String pFileContent) {
+		Map<String, Image> result = new HashMap<String, Image>();
+		Map<String, String> pairs = fetchDefaultKeyValues(pGroupName, pFileContent);
+		String keys[] = pairs.keySet().toArray(new String[0]);
+		String values[] = pairs.values().toArray(new String[0]);
+		for(int i = 0 ; i < pairs.size() ; i++) {
+			JSONObject jsonObj = new JSONObject(values[i]);
+			String realPath = jsonObj.getString(Attribute.REAL_PATH);
+			Image image = new Image();
+			image.setPhonyPath(realPath);
+			result.put(keys[0], image);
+			System.out.println(image);
+		}
+		
+		return result;
 	}
 	
 	public Map<String, String> fetchDefaultKeyValues(String pGroupName, 

@@ -35,9 +35,10 @@ public class ImageFileUtils {
 			return;
 		}
 		File toFile = new File(pToPath);
-		if(!toFile.exists()) {
-			toFile.mkdirs();
+		if(toFile.exists()) {
+			toFile.delete();
 		}
+		toFile.mkdirs();
 		List<String> filePaths = new FileParser(pFromPath).fetchFilePaths();
 		pFromPath = pFromPath.substring(0, pFromPath.lastIndexOf('/'));
 		BufferedImage image = null;

@@ -86,7 +86,6 @@ public class NewGameViewWizard extends Wizard implements INewWizard {
 				newFile.delete(false, null);
 				duplicate = true;
 			}
-			
 			ProjectUtils.createXMLFileWithBuilder(project, xmlBuilder, mType, true);
 			
 			//update tree view part

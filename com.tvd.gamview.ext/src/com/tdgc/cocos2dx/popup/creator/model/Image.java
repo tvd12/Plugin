@@ -151,7 +151,7 @@ public class Image implements Comparable<Image> {
 			image = ImageIO.read(file);
 			int width = image.getWidth();
 		    int height = image.getHeight();
-		    setSize(width, height);
+		    setSize(width/2, height/2);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -166,7 +166,15 @@ public class Image implements Comparable<Image> {
 	
 	@Override
 	public String toString() {
-		return mName + " position(" + mX + ", " + ", " + mY + ")";
+		StringBuilder builder = new StringBuilder();
+		builder.append("{\n")
+			.append("\t\"image\" : {\n")
+			.append("\t\t\"id\" : " + "\"" + mId + "\",\n")
+			.append("\t\t\"real-path\" : " + "\"" + mRealPath + "\",\n")
+			.append("\t\t\"phony-path\" : " + "\"" + mPhonyPath + "\"\n")
+			.append("\t}\n")
+			.append("}");
+		return builder.toString();
 	}
 	
 	public void replaceWithAnother(Image another) {
@@ -240,7 +248,8 @@ public class Image implements Comparable<Image> {
 			float x = mParent.getLocationInView().getX();
 			float y = mParent.getLocationInView().getY();
 			CommonObject parentOfParent = mParent.getParent();
-			if(parentOfParent != null) {
+			if(parentOfParent != null
+					&& parentOfParent.getLocationInView() != null) {
 				x = x - parentOfParent.getLocationInView().getX();
 				y = y - parentOfParent.getLocationInView().getY();
 				
@@ -249,7 +258,8 @@ public class Image implements Comparable<Image> {
 			mAnchorPoint = mParent.getAnchorPoint();
 			float anchorpointY = 1 - mAnchorPoint.getY();
 			x = x + mAnchorPoint.getX()*mSize.getWidth();
-			if(mParent.getParent() != null) {
+			if(mParent.getParent() != null
+					&& mParent.getParent().getSize() != null) {
 				y = mParent.getParent().getSize().getHeight() - 
 					(y + anchorpointY*mSize.getHeight());
 			} else {

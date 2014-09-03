@@ -218,6 +218,7 @@ public class AdvancedObject extends CommonObject {
 	protected void setParentForMenuItems() {
 		CommonObject parent = new Menu();
 		parent.setName(Config.getInstance().getDefaultMenuOnSuper(mType));
+		parent.setProject(getProject());
 		for(int i = 0 ; i < mMenuItemGroups.size() ; i++) {
 			for(int j = 0 ; j < mMenuItemGroups.get(i).getItems().size() ; j++) {
 				mMenuItemGroups.get(i).getItems().get(j).setParent(parent);

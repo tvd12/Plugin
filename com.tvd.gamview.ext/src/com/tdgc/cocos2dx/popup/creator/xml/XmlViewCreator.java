@@ -61,6 +61,7 @@ public class XmlViewCreator {
 				Config.getInstance().getDefaultViewSuffix()));
 		view.setSuper(Strings.DEFAULT);
 		view.setBackgroundName(Strings.DEFAULT);
+		view.setSize(Config.getInstance().getDefaultScreenSizeString(mDevice));
 		
 		String type = fullPath.substring(fullPath.lastIndexOf("_") + 1);
 		view.setPrefix(StringUtils.detectPrefix(type) + "_" +
@@ -149,7 +150,7 @@ public class XmlViewCreator {
 				
 			}
 		}
-		createNextItems(pParent, 0, false);
+//		createNextItems(pParent, 0, false);
 	}
 	
 	private void createMenuItemItems(CommonObject pParent, String pParentPath) {
@@ -166,7 +167,7 @@ public class XmlViewCreator {
 			item.setTabCount(items.getTabCount() + 1);
 			createNextItems(item, i, true, false);
 		}
-		createNextItems(pParent, 0, false);
+//		createNextItems(pParent, 0, false);
 	}
 	
 	private void createMenuItems(CommonObject pParent, String pParentPath) {
@@ -182,7 +183,7 @@ public class XmlViewCreator {
 			item.setTabCount(items.getTabCount() + 1);
 			createNextItems(item, i, true);
 		}
-		createNextItems(pParent, 0, false);
+//		createNextItems(pParent, 0, false);
 	}
 	
 	private void createTableItems(CommonObject pParent, String pParentPath) {
@@ -213,7 +214,7 @@ public class XmlViewCreator {
 			createCellItem(item, fullPath);
 			break;
 		}
-		createNextItems(pParent, 0, false);
+//		createNextItems(pParent, 0, false);
 	}
 	
 	private void createCellItem(CommonObject pParent, String pParentPath) {

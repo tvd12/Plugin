@@ -1,0 +1,67 @@
+package com.tdgc.cocos2dx.popup.creator.model.basic;
+
+public class BasicObject {
+	
+	public BasicObject() {
+		mPositionTemplateName = "CCPoint";
+		mPositionTemplateFile = "point.template";
+		mSizeTemplateName = "CCSizeMake";
+		mSizeTemplateFile = "size.template";
+	}
+	
+	public void setTemplateName(String template) {
+		this.mTemplateName = template;
+	}
+	
+	public void setTemplateFile(String file) {
+		this.mTemplateFile = file;
+	}
+	
+	public String getTemplateName() {
+		return mTemplateName;
+	}
+	
+	public String getTemplateFile() {
+		return mTemplateFile;
+	}
+	
+	public void setPositionTemplateName(String tplName) {
+		if(tplName != null && !tplName.equals("")) {
+			mPositionTemplateName = tplName;
+		}
+	}
+	
+	public void setPostionTemplateFile(String tplFile) {
+		if(tplFile != null && !tplFile.equals("")) {
+			mPositionTemplateFile = tplFile;
+		}
+	}
+	
+	public void setSizeTemplateName(String tplName) {
+		if(tplName != null && !tplName.equals("")) {
+			mSizeTemplateName = tplName;
+		}
+	}
+	
+	public void setSizeTemplateFile(String tplFile) {
+		if(tplFile != null && !tplFile.equals("")) {
+			mSizeTemplateFile = tplFile;
+		}
+	}
+
+	public void setAllPropertiesForObject(BasicObject obj) {
+		obj.mTemplateName = mTemplateName;
+		obj.mTemplateFile = mTemplateFile;
+		obj.mPositionTemplateName = mPositionTemplateName;
+		obj.mPositionTemplateFile = mPositionTemplateFile;
+		obj.mSizeTemplateFile = mSizeTemplateFile;
+		obj.mSizeTemplateName = mSizeTemplateName;
+	}
+	
+	protected String mTemplateName;
+	protected String mTemplateFile;
+	protected String mPositionTemplateName;
+	protected String mPositionTemplateFile;
+	protected String mSizeTemplateName;
+	protected String mSizeTemplateFile;
+}

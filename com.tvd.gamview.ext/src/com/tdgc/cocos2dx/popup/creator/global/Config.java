@@ -8,15 +8,18 @@ import org.eclipse.core.resources.IProject;
 
 import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
+import com.tdgc.cocos2dx.popup.creator.model.Image;
 
 public class Config {
 	
 	private Config() {
-		mDefaultNormalPrefix = "m";
-		mDefaultSupers = new HashMap<String, String>();
-		mDefaultBackgroundOnSupers = new HashMap<String, String>();
-		mDefaultMenuOnSupers = new HashMap<String, String>();
-		mDefaultTemplateNames = new HashMap<String, String>();
+		mDefaultNormalPrefix 			= "m";
+		mDefaultSupers 					= new HashMap<String, String>();
+		mDefaultBackgroundOnSupers 		= new HashMap<String, String>();
+		mDefaultMenuOnSupers 			= new HashMap<String, String>();
+		mDefaultTemplateNames 			= new HashMap<String, String>();
+		mDefaultBackgroundImages 		= new HashMap<String, Image>();
+		mDefaultScreenSize				= new HashMap<String, String>();
 	}
 
 	public static Config getInstance() {
@@ -47,6 +50,11 @@ public class Config {
 				"normal_prefix", "Prefix and Suffix", fileContent);
 		mDefaultViewSuffix = fileUtils.fetchDefaultValue(
 				"view_suffix", "Prefix and Suffix", fileContent);
+		mDefaultScreenSize.putAll(fileUtils.fetchDefaultKeyValues(
+				"Screen size", fileContent));
+		
+		mDefaultBackgroundImages.putAll(fileUtils.fetchDefaultBackgroundImages(
+				"Background image on super", fileContent));
 		System.out.println("Config just have loaded");
 	}
 	
@@ -174,6 +182,14 @@ public class Config {
 		return mDefaultTemplateNames.get(superType);
 	}
 	
+	public Image getDefaultBackgroundImage(String type) {
+		return mDefaultBackgroundImages.get(type);
+	}
+	
+	public String getDefaultScreenSizeString(String device) {
+		return mDefaultScreenSize.get(device);
+	}
+	
 	public String getDefaultViewSuffix() {
 		return mDefaultViewSuffix;
 	}
@@ -186,6 +202,8 @@ public class Config {
 	private Map<String, String> mDefaultBackgroundOnSupers;
 	private Map<String, String> mDefaultMenuOnSupers;
 	private Map<String, String> mDefaultTemplateNames;
+	private Map<String, Image>  mDefaultBackgroundImages;
+	private Map<String, String> mDefaultScreenSize;
 	
 	private String mDefinePath;
 	private String mParametersPath;

@@ -29,6 +29,7 @@
 			<xs:attribute name="super" type="xs:string" use="required" />
 			<xs:attribute name="background-name" type="xs:string" />
 			<xs:attribute name="type" type="xs:string" use="required" />
+			<xs:attribute name="size" type="xs:string" use="required" />
 			<xs:attributeGroup ref="template" />
 		</xs:complexType>
 	</xs:element>

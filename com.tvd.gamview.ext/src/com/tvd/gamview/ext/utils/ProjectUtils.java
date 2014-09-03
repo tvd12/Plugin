@@ -1,7 +1,6 @@
 package com.tvd.gamview.ext.utils;
 
 import java.io.ByteArrayInputStream;
-
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +25,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
+import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.xml.XmlFileBuilder;
 import com.tvd.gameview.plugin.model.ViewModel;
 import com.tvd.gameview.views.BuildingTreeView;
@@ -257,6 +257,7 @@ public class ProjectUtils {
 	public static void createXMLFileWithBuilder(IProject project, XmlFileBuilder builder,
 			String type, boolean override) {
 		try {
+			Config.getInstance().setProject(project);
 			String devices[] = getDevices(project);
 			if(devices == null || devices.length == 0) {
 				return;

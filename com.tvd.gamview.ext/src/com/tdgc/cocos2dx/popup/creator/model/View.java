@@ -19,6 +19,7 @@ import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.file.ImageFileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.AdvancedObject;
+import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 import com.tdgc.cocos2dx.popup.creator.xml.XibFetcher;
 
@@ -33,12 +34,6 @@ public class View extends AdvancedObject {
 		this.mResources = new ArrayList<Resources>();
 		this.mScreenContainerPath = 
 				Config.getInstance().getScreenContainerPath();
-		this.mBackgroundImage = new Image("common_background", 
-				"pop_common_bg.png", 
-				"pop_common_bg.png",
-				true, this);
-		this.mBackgroundImage.setExists(true);
-		this.mImages.add(mBackgroundImage);
 		this.mLabels = new ArrayList<Label>();
 		this.mPrefix = "";
 		this.mSuper = Config.getInstance().getDefautSuper(mType);
@@ -49,12 +44,16 @@ public class View extends AdvancedObject {
 		this.mSizeTemplateName = 
 				Config.getInstance().getDefaultTemplateName("size");
 		this.mSizeTemplateFile = "size.template";
+		this.mLocationInView = new Point(0, 0);
 	}
 	
 	@Override
 	public String declare() {
-		String srcCode = super.declare()
-				.replace("{background_id}", mBackgroundImage.getId());
+		String srcCode = super.declare();
+		if(mBackgroundImage != null 
+				&& mBackgroundImage.getId() != null) {
+			srcCode = srcCode.replace("{background_id}", mBackgroundImage.getId());
+		}
 		
 		if(mTableGroupInView.size() > 0) {
 			Cell cell = ((Table)(mTableGroupInView.get(0)
@@ -580,6 +579,21 @@ public class View extends AdvancedObject {
 		this.mBackgroundImage = img;
 	}
 	
+	@Override
+	public void setType(String type) {
+		super.setType(type);
+		if(type != null) {
+			this.mBackgroundImage = Config.getInstance().getDefaultBackgroundImage(
+					type);
+			if(mBackgroundImage != null) {
+				this.mBackgroundImage.setIsBackground(true);
+				this.mBackgroundImage.setExists(true);
+				this.mBackgroundImage.setParent(this);
+				this.mImages.add(mBackgroundImage);
+			}
+		}
+	}
+	
 	public void setXmlFile(IFile xmlFile) {
 		this.mXmlFile = xmlFile;
 	}
@@ -598,7 +612,9 @@ public class View extends AdvancedObject {
 			.append(Attribute.PREFIX + "=\"" + mPrefix + "\" ")
 			.append(Attribute.TYPE + "=\"" + mType + "\" ")
 			.append("\n\t\t" + Attribute.SUPER + "=\"" + mSuper + "\" ")
-			.append(Attribute.BACKGROUND_NAME + "=\"" + mBackgroundName + "\"")
+			.append(Attribute.BACKGROUND_NAME + "=\"" + mBackgroundName + "\" ")
+			.append(Attribute.SIZE + "=\"" + mSize + "\" ")
+			.append("\n\t\t" + Attribute.TEMPLATE_NAME + "=\"" + mTemplateName + "\"")
 			.append("\n\t\t" + Attribute.COMMENT + "=\"" + mComment + "\"")
 			.append("\n\t\txmlns=\"http://www.tvd.com/tools\"")
 			.append("\n\t\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"")
