@@ -19,7 +19,7 @@ public class Cell extends AdvancedObject {
 		super();
 		mSuper = "ITableCellView";
 		mSuffix = "cell";
-		mType = "Cell";
+		mType = "cell";
 		mViewType = Constants.ViewType.CELL;
 		mSuper = Config.getInstance()
 				.getDefaultSupers().get(mSuffix);
@@ -32,7 +32,6 @@ public class Cell extends AdvancedObject {
 	
 	@Override
 	public String declare() {
-		this.checkColumnArray();
 		String srcCode = super.declare();
 		StringBuilder tagBuilder = new StringBuilder()
 			.append(ViewUtils.createElementTags(mLabelGroupInView, 100))
@@ -46,31 +45,16 @@ public class Cell extends AdvancedObject {
 
 	@Override
 	public String implement(boolean pInfunction) {
-		this.checkColumnArray();
 		return super.implement(pInfunction);
 	}
 	
 	@Override
 	public String declarePositions() {
-		this.checkColumnArray();
 		return super.declarePositions();
 	}
 	
 	@Override
 	public String implementPositions() {
-		ItemGroup itemGroup = checkColumnArray();
-		if(itemGroup != null) {
-			CommonObject itemAt0 = itemGroup.getItems().get(0);
-			float width = this.getSize().getWidth() -
-					(itemAt0.getLocationInView().getX()
-					- this.getLocationInView().getX());
-			for(int j = 1 ; j < itemGroup.getArrayLength() ; j++) {
-				float x = (int)(itemAt0.getPosition().getX() 
-						+ (j*width/itemGroup.getArrayLength()));
-				float y = itemAt0.getPosition().getY();
-				itemGroup.getItems().get(j).setPosition(new Point(x, y).toString());;
-			}
-		}
 		return super.implementPositions();
 	}
 	public String declareAndImplement() {
@@ -93,6 +77,11 @@ public class Cell extends AdvancedObject {
 	public void setParent(CommonObject parent) {
 		super.setParent(parent);
 		((Table)parent).addCell(this);
+	}
+	
+	@Override
+	public void update() {
+		checkColumnArray();
 	}
 	
 	public Image getImage() {
@@ -132,7 +121,7 @@ public class Cell extends AdvancedObject {
 		return builder.toString();
 	}
 	
-	private ItemGroup checkColumnArray() {
+	private void checkColumnArray() {
 		List<List<ItemGroup>> groups = new ArrayList<List<ItemGroup>>();
 		groups.add(mLabelGroupInView);
 		groups.add(mSpriteGroupInView);
@@ -140,20 +129,37 @@ public class Cell extends AdvancedObject {
 		groups.add(mMenuItemGroupInView);
 		groups.add(mTableGroupInView);
 		
+		Table table = (Table)getParent();
+		
 		for(int k = 0 ; k < groups.size() ; k++) {
 			for(int i = 0 ; i < groups.get(k).size() ; i++) {
 				ItemGroup itemGroup = groups.get(k).get(i);
-				if(!itemGroup.isArray()) {
+				if(!itemGroup.isArray()
+						|| itemGroup.getArrayLength() != table.getColumns()) {
 					continue;
 				}
-				itemGroup.setArrayLength(((Table)getParent()).getColumns());
 				if(!itemGroup.mValidArray) {
 					itemGroup.checkArray();
 				}
-				return itemGroup;
+				if(itemGroup != null) {
+					int length = itemGroup.getArrayLength();
+					CommonObject itemAt0 = itemGroup.getItems().get(0);
+					float widthAt0 = itemAt0.getSize().getWidth();
+					float width = this.getSize().getWidth()
+							- (itemAt0.getLocationInView().getX()
+							- this.getLocationInView().getX());
+					float margin = (width - length*widthAt0)/(length - 1);
+					for(int j = 1 ; j < length; j++) {
+						float x = (int)(itemAt0.getPosition().getX() 
+								+ (j*widthAt0 + j*margin));
+						float y = itemAt0.getPosition().getY();
+						CommonObject item = itemGroup.getItems().get(j);
+						item.setPosition(new Point(x, y));
+						item.locationInViewWithPosition();
+					}
+				}
 			}
 		}
-		return null;
 	}
 
 	private Image mImage;

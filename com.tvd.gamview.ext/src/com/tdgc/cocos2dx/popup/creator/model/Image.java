@@ -232,7 +232,7 @@ public class Image implements Comparable<Image> {
 	
 	public void alignFollowParrent() {
 		try {
-			if(mParent.getLocationInView() == null || !mIsAddToInterfaceBuilder) {
+			if(mParent.getLocationInView() == null) {
 				System.err.println("ERROR:: name = " + this.getRealPath() + " has "
 						+ "parent.getLocationInView == null");
 				return;
@@ -266,7 +266,7 @@ public class Image implements Comparable<Image> {
 	
 	public void fetchLocationInViewFromParent() {
 		try {
-			if(mParent.getLocationInView() == null || !mIsAddToInterfaceBuilder) {
+			if(mParent.getLocationInView() == null) {
 				System.err.println("ERROR:: name = " + this.getRealPath() + " has "
 						+ "parent.getLocationInView == null");
 				return;
@@ -324,13 +324,17 @@ public class Image implements Comparable<Image> {
 			anchopointString = pParent.getAnchorPointString();
 			pParent = pParent.getParent();
 		}
-		if(anchopointString == null || anchopointString.equals("default")) {
-			return;
+		if(anchopointString != null 
+				&& Validator.isValidDoubleValueString(anchopointString)) {
+			String values[] = anchopointString.split(",");
+			mAnchorPoint = new Point(Float.parseFloat(values[0]),
+					Float.parseFloat(values[1]));
 		}
 
-		String values[] = anchopointString.split(",");
-		mAnchorPoint = new Point(Float.parseFloat(values[0]),
-				Float.parseFloat(values[1]));
+		if(mParent != null && mParent.isNextItemInArray()) {
+			Interface itf = new Interface(mParent);
+			itf.setImage(this);
+		}
 	}
 	
 	public Size getSize() {
@@ -347,7 +351,9 @@ public class Image implements Comparable<Image> {
 	
 	public void setSize(Size size) {
 		this.mSize = size;
-		this.mParent.setSize(size);
+		if(mParent != null) {
+			this.mParent.setSize(size);
+		}
 	}
 	
 	public void setSize(float w, float h) {
@@ -392,7 +398,17 @@ public class Image implements Comparable<Image> {
 	
 	public void setLocationInInterfaceBuilder(Point location) {
 		this.mLocationInInterfaceBuilder = location;
-		this.mParent.setLocationInView(location);
+		if(mParent != null) {
+			this.mParent.setLocationInView(location);
+		}
+	}
+	
+	public void setLocationInInterfaceBuilder(Point location,
+			boolean setForParent) {
+		this.mLocationInInterfaceBuilder = location;
+		if(mParent != null && setForParent) {
+			this.mParent.setLocationInView(location);
+		}
 	}
 	
 	public Point getLocationInInterfaceBuilder() {
@@ -412,7 +428,8 @@ public class Image implements Comparable<Image> {
 		StringBuilder builder = new StringBuilder(tab);
 		builder.append("<" + mXmlTagName + " ")
 			.append(Attribute.ID + "=\"" + mId + "\" ");
-		if(!mParent.isUnlocated()) {
+
+		if(mIsAddToInterfaceBuilder) {
 			builder.append("\n" + tab + "\t")
 				.append(Attribute.LOCATION_IN_INTERFACEBUILDER + "=\"") 
 				.append(mLocationInInterfaceBuilder + "\"");

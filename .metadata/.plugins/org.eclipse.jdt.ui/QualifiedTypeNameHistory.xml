@@ -55,9 +55,9 @@
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.ItemGroup"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.BasicObject"/>
 <fullyQualifiedTypeName name="java.io.ByteArrayInputStream"/>
-<fullyQualifiedTypeName name="org.eclipse.core.resources.IFile"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.file.FileUtils"/>
 <fullyQualifiedTypeName name="org.eclipse.core.resources.IProject"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.global.Config"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="org.eclipse.core.resources.IFile"/>
 </qualifiedTypeNameHistroy>

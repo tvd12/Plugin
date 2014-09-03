@@ -50,4 +50,6 @@ public interface Tag {
 	public static final String MID_POINT		= "mid-point";
 	public static final String BAR_CHANGE_RATE	= "bar-change-rate";
 	public static final String PERCENT			= "percent";
+	
+	public static final String NEXT				= "next";
 }

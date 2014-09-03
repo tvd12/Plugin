@@ -93,9 +93,10 @@ public class XMLFileChangeListener implements IResourceChangeListener {
 	               System.out.print("Resource ");
 	               System.out.print(res.getFullPath());
 	               System.out.println(" has changed.");
+	               String fullPathStr = res.getFullPath().toString();
 	               if(res.getName().equals("global.properties")) {
 	            	   updateTreeViewer();
-	               } else if(res.getFullPath().toString()
+	               } else if(fullPathStr
 	            		   .endsWith("src/com/config/default.properties")) {
 	            	   Config config = Config.getInstance();
 	            	   if(config.getProject() == null) {
@@ -103,6 +104,9 @@ public class XMLFileChangeListener implements IResourceChangeListener {
 	            	   } else {
 	            		   config.reloadConfigs();
 	            	   }
+	               } else if(fullPathStr.contains("resources/xml/")
+	            		   && fullPathStr.endsWith(".xml")) {
+	            	   
 	               }
 	               break;
 	         }

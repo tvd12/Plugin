@@ -20,6 +20,7 @@ public class ItemGroup {
 		this.mValidArray = false;
 		this.mReferenceCount = 0;
 		this.mIsAddToView = true;
+		this.mBlockComment = "comment to your source code, plz!";
 	}
 	
 	public String declare() {
@@ -27,9 +28,6 @@ public class ItemGroup {
 			return "";
 		}
 		StringBuilder builder = new StringBuilder("\n");
-		if(!mValidArray) {
-			checkArray();
-		}
 		if(mValidArray) {
 			String declareObjetName = mItems.get(0).getDeclareObjectName();
 			builder.append("\t" + declareObjetName + "* " + mArrayName)
@@ -99,13 +97,10 @@ public class ItemGroup {
 	
 	public String declarePosition() {
 		StringBuilder builder = new StringBuilder();
-		if(!mValidArray) {
-			checkArray();
-		}
 		if(mValidArray) {
 			builder.append("\t")
-			.append(mItems.get(0).declarePositions().trim()
-				.replace(mItems.get(0).getPositionName(), mPositionArrayName));
+				.append(mItems.get(0).declarePositions().trim()
+					.replace(mItems.get(0).getPositionName(), mPositionArrayName));
 		} else {
 			for(int i = 0 ; i < mItems.size() ; i++) {
 				String pos = mItems.get(i).declarePositions();
@@ -118,9 +113,6 @@ public class ItemGroup {
 	}
 	
 	public String implementPosition() {
-		if(!mValidArray) {
-			checkArray();
-		}
 		StringBuilder builder = new StringBuilder();
 		for(int i = 0 ; i < mItems.size() ; i++) {
 			String pos = mItems.get(i).implementPositions();
@@ -171,19 +163,47 @@ public class ItemGroup {
 		default:
 			break;
 		}
-		if(mIsArray && mArrayLength > 0 && mItems.size() == 1) {
+		if(mIsArray && mArrayLength > 0 && mItems.size() > 0) {
 			ViewUtils.blockAddingGroupToView(mItems.get(0));
 		}
 		
 	}
 	
+	public void update() {
+		if(!mValidArray) {
+			checkArray();
+		}
+	}
+	
 	protected boolean checkArray() {
-		if(mIsArray && mArrayLength > 0 && mItems.size() == 1) {
+		if(mIsArray && mArrayLength > 0) {
 			mValidArray = true;
+			if(mItems.size() < mArrayLength) {
+				addNewItemToArray();
+			}
 			processArray();
 		}
 		
 		return mValidArray;
+	}
+	
+	private void addNewItemToArray() {
+		if(mValidArray) {
+			CommonObject obj = mItems.get(0);
+			for(int i = 1 ; i < mArrayLength ; i++) {
+				CommonObject newObj = obj.clone();
+				Image img = new Image();
+				img.setId(obj.getXmlPositionName() + "_" 
+						+ mItems.size());
+				img.setSize(obj.getSize());
+				img.setLocationInInterfaceBuilder(
+						img.getLocationInInterfaceBuilder());
+				new Interface(newObj, img);
+				newObj.setNextItemInArray(true);
+				addItem(newObj);
+			}
+			mValidArray = true;
+		} 
 	}
 	
 	private void processArray() {
@@ -193,16 +213,14 @@ public class ItemGroup {
 			this.mPositionArrayName = obj.getPositionName()
 					+ "S[" + mArrayLength + "]";
 			for(int i = 1 ; i < mArrayLength ; i++) {
-				CommonObject newObj = obj.clone();
+				CommonObject newObj = mItems.get(i);
 				newObj.setName(newObj.getName() + "s[" + i + "]");
 				newObj.setNewPositionName(newObj.getPositionName() + "S[" + i + "]");
 				newObj.setTagName(newObj.getTagName() + i);
-				mItems.add(newObj);
 			}
 			obj.setName(obj.getName() + "s[0]");
 			obj.setNewPositionName(obj.getPositionName() + "S[0]");
 			mValidArray = true;
-			
 		} 
 	}
 	
@@ -214,6 +232,9 @@ public class ItemGroup {
 	}
 	
 	public void addItem(CommonObject pObject) {
+		if(mIsArray && mItems.size() > mArrayLength - 1) {
+			return;
+		}
 		this.mItems.add(pObject);
 		pObject.setTabCount(mTabCount + 1);
 	}
@@ -333,7 +354,8 @@ public class ItemGroup {
 		builder.append(Attribute.COMMENT + "=\"" + comment + "\">")
 			.append("\n");
 		for(int i = 0 ; i < mItems.size() ; i++) {
-			builder.append(mItems.get(i).toXML());
+			CommonObject item = mItems.get(i);
+			builder.append(item.toXML(item.isNextItemInArray()));
 		}
 		builder.append(tab + "</" + mXmlTagName + ">").append("\n");
 		
@@ -365,7 +387,9 @@ public class ItemGroup {
 		default:
 			break;
 		}
-		this.addItem(obj);
+		if(addToGroup) {
+			this.addItem(obj);
+		}
 		return obj;
 	}
 	
@@ -387,6 +411,14 @@ public class ItemGroup {
 	
 	public boolean isAddToView() {
 		return this.mIsAddToView;
+	}
+	
+	public CommonObject cloneFromTheFirstItem() {
+		if(mItems.size() > 0) {
+			return mItems.get(0).clone();
+		}
+		
+		return null;
 	}
 	
 	protected int mTabCount;

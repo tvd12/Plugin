@@ -13,16 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="setTy" key="selection"/>
+		<item value="progressbar" key="selection"/>
 		<list key="findhistory">
+			<item value="progressbar"/>
+			<item value="fetch"/>
+			<item value="update"/>
+			<item value="fetcg"/>
 			<item value="setTy"/>
 			<item value="getDefault"/>
 			<item value="DefaultParentForProperties"/>
 			<item value="setType"/>
-			<item value="getProjectN"/>
-			<item value="IProject"/>
-			<item value="setSu"/>
-			<item value="mDefaultMenuItemParent"/>
 		</list>
 		<list key="replacehistory">
 			<item value="mDefaultBackgrounds"/>

@@ -174,7 +174,7 @@ public class Table extends CommonObject {
 		String tab = StringUtils.tab(mTabCount);
 		StringBuilder builder = new StringBuilder(tab);
 		builder.append("<" + mXmlTagName + " " + Attribute.ROWS + "=\"" + mRows + "\" ")
-			.append(Attribute.COLUMNS + "=\" " + mColumns + "\" ")
+			.append(Attribute.COLUMNS + "=\"" + mColumns + "\" ")
 			.append(Attribute.VISIBLE + "=\"true\" ")
 			.append("\n" + tab + "\t\t" + Attribute.COMMENT + "=\"\">");
 		builder.append("\n" + tab + "\t")

@@ -36,6 +36,12 @@ public interface Attribute {
 	public static final String FAMILY			= "family";
 	
 	public static final String BACKGROUND_NAME 	= "background-name";
-	public static final String TEMPLATE			= "template";
+	
+	public static final String TEMPLATE_NAME	= "template-name";
+	public static final String TEMPLATE_FILE	= "template-file";
+	public static final String POSITION_TEMPLATE_NAME	= "position-template-name";
+	public static final String POSITION_TEMPLATE_FILE	= "position-template-file";
+	public static final String SIZE_TEMPLATE_NAME		= "size-template-name";
+	public static final String SIZE_TEMPLATE_FILE		= "size-template-file";
 	
 }

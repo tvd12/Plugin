@@ -44,6 +44,10 @@ public class XmlFileParser extends DefaultHandler {
 			mView.setType(getAttributeValue(Attribute.TYPE, atts));
 			mView.setBackgroundName(getAttributeValue(Attribute.BACKGROUND_NAME, atts));
 			mView.setComment(getAttributeValue(Attribute.COMMENT, atts));
+			mView.setTemplateName(
+					getAttributeValue(Attribute.TEMPLATE_NAME, atts));
+			mView.setTemplateFile(
+					getAttributeValue(Attribute.TEMPLATE_FILE, atts));
 			mCurrentObject = mView;
 			mPositionPrefix = mView.getPositionNamePrefix();
 			mAdvancedObject = mView;
@@ -54,7 +58,8 @@ public class XmlFileParser extends DefaultHandler {
 				|| qName.equals(Tag.LABEL)
 				|| qName.equals(Tag.RESOURCES)
 				|| qName.equals(Tag.CELL)
-				|| qName.equals(Tag.PROGRESSBAR)) {
+				|| qName.equals(Tag.PROGRESSBAR)
+				|| qName.equals(Tag.NEXT)) {
 			CommonObject parent = mCurrentObject;
 			if(qName.equals(Tag.SPRITE)) {
 				mCurrentObject = new Sprite();
@@ -95,20 +100,28 @@ public class XmlFileParser extends DefaultHandler {
 			}
 			else if(qName.equals(Tag.PROGRESSBAR)) {
 				Progressbar progressbar = new Progressbar();
-				progressbar.setTemplateName(getAttributeValue(Attribute.TEMPLATE, atts));
 				mCurrentObject = progressbar;
 				mAdvancedObject.addProgressbars(progressbar);
+			}
+			else if(qName.equals(Tag.NEXT)) {
+				mCurrentObject = mCurrentGroup.cloneFromTheFirstItem();
+				mCurrentObject.setNextItemInArray(true);
 			}
 			
 			mCurrentObject.setComment(
 					getAttributeValue(Attribute.COMMENT, atts));
 			mCurrentObject.setVisible(getBoolean(
 					getAttributeValue(Attribute.VISIBLE, atts)));
+			mCurrentObject.setTemplateName(
+					getAttributeValue(Attribute.TEMPLATE_NAME, atts));
+			mCurrentObject.setTemplateFile(
+					getAttributeValue(Attribute.TEMPLATE_FILE, atts));
 			mCurrentObject.setParent(parent);
 			
 			if(mCurrentObject.isAddToGroup()) {
 				mCurrentGroup.addItem(mCurrentObject);
 			}
+			
 		}
 		
 		else if(qName.equals(Tag.IMAGE)) {
@@ -287,6 +300,7 @@ public class XmlFileParser extends DefaultHandler {
 			else if(qName.equals(Tag.LABELS)) {
 				addGroupToView(mCurrentGroup);
 			}
+			mCurrentGroup.update();
 			mCurrentGroup = mCurrentGroup.getBeforeGroup();
 		}
 		else if(qName.equals(Tag.SPRITE)
@@ -295,13 +309,15 @@ public class XmlFileParser extends DefaultHandler {
 				|| qName.equals(Tag.MENU)
 				|| qName.equals(Tag.LABEL)
 				|| qName.equals(Tag.RESOURCES)
-				|| qName.equals(Tag.PROGRESSBAR)) {
+				|| qName.equals(Tag.PROGRESSBAR)
+				|| qName.equals(Tag.NEXT)) {
 			mCurrentObject.update();
 			mCurrentObject = mCurrentObject.getParent();
 		} 
 		else if(qName.equals(Tag.CELL)) {
 			((Table)mCurrentObject.getParent())
 				.addCell((Cell)mCurrentObject);
+			mCurrentObject.update();
 			mCurrentObject = mCurrentObject.getParent();
 			mAdvancedObject = mAdvancedObject.getAdvanceParent();
 		}

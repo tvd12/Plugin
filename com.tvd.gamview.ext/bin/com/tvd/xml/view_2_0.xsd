@@ -25,11 +25,11 @@
 				<xs:element ref="tables" maxOccurs="unbounded" minOccurs="0" />
 			</xs:sequence>
 			<xs:attribute name="class-name" type="xs:string" use="required" />
-			<xs:attribute name="comment" type="xs:string" use="optional" />
 			<xs:attribute name="prefix" type="xs:string" use="required" />
 			<xs:attribute name="super" type="xs:string" use="required" />
 			<xs:attribute name="background-name" type="xs:string" />
 			<xs:attribute name="type" type="xs:string" use="required" />
+			<xs:attributeGroup ref="template" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="position-name">
@@ -168,6 +168,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="sprite" maxOccurs="unbounded" minOccurs="1" />
+				<xs:element ref="next" maxOccurs="unbounded" minOccurs="0" />
 			</xs:sequence>
 			<xs:attribute name="array" type="xs:boolean" use="optional" />
 			<xs:attribute name="length" type="xs:integer" use="optional" />
@@ -178,6 +179,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="menuitem" maxOccurs="unbounded" minOccurs="1" />
+				<xs:element ref="next" maxOccurs="unbounded" minOccurs="0" />
 			</xs:sequence>
 			<xs:attribute name="array" type="xs:boolean" use="optional" />
 			<xs:attribute name="length" type="xs:integer" use="optional" />
@@ -188,6 +190,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="menu" maxOccurs="unbounded" minOccurs="1" />
+				<xs:element ref="next" maxOccurs="unbounded" minOccurs="0" />
 			</xs:sequence>
 			<xs:attribute name="array" type="xs:boolean" use="optional" />
 			<xs:attribute name="length" type="xs:integer" use="optional" />
@@ -198,6 +201,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="table" maxOccurs="unbounded" minOccurs="1" />
+				<xs:element ref="next" maxOccurs="unbounded" minOccurs="0" />
 			</xs:sequence>
 			<xs:attribute name="array" type="xs:boolean" use="optional" />
 			<xs:attribute name="length" type="xs:integer" use="optional" />
@@ -208,6 +212,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="label" maxOccurs="unbounded" minOccurs="1" />
+				<xs:element ref="next" maxOccurs="unbounded" minOccurs="0" />
 			</xs:sequence>
 			<xs:attribute name="array" type="xs:boolean" use="optional" />
 			<xs:attribute name="length" type="xs:integer" use="optional" />
@@ -229,8 +234,7 @@
 				<xs:element ref="tables" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="progressbar" maxOccurs="1" minOccurs="0" />
 			</xs:sequence>
-			<xs:attribute name="comment" type="xs:string" use="optional" />
-			<xs:attribute name="visible" type="xs:boolean" use="optional" />
+			<xs:attributeGroup ref="template" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="menuitem">
@@ -246,13 +250,11 @@
 							<xs:element ref="sprite" maxOccurs="3" minOccurs="2" />
 						</xs:sequence>
 						<xs:attribute name="array" type="xs:boolean" use="optional" />
-						<xs:attribute name="comment" type="xs:string" use="optional" />
-						<xs:attribute name="visible" type="xs:boolean" use="optional" />
+						<xs:attributeGroup ref="template" />
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
-			<xs:attribute name="comment" type="xs:string" use="optional" />
-			<xs:attribute name="visible" type="xs:boolean" use="optional" />
+			<xs:attributeGroup ref="template" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="menu">
@@ -264,8 +266,7 @@
 				<xs:element ref="z-index" maxOccurs="1" minOccurs="0" />
 				<xs:element ref="menuitems" maxOccurs="unbounded" minOccurs="1" />
 			</xs:sequence>
-			<xs:attribute name="comment" type="xs:string" use="optional" />
-			<xs:attribute name="visible" type="xs:boolean" use="optional" />
+			<xs:attributeGroup ref="template" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="table">
@@ -282,8 +283,7 @@
 			</xs:sequence>
 			<xs:attribute name="rows" type="xs:integer" use="required" />
 			<xs:attribute name="columns" type="xs:integer" use="required" />
-			<xs:attribute name="visible" type="xs:boolean" use="optional" />
-			<xs:attribute name="comment" type="xs:string" use="optional" />
+			<xs:attributeGroup ref="template" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="cell">
@@ -301,8 +301,7 @@
 			<xs:attribute name="class-name" type="xs:string" use="required" />
 			<xs:attribute name="prefix" type="xs:string" use="optional" />
 			<xs:attribute name="super" type="xs:string" use="optional" />
-			<xs:attribute name="visible" type="xs:boolean" use="optional" />
-			<xs:attribute name="comment" type="xs:string" use="optional" />
+			<xs:attributeGroup ref="template" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="label">
@@ -317,8 +316,7 @@
 				<xs:element ref="location-in-interfacebuilder" maxOccurs="1" minOccurs="1" />
 				<xs:element ref="z-index" maxOccurs="1" minOccurs="0" />
 			</xs:sequence>
-			<xs:attribute name="comment" type="xs:string" use="optional" />
-			<xs:attribute name="visible" type="xs:boolean" use="optional" />
+			<xs:attributeGroup ref="template" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="progressbar">
@@ -332,7 +330,15 @@
 				<xs:element ref="anchorpoint" maxOccurs="1" minOccurs="1" />
 				<xs:element ref="sprite" maxOccurs="1" minOccurs="1" />
 			</xs:sequence>
-			<xs:attribute name="template" type="xs:string" use="required" />
+			<xs:attributeGroup ref="template" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="next">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="position" maxOccurs="1" minOccurs="1" />
+				<xs:element ref="image" maxOccurs="1" minOccurs="1" />
+			</xs:sequence>
 			<xs:attribute name="comment" type="xs:string" use="optional" />
 			<xs:attribute name="visible" type="xs:boolean" use="optional" />
 		</xs:complexType>
@@ -451,6 +457,16 @@
 		<xs:attribute name="value" type="xs:string" use="required" />
 		</xs:complexType>
 	</xs:element>
+	<xs:attributeGroup name="template">
+		<xs:attribute name="comment" type="xs:string" use="optional" />
+		<xs:attribute name="visible" type="xs:boolean" use="optional" />
+		<xs:attribute name="template-name" type="xs:string" use="optional" />
+		<xs:attribute name="template-file" type="xs:string" use="optional" />
+		<xs:attribute name="postion-template-name" type="xs:string" use="optional" />
+		<xs:attribute name="position-template-file" type="xs:string" use="optional" />
+		<xs:attribute name="size-template-name" type="xs:string" use="optional" />
+		<xs:attribute name="size-template-file" type="xs:string" use="optional" />
+	</xs:attributeGroup>
 	<xs:simpleType name="uppertype">
 		<xs:restriction base="xs:string">
     		<xs:pattern value="[A-Z]*"/>

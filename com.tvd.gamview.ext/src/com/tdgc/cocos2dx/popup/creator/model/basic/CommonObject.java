@@ -3,18 +3,17 @@ package com.tdgc.cocos2dx.popup.creator.model.basic;
 import java.util.ArrayList;
 import java.util.List;
 
-//import org.eclipse.core.resources.IProject;
-
-
 import org.eclipse.core.resources.IProject;
 
-import com.tdgc.cocos2dx.popup.creator.constants.Strings;
-import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
+import com.tdgc.cocos2dx.popup.creator.model.Interface;
 import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 import com.tdgc.cocos2dx.popup.creator.validate.Validator;
+//import org.eclipse.core.resources.IProject;
+import com.tdgc.cocos2dx.popup.creator.constants.Strings;
+import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 
 public abstract class CommonObject extends BasicObject {
 	
@@ -38,6 +37,7 @@ public abstract class CommonObject extends BasicObject {
 		mReferenceCount = 0;
 		mIsAddToGroup = true;
 		mIsNewClass = false;
+		mIsNextItemInArray = false;
 	}
 	
 	public abstract String implement(boolean pInfunction);
@@ -437,6 +437,9 @@ public abstract class CommonObject extends BasicObject {
 	
 	public void setLocationInView(Point p) {
 		mLocationInView = p;
+		if(isNextItemInArray()) {
+			mInterface.getImage().setLocationInInterfaceBuilder(p, false);
+		}
 	}
 	
 	public void setLocationInView(float x, float y) {
@@ -519,6 +522,14 @@ public abstract class CommonObject extends BasicObject {
 		
 	}
 	
+	public String toXML(boolean isNextItemInArray) {
+		if(isNextItemInArray) {
+			return this.mInterface.toXML();
+		} else {
+			return this.toXML();
+		}
+	}
+	
 	private StringBuilder buildXMLFromItemGroups(List<ItemGroup> groups) {
 		StringBuilder builder = new StringBuilder();
 		for(int i = 0 ; i < groups.size() ; i++) {
@@ -587,8 +598,42 @@ public abstract class CommonObject extends BasicObject {
 		return template;
 	}
 	
+	public void setInterface(Interface itf) {
+		this.mInterface = itf;
+	}
+	
+	public Interface getInterface() {
+		return this.mInterface;
+	}
+	
+	public void setNextItemInArray(boolean isItemInArray) {
+		this.mIsNextItemInArray = isItemInArray;
+	}
+	
+	public boolean isNextItemInArray() {
+		return this.mIsNextItemInArray;
+	}
+	
+	public void locationInViewWithPosition() {
+		CommonObject parent = mParent;
+		Point pos = getPosition();
+		Point acp = getAnchorPoint();
+		Size sz = getSize();
+		float x = (pos.getX() - sz.getWidth() * acp.getX());
+		float y = (pos.getY() - sz.getHeight() * (1 - acp.getY()));
+		Point location = new Point(x, y);
+		if(parent != null) {
+			y = mParent.getSize().getHeight() - 
+					(pos.getY() + sz.getHeight() * (1 - acp.getY()));
+			location = new Point(x, y);
+			location.add(parent.getLocationInView());
+		}
+		this.setLocationInView(location);
+	}
+	
 	public void setAllPropertiesForObject(CommonObject obj) {
 		super.setAllPropertiesForObject(obj);
+		
 		obj.mTabCount = mTabCount;
 		obj.mViewType = mViewType;
 		obj.mReferenceCount = mReferenceCount;
@@ -676,6 +721,9 @@ public abstract class CommonObject extends BasicObject {
 	protected String mZIndex;
 	protected String mXmlTagName;
 	protected String mPositionNamePrefix;
+	
+	protected Interface mInterface;
+	protected boolean mIsNextItemInArray;
 	
 	protected IProject mProject;
 }

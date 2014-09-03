@@ -22,6 +22,11 @@ public class Point {
 		return this.mY;
 	}
 	
+	public void add(Point p) {
+		this.mX = mX + p.getX();
+		this.mY = mY + p.getY();
+	}
+	
 	public static Point parsePoint(String str) {
 		Point point = null;
 		if(str != null && Validator.isValidDoubleValueString(str)) {

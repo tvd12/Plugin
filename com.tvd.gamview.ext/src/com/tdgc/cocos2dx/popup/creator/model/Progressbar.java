@@ -199,7 +199,7 @@ public class Progressbar extends CommonObject {
 		String tab = StringUtils.tab(mTabCount);
 		StringBuilder builder = new StringBuilder(tab);
 		builder.append("<" + mXmlTagName + " ") 
-			.append(Attribute.TEMPLATE + "=\""+ mTemplateName + "\" ")
+			.append(Attribute.TEMPLATE_NAME + "=\""+ mTemplateName + "\" ")
 			.append(Attribute.VISIBLE + "=\"true\" ")
 			.append(Attribute.COMMENT + "=\"\">");
 		builder.append("\n" + tab + "\t")
