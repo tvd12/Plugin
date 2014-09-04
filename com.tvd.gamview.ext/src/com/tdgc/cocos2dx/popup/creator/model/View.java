@@ -36,7 +36,6 @@ public class View extends AdvancedObject {
 				Config.getInstance().getScreenContainerPath();
 		this.mLabels = new ArrayList<Label>();
 		this.mPrefix = "";
-		this.mSuper = Config.getInstance().getDefautSuper(mType);
 		this.mXmlTagName = Tag.VIEW;
 		this.mPositionTemplateName = 
 				Config.getInstance().getDefaultTemplateName("position");
@@ -583,6 +582,7 @@ public class View extends AdvancedObject {
 	public void setType(String type) {
 		super.setType(type);
 		if(type != null) {
+			this.mSuper = Config.getInstance().getDefautSuper(mType);
 			this.mBackgroundImage = Config.getInstance().getDefaultBackgroundImage(
 					type);
 			if(mBackgroundImage != null) {

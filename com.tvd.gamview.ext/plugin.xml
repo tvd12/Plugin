@@ -73,6 +73,48 @@
 	          name="Gext">
 	    </category>
 	    
+    	<wizard 
+	    	class="com.tvd.gamview.ext.wizards.NewPopupCreationWizard"
+	    	icon="icons/2_view.gif"
+	    	name="Popup view"
+	    	category="com.tvd.gameview.plugin.category.wizards"
+           	id="com.tvd.gamview.ext.wizards.NewPopupCreationWizard">
+           	<description>
+               create new popup wizard
+           	</description>
+           	<selection
+                  class="org.eclipse.core.resources.IResource">
+           	</selection>
+	    </wizard>
+	    
+	    <wizard 
+	    	class="com.tvd.gamview.ext.wizards.NewLayerCreationWizard"
+	    	icon="icons/2_view.gif"
+	    	name="Layer view"
+	    	category="com.tvd.gameview.plugin.category.wizards"
+           	id="com.tvd.gamview.ext.wizards.NewLayerCreationWizard">
+           	<description>
+               create new layer wizard
+           	</description>
+           	<selection
+                  class="org.eclipse.core.resources.IResource">
+           	</selection>
+	    </wizard>
+	    
+	    <wizard 
+	    	class="com.tvd.gamview.ext.wizards.NewSceneCreationWizard"
+	    	icon="icons/2_view.gif"
+	    	name="Scene view"
+	    	category="com.tvd.gameview.plugin.category.wizards"
+           	id="com.tvd.gamview.ext.wizards.NewSceneCreationWizard">
+           	<description>
+               create new scene wizard
+           	</description>
+           	<selection
+                  class="org.eclipse.core.resources.IResource">
+           	</selection>
+	    </wizard>
+	    
 	    <wizard
 			id="com.tvd.gamview.ext.wizards.GameViewProjectCreationWizard"
 			name="Game view project"
@@ -83,20 +125,6 @@
 			icon="icons/1_project.gif">
 			<description>Game view project</description>
     	</wizard>
-    	
-    	<wizard 
-	    	class="com.tvd.gamview.ext.wizards.NewGameViewWizard"
-	    	icon="icons/2_view.gif"
-	    	name="Game view"
-	    	category="com.tvd.gameview.plugin.category.wizards"
-           	id="com.tvd.study.linuxsagas.plugin.wizard.view">
-           	<description>
-               This file used to config game view
-           	</description>
-           	<selection
-                  class="org.eclipse.core.resources.IResource">
-           	</selection>
-	    </wizard>
 	</extension>
 	
 	 <extension
@@ -167,7 +195,7 @@
 	          class="com.tvd.gamview.ext.preference.GameViewPreferencePage"
 	          id="com.tvd.gamview.ext.preference.GameViewPreferencePage"
 	          category="com.tvd.gamview.ext.preference.GameViewPreferencePage"
-	          name="Template">
+	          name="Sdk Root">
 	          <keywordReference
                  id="com.tvd.gamview.ext.preference.keywords">
 	          </keywordReference>

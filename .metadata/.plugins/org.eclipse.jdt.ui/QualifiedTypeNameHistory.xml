@@ -43,7 +43,6 @@
 <fullyQualifiedTypeName name="java.lang.Float"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.constants.Strings"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.Point"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.utils.ViewUtils"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.validate.Validator"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Progressbar"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.global.Config"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Image"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.constants.Attribute"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.Point"/>
 </qualifiedTypeNameHistroy>

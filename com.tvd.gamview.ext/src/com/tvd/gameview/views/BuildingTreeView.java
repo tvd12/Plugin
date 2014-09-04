@@ -86,7 +86,7 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 		this.getSite().getWorkbenchWindow().getSelectionService()
 			.addSelectionListener(mSelectionListener);
 		ResourcesPlugin.getWorkspace()
-			.addResourceChangeListener(new XMLFileChangeListener(this));
+			.addResourceChangeListener(new SdkFileChangeListener(this));
 	}
 	
 	@Override

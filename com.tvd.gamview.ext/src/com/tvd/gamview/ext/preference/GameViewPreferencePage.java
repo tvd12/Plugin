@@ -41,7 +41,7 @@ public class GameViewPreferencePage extends FieldEditorPreferencePage implements
 	@Override
 	protected void createFieldEditors() {
 		final DirectoryFieldEditor directory = 
-				new SdkDirectoryFieldEditor(Key.TEMPLATE_ROOT, "Template Root", 
+				new SdkDirectoryFieldEditor(Key.TEMPLATE_ROOT, "Sdk Root", 
 						this.getFieldEditorParent());
 		directory.setStringValue(
 				this.getPreferenceStore().getString(Key.TEMPLATE_ROOT));

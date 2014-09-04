@@ -57,16 +57,17 @@ public class XmlViewCreator {
 	
 	private View createView(String fullPath) {
 		View view = new View();
+		String type = fullPath.substring(fullPath.lastIndexOf("_") + 1);
+		fullPath = (type.trim().equals(mType)) ? fullPath : fullPath + "_" + mType;
 		view.setClassName(StringUtils.convertToClassName(fullPath, 
 				Config.getInstance().getDefaultViewSuffix()));
 		view.setSuper(Strings.DEFAULT);
 		view.setBackgroundName(Strings.DEFAULT);
 		view.setSize(Config.getInstance().getDefaultScreenSizeString(mDevice));
 		
-		String type = fullPath.substring(fullPath.lastIndexOf("_") + 1);
 		view.setPrefix(StringUtils.detectPrefix(type) + "_" +
 				fullPath.substring(0, fullPath.lastIndexOf("_")));
-		view.setType(type);
+		view.setType(mType);
 		view.setComment("");
 		view.setPositionName(StringUtils.getSpritePostionName(
 				StringUtils.getObjectPositioName(fullPath)));
