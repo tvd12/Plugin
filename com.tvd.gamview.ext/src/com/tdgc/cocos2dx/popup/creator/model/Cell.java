@@ -81,6 +81,7 @@ public class Cell extends AdvancedObject {
 	
 	@Override
 	public void update() {
+		((Table)getParent()).addCell(this);
 		checkColumnArray();
 	}
 	
@@ -146,7 +147,7 @@ public class Cell extends AdvancedObject {
 					CommonObject itemAt0 = itemGroup.getItems().get(0);
 					float widthAt0 = itemAt0.getSize().getWidth();
 					float width = this.getSize().getWidth()
-							- (itemAt0.getLocationInView().getX()
+							- 2*(itemAt0.getLocationInView().getX()
 							- this.getLocationInView().getX());
 					float margin = (width - length*widthAt0)/(length - 1);
 					for(int j = 1 ; j < length; j++) {

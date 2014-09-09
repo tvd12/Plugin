@@ -59,7 +59,10 @@ public class AdvancedObject extends CommonObject {
 				+ declareProperties());
 //		String template = new FileUtils().fetchTemplate(mHeaderTemplate,
 //				mHeaderTplPath);
-		String template = new FileUtils().fetchTemplate(
+		FileUtils fileUtils = new FileUtils();
+		String customSourceCode = fileUtils.findCustomSourceCode(
+				mClassPath + "/" + mDirectoryName + "/" + mClassName + ".h");
+		String template = fileUtils.fetchTemplate(
 				getClassDeclaringTemplateName(),
 				getClassTemplateFilePath(), getProject());
 		String result = template.replace("{class_name}", mClassName)
@@ -72,8 +75,9 @@ public class AdvancedObject extends CommonObject {
 				.replace("//{extend_functions}", StringUtils.standardizeCode(
 						createExtendFunctions(true)))
 				.replace("{class_name_prefix}", classNamePrefix)
-				.replace("//{parameters},", declareParameters())
-				.replace("//{n}", "\n");
+				.replace("//{parameters}", declareParameters())
+				.replace("//{n}", "\n")
+				.replace("//{custom_source_code}", customSourceCode.trim());
 	
 		return StringUtils.standardizeCode(result);
 	}
@@ -88,7 +92,10 @@ public class AdvancedObject extends CommonObject {
 		char firstChar = ("" + classNamePrefix.charAt(0)).toLowerCase().charAt(0);
 		classNamePrefix = classNamePrefix.replace(classNamePrefix.charAt(0), firstChar);
 		
-		String template = new FileUtils().fetchTemplate(
+		FileUtils fileUtils = new FileUtils();
+		String customSourceCode = fileUtils.findCustomSourceCode(
+				mClassPath + "/" + mDirectoryName + "/" + mClassName + ".cpp");
+		String template = fileUtils.fetchTemplate(
 				getClassImplementingTemplateName(), 
 				getClassTemplateFilePath(), getProject());	
 		
@@ -112,10 +119,11 @@ public class AdvancedObject extends CommonObject {
 						createExtendFunctions(false)))
 				.replace("{callback_function}", classNamePrefix + "MenuItemCallback")
 				.replace("{class_name}", mClassName)
-				.replace("//{parameters},", declareParameters())
+				.replace("//{parameters}", declareParameters())
 				.replace("//{importing_params},", importingParams())
 				.replace("//{assigning_area}", assigningArea())
-				.replace("//{n}", "\n");
+				.replace("//{n}", "\n")
+				.replace("//{custom_source_code}", customSourceCode.trim());
 		
 		for(int i = 0 ; i < mProperties.size() ; i++) {
 			String mark = "\"${param" + i + "}\"";
@@ -167,6 +175,9 @@ public class AdvancedObject extends CommonObject {
 	}
 	
 	protected String declareParameters() {
+		if(mParameters.size() == 0) {
+			return "//{parameters}";
+		}
 		StringBuilder builder = new StringBuilder();
 		for(int i = 0 ; i < mParameters.size() ; i++) {
 			if(i > 0) {
@@ -317,6 +328,14 @@ public class AdvancedObject extends CommonObject {
 		return this.getTemplateFilePath();
 	}
 	
+	public void setClassPath(String mClassPath) {
+		this.mClassPath = mClassPath;
+	}
+
+	public void setDirectoryName(String mDirectoryName) {
+		this.mDirectoryName = mDirectoryName;
+	}
+	
 	@Override
 	public CommonObject clone() {
 		AdvancedObject obj = new AdvancedObject();
@@ -341,6 +360,9 @@ public class AdvancedObject extends CommonObject {
 	
 	protected String mBackgroundName;
 	protected String mClassName;
+	protected String mClassPath;
+	protected String mDirectoryName;
+	
 	protected List<Parameter> mParameters;
 	protected List<Property> mProperties;
 	protected List<ItemGroup> mLabelGroupInView;

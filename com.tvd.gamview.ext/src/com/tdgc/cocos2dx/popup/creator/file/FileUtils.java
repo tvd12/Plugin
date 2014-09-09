@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.log.Log;
 import com.tdgc.cocos2dx.popup.creator.model.Image;
+import com.tdgc.cocos2dx.popup.creator.model.Resource;
 
 public class FileUtils {
 	
@@ -217,6 +218,26 @@ public class FileUtils {
 		return result;
 	}
 	
+	public Map<String, Resource> fetchDefaultExitResource(String pGroupName,
+			String pFileContent) {
+		Map<String, Resource> result = new HashMap<String, Resource>();
+		Map<String, String> pairs = fetchDefaultKeyValues(pGroupName, pFileContent);
+		String keys[] = pairs.keySet().toArray(new String[0]);
+		String values[] = pairs.values().toArray(new String[0]);
+		for(int i = 0 ; i < pairs.size() ; i++) {
+			JSONObject jsonObj = new JSONObject(values[i]);
+			String normalImage = jsonObj.getString("normal-image");
+			String activeImage = jsonObj.getString("active-image");
+			String locationInView = jsonObj.getString("location-in-view");
+			Resource resource = new Resource();
+			resource.addImage(new Image(normalImage, locationInView));
+			resource.addImage(new Image(activeImage));
+			result.put(keys[0], resource);
+		}
+		
+		return result;
+	}
+	
 	public Map<String, String> fetchDefaultKeyValues(String pGroupName, 
 			String pFileContent) {
 		Map<String, String> result = new HashMap<String, String>();
@@ -336,6 +357,31 @@ public class FileUtils {
 		}
 		
 		return fileContent;
+	}
+	
+	public static void deleteFolder(String pFolderPath) {
+		  File file = new File(pFolderPath);
+		  file.delete();
+		  for(int i = 0 ; file != null && file.isDirectory() 
+				  && i < file.listFiles().length ; i++) {
+			  deleteFolder(file.listFiles()[i].getAbsolutePath());
+			  file.delete();
+		  }
+		  file.delete();
+	}
+	
+	public String findCustomSourceCode(String srcCodeFilePath) {
+		StringBuilder builder = new StringBuilder();
+		String fileContent = readFromFile(srcCodeFilePath);
+		if(fileContent != null) {
+			String srcCode = findSourceCode(fileContent, 
+					"//custom source code", "//end");
+			if(srcCode != null) {
+				builder.append(srcCode)
+					.append("\t//end");
+			}
+		}
+		return builder.toString();
 	}
 	
 	private String mContent;

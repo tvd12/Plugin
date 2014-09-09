@@ -44,4 +44,6 @@ public interface Attribute {
 	public static final String SIZE_TEMPLATE_NAME		= "size-template-name";
 	public static final String SIZE_TEMPLATE_FILE		= "size-template-file";
 	
+	public static final String POSITION					= "position";
+	public static final String EXITABLE					= "exitable";
 }

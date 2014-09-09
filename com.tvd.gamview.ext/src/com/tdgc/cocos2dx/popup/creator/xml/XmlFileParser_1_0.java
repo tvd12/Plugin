@@ -16,7 +16,7 @@ import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
 import com.tdgc.cocos2dx.popup.creator.model.Label;
 import com.tdgc.cocos2dx.popup.creator.model.Menu;
 import com.tdgc.cocos2dx.popup.creator.model.MenuItem;
-import com.tdgc.cocos2dx.popup.creator.model.Resources;
+import com.tdgc.cocos2dx.popup.creator.model.Resource;
 import com.tdgc.cocos2dx.popup.creator.model.Sprite;
 import com.tdgc.cocos2dx.popup.creator.model.Table;
 import com.tdgc.cocos2dx.popup.creator.model.View;
@@ -48,7 +48,7 @@ public class XmlFileParser_1_0 extends DefaultHandler {
 				|| qName.equals(Tag.MENU)
 				|| qName.equals(Tag.MENUITEM)
 				|| qName.equals(Tag.LABEL)
-				|| qName.equals(Tag.RESOURCES)
+				|| qName.equals(Tag.RESOURCE)
 				|| qName.equals(Tag.CELL)) {
 			CommonObject parent = mCurrentObject;
 			if(qName.equals(Tag.SPRITE)) {
@@ -73,13 +73,7 @@ public class XmlFileParser_1_0 extends DefaultHandler {
 				mView.addLabel(label);
 				mCurrentObject = label;
 			} 
-			else if(qName.equals(Tag.RESOURCES)) {
-				mCurrentObject = new Resources();
-				mCurrentResources = (Resources)mCurrentObject;
-				mCurrentResources.setName(getAttributeValue(Attribute.NAME, atts));
-				mCurrentResources.setComment(getAttributeValue(Attribute.COMMENT, atts));
-				mCurrentResources.setCurrentGroup(mCurrentGroup);
-				mView.addResource(mCurrentResources);
+			else if(qName.equals(Tag.RESOURCE)) {
 			}
 			else if(qName.equals(Tag.CELL)) {
 				mCell = new Cell();
@@ -263,7 +257,7 @@ public class XmlFileParser_1_0 extends DefaultHandler {
 				|| qName.equals(Tag.MENUITEM)
 				|| qName.equals(Tag.MENU)
 				|| qName.equals(Tag.LABEL)
-				|| qName.equals(Tag.RESOURCES)) {
+				|| qName.equals(Tag.RESOURCE)) {
 			boolean valid = true;
 			if(qName.equals(Tag.SPRITE)) {
 				Sprite sprite = (Sprite)mCurrentObject;
@@ -278,7 +272,7 @@ public class XmlFileParser_1_0 extends DefaultHandler {
 			}
 			else if(qName.equals(Tag.MENUITEM)) {
 			} 
-			if(!qName.equals(Tag.RESOURCES) && valid) {
+			if(!qName.equals(Tag.RESOURCE) && valid) {
 				mCurrentGroup.addItem(mCurrentObject);
 			}
 			mCurrentObject = mCurrentGroup.getContainer();
@@ -364,7 +358,8 @@ public class XmlFileParser_1_0 extends DefaultHandler {
 		return this.mView;
 	}
 	
-	private Resources mCurrentResources;
+	@SuppressWarnings("unused")
+	private Resource mCurrentResources;
 	private CommonObject mCurrentObject;
 	private ItemGroup mCurrentGroup;
 //	private ItemGroup mResourceGroup;

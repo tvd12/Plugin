@@ -1,7 +1,5 @@
 package com.tdgc.cocos2dx.popup.creator.xml;
 
-import java.util.Collections; 
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -11,13 +9,14 @@ import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.log.Log;
 import com.tdgc.cocos2dx.popup.creator.model.Cell;
+import com.tdgc.cocos2dx.popup.creator.model.IContainer;
 import com.tdgc.cocos2dx.popup.creator.model.Image;
 import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
 import com.tdgc.cocos2dx.popup.creator.model.Label;
 import com.tdgc.cocos2dx.popup.creator.model.Menu;
 import com.tdgc.cocos2dx.popup.creator.model.MenuItem;
 import com.tdgc.cocos2dx.popup.creator.model.Progressbar;
-import com.tdgc.cocos2dx.popup.creator.model.Resources;
+import com.tdgc.cocos2dx.popup.creator.model.Resource;
 import com.tdgc.cocos2dx.popup.creator.model.Sprite;
 import com.tdgc.cocos2dx.popup.creator.model.Table;
 import com.tdgc.cocos2dx.popup.creator.model.View;
@@ -52,12 +51,12 @@ public class XmlFileParser extends DefaultHandler {
 			mCurrentObject = mView;
 			mPositionPrefix = mView.getPrefix();
 			mAdvancedObject = mView;
+			mCurrentContainer = mView;
 		} else if(qName.equals(Tag.SPRITE)
 				|| qName.equals(Tag.TABLE)
 				|| qName.equals(Tag.MENU)
 				|| qName.equals(Tag.MENUITEM)
 				|| qName.equals(Tag.LABEL)
-				|| qName.equals(Tag.RESOURCES)
 				|| qName.equals(Tag.CELL)
 				|| qName.equals(Tag.PROGRESSBAR)
 				|| qName.equals(Tag.NEXT)) {
@@ -82,14 +81,6 @@ public class XmlFileParser extends DefaultHandler {
 				mView.addLabel(label);
 				mCurrentObject = label;
 			} 
-			else if(qName.equals(Tag.RESOURCES)) {
-				mCurrentObject = new Resources();
-				mCurrentResources = (Resources)mCurrentObject;
-				mCurrentResources.setName(getAttributeValue(Attribute.NAME, atts));
-				mCurrentResources.setComment(getAttributeValue(Attribute.COMMENT, atts));
-				mCurrentResources.setCurrentGroup(mCurrentGroup);
-				mView.addResource(mCurrentResources);
-			}
 			else if(qName.equals(Tag.CELL)) {
 				mCell = new Cell();
 				mCell.setClassName(getAttributeValue(Attribute.CLASS_NAME, atts));
@@ -124,15 +115,21 @@ public class XmlFileParser extends DefaultHandler {
 			}
 			
 		}
-		
-		else if(qName.equals(Tag.IMAGE)) {
+		else if(qName.equals(Tag.RESOURCE)) {
+			Resource resource = new Resource();
+			resource.setComment(getAttributeValue(Attribute.COMMENT, atts));
+			resource.setContainerParent(mCurrentContainer);
+			mView.addResource(resource);
+			mCurrentContainer = resource;
+		}
+		else if(qName.equals(Tag.IMAGE)
+				|| qName.equals(Tag.BACKGROUND_IMAGE)) {
 			mCurrentImage = new Image();
 			mCurrentImage.setId(getAttributeValue(Attribute.ID, atts));
 			mCurrentImage.setRealPath(getAttributeValue(Attribute.REAL_PATH, atts));
 			mCurrentImage.setPhonyPath(getAttributeValue(Attribute.PHONY_PATH, atts));
 			mCurrentImage.setIsBackground(
 					getBoolean(getAttributeValue(Attribute.BACKGROUND, atts)));
-			mCurrentImage.setParent(mCurrentObject);
 			mCurrentImage.setLocationInInterfaceBuilder(
 					getAttributeValue(Attribute.LOCATION_IN_INTERFACEBUILDER, atts));
 			String width = getAttributeValue(Attribute.WIDTH, atts);
@@ -140,7 +137,15 @@ public class XmlFileParser extends DefaultHandler {
 			if(width != null && height != null) {
 				mCurrentImage.setSize(getFloatNumber(width), getFloatNumber(height));
 			}
-			mView.addImage(mCurrentImage); 
+			if(qName.equals(Tag.BACKGROUND_IMAGE)) {
+				mCurrentImage.setXMLTagName(Tag.BACKGROUND_IMAGE);
+				mView.setBackgroundImage(mCurrentImage);
+			} else {
+				mCurrentContainer.addImage(mCurrentImage);
+				if(!mCurrentImage.isResource()) {
+					mCurrentImage.setParent(mCurrentObject);
+				}
+			}
 		}
 		else if(qName.equals(Tag.SPRITES)
 				|| qName.equals(Tag.TABLES)
@@ -266,6 +271,14 @@ public class XmlFileParser extends DefaultHandler {
 				}
 			}
 		}
+		else if(qName.equals(Tag.EXIT_IMAGE)) {
+			String position = getAttributeValue(
+					Attribute.POSITION, atts);
+			String locationInItfbd = getAttributeValue(
+					Attribute.LOCATION_IN_INTERFACEBUILDER, atts);
+			mView.setExitSpritePosition(position);
+			mView.setExitImageLocationInView(locationInItfbd);
+		}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -286,21 +299,7 @@ public class XmlFileParser extends DefaultHandler {
 				|| qName.equals(Tag.MENUITEMS)
 				|| qName.equals(Tag.LABELS)) {
 			mCurrentGroup.pushBack();
-			if(qName.equals(Tag.SPRITES)) {
-				addGroupToView(mCurrentGroup);
-			} 
-			else if(qName.equals(Tag.TABLES)) {
-				addGroupToView(mCurrentGroup);
-			} 
-			else if(qName.equals(Tag.MENUS)) {
-				addGroupToView(mCurrentGroup);
-			} 
-			else if(qName.equals(Tag.MENUITEMS)) {
-				addGroupToView(mCurrentGroup);
-			} 
-			else if(qName.equals(Tag.LABELS)) {
-				addGroupToView(mCurrentGroup);
-			}
+			addGroupToView(mCurrentGroup);
 			mCurrentGroup.update();
 			mCurrentGroup = mCurrentGroup.getBeforeGroup();
 		}
@@ -309,21 +308,22 @@ public class XmlFileParser extends DefaultHandler {
 				|| qName.equals(Tag.MENUITEM)
 				|| qName.equals(Tag.MENU)
 				|| qName.equals(Tag.LABEL)
-				|| qName.equals(Tag.RESOURCES)
+				|| qName.equals(Tag.RESOURCE)
 				|| qName.equals(Tag.PROGRESSBAR)
 				|| qName.equals(Tag.NEXT)) {
 			mCurrentObject.update();
 			mCurrentObject = mCurrentObject.getParent();
 		} 
 		else if(qName.equals(Tag.CELL)) {
-			((Table)mCurrentObject.getParent())
-				.addCell((Cell)mCurrentObject);
 			mCurrentObject.update();
 			mCurrentObject = mCurrentObject.getParent();
 			mAdvancedObject = mAdvancedObject.getAdvanceParent();
 		}
+		else if(qName.equals(Tag.RESOURCE)) {
+			mCurrentContainer = mCurrentContainer.getContainerParent();
+		}
 		else if(qName.equals(Tag.VIEW)) {
-			Collections.sort(mView.getImages());
+			mView.update();
 		}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -387,7 +387,7 @@ public class XmlFileParser extends DefaultHandler {
 		return this.mView;
 	}
 	
-	protected Resources mCurrentResources;
+	protected IContainer mCurrentContainer;
 	protected CommonObject mCurrentObject;
 	protected ItemGroup mCurrentGroup;
 	protected View mView;

@@ -24,6 +24,11 @@ public class Sprite extends CommonObject {
 		this.mTemplateFile = "sprite.template";
 	}
 	
+	public Sprite(Image img) {
+		this();
+		img.setParent(this);
+	}
+	
 	@Override
 	public void setPositionName(String pPositionName) {
 		super.setPositionName(pPositionName);

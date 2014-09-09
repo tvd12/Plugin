@@ -53,18 +53,22 @@ public class MenuItem extends CommonObject {
 		ViewUtils.implementObject(this, builder);
 		template = template.replace("{var_name}", mName)
 			.replace("{tab}", "\t")
-			.replace("{normal_sprite}", getSprite("Normal"))
-			.replace("{selected_sprite}", getSprite("Active"))
+			.replace("{normal_sprite}", getSpriteName("Normal"))
+			.replace("{selected_sprite}", getSpriteName("Active"))
 			.replace("{position_name}", mPositionName)
 			.replace("{parent_name}", parentName)
 			.replace("{z-index}", mZIndex)
 			.replace("{tag_name}", mTagName);
+		String disableSpriteName = getSpriteName("Disable");
+		if(!disableSpriteName.equals("")) {
+			template = template.replace("//{disable_sprite}", disableSpriteName);
+		}
 		builder.append(template);
 		
 		return builder.toString();
 	}
 	
-	private String getSprite(String pKind) {
+	private String getSpriteName(String pKind) {
 		for(int i = 0 ; i < mSpriteGroups.size() ; i++) {
 			for(int j = 0 ; j < mSpriteGroups.get(i).getItems().size() ; j++) {
 				CommonObject item = mSpriteGroups.get(i).getItems().get(j);
@@ -93,11 +97,15 @@ public class MenuItem extends CommonObject {
 	public void update() {
 		if(validate()) {
 			ItemGroup spriteGroup = this.mSpriteGroups.get(0);
-			((Sprite)spriteGroup.getItems().get(0)).setIsUnlocated(true);
-			((Sprite)spriteGroup.getItems().get(0))
-				.getImage().setAddToInterfaceBuilder(true);
+			Sprite first = ((Sprite)spriteGroup.getItems().get(0));
+			first.setIsUnlocated(true);
+			first.getImage().setAddToInterfaceBuilder(true);
 			for(int i = 1 ; i < spriteGroup.getItems().size() ; i++) {
 				Sprite sprite = ((Sprite)spriteGroup.getItems().get(i));
+				sprite.setLocationInView(first.getImage()
+						.getLocationInInterfaceBuilder());
+				sprite.setAnchorPoint(first.getAnchorPoint());
+				sprite.setSize(first.getImage().getSize());
 				sprite.setIsUnlocated(true);
 				sprite.getImage().setAddToInterfaceBuilder(false);
 			}

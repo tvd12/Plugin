@@ -334,7 +334,7 @@ public class XmlCreator_1_0 {
 	
 	@SuppressWarnings("unused")
 	private void createResourceElement(Element pParent, String pParentPath) {
-		Element items = mDocument.createElement(Tag.RESOURCES);
+		Element items = mDocument.createElement(Tag.RESOURCE);
 		items.setAttribute(Attribute.NAME, "ItemGroup");
 		items.setAttribute(Attribute.COMMENT, "create resources");
 		pParent.appendChild(items);

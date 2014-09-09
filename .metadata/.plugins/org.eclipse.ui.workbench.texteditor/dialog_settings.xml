@@ -13,18 +13,19 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="setPar" key="selection"/>
+		<item value="alignF" key="selection"/>
 		<list key="findhistory">
-			<item value="setPar"/>
-			<item value="setParen"/>
-			<item value="toString"/>
-			<item value="progressbar"/>
-			<item value="fetch"/>
-			<item value="update"/>
-			<item value="fetcg"/>
-			<item value="setTy"/>
+			<item value="alignF"/>
+			<item value="//\{parameters\}"/>
+			<item value="exportP"/>
+			<item value="setPhony"/>
+			<item value="setID"/>
+			<item value="declareIm"/>
+			<item value="declareId"/>
+			<item value="addImage"/>
 		</list>
 		<list key="replacehistory">
+			<item value="DefaultExitResources"/>
 			<item value="mDefaultBackgrounds"/>
 			<item value="mIsVisible"/>
 			<item value="mProgressGroup"/>
@@ -32,7 +33,6 @@
 			<item value="createItemGroup"/>
 			<item value="&lt;xs:attribute name=&quot;length&quot; type=&quot;xs:integer&quot; use=&quot;optional&quot; /&gt;"/>
 			<item value="mArrayLength"/>
-			<item value="setFontSizeVar"/>
 		</list>
 	</section>
 </section>

@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,7 @@ import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 import com.tdgc.cocos2dx.popup.creator.xml.XibFetcher;
 
-public class View extends AdvancedObject {
+public class View extends AdvancedObject implements IContainer {
 
 	public View() {
 		super();
@@ -31,7 +32,6 @@ public class View extends AdvancedObject {
 		this.mSuffix = "popup";
 		this.mType = "popup";
 		this.mImages = new ArrayList<Image>();
-		this.mResources = new ArrayList<Resources>();
 		this.mScreenContainerPath = 
 				Config.getInstance().getScreenContainerPath();
 		this.mLabels = new ArrayList<Label>();
@@ -44,6 +44,7 @@ public class View extends AdvancedObject {
 				Config.getInstance().getDefaultTemplateName("size");
 		this.mSizeTemplateFile = "size.template";
 		this.mLocationInView = new Point(0, 0);
+		this.mIsExitable = true;
 	}
 	
 	@Override
@@ -61,6 +62,21 @@ public class View extends AdvancedObject {
 					mTableGroupInView.get(0).getItems().get(0).getSuper());
 			srcCode = srcCode.replace("{super_cell_name}", cell.getSuper());
 		}
+		String exitNormalImgId = Strings.DEFAULT_IMAGE_ID;
+		String exitActiveImgId = Strings.DEFAULT_IMAGE_ID;
+		String exitPositionName = Strings.DEFAULT_POSIONTION_NAME;
+		if(mIsExitable 
+				&& mExitResource != null
+				&& mExitResource.getImages().size() > 1
+				&& mExitSprite != null) {
+			exitNormalImgId = mExitResource.getImage(0).getId();
+			exitActiveImgId = mExitResource.getImage(1).getId();
+			exitPositionName = mExitSprite.getPositionName();
+		}
+		srcCode = srcCode.replace("{exit_normal_id}", exitNormalImgId)
+				.replace("{exit_active_id}", exitActiveImgId)
+				.replace("{exit_position_name}", exitPositionName);
+		
 		return srcCode;
 	}
 	
@@ -76,6 +92,21 @@ public class View extends AdvancedObject {
 					.replace("{super_cell_name}", cell.getSuper())
 					.replace("{cell_class_name}", cell.getClassName()); 
 		}
+		String exitNormalImgId = Strings.DEFAULT_IMAGE_ID;
+		String exitActiveImgId = Strings.DEFAULT_IMAGE_ID;
+		String exitPositionName = Strings.DEFAULT_POSIONTION_NAME;
+		if(mIsExitable 
+				&& mExitResource != null
+				&& mExitResource.getImages().size() > 1
+				&& mExitSprite != null) {
+			exitNormalImgId = mExitResource.getImage(0).getId();
+			exitActiveImgId = mExitResource.getImage(1).getId();
+			exitPositionName = mExitSprite.getPositionName();
+		}
+		srcCode = srcCode.replace("{exit_normal_id}", exitNormalImgId)
+				.replace("{exit_active_id}", exitActiveImgId)
+				.replace("{exit_position_name}", exitPositionName);
+		
 		return srcCode;
 	}
 	
@@ -85,7 +116,9 @@ public class View extends AdvancedObject {
 		StringBuilder builder = new StringBuilder("\n");
 		createHeaderCommentTemplate(builder, Constants.POSITION_DECLARING_CMM);
 		builder.append(super.declarePositions());
-		
+		if(mExitSprite != null) {
+			builder.append("\t" + mExitSprite.declarePositions());
+		}
 		if(mTableGroupInView.size() > 0) {
 			Cell cell = ((Table)(mTableGroupInView.get(0)
 				.getItems().get(0))).getCell();
@@ -95,7 +128,7 @@ public class View extends AdvancedObject {
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
 		return StringUtils.standardizeCode(
-				builder.toString().trim());
+				builder.toString()).trim();
 	}
 	
 	@Override
@@ -103,6 +136,9 @@ public class View extends AdvancedObject {
 		StringBuilder builder = new StringBuilder("\n");
 		createHeaderCommentTemplate(builder, Constants.POSITION_IMPLEMENTING_CMM);
 		builder.append(super.implementPositions());
+		if(mExitSprite != null) {
+			builder.append("\t" + mExitSprite.implementPositions());
+		}
 		if(mTableGroupInView.size() > 0) {
 			Cell cell = ((Table)(mTableGroupInView.get(0)
 					.getItems().get(0))).getCell();
@@ -113,7 +149,7 @@ public class View extends AdvancedObject {
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
 		
 		return StringUtils.standardizeCode(
-				builder.toString().trim());
+				builder.toString()).trim();
 	}
 	
 	public String implementPositions(String device) {
@@ -121,6 +157,9 @@ public class View extends AdvancedObject {
 		createHeaderCommentTemplate(builder, 
 				Constants.POSITION_IMPLEMENTING_CMM + "(" + device + ")");
 		builder.append(super.implementPositions());
+		if(mExitSprite != null) {
+			builder.append("\t" + mExitSprite.implementPositions());
+		}
 		if(mTableGroupInView.size() > 0) {
 			Cell cell = ((Table)(mTableGroupInView.get(0)
 					.getItems().get(0))).getCell();
@@ -139,11 +178,15 @@ public class View extends AdvancedObject {
 		String template = new FileUtils().fetchTemplate(
 				"Image identifiers declaring", 
 				"src/com/template/id.template", getProject()).trim();
-		for(int i = 0 ; i < mImages.size(); i++) {
-			if(mImages.get(i) == null || mImages.get(i).isExists()) {
+		List<Image> images = new ArrayList<Image>(mImages);
+		if(mResource != null) {
+			images.addAll(mResource.getImages());
+		}
+		for(int i = 0 ; i < images.size(); i++) {
+			if(images.get(i) == null || images.get(i).isExists()) {
 				continue;
 			}
-			builder.append(template.replace("{id}", mImages.get(i).getId().trim())
+			builder.append(template.replace("{id}", images.get(i).getId().trim())
 						.replace("{tab}", "\t"))
 					.append("\n");
 		}
@@ -161,13 +204,17 @@ public class View extends AdvancedObject {
 		String template = new FileUtils().fetchTemplate(
 				"Image identifiers implementing", 
 				"src/com/template/id.template", getProject()).trim();
-		for(int i = 0 ; i < mImages.size(); i++) {
-			if(mImages.get(i) == null || mImages.get(i).isExists()
-					|| mImages.get(i).getRealPath() == null) {
+		List<Image> images = new ArrayList<Image>(mImages);
+		if(mResource != null) {
+			images.addAll(mResource.getImages());
+		}
+		for(int i = 0 ; i < images.size(); i++) {
+			if(images.get(i) == null || images.get(i).isExists()
+					|| images.get(i).getRealPath() == null) {
 				continue;
 			}
-			builder.append(template.replace("{id}", mImages.get(i).getId())
-						.replace("{value}", mImages.get(i).getRealPath())
+			builder.append(template.replace("{id}", images.get(i).getId())
+						.replace("{value}", images.get(i).getRealPath())
 						.replace("{tab}", "\t"))
 					.append("\n");
 		}
@@ -234,12 +281,8 @@ public class View extends AdvancedObject {
 	}
 
 	public void addImage(Image pImage) {
-		if(pImage.getParent() instanceof View) {
-			mBackgroundImage = pImage;
-			this.mImages.get(0).replaceWithAnother(pImage);
-		} else {
-			this.mImages.add(pImage);
-		}
+		pImage.setResource(false);
+		this.mImages.add(pImage);
 	}
 	
 	@Override
@@ -501,14 +544,6 @@ public class View extends AdvancedObject {
 		this.mXibContainerPath = mXibContainerPath;
 	}
 
-	public void setClassPath(String mClassPath) {
-		this.mClassPath = mClassPath;
-	}
-
-	public void setDirectoryName(String mDirectoryName) {
-		this.mDirectoryName = mDirectoryName;
-	}
-	
 	public void setXmlFilePath(String pXmlFilePath) {
 		this.mXmlFilePath = pXmlFilePath;
 	}
@@ -525,8 +560,9 @@ public class View extends AdvancedObject {
 		this.mScreenContainerPath = pScreenContainerPath;
 	}
 	
-	public void addResource(Resources pResources) {
-		this.mResources.add(pResources);
+	public void addResource(Resource pResource) {
+		pResource.setTabCount(getTabCount() + 1);
+		this.mResource = pResource;
 	}
 	
 	public String getXibContainerPath() {
@@ -575,15 +611,22 @@ public class View extends AdvancedObject {
 	}
 	
 	public void setBackgroundImage(Image img) {
-		this.mBackgroundImage = img;
+		img.setParent(this);
+		if(mBackgroundImage == null) {
+			mBackgroundImage = img;
+			mImages.add(mBackgroundImage);
+		} else {
+			mBackgroundImage.replaceWithAnother(img);
+		}
 	}
 	
 	@Override
 	public void setType(String type) {
 		super.setType(type);
 		if(type != null) {
-			this.mSuper = Config.getInstance().getDefautSuper(mType);
-			this.mBackgroundImage = Config.getInstance().getDefaultBackgroundImage(
+			Config config = Config.getInstance();
+			this.mSuper = config.getDefautSuper(mType);
+			this.mBackgroundImage = config.getDefaultBackgroundImage(
 					type);
 			if(mBackgroundImage != null) {
 				this.mBackgroundImage.setIsBackground(true);
@@ -591,6 +634,40 @@ public class View extends AdvancedObject {
 				this.mBackgroundImage.setParent(this);
 				this.mImages.add(mBackgroundImage);
 			}
+			this.mExitResource = config.getDefaultExitResource(
+					type);
+			if(mExitResource != null 
+					&& mExitResource.getImages().size() > 0
+					&& mExitResource.getImage(0) != null 
+					&& mIsExitable) {
+				Image exitImage = mExitResource.getImage(0);
+				exitImage.setExists(true);
+				mExitSprite = new Sprite(exitImage);
+				mExitSprite.setParent(this);
+				mExitSprite.setPositionName(mPrefix, 
+						mExitResource.getImage(0).getId());
+				this.mImages.add(exitImage);
+			} else {
+				mExitResource = null;
+			}
+		}
+	}
+	
+	public void setExitable(boolean exitable) {
+		this.mIsExitable = exitable;
+	}
+	
+	public void setExitImageLocationInView(String location) {
+		if(location != null && mExitResource != null) {
+			mExitResource.getImage(0)
+				.setLocationInInterfaceBuilder(Point.parsePoint(location));
+		}
+	}
+	
+	public void setExitSpritePosition(String position) {
+		if(position != null && mExitSprite != null) {
+			Point p = Point.parsePoint(position);
+			mExitSprite.setPosition(p);
 		}
 	}
 	
@@ -603,6 +680,22 @@ public class View extends AdvancedObject {
 	}
 	
 	@Override
+	public void setContainerParent(IContainer parent) {}
+
+	@Override
+	public IContainer getContainerParent() {
+		return null;
+	}
+	
+	@Override
+	public void update() {
+		if(mExitResource == null) {
+			mIsExitable = false;
+		}
+		Collections.sort(getImages());
+	}
+	
+	@Override
 	public String toXML() {
 		StringBuilder builder = new StringBuilder("<?xml version=\"1.0\" " +
 				"encoding=\"UTF-8\" standalone=\"no\"?>\n");
@@ -611,6 +704,7 @@ public class View extends AdvancedObject {
 		builder.append("<view " + Attribute.CLASS_NAME + "=\"" + mClassName + "\" ")
 			.append(Attribute.PREFIX + "=\"" + mPrefix + "\" ")
 			.append(Attribute.TYPE + "=\"" + mType + "\" ")
+			.append(Attribute.EXITABLE + "=\"" + mIsExitable + "\" ")
 			.append("\n\t\t" + Attribute.SUPER + "=\"" + mSuper + "\" ")
 			.append(Attribute.BACKGROUND_NAME + "=\"" + mBackgroundName + "\" ")
 			.append(Attribute.SIZE + "=\"" + mSize + "\" ")
@@ -660,10 +754,25 @@ public class View extends AdvancedObject {
 		//class group
 		builder.append("\t<" + Tag.CLASS_PATH + " " + Attribute.VALUE + "=\"")
 			.append(mClassPath + "\" />\n");
+		if(mBackgroundImage != null) {
+			builder.append(mBackgroundImage.toXML() + "\n");
+		}
+		if(mIsExitable) {
+			Image exitImg = mExitResource.getImage(0);
+			builder.append("\t<" + Tag.EXIT_IMAGE + " " + Attribute.POSITION + "=\"")
+			.append(exitImg.getPosition() + "\" ")
+			.append(Attribute.LOCATION_IN_INTERFACEBUILDER + "=\"")
+			.append(exitImg.getLocationInInterfaceBuilder() + "\" />\n");
+		}
 		
 		builder.append("\n")
-			.append(super.toXML())
-			.append("</" + mXmlTagName + ">");
+		.append(super.toXML());
+	
+		if(mResource != null) {
+			builder.append(mResource.toXML())
+				.append("\n");
+		}
+		builder.append("</" + mXmlTagName + ">");
 	
 		builder.append("\n");
 		
@@ -676,12 +785,9 @@ public class View extends AdvancedObject {
 	private String mImagesInputPath;
 	private String mImagesPath;
 	private String mXibContainerPath;
-	private String mClassPath;
 	private String mAndroidContainerPath;
-	
+	private String mScreenContainerPath;
 	private String mInterfaceBuilder;
-	
-	private String mDirectoryName;
 	
 	@SuppressWarnings("unused")
 	private String mXmlFilePath;
@@ -689,6 +795,9 @@ public class View extends AdvancedObject {
 	private Image mBackgroundImage;
 	private List<Image> mImages;
 	private List<Label> mLabels;
-	private List<Resources> mResources;
-	private String mScreenContainerPath;
+	private Resource mResource;
+	private Resource mExitResource;
+	private Sprite mExitSprite;
+	
+	private boolean mIsExitable;
 }

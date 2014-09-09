@@ -12,7 +12,7 @@ import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
 import com.tdgc.cocos2dx.popup.creator.model.Menu;
 import com.tdgc.cocos2dx.popup.creator.model.MenuItem;
 import com.tdgc.cocos2dx.popup.creator.model.Progressbar;
-import com.tdgc.cocos2dx.popup.creator.model.Resources;
+import com.tdgc.cocos2dx.popup.creator.model.Resource;
 import com.tdgc.cocos2dx.popup.creator.model.Sprite;
 import com.tdgc.cocos2dx.popup.creator.model.Table;
 import com.tdgc.cocos2dx.popup.creator.model.View;
@@ -49,8 +49,10 @@ public class XmlViewCreator {
 		mView = createView(mRootPath);
 
 		createBackgroundImage(mView);
+		createResource(mView);
 		
 		createNextItems(mView, 0, true);
+		mView.update();
 		
 		return mView;
 	}
@@ -92,11 +94,35 @@ public class XmlViewCreator {
 			if(fullPath.equals(backgroundPath)) {
 				mFilePaths.remove(i);
 				Image image = createImageItem(view, mFilePaths.get(i));
+				image.setXMLTagName(Tag.BACKGROUND_IMAGE);
 				view.setBackgroundImage(image);
 				mFilePaths.remove(i);
 				return;
 			}
 		}
+	}
+	
+	private void createResource(View view) {
+		String resourcePath = mRootPath + "/resource";
+		for(int i = 1 ; i < mFilePaths.size() ; i++) {
+			String fullPath = mFilePaths.get(i).trim();
+			if(fullPath.equals(resourcePath)) {
+				mFilePaths.remove(i);
+				Resource resource = new Resource();
+				resource.setTabCount(view.getTabCount() + 1);
+				while(mFilePaths.get(i).contains(fullPath)) {
+					String filePath = mFilePaths.get(i);
+					if(filePath.endsWith(".png")) {
+						Image img = new Image(filePath);
+						img.setAddToInterfaceBuilder(false);
+						resource.addImage(img);
+					}
+					mFilePaths.remove(i);
+				} 
+				view.addResource(resource);
+				return;
+			}
+		} 
 	}
 	
 	/**
@@ -167,6 +193,7 @@ public class XmlViewCreator {
 			item.setParent(pParent);
 			item.setTabCount(items.getTabCount() + 1);
 			createNextItems(item, i, true, false);
+			item.update();
 		}
 //		createNextItems(pParent, 0, false);
 	}
@@ -183,6 +210,7 @@ public class XmlViewCreator {
 			item.setParent(pParent);
 			item.setTabCount(items.getTabCount() + 1);
 			createNextItems(item, i, true);
+			item.update();
 		}
 //		createNextItems(pParent, 0, false);
 	}
@@ -281,12 +309,6 @@ public class XmlViewCreator {
 	
 	@SuppressWarnings("unused")
 	private void createResourceItem(CommonObject pParent, String pParentPath) {
-		Resources item = new Resources();
-		item.setParent(pParent);
-		
-		item.setName("ItemGroup");
-		item.setComment("create resources");
-		item.setParent(pParent);
 	}
 	
 	public String getOutputFileName() {

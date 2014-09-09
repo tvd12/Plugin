@@ -195,7 +195,7 @@
 	          class="com.tvd.gamview.ext.preference.GameViewPreferencePage"
 	          id="com.tvd.gamview.ext.preference.GameViewPreferencePage"
 	          category="com.tvd.gamview.ext.preference.GameViewPreferencePage"
-	          name="Sdk Root">
+	          name="Sdk">
 	          <keywordReference
                  id="com.tvd.gamview.ext.preference.keywords">
 	          </keywordReference>

@@ -58,7 +58,7 @@ public class XibFileParser extends DefaultHandler {
 				mCurrentImage.setSize(width, height);
 				mCurrentImage.setXY(x, y);
 			} 
-			else if(mParentQName.equals(Tag.LABEL)) {
+			else if(mParentQName.equals(Tag.LABEL) && mCurrentLabel != null) {
 				mCurrentLabel.setSize(width, height);
 				mCurrentLabel.setLocationInView(x, y);
 			}

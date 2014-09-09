@@ -2,6 +2,7 @@ package com.tdgc.cocos2dx.popup.creator.model;
 
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.ModelType;
+import com.tdgc.cocos2dx.popup.creator.constants.Strings;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
@@ -128,6 +129,10 @@ public class Label extends CommonObject {
 	}
 	
 	public void setFontName(String pFontName) {
+		if(pFontName == null || pFontName.trim().length() == 0
+				|| pFontName.equals(Strings.DEFAULT)) {
+			return;
+		}
 		this.mFontName = pFontName;
 	}
 	
@@ -172,6 +177,10 @@ public class Label extends CommonObject {
 	}
 	
 	public void setFontFamily(String family) {
+		if(family == null || family.trim().length() == 0
+				|| family.equals(Strings.DEFAULT)) {
+			return;
+		}
 		this.mFontFamily = family;
 	}
 	

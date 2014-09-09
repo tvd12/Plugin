@@ -226,7 +226,6 @@ public class ItemGroup {
 	
 	public String createExtendFunction() {
 		if(mResources != null) {
-			return mResources.createExtendFunction();
 		}
 		return "";
 	}
@@ -243,7 +242,7 @@ public class ItemGroup {
 		this.mBlockComment = pBlockComment;
 	}
 	
-	public void setResources(Resources pResources) {
+	public void setResources(Resource pResources) {
 		this.mResources = pResources;
 	}
 	
@@ -251,7 +250,7 @@ public class ItemGroup {
 		return this.mBlockComment;
 	}
 	
-	public Resources getResources() {
+	public Resource getResources() {
 		return this.mResources;
 	}
 	
@@ -424,7 +423,7 @@ public class ItemGroup {
 	protected int mTabCount;
 	protected List<CommonObject> mItems;
 	protected String mBlockComment;
-	protected Resources mResources;
+	protected Resource mResources;
 	protected boolean mIsArray;
 	protected int mType;
 	protected CommonObject mContainer;

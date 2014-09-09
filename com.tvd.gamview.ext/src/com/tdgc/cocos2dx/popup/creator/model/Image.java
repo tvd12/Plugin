@@ -24,6 +24,17 @@ public class Image implements Comparable<Image> {
 		this.mIsAddToInterfaceBuilder = true;
 		this.mLocationInInterfaceBuilder = new Point(10, 10);
 		this.mIsExists = false;
+		this.mIsResource = false;
+	}
+	
+	public Image(String phonyPath) {
+		this();
+		this.setPhonyPath(phonyPath);
+	}
+	
+	public Image(String phonyPath, String locationInView) {
+		this(phonyPath);
+		this.setLocationInInterfaceBuilder(locationInView);
 	}
 	
 	public Image(String pId, String pRealPath, String pPhonyPath) {
@@ -53,7 +64,7 @@ public class Image implements Comparable<Image> {
 			this.mRealPath = this.mPhonyPath;
 		}
 		if(this.mId == null) {
-			this.mId = StringUtils.convertPhonyPathToId(this.mPhonyPath);
+			this.setId(StringUtils.convertPhonyPathToId(this.mPhonyPath));
 		}
 		if(mRealPath != null) {
 			mName = mRealPath;
@@ -183,16 +194,23 @@ public class Image implements Comparable<Image> {
 		mRealPath = another.mRealPath;
 		mPhonyPath = another.mPhonyPath;
 		mName = another.mName;
-		mIsBackground = another.mIsBackground;
 		mSize = another.mSize;
 		mX = another.mX;
 		mY = another.mY;
 		mParent = another.mParent;
 		mAnchorPoint = another.mAnchorPoint;
+		mTabCount = another.mTabCount;
+		mXmlTagName = another.mXmlTagName;
+		mLocationInInterfaceBuilder = another.mLocationInInterfaceBuilder;
+		mIsBackground = another.mIsBackground;
+		mIsExists = another.mIsExists;
+		mIsAddToInterfaceBuilder = another.mIsAddToInterfaceBuilder;
 	}
 
 	public void setId(String pId) {
-		this.mId = pId;
+		this.mId = pId.replace(" ", "_")
+				.replace("\t", "_")
+				.replace("__", "_");
 	}
 	
 	public void setRealPath(String pRealPath) {
@@ -234,15 +252,16 @@ public class Image implements Comparable<Image> {
 	public void setXY(float pX, float pY) {
 		this.mX = pX;// + mAnchorPoint.getX()*mSize.getWidth();
 		this.mY = pY;// + mAnchorPoint.getY()*mSize.getHeight();
-		this.mParent.setLocationInView(pX, pY);
 		this.setLocationInInterfaceBuilder(pX, pY);
+		this.mParent.setLocationInView(pX, pY);
 	}
 	
 	public void alignFollowParrent() {
 		try {
-			if(mParent.getLocationInView() == null) {
+			if(mParent.getLocationInView() == null || mSize == null) {
 				System.err.println("ERROR:: name = " + this.getRealPath() + " has "
-						+ "parent.getLocationInView == null");
+						+ "parent.getLocationInView == null\n"
+						+ "size = " + mSize);
 				return;
 			}
 			float x = mParent.getLocationInView().getX();
@@ -433,6 +452,23 @@ public class Image implements Comparable<Image> {
 		return mIsExists;
 	}
 	
+	public Point getPosition() {
+		return new Point(mX, mY);
+	}
+	
+	public void setPosition(float x, float y) {
+		this.mX = x;
+		this.mY = y;
+	}
+	
+	public void setXMLTagName(String tagName) {
+		this.mXmlTagName = tagName;
+	}
+	
+	public String getXMLTagName() {
+		return this.mXmlTagName;
+	}
+	
 	public String toXML(boolean includeSize) {
 		String tab = StringUtils.tab(mTabCount);
 		StringBuilder builder = new StringBuilder(tab);
@@ -459,18 +495,23 @@ public class Image implements Comparable<Image> {
 		return builder.toString();
 	}
 	
+	public void setResource(boolean isResource) {
+		this.mIsResource = isResource;
+	}
+	
+	public boolean isResource() {
+		return this.mIsResource;
+	}
+	
 	public String toXML() {
 		return toXML(true);
 	}
-	
-	protected boolean mIsAddToInterfaceBuilder;
 	
 	private String mId;
 	private String mImageViewId;
 	private String mRealPath;
 	private String mPhonyPath;
 	private String mName;
-	private boolean mIsBackground;
 	private Size mSize;
 	private float mX;
 	private float mY;
@@ -479,5 +520,9 @@ public class Image implements Comparable<Image> {
 	private int mTabCount;
 	private String mXmlTagName;
 	private Point mLocationInInterfaceBuilder;
+	
+	private boolean mIsBackground;
 	private boolean mIsExists;
+	protected boolean mIsAddToInterfaceBuilder;
+	protected boolean mIsResource;
 }

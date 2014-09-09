@@ -17,12 +17,14 @@
 				<xs:element ref="androidcontainer-path" maxOccurs="1" minOccurs="1" />
 				<xs:element ref="class-path" maxOccurs="1" minOccurs="1" />
 				<xs:element ref="parameter" maxOccurs="unbounded" minOccurs="0" />
-				<xs:element ref="image" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="background-image" maxOccurs="1" minOccurs="0"/>
+				<xs:element ref="exit-image" maxOccurs="1" minOccurs="0" />
 				<xs:element ref="sprites" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="labels"  maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="menus" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="menuitems" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="tables" maxOccurs="unbounded" minOccurs="0" />
+				<xs:element ref="resource" maxOccurs="1" minOccurs="0" />
 			</xs:sequence>
 			<xs:attribute name="class-name" type="xs:string" use="required" />
 			<xs:attribute name="prefix" type="xs:string" use="required" />
@@ -30,6 +32,7 @@
 			<xs:attribute name="background-name" type="xs:string" />
 			<xs:attribute name="type" type="xs:string" use="required" />
 			<xs:attribute name="size" type="xs:string" use="required" />
+			<xs:attribute name="exitable" type="xs:boolean" use="optional" />
 			<xs:attributeGroup ref="template" />
 		</xs:complexType>
 	</xs:element>
@@ -148,21 +151,39 @@
 			</xs:simpleContent>
 		</xs:complexType>
 	</xs:element>
+	<xs:complexType name="imagetype">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="background" 
+					type="xs:boolean" use="optional" />
+				<xs:attribute name="id" type="xs:string" use="optional" />
+				<xs:attribute name="phony-path" type="xs:string" />
+				<xs:attribute name="real-path" type="xs:string" use="optional" />
+				<xs:attribute name="width" type="xs:float" use="optional" />
+				<xs:attribute name="height" type="xs:float" use="optional" />
+				<xs:attribute name="location-in-interfacebuilder" 
+					type="xs:string" use="optional" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
 	<xs:element name="image">
 		<xs:complexType>
-			<xs:simpleContent>
-				<xs:extension base="xs:string">
-					<xs:attribute name="background" 
-						type="xs:boolean" use="optional" />
-					<xs:attribute name="id" type="xs:string" use="optional" />
-					<xs:attribute name="phony-path" type="xs:string" />
-					<xs:attribute name="real-path" type="xs:string" use="optional" />
-					<xs:attribute name="width" type="xs:float" use="optional" />
-					<xs:attribute name="height" type="xs:float" use="optional" />
-					<xs:attribute name="location-in-interfacebuilder" 
-						type="xs:string" use="optional" />
-				</xs:extension>
-			</xs:simpleContent>
+			<xs:complexContent>
+				<xs:restriction base="imagetype" />
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="background-image">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:restriction base="imagetype" />
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="exit-image">
+		<xs:complexType>
+			<xs:attribute name="position" type="xs:string" use="required" />
+			<xs:attribute name="location-in-interfacebuilder" use="required" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="sprites">
@@ -293,10 +314,10 @@
 				<xs:element ref="position" maxOccurs="1" minOccurs="0" />
 				<xs:element ref="size" maxOccurs="1" minOccurs="0" />
 				<xs:element ref="image" maxOccurs="1" minOccurs="1" />
-				<xs:element ref="menuitems" maxOccurs="unbounded" minOccurs="0" />
-				<xs:element ref="labels" maxOccurs="unbounded" minOccurs="0" />
-				<xs:element ref="menus" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="sprites" maxOccurs="unbounded" minOccurs="0" />
+				<xs:element ref="labels" maxOccurs="unbounded" minOccurs="0" />
+				<xs:element ref="menuitems" maxOccurs="unbounded" minOccurs="0" />
+				<xs:element ref="menus" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="tables" maxOccurs="unbounded" minOccurs="0" />
 			</xs:sequence>
 			<xs:attribute name="class-name" type="xs:string" use="required" />
@@ -344,17 +365,12 @@
 			<xs:attribute name="visible" type="xs:boolean" use="optional" />
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="resources">
+	<xs:element name="resource">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="sprites" maxOccurs="unbounded" minOccurs="0" />
-				<xs:element ref="menuitems" maxOccurs="unbounded" minOccurs="0" />
-				<xs:element ref="menus" maxOccurs="unbounded" minOccurs="0" />
-				<xs:element ref="tables" maxOccurs="unbounded" minOccurs="0" />
-				<xs:element ref="labels" maxOccurs="unbounded" minOccurs="0" />
+				<xs:element ref="image" maxOccurs="unbounded" minOccurs="1" />
 			</xs:sequence>
 			<xs:attribute name="comment" type="xs:string" use="optional" />
-			<xs:attribute name="name" type="xs:string" use="optional" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="size-name">

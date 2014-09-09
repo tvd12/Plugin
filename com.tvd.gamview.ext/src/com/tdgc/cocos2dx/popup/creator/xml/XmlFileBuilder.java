@@ -87,12 +87,4 @@ public class XmlFileBuilder {
 	private String mImagesPath;
 	private String mFileOutputName;
 	private String mInterfaceBuilder;
-	
-	
-	public static void main(String[] args) {
-		String inputPath = "/Users/apple/Downloads";
-		String inputDirectory ="cza_avatars_popup";
-		XmlFileBuilder builder = new XmlFileBuilder(inputPath + "/" + inputDirectory, "Xib");
-		System.out.println(builder.buildFor("demohd"));
-	}
 }

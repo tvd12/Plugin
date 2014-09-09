@@ -35,13 +35,17 @@ public class ImageFileUtils {
 			return;
 		}
 		File toFile = new File(pToPath);
-		if(toFile.exists()) {
-			toFile.delete();
+		if(!toFile.exists()) {
+			toFile.mkdirs();
 		}
-		toFile.mkdirs();
+		
 		List<String> filePaths = new FileParser(pFromPath).fetchFilePaths();
 		pFromPath = pFromPath.substring(0, pFromPath.lastIndexOf('/'));
 		BufferedImage image = null;
+		String rootPath = pToPath + "/" + filePaths.get(0);
+		if(new File(rootPath).exists()) {
+			FileUtils.deleteFolder(rootPath);
+		}
 		for(int i = 0 ; i < filePaths.size() ; i++) {
 			File outFile = new File(pToPath + "/" + filePaths.get(i));
 			if(filePaths.get(i).contains(".png")) {
@@ -49,9 +53,6 @@ public class ImageFileUtils {
 					image = ImageIO.read(new File(pFromPath + "/" + filePaths.get(i)));
 	        		if(!outFile.exists()) {
 	        			ImageIO.write(image, "png", outFile);
-	        			System.out.println(filePaths.get(i) + " is writing...");
-	        		} else {
-	        			System.out.println(filePaths.get(i) + " is existed");
 	        		}
 				} catch(IOException e) {
 					Log.e(e);

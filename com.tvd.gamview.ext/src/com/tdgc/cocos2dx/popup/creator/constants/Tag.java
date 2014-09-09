@@ -17,7 +17,7 @@ public interface Tag {
 	public static final String IMAGE			= "image";
 	public static final String TABLES			= "tables";
 	public static final String TABLE			= "table";
-	public static final String RESOURCES		= "resources";
+	public static final String RESOURCE		= "resource";
 	public static final String FONT				= "font";
 	public static final String FONT_SIZE		= "font-size";
 	public static final String DEFINE_PATH		= "define-path";
@@ -52,4 +52,6 @@ public interface Tag {
 	public static final String PERCENT			= "percent";
 	
 	public static final String NEXT				= "next";
+	public static final String EXIT_IMAGE		= "exit-image";
+	public static final String BACKGROUND_IMAGE	= "background-image";
 }

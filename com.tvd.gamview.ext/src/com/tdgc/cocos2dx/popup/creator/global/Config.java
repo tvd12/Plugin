@@ -1,6 +1,5 @@
 package com.tdgc.cocos2dx.popup.creator.global;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
@@ -9,17 +8,12 @@ import org.eclipse.core.resources.IProject;
 import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.model.Image;
+import com.tdgc.cocos2dx.popup.creator.model.Resource;
 
 public class Config {
 	
 	private Config() {
 		mDefaultNormalPrefix 			= "m";
-		mDefaultSupers 					= new HashMap<String, String>();
-		mDefaultBackgroundOnSupers 		= new HashMap<String, String>();
-		mDefaultMenuOnSupers 			= new HashMap<String, String>();
-		mDefaultTemplateNames 			= new HashMap<String, String>();
-		mDefaultBackgroundImages 		= new HashMap<String, Image>();
-		mDefaultScreenSize				= new HashMap<String, String>();
 	}
 
 	public static Config getInstance() {
@@ -35,26 +29,30 @@ public class Config {
 	}
 	
 	public void loadConfigs() {
+		
 		IFile file = mProject.getFile("src/com/config/default.properties");
 		FileUtils fileUtils = new FileUtils();
 		String fileContent = fileUtils.readFromFile(file);
-		mDefaultTemplateNames.putAll(fileUtils.fetchDefaultKeyValues(
-				"Template name", fileContent));
-		mDefaultSupers.putAll(fileUtils.fetchDefaultKeyValues(
-				"Super name", fileContent));
-		mDefaultBackgroundOnSupers.putAll(fileUtils.fetchDefaultKeyValues(
-				"Background on super", fileContent));
-		mDefaultMenuOnSupers.putAll(fileUtils.fetchDefaultKeyValues(
-				"Menu on super", fileContent));
+		mDefaultTemplateNames = fileUtils.fetchDefaultKeyValues(
+				"Template name", fileContent);
+		mDefaultSupers = fileUtils.fetchDefaultKeyValues(
+				"Super name", fileContent);
+		mDefaultBackgroundOnSupers = fileUtils.fetchDefaultKeyValues(
+				"Background on super", fileContent);
+		mDefaultMenuOnSupers = fileUtils.fetchDefaultKeyValues(
+				"Menu on super", fileContent);
 		mDefaultNormalPrefix = fileUtils.fetchDefaultValue(
 				"normal_prefix", "Prefix and Suffix", fileContent);
 		mDefaultViewSuffix = fileUtils.fetchDefaultValue(
 				"view_suffix", "Prefix and Suffix", fileContent);
-		mDefaultScreenSize.putAll(fileUtils.fetchDefaultKeyValues(
-				"Screen size", fileContent));
+		mDefaultScreenSize = fileUtils.fetchDefaultKeyValues(
+				"Screen size", fileContent);
 		
-		mDefaultBackgroundImages.putAll(fileUtils.fetchDefaultBackgroundImages(
-				"Background image on super", fileContent));
+		mDefaultBackgroundImages = fileUtils.fetchDefaultBackgroundImages(
+				"Background image on super", fileContent);
+		mDefaultExitResources = fileUtils.fetchDefaultExitResource(
+				"Exit button on super", fileContent);
+		
 		System.out.println("Config just have loaded");
 	}
 	
@@ -186,6 +184,10 @@ public class Config {
 		return mDefaultBackgroundImages.get(type);
 	}
 	
+	public Resource getDefaultExitResource(String viewType) {
+		return mDefaultExitResources.get(viewType);
+	}
+	
 	public String getDefaultScreenSizeString(String device) {
 		return mDefaultScreenSize.get(device);
 	}
@@ -203,6 +205,7 @@ public class Config {
 	private Map<String, String> mDefaultMenuOnSupers;
 	private Map<String, String> mDefaultTemplateNames;
 	private Map<String, Image>  mDefaultBackgroundImages;
+	private Map<String, Resource> 	mDefaultExitResources;
 	private Map<String, String> mDefaultScreenSize;
 	
 	private String mDefinePath;
