@@ -7,7 +7,6 @@ import org.xml.sax.helpers.DefaultHandler;
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
-import com.tdgc.cocos2dx.popup.creator.log.Log;
 import com.tdgc.cocos2dx.popup.creator.model.Cell;
 import com.tdgc.cocos2dx.popup.creator.model.IContainer;
 import com.tdgc.cocos2dx.popup.creator.model.Image;
@@ -87,7 +86,7 @@ public class XmlFileParser extends DefaultHandler {
 				mCell.setPrefix(getAttributeValue(Attribute.PREFIX, atts));
 				mCell.setSuper(getAttributeValue(Attribute.SUPER, atts));
 				mCurrentObject = mCell;
-				mCell.setAdvanceParent(mAdvancedObject);
+				mCell.setAdvancedParent(mAdvancedObject);
 				mAdvancedObject = mCell;
 			}
 			else if(qName.equals(Tag.PROGRESSBAR)) {
@@ -112,6 +111,15 @@ public class XmlFileParser extends DefaultHandler {
 			
 			if(mCurrentObject.isAddToGroup()) {
 				mCurrentGroup.addItem(mCurrentObject);
+			}
+			
+			boolean generateClass = getBoolean(
+					getAttributeValue(Attribute.GENERATE_CLASS, atts));
+			if(generateClass) {
+				mCurrentObject.setGenerateClass(true);
+				AdvancedObject adv = mCurrentObject.createAdvancedObject();
+				adv.setAdvancedParent(mAdvancedObject);
+				mAdvancedObject = adv;
 			}
 			
 		}
@@ -187,7 +195,7 @@ public class XmlFileParser extends DefaultHandler {
 			mCurrentParameter.setName(getAttributeValue(Attribute.NAME, atts));
 			mCurrentParameter.setType(getAttributeValue(Attribute.TYPE, atts));
 			mCurrentParameter.setKind(getAttributeValue(Attribute.KIND, atts));
-			mView.addParameter(mCurrentParameter);
+			mAdvancedObject.addParameter(mCurrentParameter);
 		}
 		else if(qName.equals(Tag.XIBCONTAINER_PATH)) {
 			boolean used = getBoolean(getAttributeValue(Attribute.USED, atts));
@@ -232,6 +240,7 @@ public class XmlFileParser extends DefaultHandler {
 		} 
 		else if(qName.equals(Tag.TEXT)) {
 			((Label)mCurrentObject).setText(getAttributeValue(Attribute.VALUE, atts));
+			((Label)mCurrentObject).setTextVar(getAttributeValue(Attribute.VARNAME, atts));
 		}
 		else if(qName.equals(Tag.FONT)) {
 			Label label = (Label)mCurrentObject;
@@ -279,6 +288,17 @@ public class XmlFileParser extends DefaultHandler {
 			mView.setExitSpritePosition(position);
 			mView.setExitImageLocationInView(locationInItfbd);
 		}
+		else if(qName.equals(Tag.FONT_COLOR)) {
+			int red = getIntNumber(getAttributeValue(Attribute.RED, atts));
+			int green = getIntNumber(getAttributeValue(Attribute.GREEN, atts));
+			int blue = getIntNumber(getAttributeValue(Attribute.BLUE, atts));
+			String alphaStr = getAttributeValue(Attribute.ALPHA, atts);
+			int alpha = getIntNumber(((alphaStr == null) ? "1": alphaStr));
+			if(mCurrentObject instanceof Label) {
+				((Label)mCurrentObject).setRGBA((short)red, 
+						(short)green, (short)blue, (short)alpha);
+			}
+		}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -311,13 +331,17 @@ public class XmlFileParser extends DefaultHandler {
 				|| qName.equals(Tag.RESOURCE)
 				|| qName.equals(Tag.PROGRESSBAR)
 				|| qName.equals(Tag.NEXT)) {
+			if(mCurrentObject.isGenerateClass()) {
+				mAdvancedObject.update();
+				mAdvancedObject = mAdvancedObject.getAdvancedParent();
+			}
 			mCurrentObject.update();
 			mCurrentObject = mCurrentObject.getParent();
 		} 
 		else if(qName.equals(Tag.CELL)) {
 			mCurrentObject.update();
 			mCurrentObject = mCurrentObject.getParent();
-			mAdvancedObject = mAdvancedObject.getAdvanceParent();
+			mAdvancedObject = mAdvancedObject.getAdvancedParent();
 		}
 		else if(qName.equals(Tag.RESOURCE)) {
 			mCurrentContainer = mCurrentContainer.getContainerParent();
@@ -359,9 +383,9 @@ public class XmlFileParser extends DefaultHandler {
 		try {
 			result = Float.parseFloat(value);
 		} catch(NumberFormatException e) {
-			Log.e(e);
+			e.printStackTrace();
 		} catch (NullPointerException e) {
-			Log.e(e);
+			e.printStackTrace();
 		}
 		return result;
 	}
@@ -371,9 +395,9 @@ public class XmlFileParser extends DefaultHandler {
 		try {
 			result = Boolean.parseBoolean(pValue);
 		} catch(NullPointerException e) {
-			Log.e(e);
+			e.printStackTrace();
 		} catch (NumberFormatException e) {
-			Log.e(e);
+			e.printStackTrace();
 		}
 		
 		return result;

@@ -29,7 +29,7 @@
 			<xs:attribute name="class-name" type="xs:string" use="required" />
 			<xs:attribute name="prefix" type="xs:string" use="required" />
 			<xs:attribute name="super" type="xs:string" use="required" />
-			<xs:attribute name="background-name" type="xs:string" />
+			<xs:attribute name="background-name" type="xs:string" use="optional" />
 			<xs:attribute name="type" type="xs:string" use="required" />
 			<xs:attribute name="size" type="xs:string" use="required" />
 			<xs:attribute name="exitable" type="xs:boolean" use="optional" />
@@ -244,10 +244,7 @@
 	<xs:element name="sprite">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="position-name" maxOccurs="1" minOccurs="1" />
-				<xs:element ref="anchorpoint" maxOccurs="1" minOccurs="0" />
-				<xs:element ref="position" maxOccurs="1" minOccurs="0" />
-				<xs:element ref="z-index" maxOccurs="1" minOccurs="0" />
+				<xs:group ref="advancedgroup" />
 				<xs:element ref="image" maxOccurs="1" minOccurs="0" />
 				<xs:element ref="sprites" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="labels" maxOccurs="unbounded" minOccurs="0" />
@@ -262,10 +259,7 @@
 	<xs:element name="menuitem">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="position-name" maxOccurs="1" minOccurs="1" />
-				<xs:element ref="anchorpoint" maxOccurs="1" minOccurs="0" />
-				<xs:element ref="position" maxOccurs="1" minOccurs="0" />
-				<xs:element ref="z-index" maxOccurs="1" minOccurs="0" />
+				<xs:group ref="advancedgroup" />
 				<xs:element name="sprites" maxOccurs="1" minOccurs="1">
 					<xs:complexType>
 						<xs:sequence>
@@ -276,16 +270,14 @@
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
+			<xs:attributeGroup ref="advancedattributegroup" />
 			<xs:attributeGroup ref="template" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="menu">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="position-name" maxOccurs="1" minOccurs="1" />
-				<xs:element ref="anchorpoint" maxOccurs="1" minOccurs="0" />
-				<xs:element ref="position" maxOccurs="1" minOccurs="0" />
-				<xs:element ref="z-index" maxOccurs="1" minOccurs="0" />
+				<xs:group ref="advancedgroup" />
 				<xs:element ref="menuitems" maxOccurs="unbounded" minOccurs="1" />
 			</xs:sequence>
 			<xs:attributeGroup ref="template" />
@@ -294,6 +286,7 @@
 	<xs:element name="table">
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element ref="parameter" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="position-name" maxOccurs="1" minOccurs="1" />
 				<xs:element ref="size-name" maxOccurs="1" minOccurs="0" />
 				<xs:element ref="anchorpoint" maxOccurs="1" minOccurs="0" />
@@ -311,6 +304,7 @@
 	<xs:element name="cell">
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element ref="parameter" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="position" maxOccurs="1" minOccurs="0" />
 				<xs:element ref="size" maxOccurs="1" minOccurs="0" />
 				<xs:element ref="image" maxOccurs="1" minOccurs="1" />
@@ -331,6 +325,7 @@
 			<xs:sequence>
 				<xs:element ref="text" maxOccurs="1" minOccurs="1" />
 				<xs:element ref="font" maxOccurs="1" minOccurs="1" />
+				<xs:element ref="font-color" maxOccurs="1" minOccurs="1" />
 				<xs:element ref="font-size" maxOccurs="1" minOccurs="1" />
 				<xs:element ref="position-name" maxOccurs="1" minOccurs="1" />
 				<xs:element ref="anchorpoint" maxOccurs="1" minOccurs="0" />
@@ -408,6 +403,14 @@
 			</xs:simpleContent>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="font-color">
+		<xs:complexType>
+			<xs:attribute name="red" type="xs:unsignedByte" use="required" />
+			<xs:attribute name="green" type="xs:unsignedByte" use="required" />
+			<xs:attribute name="blue" type="xs:unsignedByte" use="required" />
+			<xs:attribute name="alpha" type="xs:unsignedByte" use="optional" />
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="z-index">
 		<xs:complexType>
 			<xs:attribute name="value" type="xs:integer" />
@@ -475,6 +478,7 @@
 		</xs:complexType>
 	</xs:element>
 	<xs:attributeGroup name="template">
+		<xs:attribute name="generate-class" type="xs:boolean" use="optional" />
 		<xs:attribute name="comment" type="xs:string" use="optional" />
 		<xs:attribute name="visible" type="xs:boolean" use="optional" />
 		<xs:attribute name="template-name" type="xs:string" use="optional" />
@@ -483,6 +487,20 @@
 		<xs:attribute name="position-template-file" type="xs:string" use="optional" />
 		<xs:attribute name="size-template-name" type="xs:string" use="optional" />
 		<xs:attribute name="size-template-file" type="xs:string" use="optional" />
+	</xs:attributeGroup>
+	<xs:group name="advancedgroup">
+		<xs:sequence>
+			<xs:element ref="parameter" maxOccurs="unbounded" minOccurs="0" />
+			<xs:element ref="position-name" maxOccurs="1" minOccurs="1" />
+			<xs:element ref="anchorpoint" maxOccurs="1" minOccurs="0" />
+			<xs:element ref="position" maxOccurs="1" minOccurs="0" />
+			<xs:element ref="z-index" maxOccurs="1" minOccurs="0" />
+		</xs:sequence>
+	</xs:group>
+	<xs:attributeGroup name="advancedattributegroup">
+		<xs:attribute name="class-name" type="xs:string" use="optional" />
+		<xs:attribute name="prefix" type="xs:string" use="optional" />
+		<xs:attribute name="super" type="xs:string" use="optional" />
 	</xs:attributeGroup>
 	<xs:simpleType name="uppertype">
 		<xs:restriction base="xs:string">

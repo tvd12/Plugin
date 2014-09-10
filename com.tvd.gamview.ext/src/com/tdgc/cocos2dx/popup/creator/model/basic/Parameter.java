@@ -1,11 +1,16 @@
 package com.tdgc.cocos2dx.popup.creator.model.basic;
 
+import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
+import com.tdgc.cocos2dx.popup.creator.constants.Tag;
+import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
+
 public class Parameter {
 	
 	public Parameter() {
 		this.mType = null;
 		this.mName = null;
 		this.mKind = Kind.NORMAL;
+		this.mXmlTagName = Tag.PARAMETER;
 	}
 	
 	public Parameter(String pType, String pName) {
@@ -68,6 +73,21 @@ public class Parameter {
 		return result + ",";
 	}
 	
+	public void setTabCount(int tabCount) {
+		this.mTabCount = tabCount;
+	}
+	
+	public String toXML() {
+		String tab = StringUtils.tab(mTabCount);
+		StringBuilder builder = new StringBuilder(tab);
+		builder.append("<" + mXmlTagName + " ")
+			.append(Attribute.NAME + "=\"" + mName + "\" ")
+			.append(Attribute.TYPE + "=\"" + mType + "\" ")
+			.append(Attribute.KIND + "=\"" + mKind + "\" />");
+		
+		return builder.toString();
+	}
+	
 	public static interface Kind {
 		public static final String NORMAL 		= "normal";
 		public static final String REF 			= "ref";
@@ -80,5 +100,8 @@ public class Parameter {
 	protected String mType;
 	protected String mName;
 	protected String mKind;
+	protected String mXmlTagName;
+	
+	protected int mTabCount;
 	
 }

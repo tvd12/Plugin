@@ -26,6 +26,11 @@ public class Label extends CommonObject {
 		
 		this.mTemplateName = "CCLabelTTF";
 		this.mTemplateFile = "label.template";
+		
+		this.mRed = 255; 
+		this.mGreen = 255; 
+		this.mBlue = 255;
+		this.mAlpha = 255;
 	}
 	
 	@Override
@@ -43,6 +48,8 @@ public class Label extends CommonObject {
 		if(mParent != null) {
 			parentName = mParent.getName();
 		}
+		String textVar = (mTextVar == null)
+				? mText : mTextVar;
 		String fontSizeVar = (mFontSizeVar == null) 
 				? ("" + mFontSizeFloat) : mFontSizeVar;
 		String fontNameVar = (mFontNameVar == null) 
@@ -53,10 +60,14 @@ public class Label extends CommonObject {
 			.replace("{parent_name}", parentName)
 			.replace("{anchorpoint}", mAnchorPointString)
 			.replace("{position_name}", mPositionName)
-			.replace("{label_text}", mText)
+			.replace("{label_text}", textVar)
 			.replace("{label_font}", fontNameVar)
 			.replace("{label_font_size}", fontSizeVar)
-			.replace("{z-index}", mZIndex);
+			.replace("{z-index}", mZIndex)
+			.replace("{red}", "" + mRed)
+			.replace("{green}", "" + mGreen)
+			.replace("{blue}", "" + mBlue)
+			.replace("{alpha}", "" + mAlpha);
 		builder.append(template);
 		
 		return builder.toString();
@@ -88,8 +99,10 @@ public class Label extends CommonObject {
 				+ "name=\""+ mFontName +"\" family=\""+ mFontFamily + "\" pointSize=\"" 
 					+ mFontSizeFloat + "\" />");
 		builder.append("\n" + StringUtils.tab(5))
-			.append("<color key=\"textColor\" white=\"1\" "
-				+ "alpha=\"1\" colorSpace=\"calibratedWhite\" />");
+			.append("<color key=\"textColor\" red=\"" + mRed/255.0 + "\" "
+					+ "green=\"" + mGreen/255.0 + "\" "
+					+ "blue=\"" + mBlue/255.0 + "\" "
+					+ "alpha=\"" + mAlpha/255.0 + "\" colorSpace=\"calibratedRGB\" />");
 		builder.append("\n" + StringUtils.tab(5))
 			.append("<nil key=\"highlightedColor\" />\n");
 		builder.append(StringUtils.tab(4) + "</label>");
@@ -188,6 +201,17 @@ public class Label extends CommonObject {
 		this.mFontNameVar = varname;
 	}
 	
+	public void setTextVar(String varname) {
+		this.mTextVar = varname;
+	}
+	
+	public void setRGBA(short red, short green, short blue, short alpha) {
+		this.mRed = red;
+		this.mGreen = green;
+		this.mBlue = blue;
+		this.mAlpha = alpha;
+	}
+	
 	@Override
 	public CommonObject clone() {
 		Label label = new Label();
@@ -209,6 +233,11 @@ public class Label extends CommonObject {
 		.append("<" + Tag.FONT + " " + Attribute.NAME 
 				+ "=\"" + mFontName + "\" ")
 				.append(Attribute.FAMILY + "=\"" + mFontFamily + "\" />");
+		builder.append("\n" + tab + "\t")
+			.append("<" + Tag.FONT_COLOR + " " + Attribute.RED + "=\"" + mRed + "\" ")
+			.append(Attribute.GREEN + "=\"" + mGreen + "\" ")
+			.append(Attribute.BLUE + "=\"" + mBlue + "\" ")
+			.append(Attribute.ALPHA + "=\"" + mAlpha + "\" />");
 		builder.append("\n" + tab + "\t")
 		.append("<" + Tag.FONT_SIZE + " " + Attribute.VALUE 
 				+ "=\"" + mFontSizeFloat + "\" />");
@@ -240,11 +269,16 @@ public class Label extends CommonObject {
 	protected String mFontFamily;
 	protected String mLabelViewId;
 	protected Size mDimension;
-	protected boolean mIsShadow;
 	protected String mText;
+	protected String mTextVar;
 	protected String mFontName;
 	protected String mFontSizeVar;
-	protected float mFontSizeFloat;
 	protected String mFontNameVar;
+	
+	protected boolean mIsShadow;
+	
+	protected float mFontSizeFloat;
+	
+	private short mRed, mGreen, mBlue, mAlpha;
 	
 }

@@ -103,7 +103,8 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 				System.out.println("name of element = " + element.getName()
 						+ " device = " + element.getDevice()
 						+ " parent = " + element.getParent()
-						+ " filePath = " + element.getFilePath());
+						+ " filePath = " + element.getFilePath()
+						+ " project = " + element.getProject());
 				if(element.getFilePath() == null 
 						|| element.getFilePath().equals("")) {
 					return;
@@ -291,23 +292,6 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 			view.exportImplementedCode();
 			System.out.println("Done!");
 			System.out.println("===============================================================");
-		}
-	}
-	
-	@SuppressWarnings("unused")
-	private void implementPositions(BuildingListElement element, View view) {
-		if(element.getName().equals(Constant.TreeElement.IMPLEMENT_CLASS)) {
-			System.out.println("implemeting positions...");
-			view.exportImplementedPositions();
-		}
-	}
-	
-	@SuppressWarnings("unused")
-	private void exportPositions(BuildingListElement element, View view) {
-		if(element.getName().equals(Constant.TreeElement.DECLARE_POSITIONS)) {
-			System.out.println("exporting positions...");
-			view.exportDeclaringPositions();
-			view.exportImplementedPositions();
 		}
 	}
 	

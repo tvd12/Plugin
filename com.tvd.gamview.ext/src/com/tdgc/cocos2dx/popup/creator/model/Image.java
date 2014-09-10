@@ -210,6 +210,7 @@ public class Image implements Comparable<Image> {
 	public void setId(String pId) {
 		this.mId = pId.replace(" ", "_")
 				.replace("\t", "_")
+				.replace("-", "_")
 				.replace("__", "_");
 	}
 	

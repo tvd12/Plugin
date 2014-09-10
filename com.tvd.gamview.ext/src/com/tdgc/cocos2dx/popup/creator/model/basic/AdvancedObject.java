@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.eclipse.core.resources.IProject;
+
 import com.tdgc.cocos2dx.popup.creator.constants.Strings;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
@@ -30,7 +32,6 @@ public class AdvancedObject extends CommonObject {
 		this.mSuper = Config.getInstance().getDefautSuper(mSuffix);
 		this.mBackgroundName = Strings.DEFAULT;
 		this.mIsNewClass = true;
-		
 	}
 	
 	@Override
@@ -57,8 +58,6 @@ public class AdvancedObject extends CommonObject {
 		
 		String propertiesDeclare = StringUtils.standardizeCode(superDeclare
 				+ declareProperties());
-//		String template = new FileUtils().fetchTemplate(mHeaderTemplate,
-//				mHeaderTplPath);
 		FileUtils fileUtils = new FileUtils();
 		String customSourceCode = fileUtils.findCustomSourceCode(
 				mClassPath + "/" + mDirectoryName + "/" + mClassName + ".h");
@@ -77,7 +76,8 @@ public class AdvancedObject extends CommonObject {
 				.replace("{class_name_prefix}", classNamePrefix)
 				.replace("//{parameters}", declareParameters())
 				.replace("//{n}", "\n")
-				.replace("//{custom_source_code}", customSourceCode.trim());
+				.replace("//{custom_source_code}", customSourceCode.trim())
+				.replace("//{importings}", createImportDirectives());
 	
 		return StringUtils.standardizeCode(result);
 	}
@@ -123,7 +123,8 @@ public class AdvancedObject extends CommonObject {
 				.replace("//{importing_params},", importingParams())
 				.replace("//{assigning_area}", assigningArea())
 				.replace("//{n}", "\n")
-				.replace("//{custom_source_code}", customSourceCode.trim());
+				.replace("//{custom_source_code}", customSourceCode.trim())
+				.replace("//{importings}", createImportDirectives());
 		
 		for(int i = 0 ; i < mProperties.size() ; i++) {
 			String mark = "\"${param" + i + "}\"";
@@ -134,7 +135,6 @@ public class AdvancedObject extends CommonObject {
 	}
 	
 	public String declarePositions() {
-		
 		StringBuilder builder = new StringBuilder("\n");
 		builder.append(ViewUtils.declarePositionGroups(mLabelGroupInView))
 			.append("\n")
@@ -165,11 +165,59 @@ public class AdvancedObject extends CommonObject {
 		return builder.toString();
 	}
 	
+	public String createImportDirectives() {
+		String template = new FileUtils().fetchTemplate("Import", 
+				"src/com/template/import.template", getProject());
+		StringBuilder builder = new StringBuilder();
+		AdvancedObject child = getAdvancedChild();
+		while(child != null) {
+			if(child.getBacsicObject() != null
+					&& child.getBacsicObject().isGenerateClass()) {
+				builder.append(template.replace("{class_name}", 
+						child.getClassName()))
+					.append("\n");
+			}
+			child = child.getAdvancedChild();
+		}
+		
+		return builder.toString();
+	}
+	
+	public String createImportDirective() {
+		String template = new FileUtils().fetchTemplate("Import", 
+				"src/com/template/import.template", getProject());
+		template = template.replace("{class_name}", mClassName);
+		
+		return template;
+	}
+	
+	public void exportHeaderCode() {
+		String path = getClassPath() + "/" 
+				+ getDirectoryName() + "/" + getClassName()
+				+ ".h";
+		String fileContent = declare();
+		new FileUtils().setContent(fileContent).writeToFile(path, false);
+	}
+	
+	public void exportImplementedCode() {
+		String path = getClassPath() + "/" 
+				+ getDirectoryName() + "/" + getClassName()
+				+ ".cpp";
+		String fileContent = implement(false);
+		new FileUtils().setContent(fileContent).writeToFile(path, false);
+	}
+	
+	public void exportSourceCode() {
+		exportHeaderCode();
+		exportImplementedCode();
+	}
+	
 	protected String createMenuItemTags() {
 		return ViewUtils.createElementTags(mMenuItemGroupInView, 1001);
 	}
 	
 	public void addParameter(Parameter pParameter) {
+		pParameter.setTabCount(getTabCount() + 1);
 		this.mParameters.add(pParameter);
 		this.mProperties.add(new Property(pParameter));
 	}
@@ -308,12 +356,23 @@ public class AdvancedObject extends CommonObject {
 		return this.mProgressGroup;
 	}
 	
-	public void setAdvanceParent(AdvancedObject parent) {
-		this.mAdvanceParent = parent;
+	public void setAdvancedParent(AdvancedObject parent) {
+		parent.setAdvancedChild(this);
+		this.mAdvancedParent = parent;
+		this.setDirectoryName(parent.getDirectoryName());
+		this.setClassPath(parent.getClassPath());
 	}
 	
-	public AdvancedObject getAdvanceParent() {
-		return this.mAdvanceParent;
+	public void setAdvancedChild(AdvancedObject child) {
+		this.mAdvancedChild = child;
+	}
+	
+	public AdvancedObject getAdvancedParent() {
+		return this.mAdvancedParent;
+	}
+	
+	public AdvancedObject getAdvancedChild() {
+		return this.mAdvancedChild;
 	}
 	
 	public String getClassDeclaringTemplateName() {
@@ -328,12 +387,53 @@ public class AdvancedObject extends CommonObject {
 		return this.getTemplateFilePath();
 	}
 	
+	@Override
+	public void setType(String type) {
+		super.setType(type);
+		if(type != null && type.trim().length() > 0
+				&& mTemplateFile == null) {
+			mTemplateFile = type + ".template";
+		}
+	}
+	
 	public void setClassPath(String mClassPath) {
 		this.mClassPath = mClassPath;
 	}
 
 	public void setDirectoryName(String mDirectoryName) {
 		this.mDirectoryName = mDirectoryName;
+	}
+	
+	public void setBasicObject(CommonObject obj) {
+		this.mBasicObject = obj;
+	}
+	
+	public CommonObject getBacsicObject() {
+		return this.mBasicObject;
+	}
+	
+	public List<Parameter> getParameters() {
+		return this.mParameters;
+	}
+	
+	public String getDirectoryName() {
+		return this.mDirectoryName;
+	}
+	
+	public String getClassPath() {
+		return mClassPath;
+	}
+	
+	@Override
+	public IProject getProject() {
+		IProject project = mProject;
+		AdvancedObject parent = mAdvancedParent;
+		while(mProject == null && parent != null) {
+			project = parent.mProject;
+			parent = parent.getAdvancedParent();
+		}
+		
+		return project;
 	}
 	
 	@Override
@@ -353,7 +453,7 @@ public class AdvancedObject extends CommonObject {
 		
 		obj.mProgressGroup = mProgressGroup;
 		
-		obj.mAdvanceParent = mAdvanceParent;
+		obj.mAdvancedParent = mAdvancedParent;
 		
 		return obj;
 	}
@@ -370,8 +470,10 @@ public class AdvancedObject extends CommonObject {
 	protected List<ItemGroup> mMenuItemGroupInView;
 	protected List<ItemGroup> mMenuGroupInView;
 	protected List<ItemGroup> mTableGroupInView;
+	protected CommonObject mBasicObject;
+	
 	private ItemGroup mProgressGroup;
 	
-	private AdvancedObject mAdvanceParent;
-	
+	private AdvancedObject mAdvancedParent;
+	private AdvancedObject mAdvancedChild;
 }

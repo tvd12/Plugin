@@ -1,10 +1,14 @@
 package com.tdgc.cocos2dx.popup.creator.model;
 
+import java.util.List;
+
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.ModelType;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
+import com.tdgc.cocos2dx.popup.creator.model.basic.AdvancedObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
+import com.tdgc.cocos2dx.popup.creator.model.basic.Parameter;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Size;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
@@ -30,26 +34,50 @@ public class MenuItem extends CommonObject {
 	}
 	
 	@Override
+	public AdvancedObject createAdvancedObject() {
+		setAdvancedObject(new AdvancedMenuItem());
+		return mAdvancedObject;
+	}
+	
+	@Override
 	public void setPositionName(String pPositionName) {
 		super.setPositionName(pPositionName);
 		mName = mName.replace("Menuitem", "MenuItem");
 	}
 	
 	@Override
-	public String implement(boolean pInfunction) {
-		
-		if(pInfunction && isBackground()) {
-			return "";
+	public String declare() {
+		if(mIsGenerateClass) {
+			mAdvancedObject.exportSourceCode();
 		}
-		
-		StringBuilder builder = new StringBuilder("\n");
-		String template = fetchTemplate(pInfunction);
-		
+		return super.declare();
+	}
+	
+	@Override
+	public String implement(boolean pInfunction) {
 		String parentName = Config.getInstance()
 				.getDefaultBackgroundOnSupers(mParent.getType());
 		if(mParent != null) {
 			parentName = mParent.getName();
 		}
+		if(mIsGenerateClass) {
+			setTemplateName("Common");
+			String template = fetchTemplate(pInfunction);
+			template = template.replace("{var_name}", mName)
+					.replace("{tab}", "\t")
+					.replace("{custom_arguments}", "")
+					.replace("{extend_class_name}", mAdvancedObject.getClassName())
+					.replace("{position_name}", mPositionName)
+					.replace("{parent_name}", parentName)
+					.replace("{z-index}", mZIndex)
+					.replace("{tag_name}", mTagName);
+			
+			return template;
+		}
+		
+		StringBuilder builder = new StringBuilder("\n");
+		String template = fetchTemplate(pInfunction);
+		
 		ViewUtils.implementObject(this, builder);
 		template = template.replace("{var_name}", mName)
 			.replace("{tab}", "\t")
@@ -68,7 +96,7 @@ public class MenuItem extends CommonObject {
 		return builder.toString();
 	}
 	
-	private String getSpriteName(String pKind) {
+	public String getSpriteName(String pKind) {
 		for(int i = 0 ; i < mSpriteGroups.size() ; i++) {
 			for(int j = 0 ; j < mSpriteGroups.get(i).getItems().size() ; j++) {
 				CommonObject item = mSpriteGroups.get(i).getItems().get(j);
@@ -148,8 +176,20 @@ public class MenuItem extends CommonObject {
 	public String toXML() {
 		String tab = StringUtils.tab(mTabCount);
 		StringBuilder builder = new StringBuilder(tab);
-		builder.append("<" + mXmlTagName + " " + Attribute.VISIBLE + "=\"true\" ")
+		String generateClassString = "";
+		StringBuilder parameterTags = new StringBuilder();
+		if(mIsGenerateClass) {
+			generateClassString = " " + Attribute.GENERATE_CLASS + "=\"true\"";
+			List<Parameter> params = mAdvancedObject.getParameters();
+			for(int i = 0 ; i < params.size() ; i++) {
+				parameterTags.append("\n" + tab)
+					.append(params.get(i).toXML());
+			}
+		}
+		builder.append("<" + mXmlTagName + generateClassString 
+				+ " " + Attribute.VISIBLE + "=\"true\" ")
 			.append(Attribute.COMMENT + "=\"\">");
+		builder.append(parameterTags);
 		builder.append("\n" + tab + "\t")
 			.append("<" + Tag.POSITION_NAME + " " + Attribute.VALUE 
 					+ "=\"" + mXmlPositionName + "\" />");

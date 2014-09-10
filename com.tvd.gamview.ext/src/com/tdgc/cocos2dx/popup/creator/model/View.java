@@ -357,24 +357,6 @@ public class View extends AdvancedObject implements IContainer {
 			.writeToFile(mParametersPath + ".h", false);
 	}
 	
-	public void exportImplementedPositions() {
-		FileUtils fileUtils = new FileUtils();
-		String content = fileUtils.readFromFile(
-				mParametersPath + ".cpp");
-		String replaceContent = this.implementPositions();
-		
-		//delete old source code
-		String beginStr = "// " + mClassName + " " 
-				+ Constants.IMAGEIDS_IMPLEMENTING_CMM;
-		content = fileUtils.deleteSourceCode(content,
-				beginStr, Constants.DONT_DELETE_THIS_LINE);
-		
-		content = content.replace(Constants.DONT_DELETE_THIS_LINE, 
-				replaceContent);
-		fileUtils.setContent(content)
-			.writeToFile(mParametersPath + ".cpp", false);
-	}
-	
 	public void exportImplementedPositions(String device) {
 		FileUtils fileUtils = new FileUtils();
 		String content = fileUtils.readFromFile(

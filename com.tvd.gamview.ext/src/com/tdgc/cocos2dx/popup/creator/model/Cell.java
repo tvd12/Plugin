@@ -81,6 +81,7 @@ public class Cell extends AdvancedObject {
 	
 	@Override
 	public void update() {
+		mImage.setExists(true);
 		((Table)getParent()).addCell(this);
 		checkColumnArray();
 	}

@@ -54,4 +54,6 @@ public interface Tag {
 	public static final String NEXT				= "next";
 	public static final String EXIT_IMAGE		= "exit-image";
 	public static final String BACKGROUND_IMAGE	= "background-image";
+	
+	public static final String FONT_COLOR		= "font-color";
 }

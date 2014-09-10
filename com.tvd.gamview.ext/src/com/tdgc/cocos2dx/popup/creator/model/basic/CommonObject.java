@@ -11,7 +11,6 @@ import com.tdgc.cocos2dx.popup.creator.model.Interface;
 import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 import com.tdgc.cocos2dx.popup.creator.validate.Validator;
-//import org.eclipse.core.resources.IProject;
 import com.tdgc.cocos2dx.popup.creator.constants.Strings;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 
@@ -38,11 +37,14 @@ public abstract class CommonObject extends BasicObject {
 		mIsAddToGroup = true;
 		mIsNewClass = false;
 		mIsNextItemInArray = false;
+		mIsGenerateClass = false;
 	}
 	
 	public abstract String implement(boolean pInfunction);
 	
 	public abstract CommonObject clone();
+	
+	public AdvancedObject createAdvancedObject() { return null; }
 	
 	public void update() {}
 	
@@ -67,7 +69,19 @@ public abstract class CommonObject extends BasicObject {
 					getPostionTemplateFilePath(), getProject());
 			builder.append(template.replace("{var_name}", mPositionName)
 					.replace("{tab}", "").trim());
+		} else {
+			System.err.println("ERROR::declarePositions " 
+					+ " mPositionName = " + mPositionName
+					+ "\nPositionString = " + mPositionString);
 		}
+		if(mIsGenerateClass && mAdvancedObject != null) {
+			builder.append(mAdvancedObject.declarePositions());
+		} 
+		else {
+//			System.out.println("INFO::declarePositions mIsGenerateClass = "
+//					+ mIsGenerateClass + " mAdvancedObject = " + mAdvancedObject);
+		}
+		
 		return builder.toString();
 	}
 	
@@ -84,6 +98,14 @@ public abstract class CommonObject extends BasicObject {
 					.replace("{position}", mPositionString)
 					.replace("{tab}", "\t");
 			builder.append(template.trim());
+		} 
+		
+		if(mIsGenerateClass && mAdvancedObject != null) {
+			builder.append(mAdvancedObject.implementPositions());
+		} 
+		else {
+//			System.out.println("INFO::declarePositions mIsGenerateClass = "
+//					+ mIsGenerateClass + " mAdvancedObject = " + mAdvancedObject);
 		}
 		
 		return builder.toString().trim();
@@ -614,6 +636,14 @@ public abstract class CommonObject extends BasicObject {
 		return this.mIsNextItemInArray;
 	}
 	
+	public void setGenerateClass(boolean isGenerateClass) {
+		this.mIsGenerateClass = isGenerateClass;
+	}
+	
+	public boolean isGenerateClass() {
+		return this.mIsGenerateClass;
+	}
+	
 	public void locationInViewWithPosition() {
 		CommonObject parent = mParent;
 		Point pos = getPosition();
@@ -629,6 +659,11 @@ public abstract class CommonObject extends BasicObject {
 			location.add(parent.getLocationInView());
 		}
 		this.setLocationInView(location);
+	}
+	
+	public void setAdvancedObject(AdvancedObject obj) {
+		this.mAdvancedObject = obj;
+		this.mAdvancedObject.setBasicObject(this);
 	}
 	
 	public void setAllPropertiesForObject(CommonObject obj) {
@@ -688,6 +723,8 @@ public abstract class CommonObject extends BasicObject {
 	protected boolean mIsBackground;
 	protected boolean mIsUnlocated;
 	protected boolean mIsVisible;
+	protected boolean mIsNextItemInArray;
+	protected boolean mIsGenerateClass;
 	
 	protected Point mPosition;
 	protected Point mAnchorPoint;
@@ -723,7 +760,8 @@ public abstract class CommonObject extends BasicObject {
 	protected String mPositionNamePrefix;
 	
 	protected Interface mInterface;
-	protected boolean mIsNextItemInArray;
+	
+	protected AdvancedObject mAdvancedObject;
 	
 	protected IProject mProject;
 }

@@ -69,7 +69,8 @@ public class Table extends CommonObject {
 		String sizeTemplate = fileUtils.fetchTemplate(
 				getDeclaringSizeTemplateName(), 
 				getSizeTemplateFilePath(), getProject());
-		pointTemplate = pointTemplate.replace("{var_name}", mCellPositionName)
+		pointTemplate = pointTemplate
+				.replace("{var_name}", mCellPositionName)
 				.replace("{tab}", "\t");
 		builder.append("\n")
 			.append(pointTemplate)
@@ -154,6 +155,7 @@ public class Table extends CommonObject {
 	}
 	
 	public void setImage(Image img) {
+		img.setExists(true);
 		this.mImage = img;
 	}
 	
