@@ -47,9 +47,6 @@ public class MenuItem extends CommonObject {
 	
 	@Override
 	public String declare() {
-		if(mIsGenerateClass) {
-			mAdvancedObject.exportSourceCode();
-		}
 		return super.declare();
 	}
 	
@@ -128,6 +125,7 @@ public class MenuItem extends CommonObject {
 			Sprite first = ((Sprite)spriteGroup.getItems().get(0));
 			first.setIsUnlocated(true);
 			first.getImage().setAddToInterfaceBuilder(true);
+			setSize(first.getSize());
 			for(int i = 1 ; i < spriteGroup.getItems().size() ; i++) {
 				Sprite sprite = ((Sprite)spriteGroup.getItems().get(i));
 				sprite.setLocationInView(first.getImage()
@@ -148,11 +146,14 @@ public class MenuItem extends CommonObject {
 	
 	@Override
 	public Point getLocationInView() {
-		return mParent.getLocationInView();
+		if(mLocationInView == null) {
+			return mParent.getLocationInView();
+		}
+		return mLocationInView;
 	}
 	
 	@Override
-	public Size getSize() {
+	public Size getViewSize() {
 		return mParent.getSize();
 	}
 	

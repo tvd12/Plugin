@@ -14,6 +14,7 @@ public class ViewUtils {
 			if(groups.get(i).isAddToView()) {
 				builder.append(groups.get(i).implement(false))
 					.append("\n");
+				groups.get(i).setAddToView(false);
 			}
 		}
 		
@@ -71,11 +72,11 @@ public class ViewUtils {
 		for(int k = 0 ; k < groups.size() ; k++) {
 			List<ItemGroup> group = groups.get(k);
 			for(int i = group.size() - 1 ; i >= 0  ; i--) {
-				builder.append(group.get(i).implement(false))
-					.append("\n");
-				if(group.get(i) == null) {
+				if(group.get(i) == null || !group.get(i).isAddToView()) {
 					continue;
 				}
+				builder.append(group.get(i).implement(false))
+					.append("\n");
 				for(int j = group.get(i).getItems().size() - 1 ; 
 						 j >= 0 ; j--) {
 					implementObject(group.get(i).getItems().get(j), builder);
@@ -109,5 +110,4 @@ public class ViewUtils {
 			}
 		}
 	}
-	
 }

@@ -610,6 +610,7 @@ public class View extends AdvancedObject implements IContainer {
 			this.mSuper = config.getDefautSuper(mType);
 			this.mBackgroundImage = config.getDefaultBackgroundImage(
 					type);
+			this.mDefaultBackgroundImage = mBackgroundImage;
 			if(mBackgroundImage != null) {
 				this.mBackgroundImage.setIsBackground(true);
 				this.mBackgroundImage.setExists(true);
@@ -674,6 +675,10 @@ public class View extends AdvancedObject implements IContainer {
 		if(mExitResource == null) {
 			mIsExitable = false;
 		}
+		if(mBackgroundImage == mDefaultBackgroundImage) {
+			mBackgroundImage.setExists(true);
+		}
+		mBackgroundImage.setXMLTagName(Tag.BACKGROUND_IMAGE);
 		Collections.sort(getImages());
 	}
 	
@@ -775,6 +780,7 @@ public class View extends AdvancedObject implements IContainer {
 	private String mXmlFilePath;
 	
 	private Image mBackgroundImage;
+	private Image mDefaultBackgroundImage;
 	private List<Image> mImages;
 	private List<Label> mLabels;
 	private Resource mResource;

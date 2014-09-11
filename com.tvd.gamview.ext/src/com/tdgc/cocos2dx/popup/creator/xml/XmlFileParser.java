@@ -58,7 +58,8 @@ public class XmlFileParser extends DefaultHandler {
 				|| qName.equals(Tag.LABEL)
 				|| qName.equals(Tag.CELL)
 				|| qName.equals(Tag.PROGRESSBAR)
-				|| qName.equals(Tag.NEXT)) {
+				|| (qName.equals(Tag.NEXT)
+						&& mCurrentGroup.isArray())) {
 			CommonObject parent = mCurrentObject;
 			if(qName.equals(Tag.SPRITE)) {
 				mCurrentObject = new Sprite();
@@ -330,7 +331,8 @@ public class XmlFileParser extends DefaultHandler {
 				|| qName.equals(Tag.LABEL)
 				|| qName.equals(Tag.RESOURCE)
 				|| qName.equals(Tag.PROGRESSBAR)
-				|| qName.equals(Tag.NEXT)) {
+				|| (qName.equals(Tag.NEXT)
+						&& mCurrentGroup.isArray())) {
 			if(mCurrentObject.isGenerateClass()) {
 				mAdvancedObject.update();
 				mAdvancedObject = mAdvancedObject.getAdvancedParent();

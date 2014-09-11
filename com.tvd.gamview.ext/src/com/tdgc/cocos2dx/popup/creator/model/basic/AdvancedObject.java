@@ -36,6 +36,15 @@ public class AdvancedObject extends CommonObject {
 	
 	@Override
 	public String declare() {
+		//export child
+		AdvancedObject child = mAdvancedChild;
+		while(child != null) {
+			if(child.getBacsicObject() != null
+					&& child.getBacsicObject().isGenerateClass()) {
+				child.exportSourceCode();
+			}
+			child = child.getAdvancedChild();
+		}
 		String superDeclare = new StringBuilder()
 			.append(ViewUtils.declareGroups(mLabelGroupInView))
 			.append("\n")

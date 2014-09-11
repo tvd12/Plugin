@@ -666,6 +666,10 @@ public abstract class CommonObject extends BasicObject {
 		this.mAdvancedObject.setBasicObject(this);
 	}
 	
+	public Size getViewSize() {
+		return getSize();
+	}
+	
 	public void setAllPropertiesForObject(CommonObject obj) {
 		super.setAllPropertiesForObject(obj);
 		

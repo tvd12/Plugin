@@ -279,8 +279,8 @@ public class Image implements Comparable<Image> {
 			float anchorpointY = 1 - mAnchorPoint.getY();
 			x = x + mAnchorPoint.getX()*mSize.getWidth();
 			if(mParent.getParent() != null
-					&& mParent.getParent().getSize() != null) {
-				y = mParent.getParent().getSize().getHeight() - 
+					&& mParent.getParent().getViewSize() != null) {
+				y = mParent.getParent().getViewSize().getHeight() - 
 					(y + anchorpointY*mSize.getHeight());
 			} else {
 				y = y + anchorpointY*mSize.getHeight();
@@ -314,7 +314,7 @@ public class Image implements Comparable<Image> {
 			float anchorpointY = 1 - mAnchorPoint.getY();
 			x = x + mAnchorPoint.getX()*mSize.getWidth();
 			if(mParent.getParent() != null) {
-				y = mParent.getParent().getSize().getHeight() - 
+				y = mParent.getParent().getViewSize().getHeight() - 
 					(y + anchorpointY*mSize.getHeight());
 			} else {
 				y = y + anchorpointY*mSize.getHeight();
@@ -337,7 +337,6 @@ public class Image implements Comparable<Image> {
 	}
 	
 	public void setParent(CommonObject pParent) {
-		
 		this.mTabCount = pParent.getTabCount() + 1;
 		
 		if(pParent instanceof Sprite) {
@@ -470,6 +469,14 @@ public class Image implements Comparable<Image> {
 		return this.mXmlTagName;
 	}
 	
+	public void setResource(boolean isResource) {
+		this.mIsResource = isResource;
+	}
+	
+	public boolean isResource() {
+		return this.mIsResource;
+	}
+	
 	public String toXML(boolean includeSize) {
 		String tab = StringUtils.tab(mTabCount);
 		StringBuilder builder = new StringBuilder(tab);
@@ -494,14 +501,6 @@ public class Image implements Comparable<Image> {
 		builder.append(" />");
 		
 		return builder.toString();
-	}
-	
-	public void setResource(boolean isResource) {
-		this.mIsResource = isResource;
-	}
-	
-	public boolean isResource() {
-		return this.mIsResource;
 	}
 	
 	public String toXML() {

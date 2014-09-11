@@ -125,11 +125,11 @@ public class Cell extends AdvancedObject {
 	
 	private void checkColumnArray() {
 		List<List<ItemGroup>> groups = new ArrayList<List<ItemGroup>>();
-		groups.add(mLabelGroupInView);
-		groups.add(mSpriteGroupInView);
-		groups.add(mMenuGroupInView);
-		groups.add(mMenuItemGroupInView);
-		groups.add(mTableGroupInView);
+		groups.add(mLabelGroups);
+		groups.add(mSpriteGroups);
+		groups.add(mMenuGroups);
+		groups.add(mMenuItemGroups);
+		groups.add(mTableGroups);
 		
 		Table table = (Table)getParent();
 		

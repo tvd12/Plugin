@@ -58,7 +58,7 @@ public class ItemGroup {
 				mItems.get(i).setName(newName);
 				mItems.get(i).setNewPositionName(newPositionName);
 			}
-			builder.append("\tfor(int i = 0 ; i < " + mArrayLength + " ; i++) {");
+			builder.append("\tfor(int i = 0 ; i < " + mArrayLength + " ; i++) {\n");
 			
 			StringBuilder builderForObj = new StringBuilder();
 			builderForObj.append(mItems.get(0).implement(false))
