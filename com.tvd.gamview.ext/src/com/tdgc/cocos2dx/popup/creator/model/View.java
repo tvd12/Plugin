@@ -21,6 +21,7 @@ import com.tdgc.cocos2dx.popup.creator.file.ImageFileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.AdvancedObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
+import com.tdgc.cocos2dx.popup.creator.utils.NotificationCenter;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 import com.tdgc.cocos2dx.popup.creator.xml.XibFetcher;
 
@@ -225,39 +226,53 @@ public class View extends AdvancedObject implements IContainer {
 	}
 	
 	public void exportImages() {
+		if(isExported()) {
+			NotificationCenter.i("Images of " + mClassName + " exported!");
+			return;
+		}
 		ImageFileUtils imageFileUtils = new ImageFileUtils();
-		imageFileUtils.writeImagesFromTo(mImagesInputPath, 
+		imageFileUtils.writeImagesFromTo(mImagesInputPath,
 				mImagesPath);
 	}
 	
 //	public void exportXibTemplate(String pDevice, boolean override) {
 	public void exportXibTemplate(String pDevice, IProject pProject, boolean override) {
-			FileUtils fileUtils = new FileUtils();
-//			String path = "resources/xib/" 
-//					+ pDevice + "/template.xib";
-			IFile file = pProject.getFile("resources/xib/" 
-					+ pDevice + "/template.xib");
+		if(isExported()) {
+			NotificationCenter.i("XCode Interface Builder of " 
+					+ mClassName + " exported!");
+			return;
+		}
+		FileUtils fileUtils = new FileUtils();
+//		String path = "resources/xib/" 
+//				+ pDevice + "/template.xib";
+		IFile file = pProject.getFile("resources/xib/" 
+				+ pDevice + "/template.xib");
 			
-//			String xibContent = fileUtils.readFromFile(path);
-			String xibContent = fileUtils.readFromFile(file);
+//		String xibContent = fileUtils.readFromFile(path);
+		String xibContent = fileUtils.readFromFile(file);
 			
-			StringBuilder builder = new StringBuilder();
-			builder.append(createImageViewsTag())
+		StringBuilder builder = new StringBuilder();
+		builder.append(createImageViewsTag())
 				.append("\n")
 				.append(createLabelsTagForXib());
-			xibContent = xibContent.replace("<!--{imageviews_tag}-->", builder.toString())
+		xibContent = xibContent.replace("<!--{imageviews_tag}-->", builder.toString())
 				.replace("<!--{images_tag}-->", createImagesTag());
 			
-			final String xibFilePath = mXibContainerPath + "/" 
-					+ "/" + mClassName + ".xib";
-//			System.out.println(xibContent);
+		final String xibFilePath = mXibContainerPath + "/" 
+				+ "/" + mClassName + ".xib";
+//		System.out.println(xibContent);
 			
-			fileUtils.setContent(xibContent).writeToFile(xibFilePath, override);
+		fileUtils.setContent(xibContent).writeToFile(xibFilePath, override);
 							
 	}
 	
 //	public void exportScreenTemplate(String pDevice) {
 	public void exportScreenTemplate(String pDevice, IProject pProject) {
+		if(isExported()) {
+			NotificationCenter.i("Screen Interface Builder of " 
+					+ mClassName + " exported!");
+			return;
+		}
 		FileUtils fileUtils = new FileUtils();
 //		String path = "resources/screen/" 
 //				+ pDevice + "/template.screen";
@@ -305,6 +320,10 @@ public class View extends AdvancedObject implements IContainer {
 	}
 	
 	public void exportDeclaringImageIds() {
+		if(isExported()) {
+			NotificationCenter.i("Declaring image ids of " + mClassName + " exported!");
+			return;
+		}
 		FileUtils fileUtils = new FileUtils();
 		String content = fileUtils.readFromFile(mDefinePath + ".h");
 		String replaceContent = this.declareImageIds();
@@ -324,6 +343,10 @@ public class View extends AdvancedObject implements IContainer {
 	}
 	
 	public void exportImplementedImageIds() {
+		if(isExported()) {
+			NotificationCenter.i("Implemented image ids of " + mClassName + " exported!");
+			return;
+		}
 		FileUtils fileUtils = new FileUtils();
 		String content = fileUtils.readFromFile(mDefinePath + ".cpp");
 		String replaceContent = this.implementImageIds();
@@ -341,6 +364,10 @@ public class View extends AdvancedObject implements IContainer {
 	}
 	
 	public void exportDeclaringPositions() {
+		if(isExported()) {
+			NotificationCenter.i("Declaring positions of " + mClassName + " exported!");
+			return;
+		}
 		FileUtils fileUtils = new FileUtils();
 		String content = fileUtils.readFromFile(mParametersPath + ".h");
 		String replaceContent = this.declarePositions();
@@ -358,6 +385,11 @@ public class View extends AdvancedObject implements IContainer {
 	}
 	
 	public void exportImplementedPositions(String device) {
+		if(isExported()) {
+			NotificationCenter.i("Implemented positions of " 
+					+ mClassName + " exported!");
+			return;
+		}
 		FileUtils fileUtils = new FileUtils();
 		String content = fileUtils.readFromFile(
 				mParametersPath + ".cpp");
@@ -376,6 +408,10 @@ public class View extends AdvancedObject implements IContainer {
 	}
 	
 	public void exportHeaderCode() {
+		if(isExported()) {
+			NotificationCenter.i("Header code of " + mClassName + " exported!");
+			return;
+		}
 		String content = declare();
 		new FileUtils().setContent(content)
 			.writeToFile(mClassPath + "/"
@@ -384,6 +420,10 @@ public class View extends AdvancedObject implements IContainer {
 	}
 	
 	public void exportImplementedCode() {
+		if(isExported()) {
+			NotificationCenter.i("Implemented code of " + mClassName + " exported!");
+			return;
+		}
 		String content = implement(false);
 		new FileUtils().setContent(content)
 			.writeToFile(mClassPath + "/"
@@ -392,6 +432,10 @@ public class View extends AdvancedObject implements IContainer {
 	
 //	public void refreshXMLFile() {
 	public void refreshXMLFile() throws CoreException {
+		if(isExported()) {
+			NotificationCenter.i(mClassName + " exported!");
+			return;
+		}
 		System.out.println("Interface Builder = " + mInterfaceBuilder);
 		
 		//if use XCode - Interface Builder

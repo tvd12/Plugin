@@ -47,6 +47,8 @@ public class XmlFileParser extends DefaultHandler {
 					getAttributeValue(Attribute.TEMPLATE_NAME, atts));
 			mView.setTemplateFile(
 					getAttributeValue(Attribute.TEMPLATE_FILE, atts));
+			mView.setExported(
+					getBoolean(getAttributeValue(Attribute.EXPORTED, atts)));
 			mCurrentObject = mView;
 			mPositionPrefix = mView.getPrefix();
 			mAdvancedObject = mView;
@@ -121,6 +123,8 @@ public class XmlFileParser extends DefaultHandler {
 				AdvancedObject adv = mCurrentObject.createAdvancedObject();
 				adv.setAdvancedParent(mAdvancedObject);
 				mAdvancedObject = adv;
+				mAdvancedObject.setExported(
+						getBoolean(getAttributeValue(Attribute.EXPORTED, atts)));
 			}
 			
 		}

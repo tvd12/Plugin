@@ -53,4 +53,5 @@ public interface Attribute {
 	public static final String ALPHA	= "alpha";
 	
 	public static final String GENERATE_CLASS 			= "generate-class";
+	public static final String EXPORTED					= "exported";
 }

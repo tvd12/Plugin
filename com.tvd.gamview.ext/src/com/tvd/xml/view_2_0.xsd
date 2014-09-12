@@ -26,14 +26,12 @@
 				<xs:element ref="tables" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="resource" maxOccurs="1" minOccurs="0" />
 			</xs:sequence>
-			<xs:attribute name="class-name" type="xs:string" use="required" />
-			<xs:attribute name="prefix" type="xs:string" use="required" />
-			<xs:attribute name="super" type="xs:string" use="required" />
 			<xs:attribute name="background-name" type="xs:string" use="optional" />
 			<xs:attribute name="type" type="xs:string" use="required" />
 			<xs:attribute name="size" type="xs:string" use="required" />
 			<xs:attribute name="exitable" type="xs:boolean" use="optional" />
 			<xs:attributeGroup ref="template" />
+			<xs:attributeGroup ref="advancedattributegroup" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="position-name">
@@ -254,6 +252,7 @@
 				<xs:element ref="progressbar" maxOccurs="1" minOccurs="0" />
 			</xs:sequence>
 			<xs:attributeGroup ref="template" />
+			<xs:attributeGroup ref="advancedattributegroup" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="menuitem">
@@ -270,8 +269,8 @@
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
-			<xs:attributeGroup ref="advancedattributegroup" />
 			<xs:attributeGroup ref="template" />
+			<xs:attributeGroup ref="advancedattributegroup" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="menu">
@@ -281,6 +280,7 @@
 				<xs:element ref="menuitems" maxOccurs="unbounded" minOccurs="1" />
 			</xs:sequence>
 			<xs:attributeGroup ref="template" />
+			<xs:attributeGroup ref="advancedattributegroup" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="table">
@@ -299,6 +299,7 @@
 			<xs:attribute name="rows" type="xs:integer" use="required" />
 			<xs:attribute name="columns" type="xs:integer" use="required" />
 			<xs:attributeGroup ref="template" />
+			<xs:attributeGroup ref="advancedattributegroup" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="cell">
@@ -314,10 +315,8 @@
 				<xs:element ref="menus" maxOccurs="unbounded" minOccurs="0" />
 				<xs:element ref="tables" maxOccurs="unbounded" minOccurs="0" />
 			</xs:sequence>
-			<xs:attribute name="class-name" type="xs:string" use="required" />
-			<xs:attribute name="prefix" type="xs:string" use="optional" />
-			<xs:attribute name="super" type="xs:string" use="optional" />
 			<xs:attributeGroup ref="template" />
+			<xs:attributeGroup ref="advancedattributegroup" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="label">
@@ -334,6 +333,7 @@
 				<xs:element ref="z-index" maxOccurs="1" minOccurs="0" />
 			</xs:sequence>
 			<xs:attributeGroup ref="template" />
+			<xs:attributeGroup ref="advancedattributegroup" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="progressbar">
@@ -348,6 +348,7 @@
 				<xs:element ref="sprite" maxOccurs="1" minOccurs="1" />
 			</xs:sequence>
 			<xs:attributeGroup ref="template" />
+			<xs:attributeGroup ref="advancedattributegroup" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="next">
@@ -478,7 +479,6 @@
 		</xs:complexType>
 	</xs:element>
 	<xs:attributeGroup name="template">
-		<xs:attribute name="generate-class" type="xs:boolean" use="optional" />
 		<xs:attribute name="comment" type="xs:string" use="optional" />
 		<xs:attribute name="visible" type="xs:boolean" use="optional" />
 		<xs:attribute name="template-name" type="xs:string" use="optional" />
@@ -501,6 +501,7 @@
 		<xs:attribute name="class-name" type="xs:string" use="optional" />
 		<xs:attribute name="prefix" type="xs:string" use="optional" />
 		<xs:attribute name="super" type="xs:string" use="optional" />
+		<xs:attribute name="generate-class" type="xs:boolean" use="optional" />
 		<xs:attribute name="exported" type="xs:boolean" use="optional" />
 	</xs:attributeGroup>
 	<xs:simpleType name="uppertype">

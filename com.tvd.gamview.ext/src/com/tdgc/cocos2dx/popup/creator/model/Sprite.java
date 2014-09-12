@@ -1,13 +1,14 @@
 package com.tdgc.cocos2dx.popup.creator.model;
 
-import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
-import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
-import com.tdgc.cocos2dx.popup.creator.model.basic.Size;
-import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.ModelType;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
+import com.tdgc.cocos2dx.popup.creator.model.basic.AdvancedObject;
+import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
+import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
+import com.tdgc.cocos2dx.popup.creator.model.basic.Size;
+import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 
 public class Sprite extends CommonObject {
 	
@@ -29,6 +30,12 @@ public class Sprite extends CommonObject {
 		img.setParent(this);
 	}
 	
+	public AdvancedObject createAdvancedObject() {
+		setAdvancedObject(new AdvancedSprite());
+
+		return mAdvancedObject;
+	}
+	
 	@Override
 	public void setPositionName(String pPositionName) {
 		super.setPositionName(pPositionName);
@@ -37,6 +44,9 @@ public class Sprite extends CommonObject {
 	@Override
 	public String implement(boolean pInfunction) {
 		StringBuilder builder = new StringBuilder("\n");
+		if(mIsGenerateClass) {
+			setTemplateName("Common");
+		}
 		String template = fetchTemplate(pInfunction);
 		
 		String imageName = "";
@@ -57,7 +67,9 @@ public class Sprite extends CommonObject {
 			.replace("{tab}", "\t")
 			.replace("{parent_name}", parentName)
 			.replace("{image_name}", imageName)
-			.replace("{z-index}", mZIndex);
+			.replace("{z-index}", mZIndex)
+			.replace("{tag_name}", mTagName)
+			.replace("{extend_class_name}", mAdvancedObject.getClassName());
 		builder.append(template);
 		
 		return builder.toString();

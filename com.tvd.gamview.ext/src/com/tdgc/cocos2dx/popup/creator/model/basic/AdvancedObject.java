@@ -13,6 +13,7 @@ import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
 import com.tdgc.cocos2dx.popup.creator.model.Menu;
 import com.tdgc.cocos2dx.popup.creator.model.Progressbar;
+import com.tdgc.cocos2dx.popup.creator.utils.NotificationCenter;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 import com.tdgc.cocos2dx.popup.creator.utils.ViewUtils;
 
@@ -27,6 +28,9 @@ public class AdvancedObject extends CommonObject {
 		this.mMenuItemGroupInView = new ArrayList<ItemGroup>();
 		this.mMenuGroupInView = new ArrayList<ItemGroup>();
 		this.mTableGroupInView = new ArrayList<ItemGroup>();
+		
+		this.mAdvancedChilds = new ArrayList<AdvancedObject>();
+		
 		this.mProgressGroup = new ItemGroup(ItemGroup.Type.PROGRESSBAR);
 		
 		this.mSuper = Config.getInstance().getDefautSuper(mSuffix);
@@ -38,15 +42,16 @@ public class AdvancedObject extends CommonObject {
 	@Override
 	public String declare() {
 		//export child
-		AdvancedObject child = mAdvancedChild;
-		while(child != null) {
+		for(AdvancedObject child : mAdvancedChilds) {
 			if(child.getBacsicObject() != null
-					&& child.getBacsicObject().isGenerateClass()
-					&& !child.isExported()) {
-				child.exportSourceCode();
-				child.setExported(true);
+					&& child.getBacsicObject().isGenerateClass()) {
+				if(child.isExported()) {
+					System.out.println("INFO::" + child.getClassName() + " is exported");
+				} else {
+					child.exportSourceCode();
+					child.setExported(true);
+				}
 			}
-			child = child.getAdvancedChild();
 		}
 		String superDeclare = new StringBuilder()
 			.append(ViewUtils.declareGroups(mLabelGroupInView))
@@ -186,20 +191,25 @@ public class AdvancedObject extends CommonObject {
 	
 	public String createImportDirectives() {
 		String template = new FileUtils().fetchTemplate("Import", 
-				"src/com/template/import.template", getProject());
+				"src/com/template/import.template");
 		StringBuilder builder = new StringBuilder();
-		AdvancedObject child = getAdvancedChild();
-		while(child != null) {
+		createImportDirectives(this, builder, template);
+		
+		return builder.toString();
+	}
+	
+	public void createImportDirectives(AdvancedObject obj, 
+			StringBuilder builder, String template) {
+		for(AdvancedObject child : obj.getAdvancedChilds()) {
 			if(child.getBacsicObject() != null
 					&& child.getBacsicObject().isGenerateClass()) {
 				builder.append(template.replace("{class_name}", 
 						child.getClassName()))
 					.append("\n");
 			}
-			child = child.getAdvancedChild();
+			createImportDirectives(child, builder, template);
 		}
 		
-		return builder.toString();
 	}
 	
 	public String createImportDirective() {
@@ -211,6 +221,10 @@ public class AdvancedObject extends CommonObject {
 	}
 	
 	public void exportHeaderCode() {
+		if(isExported()) {
+			NotificationCenter.i("Header code of " + mClassName + " exported!");
+			return;
+		}
 		String path = getClassPath() + "/" 
 				+ getDirectoryName() + "/" + getClassName()
 				+ ".h";
@@ -219,6 +233,10 @@ public class AdvancedObject extends CommonObject {
 	}
 	
 	public void exportImplementedCode() {
+		if(isExported()) {
+			NotificationCenter.i("Implemented code of " + mClassName + " exported!");
+			return;
+		}
 		String path = getClassPath() + "/" 
 				+ getDirectoryName() + "/" + getClassName()
 				+ ".cpp";
@@ -227,6 +245,10 @@ public class AdvancedObject extends CommonObject {
 	}
 	
 	public void exportSourceCode() {
+		if(isExported()) {
+			NotificationCenter.i("Source code of " + mClassName + " exported!");
+			return;
+		}
 		exportHeaderCode();
 		exportImplementedCode();
 	}
@@ -246,12 +268,15 @@ public class AdvancedObject extends CommonObject {
 			return "//{parameters}";
 		}
 		StringBuilder builder = new StringBuilder();
-		for(int i = 0 ; i < mParameters.size() ; i++) {
+		int size = mParameters.size();
+		for(int i = 0 ; i < size ; i++) {
 			if(i > 0) {
 				builder.append("\t\t\t\t\t\t\t");
 			}
-			builder.append(mParameters.get(i))
-				.append("\n");
+			builder.append(mParameters.get(i));
+			if(i < size - 1) {
+				builder.append(", \n");
+			}
 		}
 		
 		return builder.toString().trim();
@@ -268,16 +293,21 @@ public class AdvancedObject extends CommonObject {
 	}
 	
 	protected String importingParams() {
+		int size = mParameters.size();
+		if(size == 0) {
+			return "//{importing_params}";
+		}
 		StringBuilder builder = new StringBuilder();
-		for(int i = 0 ; i < mParameters.size() ; i++) {
+		for(int i = 0 ; i < size ; i++) {
 			if(i > 0) {
 				builder.append("\t\t\t");
 			}
-			builder.append(mParameters.get(i).getName() + ",")
-				.append("\n");
+			builder.append(mParameters.get(i).getName());
+			if(i < size - 1) {
+				builder.append(", \n");
+			}
 			
 		}
-		
 		return builder.toString().trim();
 	}
 	
@@ -376,22 +406,22 @@ public class AdvancedObject extends CommonObject {
 	}
 	
 	public void setAdvancedParent(AdvancedObject parent) {
-		parent.setAdvancedChild(this);
+		parent.addAdvancedChild(this);
 		this.mAdvancedParent = parent;
 		this.setDirectoryName(parent.getDirectoryName());
 		this.setClassPath(parent.getClassPath());
 	}
 	
-	public void setAdvancedChild(AdvancedObject child) {
-		this.mAdvancedChild = child;
+	public void addAdvancedChild(AdvancedObject child) {
+		this.mAdvancedChilds.add(child);
 	}
 	
 	public AdvancedObject getAdvancedParent() {
 		return this.mAdvancedParent;
 	}
 	
-	public AdvancedObject getAdvancedChild() {
-		return this.mAdvancedChild;
+	public List<AdvancedObject> getAdvancedChilds() {
+		return this.mAdvancedChilds;
 	}
 	
 	public String getClassDeclaringTemplateName() {
@@ -522,7 +552,7 @@ public class AdvancedObject extends CommonObject {
 	private ItemGroup mProgressGroup;
 	
 	private AdvancedObject mAdvancedParent;
-	private AdvancedObject mAdvancedChild;
+	private List<AdvancedObject> mAdvancedChilds;
 	
 	protected boolean mIsExported;
 }
