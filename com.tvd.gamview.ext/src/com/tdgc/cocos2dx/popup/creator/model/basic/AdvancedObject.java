@@ -32,6 +32,7 @@ public class AdvancedObject extends CommonObject {
 		this.mSuper = Config.getInstance().getDefautSuper(mSuffix);
 		this.mBackgroundName = Strings.DEFAULT;
 		this.mIsNewClass = true;
+		this.mIsExported = false;
 	}
 	
 	@Override
@@ -40,8 +41,10 @@ public class AdvancedObject extends CommonObject {
 		AdvancedObject child = mAdvancedChild;
 		while(child != null) {
 			if(child.getBacsicObject() != null
-					&& child.getBacsicObject().isGenerateClass()) {
+					&& child.getBacsicObject().isGenerateClass()
+					&& !child.isExported()) {
 				child.exportSourceCode();
+				child.setExported(true);
 			}
 			child = child.getAdvancedChild();
 		}
@@ -87,6 +90,13 @@ public class AdvancedObject extends CommonObject {
 				.replace("//{n}", "\n")
 				.replace("//{custom_source_code}", customSourceCode.trim())
 				.replace("//{importings}", createImportDirectives());
+		
+		StringBuilder tagBuilder = new StringBuilder()
+			.append(ViewUtils.createElementTags(mLabelGroupInView, 100))
+			.append(ViewUtils.createElementTags(mMenuGroupInView, 200))
+			.append(ViewUtils.createElementTags(mMenuItemGroupInView, 300))
+			.append(ViewUtils.createElementTags(mSpriteGroupInView, 400));
+		result = result.replace("//{element_tags}", tagBuilder.toString());
 	
 		return StringUtils.standardizeCode(result);
 	}
@@ -433,6 +443,34 @@ public class AdvancedObject extends CommonObject {
 		return mClassPath;
 	}
 	
+	public List<ItemGroup> getLabelGroupInView() {
+		return mLabelGroupInView;
+	}
+
+	public List<ItemGroup> getSpriteGroupInView() {
+		return mSpriteGroupInView;
+	}
+
+	public List<ItemGroup> getMenuItemGroupInView() {
+		return mMenuItemGroupInView;
+	}
+
+	public List<ItemGroup> getMenuGroupInView() {
+		return mMenuGroupInView;
+	}
+
+	public List<ItemGroup> getTableGroupInView() {
+		return mTableGroupInView;
+	}
+	
+	public void setExported(boolean isExported) {
+		this.mIsExported = isExported;
+	}
+	
+	public boolean isExported() {
+		return mIsExported;
+	}
+	
 	@Override
 	public IProject getProject() {
 		IProject project = mProject;
@@ -485,4 +523,6 @@ public class AdvancedObject extends CommonObject {
 	
 	private AdvancedObject mAdvancedParent;
 	private AdvancedObject mAdvancedChild;
+	
+	protected boolean mIsExported;
 }

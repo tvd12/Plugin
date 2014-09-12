@@ -355,9 +355,7 @@ public class Image implements Comparable<Image> {
 		}
 		if(anchopointString != null 
 				&& Validator.isValidDoubleValueString(anchopointString)) {
-			String values[] = anchopointString.split(",");
-			mAnchorPoint = new Point(Float.parseFloat(values[0]),
-					Float.parseFloat(values[1]));
+			mAnchorPoint = Point.parsePoint(anchopointString);
 		}
 
 		if(mParent != null && mParent.isNextItemInArray()) {

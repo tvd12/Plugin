@@ -13,16 +13,16 @@
 		<item value="true" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="getViewSize" key="selection"/>
+		<item value="" key="selection"/>
 		<list key="findhistory">
+			<item value="(qName.equals(Tag.SIZE)"/>
+			<item value="setType"/>
 			<item value="getViewSize"/>
 			<item value="get"/>
 			<item value="getSize"/>
 			<item value="getPro"/>
 			<item value="setA"/>
 			<item value="setAd"/>
-			<item value="mAdvancedParent"/>
-			<item value="set"/>
 		</list>
 		<list key="replacehistory">
 			<item value="advancedattributegroup"/>

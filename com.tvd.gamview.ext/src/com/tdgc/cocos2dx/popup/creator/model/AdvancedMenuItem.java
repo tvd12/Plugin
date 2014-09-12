@@ -3,6 +3,7 @@ package com.tdgc.cocos2dx.popup.creator.model;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.AdvancedObject;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
+import com.tdgc.cocos2dx.popup.creator.utils.ViewUtils;
 
 public class AdvancedMenuItem extends AdvancedObject {
 	public AdvancedMenuItem() {
@@ -25,9 +26,8 @@ public class AdvancedMenuItem extends AdvancedObject {
 	
 	@Override
 	public String implement(boolean infunction) {
-		for(int i = 0 ; i < mSpriteGroupInView.size() ; i++) {
-			mSpriteGroupInView.get(i).setAddToView(true);
-		}
+		ViewUtils.unlockAddingGroupToView(mBasicObject);
+		
 		MenuItem basicMenuItem = (MenuItem)mBasicObject;
 		String result = super.implement(infunction)
 				.replace("{normal_sprite}", basicMenuItem.getSpriteName("Normal"))

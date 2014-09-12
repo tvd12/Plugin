@@ -81,6 +81,15 @@ public class Sprite extends CommonObject {
 	}
 	
 	@Override
+	public Size getSize() {
+		if(mSize == null) {
+			mSize = mImage.getSize();
+		}
+		
+		return mSize;
+	}
+	
+	@Override
 	public void setParent(CommonObject parent) {
 		super.setParent(parent);
 	}

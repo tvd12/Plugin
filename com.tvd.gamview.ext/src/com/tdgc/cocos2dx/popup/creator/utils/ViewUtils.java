@@ -86,7 +86,8 @@ public class ViewUtils {
 		}
 	}
 	
-	public static void blockAddingGroupToView(CommonObject obj) {
+	public static void blockOrUnlockAddingGroupToView(
+			CommonObject obj, boolean isAdding) {
 		if(obj == null) {
 			return;
 		}
@@ -95,7 +96,7 @@ public class ViewUtils {
 		groups.add(obj.getSpriteGroups());
 		groups.add(obj.getMenuGroups());
 		groups.add(obj.getMenuItemGroups());
-		groups.add(obj.getLabelGroups()); 
+		groups.add(obj.getLabelGroups());
 		for(int k = 0 ; k < groups.size() ; k++) {
 			List<ItemGroup> group = groups.get(k);
 			for(int i = group.size() - 1 ; i >= 0  ; i--) {
@@ -104,10 +105,19 @@ public class ViewUtils {
 				}
 				for(int j = group.get(i).getItems().size() - 1 ; 
 						 j >= 0 ; j--) {
-					blockAddingGroupToView(group.get(i).getItems().get(j));
+					blockOrUnlockAddingGroupToView(
+							group.get(i).getItems().get(j), isAdding);
 				}
-				group.get(i).setAddToView(false);
+				group.get(i).setAddToView(isAdding);
 			}
 		}
+	}
+	
+	public static void blockAddingGroupToView(CommonObject obj) {
+		blockOrUnlockAddingGroupToView(obj, false);
+	}
+	
+	public static void unlockAddingGroupToView(CommonObject obj) {
+		blockOrUnlockAddingGroupToView(obj, true);
 	}
 }

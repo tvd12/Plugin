@@ -11,7 +11,6 @@ import com.tdgc.cocos2dx.popup.creator.model.basic.AdvancedObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
-import com.tdgc.cocos2dx.popup.creator.utils.ViewUtils;
 
 public class Cell extends AdvancedObject {
 
@@ -28,19 +27,6 @@ public class Cell extends AdvancedObject {
 		
 		mTemplateName = "ITableCellView";
 		mTemplateFile = "cell.template";
-	}
-	
-	@Override
-	public String declare() {
-		String srcCode = super.declare();
-		StringBuilder tagBuilder = new StringBuilder()
-			.append(ViewUtils.createElementTags(mLabelGroupInView, 100))
-			.append(ViewUtils.createElementTags(mMenuGroupInView, 200))
-			.append(ViewUtils.createElementTags(mMenuItemGroupInView, 300))
-			.append(ViewUtils.createElementTags(mSpriteGroupInView, 400));
-		srcCode = srcCode.replace("//{element_tags}", tagBuilder.toString());
-		
-		return srcCode;
 	}
 
 	@Override
