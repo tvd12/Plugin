@@ -1,11 +1,14 @@
 package com.tdgc.cocos2dx.popup.creator.model;
 
+import java.util.List;
+
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.ModelType;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.AdvancedObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
+import com.tdgc.cocos2dx.popup.creator.model.basic.Parameter;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Size;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
@@ -62,6 +65,9 @@ public class Sprite extends CommonObject {
 			parentName = mParent.getName();
 		}
 		
+		String extendClassName = (mAdvancedObject != null)
+				? mAdvancedObject.getClassName()
+				: "";
 		template = template.replace("{var_name}", mName)
 			.replace("{position_name}", mPositionName)
 			.replace("{tab}", "\t")
@@ -69,7 +75,7 @@ public class Sprite extends CommonObject {
 			.replace("{image_name}", imageName)
 			.replace("{z-index}", mZIndex)
 			.replace("{tag_name}", mTagName)
-			.replace("{extend_class_name}", mAdvancedObject.getClassName());
+			.replace("{extend_class_name}", extendClassName);
 		builder.append(template);
 		
 		return builder.toString();
@@ -93,25 +99,8 @@ public class Sprite extends CommonObject {
 	}
 	
 	@Override
-	public Size getSize() {
-		if(mSize == null) {
-			mSize = mImage.getSize();
-		}
-		
-		return mSize;
-	}
-	
-	@Override
 	public void setParent(CommonObject parent) {
 		super.setParent(parent);
-	}
-	
-	public void setImage(Image pImage) {
-		this.mImage = pImage;
-	}
-	
-	public Image getImage() {
-		return this.mImage;
 	}
 	
 	public void setUnlocated(boolean unlocated) {
@@ -139,8 +128,26 @@ public class Sprite extends CommonObject {
 	public String toXML() {
 		String tab = StringUtils.tab(mTabCount);
 		StringBuilder builder = new StringBuilder(tab);
+		StringBuilder generateClassString = new StringBuilder();
+		StringBuilder exportedAtt = new StringBuilder();
+		StringBuilder parameterTags = new StringBuilder();
+		if(mIsGenerateClass) {
+			List<Parameter> params = mAdvancedObject.getParameters();
+			for(int i = 0 ; i < params.size() ; i++) {
+				parameterTags.append("\n" + tab)
+					.append(params.get(i).toXML());
+			}
+			generateClassString.append("\n\t\t" + tab)
+				.append(Attribute.GENERATE_CLASS + "=\"true\" ");
+			exportedAtt.append(Attribute.EXPORTED)
+				.append("=\"" + mAdvancedObject.isExported() + "\"");
+		}
 		builder.append("<" + mXmlTagName + " " + Attribute.VISIBLE + "=\"true\" ")
-			.append(Attribute.COMMENT + "=\"\">");
+			.append(Attribute.COMMENT + "=\"\"")
+			.append(generateClassString)
+			.append(exportedAtt)
+			.append(">");
+		builder.append(parameterTags);
 		builder.append("\n" + tab + "\t")
 			.append("<" + Tag.POSITION_NAME + " " + Attribute.VALUE 
 					+ "=\"" + mXmlPositionName + "\" ");
@@ -174,6 +181,5 @@ public class Sprite extends CommonObject {
 		return builder.toString();
 	}
 	
-	protected Image mImage;
 	protected Progressbar mProgressbar;
 }

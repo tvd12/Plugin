@@ -7,6 +7,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
+import com.tdgc.cocos2dx.popup.creator.model.AdvancedCell;
 import com.tdgc.cocos2dx.popup.creator.model.Cell;
 import com.tdgc.cocos2dx.popup.creator.model.IContainer;
 import com.tdgc.cocos2dx.popup.creator.model.Image;
@@ -84,11 +85,12 @@ public class XmlFileParser extends DefaultHandler {
 				mCurrentObject = label;
 			} 
 			else if(qName.equals(Tag.CELL)) {
-				mCell = new Cell();
+				Cell cell = new Cell();
+				mCell = (AdvancedCell)cell.getAdvancedObject();
 				mCell.setClassName(getAttributeValue(Attribute.CLASS_NAME, atts));
 				mCell.setPrefix(getAttributeValue(Attribute.PREFIX, atts));
 				mCell.setSuper(getAttributeValue(Attribute.SUPER, atts));
-				mCurrentObject = mCell;
+				mCurrentObject = cell;
 				mCell.setAdvancedParent(mAdvancedObject);
 				mAdvancedObject = mCell;
 			}
@@ -335,20 +337,16 @@ public class XmlFileParser extends DefaultHandler {
 				|| qName.equals(Tag.LABEL)
 				|| qName.equals(Tag.RESOURCE)
 				|| qName.equals(Tag.PROGRESSBAR)
+				|| qName.equals(Tag.CELL)
 				|| (qName.equals(Tag.NEXT)
 						&& mCurrentGroup.isArray())) {
-			if(mCurrentObject.isGenerateClass()) {
+			if(mCurrentObject.getAdvancedObject() != null) {
 				mAdvancedObject.update();
 				mAdvancedObject = mAdvancedObject.getAdvancedParent();
-			}
+			} 
 			mCurrentObject.update();
 			mCurrentObject = mCurrentObject.getParent();
 		} 
-		else if(qName.equals(Tag.CELL)) {
-			mCurrentObject.update();
-			mCurrentObject = mCurrentObject.getParent();
-			mAdvancedObject = mAdvancedObject.getAdvancedParent();
-		}
 		else if(qName.equals(Tag.RESOURCE)) {
 			mCurrentContainer = mCurrentContainer.getContainerParent();
 		}
@@ -421,7 +419,7 @@ public class XmlFileParser extends DefaultHandler {
 	protected CommonObject mCurrentObject;
 	protected ItemGroup mCurrentGroup;
 	protected View mView;
-	protected Cell mCell;
+	protected AdvancedCell mCell;
 	protected AdvancedObject mAdvancedObject;
 	protected Image mCurrentImage;
 	protected Parameter mCurrentParameter;

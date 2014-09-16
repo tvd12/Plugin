@@ -154,13 +154,10 @@ public class Table extends CommonObject {
 		return mCell;
 	}
 	
+	@Override
 	public void setImage(Image img) {
 		img.setExists(true);
 		this.mImage = img;
-	}
-	
-	public Image getImage() {
-		return mImage;
 	}
 	
 	@Override
@@ -208,7 +205,6 @@ public class Table extends CommonObject {
 		return builder.toString();
 	}
 	
-	protected Image mImage;
 	protected String mCellSizeName;
 	protected String mCellPositionName;
 	protected String mSizeName;

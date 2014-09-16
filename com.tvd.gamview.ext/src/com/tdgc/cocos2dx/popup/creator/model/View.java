@@ -37,6 +37,7 @@ public class View extends AdvancedObject implements IContainer {
 				Config.getInstance().getScreenContainerPath();
 		this.mLabels = new ArrayList<Label>();
 		this.mPrefix = "";
+		this.mSuper = Config.getInstance().getDefautSuper(mType);
 		this.mXmlTagName = Tag.VIEW;
 		this.mPositionTemplateName = 
 				Config.getInstance().getDefaultTemplateName("position");
@@ -59,9 +60,10 @@ public class View extends AdvancedObject implements IContainer {
 		if(mTableGroupInView.size() > 0) {
 			Cell cell = ((Table)(mTableGroupInView.get(0)
 					.getItems().get(0))).getCell();
+			AdvancedCell adCell = (AdvancedCell)cell.getAdvancedObject();
 			srcCode = srcCode.replace("{super_table_name}", 
 					mTableGroupInView.get(0).getItems().get(0).getSuper());
-			srcCode = srcCode.replace("{super_cell_name}", cell.getSuper());
+			srcCode = srcCode.replace("{super_cell_name}", adCell.getSuper());
 		}
 		String exitNormalImgId = Strings.DEFAULT_IMAGE_ID;
 		String exitActiveImgId = Strings.DEFAULT_IMAGE_ID;
@@ -88,10 +90,11 @@ public class View extends AdvancedObject implements IContainer {
 		if(mTableGroupInView.size() > 0) {
 			Cell cell = ((Table)(mTableGroupInView.get(0)
 					.getItems().get(0))).getCell();
+			AdvancedCell adCell = (AdvancedCell)cell.getAdvancedObject();
 			srcCode = srcCode.replace("//{extend_class}", 
-					cell.declareAndImplement())
-					.replace("{super_cell_name}", cell.getSuper())
-					.replace("{cell_class_name}", cell.getClassName()); 
+					adCell.declareAndImplement())
+					.replace("{super_cell_name}", adCell.getSuper())
+					.replace("{cell_class_name}", adCell.getClassName()); 
 		}
 		String exitNormalImgId = Strings.DEFAULT_IMAGE_ID;
 		String exitActiveImgId = Strings.DEFAULT_IMAGE_ID;
@@ -113,7 +116,6 @@ public class View extends AdvancedObject implements IContainer {
 	
 	@Override
 	public String declarePositions() {
-		
 		StringBuilder builder = new StringBuilder("\n");
 		createHeaderCommentTemplate(builder, Constants.POSITION_DECLARING_CMM);
 		builder.append(super.declarePositions());
@@ -123,13 +125,14 @@ public class View extends AdvancedObject implements IContainer {
 		if(mTableGroupInView.size() > 0) {
 			Cell cell = ((Table)(mTableGroupInView.get(0)
 				.getItems().get(0))).getCell();
-			builder.append(cell.declarePositions());
+			AdvancedCell adCell = (AdvancedCell)cell.getAdvancedObject();
+			builder.append(adCell.declarePositions());
 		}
 		
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
 		return StringUtils.standardizeCode(
-				builder.toString()).trim();
+				builder.toString().trim());
 	}
 	
 	@Override
@@ -143,14 +146,15 @@ public class View extends AdvancedObject implements IContainer {
 		if(mTableGroupInView.size() > 0) {
 			Cell cell = ((Table)(mTableGroupInView.get(0)
 					.getItems().get(0))).getCell();
-			builder.append(cell.implementPositions());
+			AdvancedCell adCell = (AdvancedCell)cell.getAdvancedObject();
+			builder.append(adCell.implementPositions());
 		}
 			
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
 		
 		return StringUtils.standardizeCode(
-				builder.toString()).trim();
+				builder.toString().trim());
 	}
 	
 	public String implementPositions(String device) {
@@ -164,7 +168,8 @@ public class View extends AdvancedObject implements IContainer {
 		if(mTableGroupInView.size() > 0) {
 			Cell cell = ((Table)(mTableGroupInView.get(0)
 					.getItems().get(0))).getCell();
-			builder.append(cell.implementPositions());
+			AdvancedCell adCell = (AdvancedCell)cell.getAdvancedObject();
+			builder.append(adCell.implementPositions());
 		}
 		builder.append("\n")
 			.append("\t" + Constants.DONT_DELETE_THIS_LINE + "(" + device + ")");
@@ -231,7 +236,7 @@ public class View extends AdvancedObject implements IContainer {
 			return;
 		}
 		ImageFileUtils imageFileUtils = new ImageFileUtils();
-		imageFileUtils.writeImagesFromTo(mImagesInputPath,
+		imageFileUtils.writeImagesFromTo(mImagesInputPath, 
 				mImagesPath);
 	}
 	
@@ -253,21 +258,20 @@ public class View extends AdvancedObject implements IContainer {
 			
 		StringBuilder builder = new StringBuilder();
 		builder.append(createImageViewsTag())
-				.append("\n")
-				.append(createLabelsTagForXib());
+			.append("\n")
+			.append(createLabelsTagForXib());
 		xibContent = xibContent.replace("<!--{imageviews_tag}-->", builder.toString())
-				.replace("<!--{images_tag}-->", createImagesTag());
+			.replace("<!--{images_tag}-->", createImagesTag());
 			
 		final String xibFilePath = mXibContainerPath + "/" 
 				+ "/" + mClassName + ".xib";
 //		System.out.println(xibContent);
-			
 		fileUtils.setContent(xibContent).writeToFile(xibFilePath, override);
 							
 	}
 	
-//	public void exportScreenTemplate(String pDevice) {
 	public void exportScreenTemplate(String pDevice, IProject pProject) {
+//	public void exportScreenTemplate(String pDevice) {
 		if(isExported()) {
 			NotificationCenter.i("Screen Interface Builder of " 
 					+ mClassName + " exported!");
@@ -310,7 +314,7 @@ public class View extends AdvancedObject implements IContainer {
 		String directoryName = pPrefix.substring(pPrefix.indexOf('_') + 1);
 		this.mDirectoryName = StringUtils.convertToClassName(directoryName, "");
 	}
-
+	
 	private void createHeaderCommentTemplate(StringBuilder pBuilder,
 			String pComment) {
 		pBuilder.append("\n\t// " + mClassName + " " + pComment)
@@ -407,6 +411,7 @@ public class View extends AdvancedObject implements IContainer {
 			.writeToFile(mParametersPath + ".cpp", false);
 	}
 	
+	@Override
 	public void exportHeaderCode() {
 		if(isExported()) {
 			NotificationCenter.i("Header code of " + mClassName + " exported!");
@@ -419,6 +424,7 @@ public class View extends AdvancedObject implements IContainer {
 				
 	}
 	
+	@Override
 	public void exportImplementedCode() {
 		if(isExported()) {
 			NotificationCenter.i("Implemented code of " + mClassName + " exported!");
@@ -465,7 +471,6 @@ public class View extends AdvancedObject implements IContainer {
 				mLabels.get(i).alignFollowParrent();
 			}
 			String xmlContent = this.toXML();
-			
 //			fileUtils.setContent(xmlContent).writeToFile(mXmlFilePath, false);
 			ByteArrayInputStream inputStream = 
 	 				new ByteArrayInputStream(xmlContent.getBytes());
@@ -570,6 +575,7 @@ public class View extends AdvancedObject implements IContainer {
 		this.mXibContainerPath = mXibContainerPath;
 	}
 
+
 	public void setXmlFilePath(String pXmlFilePath) {
 		this.mXmlFilePath = pXmlFilePath;
 	}
@@ -654,8 +660,8 @@ public class View extends AdvancedObject implements IContainer {
 			this.mSuper = config.getDefautSuper(mType);
 			this.mBackgroundImage = config.getDefaultBackgroundImage(
 					type);
-			this.mDefaultBackgroundImage = mBackgroundImage;
 			if(mBackgroundImage != null) {
+				this.mBackgroundImage = mBackgroundImage.clone();
 				this.mBackgroundImage.setIsBackground(true);
 				this.mBackgroundImage.setExists(true);
 				this.mBackgroundImage.setParent(this);
@@ -713,13 +719,17 @@ public class View extends AdvancedObject implements IContainer {
 	public IContainer getContainerParent() {
 		return null;
 	}
-	
+
 	@Override
 	public void update() {
 		if(mExitResource == null) {
 			mIsExitable = false;
 		}
-		if(mBackgroundImage == mDefaultBackgroundImage) {
+		Image bgImg = Config.getInstance().getDefaultBackgroundImage(
+				getType());
+		if(bgImg != null
+				&& mBackgroundImage != null
+				&& mBackgroundImage.getRealPath().equals(bgImg.getRealPath())) {
 			mBackgroundImage.setExists(true);
 		}
 		mBackgroundImage.setXMLTagName(Tag.BACKGROUND_IMAGE);
@@ -730,7 +740,8 @@ public class View extends AdvancedObject implements IContainer {
 	public String toXML() {
 		StringBuilder builder = new StringBuilder("<?xml version=\"1.0\" " +
 				"encoding=\"UTF-8\" standalone=\"no\"?>\n");
-		
+		StringBuilder exportedAtt = new StringBuilder("\n\t\t" + Attribute.EXPORTED)
+			.append("=\"" + isExported() + "\"");
 		//append class-name attribute
 		builder.append("<view " + Attribute.CLASS_NAME + "=\"" + mClassName + "\" ")
 			.append(Attribute.PREFIX + "=\"" + mPrefix + "\" ")
@@ -738,8 +749,9 @@ public class View extends AdvancedObject implements IContainer {
 			.append(Attribute.EXITABLE + "=\"" + mIsExitable + "\" ")
 			.append("\n\t\t" + Attribute.SUPER + "=\"" + mSuper + "\" ")
 			.append(Attribute.BACKGROUND_NAME + "=\"" + mBackgroundName + "\" ")
-			.append(Attribute.SIZE + "=\"" + mSize + "\" ")
+			.append(Attribute.SIZE + "=\"" + mSize + "\"")
 			.append("\n\t\t" + Attribute.TEMPLATE_NAME + "=\"" + mTemplateName + "\"")
+			.append(exportedAtt)
 			.append("\n\t\t" + Attribute.COMMENT + "=\"" + mComment + "\"")
 			.append("\n\t\txmlns=\"http://www.tvd.com/tools\"")
 			.append("\n\t\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"")
@@ -797,8 +809,8 @@ public class View extends AdvancedObject implements IContainer {
 		}
 		
 		builder.append("\n")
-		.append(super.toXML());
-	
+			.append(super.toXML());
+		
 		if(mResource != null) {
 			builder.append(mResource.toXML())
 				.append("\n");
@@ -824,7 +836,6 @@ public class View extends AdvancedObject implements IContainer {
 	private String mXmlFilePath;
 	
 	private Image mBackgroundImage;
-	private Image mDefaultBackgroundImage;
 	private List<Image> mImages;
 	private List<Label> mLabels;
 	private Resource mResource;
@@ -832,4 +843,5 @@ public class View extends AdvancedObject implements IContainer {
 	private Sprite mExitSprite;
 	
 	private boolean mIsExitable;
+	
 }

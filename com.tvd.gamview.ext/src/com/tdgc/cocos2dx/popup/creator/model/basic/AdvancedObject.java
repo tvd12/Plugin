@@ -144,7 +144,7 @@ public class AdvancedObject extends CommonObject {
 				.replace("{callback_function}", classNamePrefix + "MenuItemCallback")
 				.replace("{class_name}", mClassName)
 				.replace("//{parameters}", declareParameters())
-				.replace("//{importing_params},", importingParams())
+				.replace("//{importing_params}", importingParams())
 				.replace("//{assigning_area}", assigningArea())
 				.replace("//{n}", "\n")
 				.replace("//{custom_source_code}", customSourceCode.trim())
@@ -191,7 +191,7 @@ public class AdvancedObject extends CommonObject {
 	
 	public String createImportDirectives() {
 		String template = new FileUtils().fetchTemplate("Import", 
-				"src/com/template/import.template");
+				"src/com/template/import.template", getProject());
 		StringBuilder builder = new StringBuilder();
 		createImportDirectives(this, builder, template);
 		

@@ -70,7 +70,7 @@ public class Parameter {
 		else {
 			result = this.mType + " " + result + this.mName;
 		}
-		return result + ",";
+		return result;
 	}
 	
 	public void setTabCount(int tabCount) {

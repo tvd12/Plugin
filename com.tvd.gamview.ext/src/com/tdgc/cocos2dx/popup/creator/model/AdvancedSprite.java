@@ -27,7 +27,8 @@ public class AdvancedSprite extends AdvancedObject {
 	@Override
 	public String implement(boolean infunction) {
 		ViewUtils.unlockAddingGroupToView(mBasicObject);
-		String result = super.implement(infunction);
+		String result = super.implement(infunction)
+				.replace("{background_id}", mBasicObject.getImage().getId());
 		
 		return result;
 	}

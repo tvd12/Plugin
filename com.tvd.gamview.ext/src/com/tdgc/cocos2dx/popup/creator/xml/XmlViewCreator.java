@@ -6,6 +6,7 @@ import com.tdgc.cocos2dx.popup.creator.constants.Strings;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.file.FileParser;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
+import com.tdgc.cocos2dx.popup.creator.model.AdvancedCell;
 import com.tdgc.cocos2dx.popup.creator.model.Cell;
 import com.tdgc.cocos2dx.popup.creator.model.Image;
 import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
@@ -263,7 +264,8 @@ public class XmlViewCreator {
 		item.setImage(image);
 		
 		//add attributes
-		item.setClassName(StringUtils.convertToClassName(mRootPath + "_cell", "View"));
+		AdvancedCell adCell = (AdvancedCell)item.getAdvancedObject();
+		adCell.setClassName(StringUtils.convertToClassName(mRootPath + "_cell", "View"));
 		item.setSuper("default");
 		item.setPrefix(StringUtils.detectPrefix("cell") + "_" +
 				mRootPath);

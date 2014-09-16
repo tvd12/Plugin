@@ -23,7 +23,6 @@
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.MenuItem"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.Size"/>
 <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Cell"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.constants.Tag"/>
 <fullyQualifiedTypeName name="java.lang.Deprecated"/>
 <fullyQualifiedTypeName name="com.tvd.gamview.ext.utils.ProjectUtils"/>
@@ -40,7 +39,6 @@
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.file.FileUtils"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="org.eclipse.core.resources.IFile"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.global.Config"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.Point"/>
 <fullyQualifiedTypeName name="com.tvd.gamview.ext.wizards.NewLayerCreationWizard"/>
 <fullyQualifiedTypeName name="com.tvd.gamview.ext.wizards.NewPopupCreationWizard"/>
@@ -49,15 +47,17 @@
 <fullyQualifiedTypeName name="java.lang.SuppressWarnings"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Resource"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.IContainer"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Image"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Sprite"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.constants.Attribute"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.Parameter"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.utils.StringUtils"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.AdvancedMenuItem"/>
 <fullyQualifiedTypeName name="org.eclipse.core.resources.IProject"/>
 <fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.AdvancedObject"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Sprite"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Cell"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.global.Config"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Image"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.Parameter"/>
 </qualifiedTypeNameHistroy>

@@ -64,6 +64,7 @@ public class ItemGroup {
 			builderForObj.append(mItems.get(0).implement(false))
 				.append("\n");
 			
+			ViewUtils.unlockAddingGroupToView(mItems.get(0));
 			ViewUtils.implementObject(mItems.get(0), builderForObj);
 			String strs[] = builderForObj.toString()
 					.replace("//{n}", "\n")
@@ -86,13 +87,19 @@ public class ItemGroup {
 		} 
 		else {
 			for(int i = 0  ; i < mItems.size() ; i++) {
-				builder.append("\t" + mItems.get(i).implement(pInfunction).trim())
+				CommonObject item = mItems.get(i);
+				if(item.getReferenceCount() > 0) {
+					continue;
+				}
+				builder.append("\t" + item.implement(pInfunction).trim())
 					.append("\n");
 				builder.append("//{n}");
-				
+				item.setReferenceCount(item.getReferenceCount() + 1);
 			}
 		}
-		return builder.toString();
+		String result = builder.toString();
+		return (result.equals(comment(1))) 
+				? "" : result;
 	}
 	
 	public String declarePosition() {

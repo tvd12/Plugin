@@ -6,57 +6,52 @@ import java.util.List;
 import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.constants.Constants;
 import com.tdgc.cocos2dx.popup.creator.constants.Tag;
-import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.basic.AdvancedObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
+import com.tdgc.cocos2dx.popup.creator.model.basic.Parameter;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 
-public class Cell extends AdvancedObject {
-
+public class Cell extends CommonObject {
 	public Cell() {
 		super();
 		mSuper = "ITableCellView";
 		mSuffix = "cell";
 		mType = "cell";
 		mViewType = Constants.ViewType.CELL;
-		mSuper = Config.getInstance()
-				.getDefaultSupers().get(mSuffix);
 		mXmlTagName = Tag.CELL;
 		mIsAddToGroup = false;
-		
-		mTemplateName = "ITableCellView";
-		mTemplateFile = "cell.template";
+		setAdvancedObject(new AdvancedCell());
+	}
+	
+	public AdvancedObject createAdvancedObject() {
+		return mAdvancedObject;
 	}
 
 	@Override
 	public String implement(boolean pInfunction) {
-		return super.implement(pInfunction);
+		return "non-template";
+	}
+
+	@Override
+	public CommonObject clone() {
+		Cell cell = new Cell();
+		this.setAllPropertiesForObject(cell);
+		
+		
+		return cell;
 	}
 	
 	@Override
-	public String declarePositions() {
-		return super.declarePositions();
-	}
-	
-	@Override
-	public String implementPositions() {
-		return super.implementPositions();
-	}
-	public String declareAndImplement() {
-		StringBuilder builder = new StringBuilder(declare())
-			.append(implement(false));
-		return builder.toString();
-	}
-	
-	@Override
-	public String getName() {
-		return "this";
-	}
-	
 	public void setImage(Image image) {
 		this.mImage = image;
 		this.mImage.setTabCount(mTabCount + 1);
+	}
+	
+	@Override
+	public void update() {
+		mImage.setExists(true);
+		checkColumnArray();
 	}
 	
 	@Override
@@ -66,47 +61,8 @@ public class Cell extends AdvancedObject {
 	}
 	
 	@Override
-	public void update() {
-		mImage.setExists(true);
-		((Table)getParent()).addCell(this);
-		checkColumnArray();
-	}
-	
-	public Image getImage() {
-		return this.mImage;
-	}
-	
-	@Override
-	public String toXML() {
-		String tab = StringUtils.tab(mTabCount);
-		StringBuilder builder = new StringBuilder(tab);
-		
-		//set attribute
-		builder.append("<" + mXmlTagName + " ")
-			.append(Attribute.CLASS_NAME + "=\"" + mClassName + "\" ")
-			.append(Attribute.PREFIX + "=\"" + mPrefix + "\"")
-			.append("\n" + tab + "\t\t" + Attribute.SUPER + "=\"" + mSuper + "\" ")
-			.append(Attribute.VISIBLE + "=\"true\" ")
-			.append("\n" + tab + "\t\t" + Attribute.COMMENT + "=\"\">");
-		
-		//add elements
-		builder.append("\n" + tab + "\t")
-		.append("<" + Tag.POSITION + " " + Attribute.VALUE 
-				+ "=\"" + mPosition + "\" />");
-		builder.append("\n" + tab + "\t")
-		.append("<" + Tag.SIZE + " " + Attribute.VALUE 
-				+ "=\"" + mSize + "\" />");
-		
-		builder.append("\n" + mImage.toXML());
-		
-		builder.append("\n")
-			.append(super.toXML())
-			.append(tab)
-			.append("</" + mXmlTagName + ">");
-		
-		builder.append("\n");
-		
-		return builder.toString();
+	public String getName() {
+		return "this";
 	}
 	
 	private void checkColumnArray() {
@@ -149,6 +105,54 @@ public class Cell extends AdvancedObject {
 			}
 		}
 	}
-
-	private Image mImage;
+	
+	@Override
+	public String toXML() {
+		String tab = StringUtils.tab(mTabCount);
+		StringBuilder builder = new StringBuilder(tab);
+		StringBuilder generateClassString = new StringBuilder();
+		StringBuilder exportedAtt = new StringBuilder();
+		StringBuilder parameterTags = new StringBuilder();
+		if(mIsGenerateClass) {
+			List<Parameter> params = mAdvancedObject.getParameters();
+			for(int i = 0 ; i < params.size() ; i++) {
+				parameterTags.append("\n" + tab)
+					.append(params.get(i).toXML());
+			}
+			generateClassString.append("\n\t\t" + tab)
+				.append(Attribute.GENERATE_CLASS + "=\"true\" ");
+			exportedAtt.append(Attribute.EXPORTED)
+				.append("=\"" + mAdvancedObject.isExported() + "\"");
+		}
+		//set attribute
+		builder.append("<" + mXmlTagName + " ")
+			.append(Attribute.CLASS_NAME + "=\"" + mAdvancedObject.getClassName() + "\" ")
+			.append(Attribute.PREFIX + "=\"" + mAdvancedObject.getPrefix() + "\"")
+			.append("\n" + tab + "\t\t" + Attribute.SUPER + "=\"" + mSuper + "\" ")
+			.append(Attribute.VISIBLE + "=\"true\" ")
+			.append(generateClassString)
+			.append(exportedAtt)
+			.append("\n" + tab + "\t\t" + Attribute.COMMENT + "=\"\">");
+		
+		//add elements
+		builder.append(parameterTags);
+		builder.append("\n" + tab + "\t")
+		.append("<" + Tag.POSITION + " " + Attribute.VALUE 
+				+ "=\"" + mPosition + "\" />");
+		builder.append("\n" + tab + "\t")
+		.append("<" + Tag.SIZE + " " + Attribute.VALUE 
+				+ "=\"" + mSize + "\" />");
+		
+		builder.append("\n" + mImage.toXML());
+		
+		builder.append("\n")
+			.append(super.toXML())
+			.append(tab)
+			.append("</" + mXmlTagName + ">");
+		
+		builder.append("\n");
+		
+		return builder.toString();
+	}
+	
 }

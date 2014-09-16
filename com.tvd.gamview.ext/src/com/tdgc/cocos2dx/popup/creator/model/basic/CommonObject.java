@@ -5,14 +5,15 @@ import java.util.List;
 
 import org.eclipse.core.resources.IProject;
 
+import com.tdgc.cocos2dx.popup.creator.constants.Strings;
+import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
+import com.tdgc.cocos2dx.popup.creator.model.Image;
 import com.tdgc.cocos2dx.popup.creator.model.Interface;
 import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 import com.tdgc.cocos2dx.popup.creator.validate.Validator;
-import com.tdgc.cocos2dx.popup.creator.constants.Strings;
-import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 
 public abstract class CommonObject extends BasicObject {
 	
@@ -29,6 +30,7 @@ public abstract class CommonObject extends BasicObject {
 		mAnchorPointString = "0.5, 0.5";
 		mPosition = new Point(0, 0);
 		mTabCount = 0;
+		mReferenceCount = 0;
 		mPositionNamePrefix = "";
 		mIsVisible = true;
 		mIsBackground = false;
@@ -311,6 +313,10 @@ public abstract class CommonObject extends BasicObject {
 	}
 	
 	public Size getSize() {
+		if(mSize == null) {
+			mSize = mImage.getSize();
+		}
+		
 		return mSize;
 	}
 	
@@ -477,6 +483,9 @@ public abstract class CommonObject extends BasicObject {
 	}
 	
 	public Point getLocationInView() {
+		if(mLocationInView == null) {
+			mLocationInView = mImage.getLocationInInterfaceBuilder();
+		}
 		return mLocationInView;
 	}
 	
@@ -666,8 +675,20 @@ public abstract class CommonObject extends BasicObject {
 		this.mAdvancedObject.setBasicObject(this);
 	}
 	
+	public AdvancedObject getAdvancedObject() {
+		return this.mAdvancedObject;
+	}
+	
 	public Size getViewSize() {
 		return getSize();
+	}
+	
+	public void setImage(Image pImage) {
+		this.mImage = pImage;
+	}
+	
+	public Image getImage() {
+		return this.mImage;
 	}
 	
 	public void setAllPropertiesForObject(CommonObject obj) {
@@ -766,6 +787,8 @@ public abstract class CommonObject extends BasicObject {
 	protected Interface mInterface;
 	
 	protected AdvancedObject mAdvancedObject;
+	
+	protected Image mImage;
 	
 	protected IProject mProject;
 }

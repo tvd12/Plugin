@@ -177,19 +177,26 @@ public class MenuItem extends CommonObject {
 	public String toXML() {
 		String tab = StringUtils.tab(mTabCount);
 		StringBuilder builder = new StringBuilder(tab);
-		String generateClassString = "";
+		StringBuilder generateClassString = new StringBuilder();
+		StringBuilder exportedAtt = new StringBuilder();
 		StringBuilder parameterTags = new StringBuilder();
 		if(mIsGenerateClass) {
-			generateClassString = " " + Attribute.GENERATE_CLASS + "=\"true\"";
 			List<Parameter> params = mAdvancedObject.getParameters();
 			for(int i = 0 ; i < params.size() ; i++) {
 				parameterTags.append("\n" + tab)
 					.append(params.get(i).toXML());
 			}
+			generateClassString.append("\n\t\t" + tab)
+				.append(Attribute.GENERATE_CLASS + "=\"true\" ");
+			exportedAtt.append(Attribute.EXPORTED)
+				.append("=\"" + mAdvancedObject.isExported() + "\"");
 		}
-		builder.append("<" + mXmlTagName + generateClassString 
-				+ " " + Attribute.VISIBLE + "=\"true\" ")
-			.append(Attribute.COMMENT + "=\"\">");
+		builder.append("<" + mXmlTagName + " "
+				+ Attribute.VISIBLE + "=\"true\" ")
+			.append(Attribute.COMMENT + "=\"\"")
+			.append(generateClassString)
+			.append(exportedAtt)
+			.append(">");
 		builder.append(parameterTags);
 		builder.append("\n" + tab + "\t")
 			.append("<" + Tag.POSITION_NAME + " " + Attribute.VALUE 

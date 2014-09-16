@@ -338,14 +338,7 @@ public class Image implements Comparable<Image> {
 	
 	public void setParent(CommonObject pParent) {
 		this.mTabCount = pParent.getTabCount() + 1;
-		
-		if(pParent instanceof Sprite) {
-			((Sprite)pParent).setImage(this);
-		} else if(pParent instanceof Table) {
-			((Table)pParent).setImage(this);
-		} else if(pParent instanceof Cell) {
-			((Cell)pParent).setImage(this);
-		}
+		pParent.setImage(this);
 		
 		this.mParent = pParent;
 		String anchopointString = null;
@@ -505,19 +498,51 @@ public class Image implements Comparable<Image> {
 		return toXML(true);
 	}
 	
+	public Image clone() {
+		Image img = new Image();
+		img.mId = mId;
+		img.mImageViewId = mImageViewId;
+		img.mRealPath = mRealPath;
+		img.mPhonyPath = mPhonyPath;
+		img.mName = mName;
+		img.mXmlTagName = mXmlTagName;
+		
+		img.mSize = mSize;
+		
+		img.mAnchorPoint = mAnchorPoint;
+		img.mLocationInInterfaceBuilder = mLocationInInterfaceBuilder;
+		
+		img.mX = mX;
+		img.mY = mY;
+		
+		img.mParent = mParent;
+		img.mTabCount = mTabCount;
+		img.mIsBackground = mIsBackground;
+		img.mIsExists = mIsExists;
+		img.mIsAddToInterfaceBuilder = mIsAddToInterfaceBuilder;
+		img.mIsResource = mIsResource;
+		
+		return img;
+	}
+	
 	private String mId;
 	private String mImageViewId;
 	private String mRealPath;
 	private String mPhonyPath;
 	private String mName;
+	private String mXmlTagName;
+	
 	private Size mSize;
+	
+	private Point mAnchorPoint;
+	private Point mLocationInInterfaceBuilder;
+	
 	private float mX;
 	private float mY;
+	
 	private CommonObject mParent;
-	private Point mAnchorPoint;
+	
 	private int mTabCount;
-	private String mXmlTagName;
-	private Point mLocationInInterfaceBuilder;
 	
 	private boolean mIsBackground;
 	private boolean mIsExists;
