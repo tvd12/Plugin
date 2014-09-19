@@ -1,27 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.xml.transform.OutputKeys"/>
-<fullyQualifiedTypeName name="javax.xml.transform.TransformerFactory"/>
-<fullyQualifiedTypeName name="org.w3c.dom.ls.LSOutput"/>
-<fullyQualifiedTypeName name="java.util.logging.XMLFormatter"/>
-<fullyQualifiedTypeName name="java.util.logging.LogRecord"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.xml.XmlFormatter"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.View"/>
-<fullyQualifiedTypeName name="org.eclipse.e4.ui.di.UIEventTopic"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Resources"/>
-<fullyQualifiedTypeName name="com.tvd.gameview.plugin.model.ViewModel"/>
-<fullyQualifiedTypeName name="org.eclipse.core.resources.IFolder"/>
-<fullyQualifiedTypeName name="org.eclipse.core.resources.IResource"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.constants.Constants"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Label"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Menu"/>
-<fullyQualifiedTypeName name="java.lang.Integer"/>
-<fullyQualifiedTypeName name="java.lang.Boolean"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Table"/>
-<fullyQualifiedTypeName name="java.io.File"/>
-<fullyQualifiedTypeName name="java.io.IOException"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.MenuItem"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.Size"/>
 <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.constants.Tag"/>
 <fullyQualifiedTypeName name="java.lang.Deprecated"/>
@@ -36,9 +14,6 @@
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.ItemGroup"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.BasicObject"/>
 <fullyQualifiedTypeName name="java.io.ByteArrayInputStream"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.file.FileUtils"/>
-<fullyQualifiedTypeName name="java.util.Map"/>
-<fullyQualifiedTypeName name="org.eclipse.core.resources.IFile"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.Point"/>
 <fullyQualifiedTypeName name="com.tvd.gamview.ext.wizards.NewLayerCreationWizard"/>
 <fullyQualifiedTypeName name="com.tvd.gamview.ext.wizards.NewPopupCreationWizard"/>
@@ -49,7 +24,6 @@
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.IContainer"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.constants.Attribute"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.utils.StringUtils"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.AdvancedMenuItem"/>
 <fullyQualifiedTypeName name="org.eclipse.core.resources.IProject"/>
@@ -60,4 +34,30 @@
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.global.Config"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Image"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.basic.Parameter"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.eclipse.swt.widgets.ProgressBar"/>
+<fullyQualifiedTypeName name="org.eclipse.jface.dialogs.ProgressMonitorDialog"/>
+<fullyQualifiedTypeName name="com.tvd.gameview.views.BuildingTreeView"/>
+<fullyQualifiedTypeName name="org.eclipse.jface.operation.IRunnableWithProgress"/>
+<fullyQualifiedTypeName name="com.tvd.gameview.views.BuildingListElement"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.View"/>
+<fullyQualifiedTypeName name="org.eclipse.swt.widgets.MessageBox"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="org.eclipse.core.runtime.Status"/>
+<fullyQualifiedTypeName name="com.tvd.gamview.ext.GameViewSdk"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="org.eclipse.core.resources.IFile"/>
+<fullyQualifiedTypeName name="com.tvd.gamview.ext.file.FileUtil"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.file.FileUtils"/>
+<fullyQualifiedTypeName name="org.eclipse.core.runtime.IStatus"/>
+<fullyQualifiedTypeName name="org.eclipse.ui.statushandlers.StatusManager"/>
+<fullyQualifiedTypeName name="org.eclipse.core.resources.IMarker"/>
+<fullyQualifiedTypeName name="org.eclipse.core.runtime.CoreException"/>
+<fullyQualifiedTypeName name="org.eclipse.core.resources.IResource"/>
+<fullyQualifiedTypeName name="java.net.URL"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.xml.XmlFetcher"/>
+<fullyQualifiedTypeName name="org.eclipse.jface.dialogs.MessageDialog"/>
+<fullyQualifiedTypeName name="org.eclipse.swt.widgets.Shell"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.utils.NotificationCenter"/>
 </qualifiedTypeNameHistroy>

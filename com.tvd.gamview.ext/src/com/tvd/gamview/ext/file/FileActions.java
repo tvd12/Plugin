@@ -17,7 +17,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 
-import com.tvd.gamview.ext.Activator;
+import com.tvd.gamview.ext.GameViewSdk;
 import com.tvd.gamview.ext.constants.Constant;
 import com.tvd.gamview.ext.constants.Key;
 
@@ -81,7 +81,7 @@ public class FileActions {
 	}
 	
 	public static void copySourceCodeFiles(String pDesPath) {
-		String templateRoot = Activator.getDefault()
+		String templateRoot = GameViewSdk.getDefault()
 				.getPreferenceStore().getString(Key.TEMPLATE_ROOT);
 		List<String> filePaths = new FileParser().getFilePaths(templateRoot, 
 				Constant.SOURCE_CODE_DIRECTORY);

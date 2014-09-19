@@ -10,7 +10,7 @@ import com.tvd.gamview.ext.constants.Constant;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin {
+public class GameViewSdk extends AbstractUIPlugin {
 
 	public static abstract class CheckSdkErrorHandler {
 		public abstract boolean handleError(String message);
@@ -24,15 +24,15 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "com.tvd.study.linuxsagas.plugin"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "com.tvd.gameview.ext.plugin"; //$NON-NLS-1$
 
 	// The shared instance
-	private static Activator plugin;
+	private static GameViewSdk plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public Activator() {
+	public GameViewSdk() {
 	}
 
 	/*
@@ -58,7 +58,7 @@ public class Activator extends AbstractUIPlugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static Activator getDefault() {
+	public static GameViewSdk getDefault() {
 		return plugin;
 	}
 

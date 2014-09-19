@@ -65,6 +65,24 @@
           <builder id="com.tvd.gamview.ext.SdkPropertiesFileBuilder" />
     </extension>
     
+    <extension
+          id="com.tvd.gameview.ext.ui.KeyValueMarker"
+          point="org.eclipse.core.resources.markers">
+          <persistent value="false" />
+          <super
+                type="org.eclipse.core.resources.problemmarker">
+          </super>
+    </extension>
+    
+    <extension
+          id="com.tvd.gameview.ext.ui.FormatMarker"
+          point="org.eclipse.core.resources.markers">
+          <persistent value="false" />
+          <super
+                type="org.eclipse.core.resources.problemmarker">
+          </super>
+    </extension>
+    
     <!--create a project -->
 	<extension
 	      	point="org.eclipse.ui.newWizards">

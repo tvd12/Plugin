@@ -5,11 +5,13 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.URL;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.eclipse.core.resources.IFile;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
@@ -21,6 +23,7 @@ public class XmlFetcher {
 	
 	public XmlFetcher() {
 		this.mHandler = new XmlFileParser();
+		this.mErrorHandler = new XMLErrorHandler();
 	}
 
 	public void fetchData(String pOutputPath) {
@@ -31,10 +34,19 @@ public class XmlFetcher {
 			InputSource inputSource = new InputSource(reader);
 			inputSource.setEncoding("UTF-8");
 			
+			URL url = getClass().getResource("/com/tvd/xml/view_2_0.xsd");
+			
 			SAXParserFactory spf = SAXParserFactory.newInstance();
+			spf.setNamespaceAware(true);
+			spf.setValidating(true);
 			SAXParser sp = spf.newSAXParser();
+			sp.setProperty( "http://java.sun.com/xml/jaxp/properties/schemaLanguage", 
+                    "http://www.w3.org/2001/XMLSchema");
+			sp.setProperty( "http://java.sun.com/xml/jaxp/properties/schemaSource", 
+					url.toURI().toString());
 			XMLReader xr = sp.getXMLReader();
 			xr.setContentHandler(mHandler);
+			xr.setErrorHandler(mErrorHandler);
 			xr.parse(inputSource);
 			
 		} catch (Exception e) {
@@ -51,11 +63,20 @@ public class XmlFetcher {
 			inputSource.setEncoding(xmlFile.getCharset());
 			
 			SAXParserFactory spf = SAXParserFactory.newInstance();
+			spf.setNamespaceAware(true);
+			spf.setValidating(true);
+			
 			SAXParser sp = spf.newSAXParser();
+			sp.setProperty( "http://java.sun.com/xml/jaxp/properties/schemaLanguage", 
+                    "http://www.w3.org/2001/XMLSchema");
+			
+			URL url = getClass().getResource("/com/tvd/xml/view_2_0.xsd");
+			sp.setProperty( "http://java.sun.com/xml/jaxp/properties/schemaSource", 
+					url.toURI().toString());
+			
 			XMLReader xr = sp.getXMLReader();
-			XMLErrorHandler reporter = new XMLErrorHandler();
-			xr.setErrorHandler(reporter);
 			xr.setContentHandler(mHandler);
+			xr.setErrorHandler(mErrorHandler);
 			xr.parse(inputSource);
 			
 		} catch (Exception e) {
@@ -80,6 +101,24 @@ public class XmlFetcher {
 		return view;
 	}
 	
+	public int getWarningCount() {
+		return ((XMLErrorHandler)mErrorHandler).getWarningCount();
+	}
+	
+	public int getFatalErrorCount() {
+		return ((XMLErrorHandler)mErrorHandler).getFatalErrorCount();
+	}
+	
+	public int getNonFatalErrorCount() {
+		return ((XMLErrorHandler)mErrorHandler).getNonFatalErrorCount();
+	}
+	
+	public boolean isError() {
+		return getFatalErrorCount() > 0
+				|| getNonFatalErrorCount() > 0;
+	}
+	
 	protected DefaultHandler mHandler;
+	protected ErrorHandler mErrorHandler;
 	
 }

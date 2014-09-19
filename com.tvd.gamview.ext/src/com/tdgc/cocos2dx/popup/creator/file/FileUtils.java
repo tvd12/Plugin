@@ -23,6 +23,7 @@ import com.tdgc.cocos2dx.popup.creator.constants.Attribute;
 import com.tdgc.cocos2dx.popup.creator.log.Log;
 import com.tdgc.cocos2dx.popup.creator.model.Image;
 import com.tdgc.cocos2dx.popup.creator.model.Resource;
+import com.tdgc.cocos2dx.popup.creator.utils.NotificationCenter;
 
 public class FileUtils {
 	
@@ -34,9 +35,13 @@ public class FileUtils {
 		FileInputStream fstream = null;
 		DataInputStream inputStream = null;
 		BufferedReader bufferedReader = null;
+		mContent = "";
 		try {
 			File file = new File(pFilePath);
 			if(!file.exists()) {
+				System.err.println("ERROR::readFromFile pFilePath = " + pFilePath);
+				NotificationCenter.getInstance().pushError("File " + pFilePath
+						+ " does not exist, create this file to continues");
 				return null;
 			}
 			fstream = new FileInputStream(file);
@@ -67,7 +72,10 @@ public class FileUtils {
 		try {
 			if(!file.exists()) {
 				System.err.println("ERROR::readFromFile file " 
-						+ file.getFullPath() + " is not exists");
+						+ file.getFullPath() + " does not exists");
+				NotificationCenter.getInstance().pushError("File " 
+						+ file.getProjectRelativePath().toString()
+						+ " does not exist, create this file to continues");
 				return "";
 			}
 			inputStream = new DataInputStream(file.getContents());
@@ -93,7 +101,7 @@ public class FileUtils {
 		return mContent;
 	}
 
-	public void writeToFile(String pFilePath, boolean pCreateCopy) {
+	public void writeToFile(String pFilePath, boolean pCreateACopy) {
 		try {
 			String folderPath = pFilePath.substring(0, pFilePath.lastIndexOf('/'));
 			File container = new File(folderPath);
@@ -105,7 +113,7 @@ public class FileUtils {
 			//if file doesn't exists, then create it
 			if(!file.exists()) {
 				file.createNewFile();
-			} else if(pCreateCopy) {
+			} else if(pCreateACopy) {
 				int lastIndex = pFilePath.lastIndexOf('/') + 1;
 				String newName = pFilePath.substring(lastIndex);
 				newName = "copy of " + newName;
@@ -148,30 +156,6 @@ public class FileUtils {
 		}
 	}
 	
-	public String fetchTemplate(String pTemplateName, String pTemplateFilePath) {
-		StringBuilder builder = new StringBuilder();
-		String contentLines[] = readFromFile(pTemplateFilePath).split("\n");
-		pTemplateName = "#" + pTemplateName.trim() + " template";
-		boolean isNotExistsTemplate = true;
-		for(int i = 0 ; i < contentLines.length ; i++) {
-			isNotExistsTemplate = false;
-			if(contentLines[i].trim().equals(pTemplateName)) {
-				while(!contentLines[++i].trim().equals("#end")) {
-					if(!contentLines[i].equals("")) {
-						builder.append(contentLines[i])
-							.append("\n");
-					}
-				}
-				break;
-			}
-		}
-		if(isNotExistsTemplate) {
-			System.err.println("ERROR::fetchTemplate template '" 
-					+ pTemplateName + "' is not exists!");
-		}
-		return builder.toString();
-	}
-	
 	public String fetchDefaultValue(String pKey, String pGroupName, 
 			String pFileContent) {
 		String contentLines[] = pFileContent.split("\n");
@@ -196,7 +180,7 @@ public class FileUtils {
 		}
 		
 		System.err.println("ERROR::fetchTemplate defaultValue key '" 
-				+ pKey + "' or group '" + pGroupName + "' is not exists!");
+				+ pKey + "' or group '" + pGroupName + "' does not exists!");
 		return "default";
 	}
 	
@@ -251,28 +235,41 @@ public class FileUtils {
 					if(contentLines[i].length() > 0 
 							&& contentLines[i].contains("=")) {
 						String keyValue[] = contentLines[i].split("=");
-						String key = keyValue[0].trim();
-						String value = keyValue[1].trim();
-						if(key.length() > 0 && value.length() > 0) {
-							result.put(key, value);
+						if(keyValue.length == 2) {
+							String key = keyValue[0].trim();
+							String value = keyValue[1].trim();
+							if(key.length() > 0 && value.length() > 0) {
+								result.put(key, value);
+							}
 						}
 					}
 				}
-				break;
+				return result;
 			}
 		}
 		
+		NotificationCenter.getInstance().pushError(
+				"Group '" + pGroupName + "' in default.properties doest not exists!");
 		return result;
 	}
 	
-	public String fetchTemplate(String pTemplateName, String pTemplatePath, 
+	public String fetchTemplate(String pTemplateName, String pTemplateFilePath, 
 			IProject pProject) {
 		StringBuilder builder = new StringBuilder();
-		IFile file = pProject.getFile(pTemplatePath);
-		String contentLines[] = readFromFile(file).split("\n");
+		IFile file = pProject.getFile(pTemplateFilePath);
+		String fileContent = readFromFile(file);
+		if(fileContent == null || fileContent.trim().length() == 0) {
+			NotificationCenter.getInstance().replaceTopError("Template file " 
+					+ pTemplateFilePath + " does not exist, "
+					+ "create this file to continue");
+			return builder.toString();
+		}
+		String contentLines[] = fileContent.split("\n");
 		pTemplateName = "#" + pTemplateName.trim() + " template";
+		boolean isNotExistsTemplate = true;
 		for(int i = 0 ; i < contentLines.length ; i++) {
 			if(contentLines[i].trim().equals(pTemplateName)) {
+				isNotExistsTemplate = false;
 				while(!contentLines[++i].trim().equals("#end")) {
 					if(!contentLines[i].equals("")) {
 						builder.append(contentLines[i])
@@ -281,6 +278,13 @@ public class FileUtils {
 				}
 				break;
 			}
+		}
+		if(isNotExistsTemplate) {
+			System.err.println("ERROR::fetchTemplate template '" 
+					+ pTemplateName + "' does not exists!");
+			NotificationCenter.getInstance().pushError(
+					"Template '" + pTemplateName + "' in file " + pTemplateFilePath
+					+ " does not exist!");
 		}
 		return builder.toString();
 	}

@@ -17,7 +17,7 @@ public class Table extends CommonObject {
 		this.mDeclareObjectName = "CCTableView";
 		this.mSuffix = "Table";
 		this.mType = ModelType.TABLE;
-		this.mSuper = Config.getInstance().getDefautSuper("table");
+		this.mSuper = Config.getInstance().getDefaultSuper("table");
 		this.mAnchorPoint = new Point(0, 0);
 		this.mAnchorPointString = this.mAnchorPoint.toString();
 		this.mXmlTagName = Tag.TABLE;

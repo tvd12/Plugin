@@ -7,8 +7,7 @@ public class AdvancedCell extends AdvancedObject {
 
 	public AdvancedCell() {
 		super();
-		mSuper = Config.getInstance()
-				.getDefaultSupers().get(mSuffix);
+		mSuper = Config.getInstance().getDefaultSuper(mSuffix);
 		
 		mTemplateName = "ITableCellView";
 		mTemplateFile = "cell.template";

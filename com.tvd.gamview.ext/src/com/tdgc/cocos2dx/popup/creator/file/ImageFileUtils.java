@@ -19,7 +19,7 @@ public class ImageFileUtils {
         		
         		File outFile = new File(pToPath + "/" + pImages.get(i));
         		if(!outFile.exists()) {
-        			System.out.println(outFile + " is not exist");
+        			System.out.println(outFile + " does not exist");
         			ImageIO.write(image, "png", outFile);
         		}
         	}

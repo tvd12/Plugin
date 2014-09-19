@@ -1,6 +1,6 @@
 package com.tvd.gameview.views;
 
-import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.List;
 
@@ -8,7 +8,10 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
@@ -24,11 +27,13 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.part.ViewPart;
 
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.model.View;
+import com.tdgc.cocos2dx.popup.creator.utils.NotificationCenter;
 import com.tdgc.cocos2dx.popup.creator.xml.XmlFetcher;
 import com.tvd.gameview.plugin.model.ViewModel;
 import com.tvd.gamview.ext.constants.Constant;
@@ -99,7 +104,7 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 		} else {
 			selectedValue = ((IStructuredSelection)sel).getFirstElement();
 			if(selectedValue instanceof BuildingListElement) {
-				BuildingListElement element = (BuildingListElement)selectedValue;
+				final BuildingListElement element = (BuildingListElement)selectedValue;
 				System.out.println("name of element = " + element.getName()
 						+ " device = " + element.getDevice()
 						+ " parent = " + element.getParent()
@@ -109,30 +114,86 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 						|| element.getFilePath().equals("")) {
 					return;
 				}
+				
 				Config.getInstance().setProject(element.getProject());
-				IFile xmlFile = element.getProject().getFile(element.getFilePath());
-				XmlFetcher xmlFetcher = new XmlFetcher();
-				View view = xmlFetcher.fetchView(xmlFile);
+				final IFile xmlFile = element.getProject().getFile(element.getFilePath());
+				final XmlFetcher xmlFetcher = new XmlFetcher();
+				final View view = xmlFetcher.fetchView(xmlFile);
 				view.setProject(element.getProject());
+				Shell shell = this.getSite().getShell();
 				
-				exportImages(element, view);
+				if(xmlFetcher.isError()) {
+					processErrors(xmlFetcher, shell, element.getFilePath());
+					return;
+				}
 				
-				declareIdentifiers(element, view);
-				implementIdentifiers(element, view);
-				exportIdentifiers(element, view);
+				if(view.isExported()) {
+					MessageDialog.openError(shell, "View exporting error", 
+					view.getClassName() + " has exported, change exported=\"false\" to continue!");
+					return;
+				}
 				
-				declarePositions(element, view);
-				implementPositionsForDevice(element, view, xmlFetcher, xmlFile);
+				ProgressMonitorDialog dialog = new ProgressMonitorDialog(shell);
+				try {
+					dialog.run(true, true, new IRunnableWithProgress() {
+						
+						@Override
+						public void run(IProgressMonitor monitor) 
+								throws InvocationTargetException, InterruptedException {
+							export(element, view, xmlFetcher, xmlFile);
+						}
+					});
+				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				String error = NotificationCenter.getInstance().getTopError();
+				if(error != null) {
+					MessageDialog.openError(shell, view.getClassName() + " exporting error", 
+							error);
+				}
 				
-				exportXibTemplateForDevice(element, view);
-				exportScreenTemplateForDevice(element, view);
-				exportAndroidTemplateForDevice(element, view);
-				
-				declareClass(element, view);
-				implementClass(element, view);
-				exportSourceCode(element, view);
 			}
 		}
+	}
+	
+	private void processErrors(XmlFetcher xmlFetcher, Shell shell, String filePath) {
+		int warningCount = xmlFetcher.getWarningCount();
+		int fatalErrorCount = xmlFetcher.getFatalErrorCount();
+		int nonFatalErrorCount = xmlFetcher.getNonFatalErrorCount();
+		if(fatalErrorCount > 0) {
+			NotificationCenter.e(fatalErrorCount + " fatal errors detected");
+			MessageDialog.openError(shell, "Xml parsing error!", 
+					fatalErrorCount + " fatal errors detected in file " + filePath);
+		} else if(nonFatalErrorCount > 0) {
+			NotificationCenter.e(nonFatalErrorCount + " non-fatal errors detected");
+			MessageDialog.openError(shell, "Xml parsing error!", 
+					nonFatalErrorCount + " non-fatal errors detected in file " + filePath);
+		}
+		if(warningCount > 0) {
+			NotificationCenter.w(warningCount + " warnings detected");
+		}
+	}
+	
+	private void export(BuildingListElement element, View view,
+			XmlFetcher xmlFetcher, IFile xmlFile) {
+		exportImages(element, view);
+		
+		declareIdentifiers(element, view);
+		implementIdentifiers(element, view);
+		exportIdentifiers(element, view);
+		
+		declarePositions(element, view);
+		implementPositionsForDevice(element, view, xmlFetcher, xmlFile);
+		
+		exportXibTemplateForDevice(element, view);
+		exportScreenTemplateForDevice(element, view);
+		exportAndroidTemplateForDevice(element, view);
+		
+		declareClass(element, view);
+		implementClass(element, view);
+		exportSourceCode(element, view);
 	}
 
 	private void exportImages(BuildingListElement element, View view) {
@@ -218,15 +279,7 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 					.equals(Constant.TreeElement.EXPORT_XIB_TPL)) {
 				System.out.println("Implementing position for " + element.getDevice()
 						+ " device...");
-				File xibFile = new File(view.getXibContainerPath() + "/" 
-						+ view.getClassName() + ".xib");
-				boolean override = true;
-				if(xibFile.exists()) {
-					MessageDialog.openConfirm(this.getSite().getShell(), 
-						"Duplicate file", view.getClassName() + ".xib is exists. " 
-						+ "Do you want override?");
-				}
-				view.exportXibTemplate(element.getDevice(), view.getProject(), !override);
+				view.exportXibTemplate(element.getDevice(), view.getProject(), false);
 				System.out.println();
 				System.out.println("Done!");
 				System.out.println("===============================================================");

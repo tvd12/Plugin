@@ -28,7 +28,7 @@
 			</xs:sequence>
 			<xs:attribute name="background-name" type="xs:string" use="optional" />
 			<xs:attribute name="type" type="xs:string" use="required" />
-			<xs:attribute name="size" type="xs:string" use="required" />
+			<xs:attribute name="size" type="pointtype" use="required" />
 			<xs:attribute name="exitable" type="xs:boolean" use="optional" />
 			<xs:attributeGroup ref="template" />
 			<xs:attributeGroup ref="advancedattributegroup" />
@@ -48,7 +48,7 @@
 		<xs:complexType>
 			<xs:simpleContent>
 				<xs:extension base="xs:string"> 
-					<xs:attribute name="value" type="xs:string" use="required" />
+					<xs:attribute name="value" type="pointtype" use="required" />
 				</xs:extension>
 			</xs:simpleContent>
 		</xs:complexType>
@@ -160,7 +160,7 @@
 				<xs:attribute name="width" type="xs:float" use="optional" />
 				<xs:attribute name="height" type="xs:float" use="optional" />
 				<xs:attribute name="location-in-interfacebuilder" 
-					type="xs:string" use="optional" />
+					type="pointtype" use="optional" />
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
@@ -180,8 +180,9 @@
 	</xs:element>
 	<xs:element name="exit-image">
 		<xs:complexType>
-			<xs:attribute name="position" type="xs:string" use="required" />
-			<xs:attribute name="location-in-interfacebuilder" use="required" />
+			<xs:attribute name="position" type="pointtype" use="required" />
+			<xs:attribute name="location-in-interfacebuilder" 
+					type="pointtype" use="required" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="sprites">
@@ -380,9 +381,14 @@
 	</xs:element>
 	<xs:element name="anchorpoint">
 		<xs:complexType>
-			<xs:attribute name="value" type="xs:string" />
+			<xs:attribute name="value" type="pointtype" />
 		</xs:complexType>
 	</xs:element>
+	<xs:simpleType name="pointtype">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="default|[-+]?(\d*[.])?\d+, [-+]?(\d*[.])?\d+" />
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:element name="text">
 		<xs:complexType>
 			<xs:simpleContent>
@@ -436,7 +442,7 @@
 		<xs:complexType>
 			<xs:simpleContent>
 				<xs:extension base="xs:string">
-					<xs:attribute name="value" type="xs:string" use="required" />
+					<xs:attribute name="value" type="pointtype" use="required" />
 				</xs:extension>
 			</xs:simpleContent> 
 		</xs:complexType>
@@ -452,18 +458,18 @@
 	</xs:element>
 	<xs:element name="location-in-interfacebuilder">
 		<xs:complexType>
-			<xs:attribute name="value" use="required" />
+			<xs:attribute name="value" type="pointtype" use="required" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="mid-point">
 		<xs:complexType>
-			<xs:attribute name="value" type="xs:string" use="required" />
+			<xs:attribute name="value" type="pointtype" use="required" />
 			<xs:attribute name="varname" type="xs:string" use="optional" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="bar-change-rate">
 		<xs:complexType>
-			<xs:attribute name="value" type="xs:string" use="required" />
+			<xs:attribute name="value" type="pointtype" use="required" />
 			<xs:attribute name="varname" type="xs:string" use="optional" />
 		</xs:complexType>
 	</xs:element>

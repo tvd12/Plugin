@@ -24,7 +24,7 @@ public abstract class CommonObject extends BasicObject {
 		mMenuItemGroups = new ArrayList<ItemGroup>();
 		mTableGroups = new ArrayList<ItemGroup>();
 		
-		mSuper = Config.getInstance().getDefautSuper(mPrefix);
+		mSuper = Config.getInstance().getDefaultSuper(mPrefix);
 		mZIndex = "0";
 		mAnchorPoint = new Point(0.5f, 0.5f);
 		mAnchorPointString = "0.5, 0.5";

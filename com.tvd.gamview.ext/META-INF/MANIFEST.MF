@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Linuxsagas Plugin
 Bundle-SymbolicName: com.tvd.gamview.ext;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: com.tvd.gamview.ext.Activator
+Bundle-Activator: com.tvd.gamview.ext.GameViewSdk
 Bundle-Vendor: TVD
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

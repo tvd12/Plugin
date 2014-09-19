@@ -72,12 +72,13 @@ public class Config {
 		return mProject;
 	}
 	
-	public String getDefautSuper(String pViewType) {
-		return mDefaultSupers.get(pViewType);
+	public String getDefaultSuper(String type) {
+		return getDefaultValue(mDefaultSupers, type, "DefaultSuper");
 	}
 	
 	public String getDefaultBackgroundOnSupers(String pViewType) {
-		return mDefaultBackgroundOnSupers.get(pViewType);
+		return getDefaultValue(mDefaultBackgroundOnSupers, pViewType, 
+				"this");
 	}
 	
 	public String getProjectName() {
@@ -94,10 +95,6 @@ public class Config {
 
 	public void setDefaultNormalPrefix(String mDefaultNormalPrefix) {
 		this.mDefaultNormalPrefix = mDefaultNormalPrefix;
-	}
-
-	public Map<String, String> getDefaultSupers() {
-		return mDefaultSupers;
 	}
 
 	public void setDefaultSupers(Map<String, String> mDefaultSupers) {
@@ -173,11 +170,12 @@ public class Config {
 	}
 	
 	public String getDefaultMenuOnSuper(String superType) {
-		return mDefaultMenuOnSupers.get(superType);
+		return getDefaultValue(mDefaultMenuOnSupers, superType, "mMenu");
 	}
 	
 	public String getDefaultTemplateName(String superType) {
-		return mDefaultTemplateNames.get(superType);
+		return getDefaultValue(mDefaultTemplateNames, superType, 
+				"Common");
 	}
 	
 	public Image getDefaultBackgroundImage(String type) {
@@ -189,11 +187,20 @@ public class Config {
 	}
 	
 	public String getDefaultScreenSizeString(String device) {
-		return mDefaultScreenSize.get(device);
+		return getDefaultValue(mDefaultScreenSize, device, "320, 480");
 	}
 	
 	public String getDefaultViewSuffix() {
 		return mDefaultViewSuffix;
+	}
+	
+	private String getDefaultValue(Map<String, String> keyValues, 
+			String key, String defaultValue) {
+		String value = keyValues.get(key);
+		if(value == null || value.trim().length() == 0) {
+			value = defaultValue;
+		}
+		return value;
 	}
 	
 	private String mProjectName;

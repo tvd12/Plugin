@@ -11,7 +11,7 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.core.IJavaProject;
 
-import com.tvd.gamview.ext.Activator;
+import com.tvd.gamview.ext.GameViewSdk;
 import com.tvd.gamview.ext.constants.Key;
 import com.tvd.gamview.ext.file.FileActions;
  
@@ -89,7 +89,7 @@ public class CustomProjectSupport {
     
     public static void copyFiles(IProject pNewProject, String pPaths[]) {
     	for(String path : pPaths) {
-    		String sourcePath = new String(Activator.getDefault()
+    		String sourcePath = new String(GameViewSdk.getDefault()
     				.getPreferenceStore().getString(Key.TEMPLATE_ROOT) + "/" + path);
     		FileActions.copyFiles(pNewProject, sourcePath, path);
 

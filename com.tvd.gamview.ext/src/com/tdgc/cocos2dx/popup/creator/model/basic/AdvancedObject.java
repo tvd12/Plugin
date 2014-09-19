@@ -33,7 +33,7 @@ public class AdvancedObject extends CommonObject {
 		
 		this.mProgressGroup = new ItemGroup(ItemGroup.Type.PROGRESSBAR);
 		
-		this.mSuper = Config.getInstance().getDefautSuper(mSuffix);
+		this.mSuper = Config.getInstance().getDefaultSuper(mSuffix);
 		this.mBackgroundName = Strings.DEFAULT;
 		this.mIsNewClass = true;
 		this.mIsExported = false;

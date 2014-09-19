@@ -37,7 +37,7 @@ public class View extends AdvancedObject implements IContainer {
 				Config.getInstance().getScreenContainerPath();
 		this.mLabels = new ArrayList<Label>();
 		this.mPrefix = "";
-		this.mSuper = Config.getInstance().getDefautSuper(mType);
+		this.mSuper = Config.getInstance().getDefaultSuper(mType);
 		this.mXmlTagName = Tag.VIEW;
 		this.mPositionTemplateName = 
 				Config.getInstance().getDefaultTemplateName("position");
@@ -241,7 +241,7 @@ public class View extends AdvancedObject implements IContainer {
 	}
 	
 //	public void exportXibTemplate(String pDevice, boolean override) {
-	public void exportXibTemplate(String pDevice, IProject pProject, boolean override) {
+	public void exportXibTemplate(String pDevice, IProject pProject, boolean pCreateACopy) {
 		if(isExported()) {
 			NotificationCenter.i("XCode Interface Builder of " 
 					+ mClassName + " exported!");
@@ -266,7 +266,7 @@ public class View extends AdvancedObject implements IContainer {
 		final String xibFilePath = mXibContainerPath + "/" 
 				+ "/" + mClassName + ".xib";
 //		System.out.println(xibContent);
-		fileUtils.setContent(xibContent).writeToFile(xibFilePath, override);
+		fileUtils.setContent(xibContent).writeToFile(xibFilePath, pCreateACopy);
 							
 	}
 	
@@ -657,7 +657,7 @@ public class View extends AdvancedObject implements IContainer {
 		super.setType(type);
 		if(type != null) {
 			Config config = Config.getInstance();
-			this.mSuper = config.getDefautSuper(mType);
+			this.mSuper = config.getDefaultSuper(mType);
 			this.mBackgroundImage = config.getDefaultBackgroundImage(
 					type);
 			if(mBackgroundImage != null) {
@@ -732,7 +732,9 @@ public class View extends AdvancedObject implements IContainer {
 				&& mBackgroundImage.getRealPath().equals(bgImg.getRealPath())) {
 			mBackgroundImage.setExists(true);
 		}
-		mBackgroundImage.setXMLTagName(Tag.BACKGROUND_IMAGE);
+		if(mBackgroundImage != null) {
+			mBackgroundImage.setXMLTagName(Tag.BACKGROUND_IMAGE);
+		}
 		Collections.sort(getImages());
 	}
 	

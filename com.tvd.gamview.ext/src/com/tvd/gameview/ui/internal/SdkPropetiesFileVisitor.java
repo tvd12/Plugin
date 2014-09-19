@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceDelta;
@@ -12,9 +13,13 @@ import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.IResourceProxy;
 import org.eclipse.core.resources.IResourceProxyVisitor;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.ui.statushandlers.StatusManager;
 
-import com.tvd.gamview.ext.Activator;
+import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
+import com.tdgc.cocos2dx.popup.creator.utils.NotificationCenter;
+import com.tvd.gamview.ext.GameViewSdk;
 import com.tvd.gamview.ext.utils.MessageUtils;
 import com.tvd.gamview.ext.utils.ProjectUtils;
 
@@ -57,12 +62,81 @@ public class SdkPropetiesFileVisitor implements IResourceProxyVisitor,
 				IProject project = resource.getProject();
 				if(name.equals("global.properties")) {
 					processGlobalPropertiesResource(project);
+				} 
+				if(name.endsWith(".properties")) {
+					processPropertiesFormat(resource);
 				}
 			} catch (CoreException e) {
 				throw new CoreException(new Status(Status.ERROR,
-						Activator.PLUGIN_ID, "Failed to generate resource", e));
+						GameViewSdk.PLUGIN_ID, "Failed to generate resource", e));
 			}
 		}
+	}
+	
+	private void processPropertiesFormat(IResource resource) 
+			throws CoreException {
+		String fileContent = new FileUtils().readFromFile((IFile)resource);
+		String lineContents[] = fileContent.split("\n");
+		boolean keyValueError = false;
+		boolean formatError = false;
+		String error = "Error in file " + resource.getName() 
+				+ ". Invalid format at line numbers ";
+		for(int i = 0 ; i < lineContents.length ; i++) {
+			String lineContent = lineContents[i].trim();
+			if(lineContent.length() == 0) {
+				continue;
+			}
+			int k = i + 1;
+			if(lineContent.contains("=")) {
+				String keyValue[] = lineContent.split("=");
+				if(keyValue.length < 2) {
+					error += k + ", ";
+					keyValueError = true;
+					makeErrorMarker(resource, "Invalid format key/value", 
+							k, lineContent, "KeyValueMarker");
+					NotificationCenter.e("Invalid format key/value");
+				}
+			} 
+			else {
+				if(lineContent.charAt(0) != '#') {
+					error += k + ", ";
+					formatError = true;
+					makeErrorMarker(resource, "Invalid format content, add '#' at begin", 
+							k, lineContent, "FormatMarker");
+					NotificationCenter.e("Invalid format content, add '#' at begin");
+				}
+			}
+		}
+		if(keyValueError || formatError) {
+			error += "use '#' at begin of line or fill value for key";
+			StatusManager statusManager = StatusManager.getManager();
+			Status status = new Status(IStatus.ERROR, 
+				GameViewSdk.PLUGIN_ID, error);
+			statusManager.handle(status, StatusManager.LOG);
+		} 
+		
+		if(!keyValueError) {
+			resource.deleteMarkers("com.tvd.gameview.ext.ui.KeyValueMarker", 
+					true, IResource.DEPTH_INFINITE);
+		} 
+		if(!formatError) {
+			NotificationCenter.i("Delete markers with id com.tvd.gameview.ext.ui.FormatMarker");
+			resource.deleteMarkers("com.tvd.gameview.ext.ui.FormatMarker", 
+					true, IResource.DEPTH_INFINITE);
+		}
+	}
+	
+	private void makeErrorMarker(IResource resource, String message, 
+			int lineNumber, String lineContent, String type) 
+					throws CoreException{
+		IMarker marker = resource.createMarker(
+				"com.tvd.gameview.ext.ui." + type);
+		marker.setAttribute(IMarker.SOURCE_ID, resource.getLocalTimeStamp());
+		marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
+		marker.setAttribute(IMarker.MESSAGE, message);
+		marker.setAttribute(IMarker.LINE_NUMBER, lineNumber);
+		marker.setAttribute(IMarker.CHAR_START, lineContent);
+		marker.setAttribute(IMarker.CHAR_END, lineContent);
 	}
 	
 	private void processGlobalPropertiesResource(IProject project) 

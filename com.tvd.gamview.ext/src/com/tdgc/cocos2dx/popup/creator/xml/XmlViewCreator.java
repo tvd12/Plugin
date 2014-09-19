@@ -266,8 +266,8 @@ public class XmlViewCreator {
 		//add attributes
 		AdvancedCell adCell = (AdvancedCell)item.getAdvancedObject();
 		adCell.setClassName(StringUtils.convertToClassName(mRootPath + "_cell", "View"));
-		item.setSuper("default");
-		item.setPrefix(StringUtils.detectPrefix("cell") + "_" +
+		adCell.setSuper("default");
+		adCell.setPrefix(StringUtils.detectPrefix("cell") + "_" +
 				mRootPath);
 		item.setComment("");
 		item.setParent(pParent);

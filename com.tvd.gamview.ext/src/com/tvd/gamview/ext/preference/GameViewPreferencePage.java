@@ -11,7 +11,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
-import com.tvd.gamview.ext.Activator;
+import com.tvd.gamview.ext.GameViewSdk;
 import com.tvd.gamview.ext.constants.Key;
 import com.tvd.gamview.ext.utils.MessageUtils;
 
@@ -35,7 +35,7 @@ public class GameViewPreferencePage extends FieldEditorPreferencePage implements
 
 	@Override
 	public void init(IWorkbench workbench) {
-		this.setPreferenceStore(Activator.getDefault().getPreferenceStore());
+		this.setPreferenceStore(GameViewSdk.getDefault().getPreferenceStore());
 	}
 
 	@Override
@@ -82,8 +82,8 @@ public class GameViewPreferencePage extends FieldEditorPreferencePage implements
 	                "DirectoryFieldEditor.errorMessage")); //$NON-NLS-1$
 	            return false;
 	        }
-	        boolean ok = Activator.getDefault().checkSdkLocationAndId(fileName,
-	                new Activator.CheckSdkErrorHandler() {
+	        boolean ok = GameViewSdk.getDefault().checkSdkLocationAndId(fileName,
+	                new GameViewSdk.CheckSdkErrorHandler() {
 	            @Override
 	            public boolean handleError(String message) {
 	            	this.setErrorMessage(message.replaceAll("\n", " ")); //$NON-NLS-1$ //$NON-NLS-2$
