@@ -2,9 +2,9 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="316" key="DIALOG_WIDTH"/>
-		<item value="147" key="DIALOG_Y_ORIGIN"/>
+		<item value="204" key="DIALOG_Y_ORIGIN"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
-		<item value="57" key="DIALOG_X_ORIGIN"/>
+		<item value="910" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
@@ -13,18 +13,19 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="updateTreeViewer" key="selection"/>
+		<item value="addResource" key="selection"/>
 		<list key="findhistory">
+			<item value="addResource"/>
+			<item value="setResource"/>
+			<item value="gamview"/>
+			<item value="com\.tvd\.gameview\.ui"/>
 			<item value="updateTreeViewer"/>
 			<item value="fetchTemplate"/>
 			<item value="Tag.BACKGROUND_IMAGE"/>
 			<item value="mBackgroundImage.setXMLTagName(Tag.BACKGROUND_IMAGE);"/>
-			<item value="getSize"/>
-			<item value="getLocationInView"/>
-			<item value="setType"/>
-			<item value="set"/>
 		</list>
 		<list key="replacehistory">
+			<item value="gameview"/>
 			<item value=""/>
 			<item value="advancedattributegroup"/>
 			<item value="DefaultExitResources"/>
@@ -32,7 +33,6 @@
 			<item value="mIsVisible"/>
 			<item value="mProgressGroup"/>
 			<item value="xs:string"/>
-			<item value="createItemGroup"/>
 		</list>
 	</section>
 </section>
