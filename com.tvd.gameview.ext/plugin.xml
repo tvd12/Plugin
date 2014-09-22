@@ -232,7 +232,7 @@
 	      point="org.eclipse.core.runtime.adapters">
     <factory
           adaptableType="com.tvd.gameview.ext.views.BuildingListElement"
-          class="com.tvd.gameview.ext.ui.internal.ConfigAdapterFactory">
+          class="com.tvd.gameview.ext.ui.internal.TreeViewAdapterFactory">
        <adapter
              type="org.eclipse.ui.views.properties.IPropertySource">
        </adapter>

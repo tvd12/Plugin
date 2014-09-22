@@ -54,10 +54,10 @@
 <fullyQualifiedTypeName name="org.eclipse.ui.views.properties.PropertyDescriptor"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Resource"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.Table"/>
-<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.View"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
 <fullyQualifiedTypeName name="org.eclipse.ui.views.properties.IPropertySource"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.model.View"/>
 </qualifiedTypeNameHistroy>

@@ -1,13 +1,21 @@
-/*******************************************************************************
- * Copyright (c) 2000, 2005 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * Copyright (c) 2014 Dung Ta Van. All rights reserved.
+ * 
+ * This file is part of com.tvd.gameview.ext.
+ * com.tvd.gameview.ext is free eclipse plug-in: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Contributors:
- *     IBM Corporation - initial API and implementation
- *******************************************************************************/
+ * com.tvd.gameview.ext is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with com.tvd.gameview.ext.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.tvd.gameview.ext.wizards;
 
 import java.lang.reflect.InvocationTargetException;
@@ -46,26 +54,6 @@ import com.tvd.gameview.ext.support.CustomProjectSupport;
 import com.tvd.gameview.ext.ui.natures.SdkFileNature;
 import com.tvd.gameview.ext.utils.MessageUtils;
 
-/**
-<extension 
-	point="org.eclipse.ui.newWizards">
-  	<wizard
-		id="org.eclipse.jdt.ui.examples.MyProjectCreationWizard"
-		name="My project"
-		class="org.eclipse.jdt.ui.examples.MyProjectCreationWizard"
-		category="org.eclipse.jdt.ui.java"
-		project="true"
-		finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
-		icon="icons/full/ctool16/newjprj_wiz.gif">
-		<description>My project</description>
-    </wizard>	 
-</extension>
- */   
-
-/**
- * This example shows how to implement an own project wizard that uses the
- * JavaCapabilityConfigurationPage to allow the user to configure the Java build path.
- */
 public class GameViewProjectCreationWizard extends Wizard 
 		implements IExecutableExtension, INewWizard {
 

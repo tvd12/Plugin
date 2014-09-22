@@ -15,41 +15,35 @@
  * You should have received a copy of the GNU General Public License
  * along with com.tvd.gameview.ext.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.tvd.gameview.ext.model;
 
-public class ViewModel {
-	
-	public ViewModel(String name, boolean isDone) {
-		this.mName = name;
-		this.mIsDone = isDone;
+package com.tvd.gameview.ext.ui.internal;
+
+import org.eclipse.core.runtime.IAdapterFactory;
+import org.eclipse.ui.views.properties.IPropertySource;
+
+import com.tvd.gameview.ext.views.BuildingListElement;
+
+public class TreeViewAdapterFactory implements IAdapterFactory {
+
+	public TreeViewAdapterFactory() {
+		System.out.println("construction adapter");
 	}
 	
-	public String getName() {
-		String result = mName;
-		if(mName.contains("/")) {
-			result = mName.substring(mName.lastIndexOf('/') + 1);
-		}
-		return result;
-	}
-	
-	public String getRealName() {
-		return mName;
-	}
-	
-	public boolean isDone() {
-		return mIsDone;
-	}
-	
+	@SuppressWarnings("rawtypes")
 	@Override
-	public String toString() {
-		String str = mName;
-		if(mIsDone) {
-			str += ":done";
-		}
-		
-		return str;
+	public Class[] getAdapterList() {
+		return new Class[] {
+				IPropertySource.class
+		};
 	}
-
-	private String mName;
-	private boolean mIsDone;
+	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public Object getAdapter(Object o, Class type) {
+		if(type == IPropertySource.class && o instanceof BuildingListElement) {
+			return new TreeViewElementInfo((BuildingListElement)o);
+		} else {
+			return null;
+		}
+	}
 }
