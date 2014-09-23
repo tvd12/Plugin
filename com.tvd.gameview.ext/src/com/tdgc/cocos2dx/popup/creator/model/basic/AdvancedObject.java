@@ -332,7 +332,7 @@ public class AdvancedObject extends CommonObject {
 	protected String assigningArea() {
 		StringBuilder builder = new StringBuilder("\n");
 		for(int i = 0 ; i < mProperties.size() ; i++) {
-			builder.append("\tthis->" + mProperties.get(i).getName())
+			builder.append("\t" + mProperties.get(i).getName())
 				.append(" = ")
 				.append(mParameters.get(i).getName())
 				.append(";\n");

@@ -176,6 +176,11 @@ public class Table extends CommonObject {
 		this.mCell.setTabCount(mTabCount + 1);
 	}
 	
+	@Override
+	public void update() {
+		this.mCell.setTabCount(mTabCount + 1);
+	}
+	
 	public Cell getCell() {
 		return mCell;
 	}

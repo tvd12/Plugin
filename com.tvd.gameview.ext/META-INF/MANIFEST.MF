@@ -22,7 +22,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.wst.sse.ui,
  org.eclipse.jface.text,
  org.eclipse.e4.ui.di,
- org.eclipse.ui.views
+ org.eclipse.ui.views,
+ org.eclipse.core.commands,
+ org.eclipse.ui.workbench
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: lib/dom4j-1.6.1.jar,

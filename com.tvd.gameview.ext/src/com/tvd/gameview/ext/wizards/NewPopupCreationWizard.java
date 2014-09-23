@@ -1,9 +1,9 @@
 /**
- *  * Copyright (c) 2014, Inc. All rights reserved.
+ * Copyright (c) 2014 Dung Ta Van. All rights reserved.
  * 
  * This file is part of com.tvd.gameview.ext.
  * com.tvd.gameview.ext is free eclipse plug-in: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
+ * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *

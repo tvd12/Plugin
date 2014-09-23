@@ -27,6 +27,9 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -100,8 +103,9 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 				new BuildingListLabelProvider(imageRegistry, fontRegistry)));
 		
 		mTreeViewer.setContentProvider(new BuildingListContentProvider());
-		mTreeViewer.setInput(createInput());
 		mTreeViewer.addDoubleClickListener(this);
+		
+		this.update();
 		
 		this.getSite().setSelectionProvider(mTreeViewer);
 		mSelectionListener = new BuildingListSelectionListener(mTreeViewer, 
@@ -110,8 +114,55 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 			.addSelectionListener(mSelectionListener);
 		ResourcesPlugin.getWorkspace()
 			.addResourceChangeListener(new SdkFileChangeListener(this));
-		
 	}
+	
+	public void createActions() {
+		mRemoveAction = new Action("Remove...") {
+			public void run() {
+				
+			}
+		};
+		mRemoveAction.setImageDescriptor(getImageDescriptor("icons/sample.gif"));
+		
+		mHelpAction = new Action("Help") {
+			public void run() {
+				
+			}
+		};
+	}
+	
+	@SuppressWarnings("unused")
+	private void updateActionEnablement() {
+        IStructuredSelection sel = 
+                (IStructuredSelection)mTreeViewer.getSelection();
+        mRemoveAction.setEnabled(sel.size() > 0);
+	}
+	
+	/**
+     * Create menu.
+     */
+	@SuppressWarnings("unused")
+    private void createMenu() {
+            IMenuManager mgr = getViewSite().getActionBars().getMenuManager();
+            mgr.add(mHelpAction);
+    }
+    
+    /**
+     * Create toolbar.
+     */
+	@SuppressWarnings("unused")
+    private void createToolbar() {
+            IToolBarManager mgr = getViewSite().getActionBars().getToolBarManager();
+            mgr.add(mRemoveAction);
+    }
+	
+	 /**
+     * Returns the image descriptor with the given relative path.
+     */
+    private ImageDescriptor getImageDescriptor(String relativePath) {
+        return ImageDescriptor.createFromURL(BuildingTreeView.class
+        		.getResource("relativePath"));
+    }
 	
 	@Override
 	public void doubleClick(DoubleClickEvent event) {
@@ -485,6 +536,15 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 		return mTreeViewer;
 	}
 	
+	public static final String ID = BuildingTreeView.class.getName();
+	
 	private ISelectionListener mSelectionListener;
 	private TreeViewer mTreeViewer;
+	
+	private Action mRemoveAction;
+	@SuppressWarnings("unused")
+	private Action mAddAction;
+	@SuppressWarnings("unused")
+	private Action mRefreshAction;
+	private Action mHelpAction;
 }
