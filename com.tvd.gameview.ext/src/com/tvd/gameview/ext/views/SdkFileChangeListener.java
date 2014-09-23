@@ -133,8 +133,8 @@ public class SdkFileChangeListener implements IResourceChangeListener {
 	}
 	
 	private void updateTreeViewer() {
-		if(mViewPart instanceof BuildingTreeView) {
- 		   final BuildingTreeView tree = (BuildingTreeView)mViewPart;
+		if(mViewPart instanceof BuildingTreeViewer) {
+ 		   final BuildingTreeViewer tree = (BuildingTreeViewer)mViewPart;
  		   tree.getTreeViewer().getControl().getDisplay().asyncExec(new Runnable() {
 				
 				@Override

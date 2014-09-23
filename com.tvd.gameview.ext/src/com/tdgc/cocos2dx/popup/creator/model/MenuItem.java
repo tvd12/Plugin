@@ -92,7 +92,7 @@ public class MenuItem extends CommonObject {
 		
 		StringBuilder builder = new StringBuilder("\n");
 		String template = fetchTemplate(pInfunction);
-		
+		ViewUtils.unlockAddingGroupToView(this);
 		ViewUtils.implementObject(this, builder);
 		template = template.replace("{var_name}", mName)
 			.replace("{tab}", "\t")

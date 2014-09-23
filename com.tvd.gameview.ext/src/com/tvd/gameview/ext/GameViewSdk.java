@@ -20,6 +20,7 @@ package com.tvd.gameview.ext;
 
 import java.io.File;
 
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -78,6 +79,10 @@ public class GameViewSdk extends AbstractUIPlugin {
 	 */
 	public static GameViewSdk getDefault() {
 		return plugin;
+	}
+	
+	public static ImageDescriptor getImageDescriptor(String path) {
+		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 
 	public boolean checkSdkLocationAndId(String fileName,

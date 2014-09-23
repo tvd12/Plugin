@@ -43,9 +43,12 @@ import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
@@ -57,6 +60,7 @@ import com.tdgc.cocos2dx.popup.creator.model.View;
 import com.tdgc.cocos2dx.popup.creator.utils.NotificationCenter;
 import com.tdgc.cocos2dx.popup.creator.xml.XmlFetcher;
 import com.tvd.gameview.ext.constants.Constant;
+import com.tvd.gameview.ext.model.ProjectChooserHelper;
 import com.tvd.gameview.ext.model.ViewModel;
 import com.tvd.gameview.ext.utils.ProjectUtils;
 
@@ -80,9 +84,9 @@ import com.tvd.gameview.ext.utils.ProjectUtils;
  *		declare class
  *		implement class
  */
-public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
+public class BuildingTreeViewer extends ViewPart implements IDoubleClickListener {
 	
-	public BuildingTreeView() {
+	public BuildingTreeViewer() {
 	}
 
 	@Override
@@ -105,6 +109,10 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 		mTreeViewer.setContentProvider(new BuildingListContentProvider());
 		mTreeViewer.addDoubleClickListener(this);
 		
+		mTreeViewer.setFilters(new ViewerFilter[] {
+			new BuildingTreeViewerFilter()
+		});
+		
 		this.update();
 		
 		this.getSite().setSelectionProvider(mTreeViewer);
@@ -114,54 +122,91 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 			.addSelectionListener(mSelectionListener);
 		ResourcesPlugin.getWorkspace()
 			.addResourceChangeListener(new SdkFileChangeListener(this));
+		
+		// Create menu and toolbars.
+        createActions();
+        createMenu();
+        createToolbar();
+		
 	}
 	
 	public void createActions() {
-		mRemoveAction = new Action("Remove...") {
+		final Shell shell = this.getSite().getShell();
+		mAddAction = new Action() {
+			@Override
 			public void run() {
-				
+				ProjectChooserHelper.chooseJavaProject(shell);
 			}
 		};
-		mRemoveAction.setImageDescriptor(getImageDescriptor("icons/sample.gif"));
+		mRemoveAction = new Action() {
+			@Override
+			public void run() {
+				if(mSelectedElement != null) {
+					mSelectedElement.setEnable(false);
+					mTreeViewer.refresh();
+					mSelectedElement = null;
+				}
+			}
+		};
+		mRefreshAction = new Action() {
+			@Override
+			public void run() {
+				update();
+			}
+		};
+		mAddAction.setImageDescriptor(getImageDescriptor("/icons/6_plus.gif"));
+		mRemoveAction.setImageDescriptor(getImageDescriptor("/icons/5_minus.gif"));
+		mRefreshAction.setImageDescriptor(getImageDescriptor("/icons/7_refresh.png"));
 		
 		mHelpAction = new Action("Help") {
 			public void run() {
-				
 			}
 		};
+		
+		mTreeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+			
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				updateActionEnablement();
+			}
+		});
 	}
 	
-	@SuppressWarnings("unused")
 	private void updateActionEnablement() {
         IStructuredSelection sel = 
                 (IStructuredSelection)mTreeViewer.getSelection();
         mRemoveAction.setEnabled(sel.size() > 0);
+        if(sel.getFirstElement() != null 
+        		&& sel.getFirstElement() instanceof BuildingListElement) {
+        	mSelectedElement
+        		= (BuildingListElement)sel.getFirstElement();
+        }
 	}
 	
 	/**
      * Create menu.
      */
-	@SuppressWarnings("unused")
     private void createMenu() {
-            IMenuManager mgr = getViewSite().getActionBars().getMenuManager();
-            mgr.add(mHelpAction);
+    	IMenuManager mgr = getViewSite().getActionBars().getMenuManager();
+    	mgr.add(mHelpAction);
     }
     
     /**
      * Create toolbar.
      */
-	@SuppressWarnings("unused")
     private void createToolbar() {
-            IToolBarManager mgr = getViewSite().getActionBars().getToolBarManager();
-            mgr.add(mRemoveAction);
+    	IToolBarManager mgr = getViewSite().getActionBars().getToolBarManager();
+    	mgr.add(mAddAction);
+    	mgr.add(mRemoveAction);
+    	mgr.add(mRefreshAction);
     }
 	
 	 /**
      * Returns the image descriptor with the given relative path.
      */
     private ImageDescriptor getImageDescriptor(String relativePath) {
-        return ImageDescriptor.createFromURL(BuildingTreeView.class
-        		.getResource("relativePath"));
+        return ImageDescriptor.createFromURL(BuildingTreeViewer.class
+        		.getResource(relativePath));
     }
 	
 	@Override
@@ -536,15 +581,14 @@ public class BuildingTreeView extends ViewPart implements IDoubleClickListener {
 		return mTreeViewer;
 	}
 	
-	public static final String ID = BuildingTreeView.class.getName();
+	public static final String ID = BuildingTreeViewer.class.getName();
 	
 	private ISelectionListener mSelectionListener;
 	private TreeViewer mTreeViewer;
+	private BuildingListElement mSelectedElement;
 	
 	private Action mRemoveAction;
-	@SuppressWarnings("unused")
 	private Action mAddAction;
-	@SuppressWarnings("unused")
 	private Action mRefreshAction;
 	private Action mHelpAction;
 }

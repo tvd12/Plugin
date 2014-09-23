@@ -18,18 +18,17 @@
 
 package com.tvd.gameview.ext.views;
 
-import org.eclipse.ui.IPageLayout;
-import org.eclipse.ui.IPerspectiveFactory;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 
-public class BuildingListToolbar implements IPerspectiveFactory {
+public class BuildingTreeViewerFilter extends ViewerFilter {
 
 	@Override
-	public void createInitialLayout(IPageLayout layout) {
-		String editorArea = layout.getEditorArea();
-		layout.setEditorAreaVisible(false);
-		layout.setFixed(true);
-		
-		layout.addView(BuildingTreeViewer.ID, IPageLayout.LEFT, 1.0f, editorArea);
+	public boolean select(Viewer viewer, Object parentElement, Object element) {
+		if(element instanceof BuildingListElement) {
+			return ((BuildingListElement)element).isEnable();
+		}
+		return false;
 	}
-
+	
 }

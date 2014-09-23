@@ -10,9 +10,9 @@
       	</category>
       	<view
             category="com.tvd.gameview.ext.views"
-            class="com.tvd.gameview.ext.views.BuildingTreeView"
+            class="com.tvd.gameview.ext.views.BuildingTreeViewer"
             icon="icons/4_viewer.gif"
-            id="com.tvd.gameview.ext.views.BuildingTreeView"
+            id="com.tvd.gameview.ext.views.BuildingTreeViewer"
             name="Building list"
             restorable="true">
       	</view>	

@@ -31,6 +31,7 @@ import com.tdgc.cocos2dx.popup.creator.xml.XmlFetcher;
 public class BuildingListElement {
 	public BuildingListElement() {
 		mChilds = new ArrayList<BuildingListElement>();
+		mIsEnable = true;
 	}
 	
 	public BuildingListElement(String name) {
@@ -193,6 +194,14 @@ public class BuildingListElement {
 		return mTag;
 	}
 	
+	public void setEnable(boolean isEnable) {
+		this.mIsEnable = isEnable;
+	}
+	
+	public boolean isEnable() {
+		return this.mIsEnable;
+	}
+	
 	private List<BuildingListElement> mChilds;	
 	private BuildingListElement mParent;
 	private IProject mProject;
@@ -200,4 +209,5 @@ public class BuildingListElement {
 	private String mDevice;
 	private String mFilePath;
 	private int mTag;
+	private boolean mIsEnable;
 }

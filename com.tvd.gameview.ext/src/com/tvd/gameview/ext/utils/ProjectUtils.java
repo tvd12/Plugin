@@ -46,7 +46,7 @@ import org.eclipse.ui.PlatformUI;
 import com.tdgc.cocos2dx.popup.creator.global.Config;
 import com.tdgc.cocos2dx.popup.creator.xml.XmlFileBuilder;
 import com.tvd.gameview.ext.model.ViewModel;
-import com.tvd.gameview.ext.views.BuildingTreeView;
+import com.tvd.gameview.ext.views.BuildingTreeViewer;
 
 public class ProjectUtils {
 	
@@ -125,9 +125,7 @@ public class ProjectUtils {
 		List<IProject> result = new ArrayList<IProject>();
 		for(IProject project : projects) {
 			try {
-				String persistentProperty = 
-						project.getPersistentProperty(new QualifiedName("tvd", "author"));
-				if(persistentProperty != null && persistentProperty.equals("tvd")) {
+				if(project.hasNature("com.tvd.gameview.ext.SdkFileNature")) {
 					result.add(project);
 				}
 			} catch (CoreException e) {
@@ -224,12 +222,12 @@ public class ProjectUtils {
 		}
 		System.out.println("updateBuildingTreeViewPart = 4");
 		IViewPart viewPart = workbenchPage
-				.findView(BuildingTreeView.class.getName());
+				.findView(BuildingTreeViewer.class.getName());
 		if(viewPart == null) {
 			return;
 		}
 		System.out.println("updateBuildingTreeViewPart = 5");
-		BuildingTreeView buildingTreeView = (BuildingTreeView)viewPart;
+		BuildingTreeViewer buildingTreeView = (BuildingTreeViewer)viewPart;
 		buildingTreeView.update();
 	}
 	

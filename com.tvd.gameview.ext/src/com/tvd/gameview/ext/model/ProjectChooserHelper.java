@@ -20,16 +20,40 @@ package com.tvd.gameview.ext.model;
 import java.util.List;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.ui.JavaElementLabelProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
 import com.tvd.gameview.ext.utils.ProjectUtils;
 
 public class ProjectChooserHelper {
 
+	public static IJavaProject chooseJavaProject(Shell shell) {
+		ILabelProvider labelProvider = new JavaElementLabelProvider();
+		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, 
+				labelProvider);
+		dialog.setTitle("Project selection");
+		String message = "Please select a project";
+		dialog.setMessage(message);
+
+        // set the elements in the dialog. These are opened android projects.
+        dialog.setElements(ProjectUtils.getSdkProjects().toArray(new Object[0]));
+        if(dialog.open() == Window.OK) {
+        	return (IJavaProject)dialog.getFirstResult();
+        }
+        
+        return null;
+	}
+	
+	
 	public static class ProjectCombo extends Combo implements SelectionListener {
 
 		public ProjectCombo(Composite parent) {
