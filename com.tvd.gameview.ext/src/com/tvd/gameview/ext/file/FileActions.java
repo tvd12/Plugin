@@ -67,6 +67,30 @@ public class FileActions {
 		return builder.toString();
 	}
 	
+	public static String readFromFile(InputStream pInputStream) {
+		try {
+			InputStreamReader inputStreamReader = new InputStreamReader(pInputStream, "utf-8");
+			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+			String lineContent = bufferedReader.readLine();
+			StringBuilder builder = new StringBuilder();
+			while(lineContent != null) {
+				builder.append(lineContent).append("\n");
+				lineContent = bufferedReader.readLine();
+			}
+			
+			bufferedReader.close();
+			inputStreamReader.close();
+			pInputStream.close();
+			
+			return builder.toString();
+		} 
+		catch(IOException e) {
+			e.printStackTrace();
+		} finally {
+		}
+		return "";
+	}
+	
 	public static void replaceContent(String pFilePath, String pContent) {
 		try {
 			
@@ -158,7 +182,11 @@ public class FileActions {
 					IFile newFile = pProject.getFile(
 							new Path(pDesPath + "/" + file.getName()));
 					//IResource.FORCE
-					newFile.create(new FileInputStream(file), true, null);
+					if(newFile.exists()) {
+						newFile.setContents(new FileInputStream(file), true, false, null);
+					} else {
+						newFile.create(new FileInputStream(file), true, null);
+					}
 				}
 			}
 		}
@@ -188,8 +216,11 @@ public class FileActions {
 			}
 			builder.append(pContent);
 			InputStream inputStream = new ByteArrayInputStream(pContent.getBytes());
-		
-			newFile.create(inputStream, true, null);
+			if(newFile.exists()) {
+				newFile.setContents(inputStream, true, false, null);
+			} else {
+				newFile.create(inputStream, true, null);
+			}
 		} catch (CoreException e) {
 			e.printStackTrace();
 		}

@@ -47,7 +47,7 @@ public class NewPopupCreationWizard extends Wizard implements INewWizard {
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 //		this.workbench = workbench;
-		this.selection = selection;
+		this.mSelection = selection;
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class NewPopupCreationWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		super.addPages();
 		
-		mNewGameViewFilePage = new NewGameViewFilePage("Game View", this.selection);
+		mNewGameViewFilePage = new NewGameViewFilePage("Game View", this.mSelection);
 		mNewGameViewFilePage.setTitle("From Game View Project");
 		mNewGameViewFilePage.setDescription("Creating something from scratch");
 		
@@ -138,7 +138,7 @@ public class NewPopupCreationWizard extends Wizard implements INewWizard {
 	
 	private WizardPage mNewGameViewFilePage;
 //	private IWorkbench workbench;
-	private IStructuredSelection selection;
+	private IStructuredSelection mSelection;
 	
 	protected String mType;
 

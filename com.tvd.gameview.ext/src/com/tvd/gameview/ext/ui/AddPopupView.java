@@ -30,7 +30,7 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import com.tvd.gameview.ext.wizards.NewPopupCreationWizard;
+import com.tvd.gameview.ext.wizards.NewInterfaceBuilderTemplate;
 
 public class AddPopupView extends AbstractHandler {
 
@@ -43,7 +43,7 @@ public class AddPopupView extends AbstractHandler {
 			while(it.hasNext()) {
 				Object object = (Object)it.next();
 				if(object instanceof IJavaProject) {
-					WizardDialog dialog = new WizardDialog(shell, new NewPopupCreationWizard());
+					WizardDialog dialog = new WizardDialog(shell, new NewInterfaceBuilderTemplate());
 					dialog.open();
 				}
 			}

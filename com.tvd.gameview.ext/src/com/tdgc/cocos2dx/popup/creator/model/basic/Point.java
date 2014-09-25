@@ -18,7 +18,7 @@
 
 package com.tdgc.cocos2dx.popup.creator.model.basic;
 
-import com.tdgc.cocos2dx.popup.creator.validate.Validator;
+import com.tvd.gameview.ext.value.validate.Validator;
 
 public class Point {
 

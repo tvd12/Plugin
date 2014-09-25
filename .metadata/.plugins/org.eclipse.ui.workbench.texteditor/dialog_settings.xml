@@ -13,26 +13,26 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="BuildingTreeView" key="selection"/>
+		<item value="setTab" key="selection"/>
 		<list key="findhistory">
-			<item value="BuildingTreeView"/>
-			<item value="BuildingTreeView.java"/>
-			<item value="update"/>
-			<item value="createInput"/>
-			<item value="strs"/>
-			<item value="isDone"/>
-			<item value="addResource"/>
-			<item value="setResource"/>
+			<item value="setTab"/>
+			<item value="setTa"/>
+			<item value="setRef"/>
+			<item value="OrientationCombo"/>
+			<item value="writeFile"/>
+			<item value="mBrowseButton"/>
+			<item value="mFileNameTextField"/>
+			<item value="selection"/>
 		</list>
 		<list key="replacehistory">
-			<item value="gameview"/>
 			<item value=""/>
+			<item value="mSelection"/>
+			<item value="gameview"/>
 			<item value="advancedattributegroup"/>
 			<item value="DefaultExitResources"/>
 			<item value="mDefaultBackgrounds"/>
 			<item value="mIsVisible"/>
 			<item value="mProgressGroup"/>
-			<item value="xs:string"/>
 		</list>
 	</section>
 </section>

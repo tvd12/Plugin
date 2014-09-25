@@ -26,7 +26,7 @@ import com.tdgc.cocos2dx.popup.creator.constants.Tag;
 import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 import com.tdgc.cocos2dx.popup.creator.utils.ViewUtils;
-import com.tdgc.cocos2dx.popup.creator.validate.Validator;
+import com.tvd.gameview.ext.value.validate.Validator;
 
 public class ItemGroup {
 	public ItemGroup(int pType) {
@@ -125,7 +125,8 @@ public class ItemGroup {
 		if(mValidArray) {
 			builder.append("\t")
 				.append(mItems.get(0).declarePositions().trim()
-					.replace(mItems.get(0).getPositionName(), mPositionArrayName));
+					.replace(mItems.get(0).getPositionName(), mPositionArrayName))
+				.append("\n");
 		} else {
 			for(int i = 0 ; i < mItems.size() ; i++) {
 				String pos = mItems.get(i).declarePositions();

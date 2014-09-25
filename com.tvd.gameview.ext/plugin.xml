@@ -133,6 +133,20 @@
            	</selection>
 	    </wizard>
 	    
+	    <wizard 
+	    	class="com.tvd.gameview.ext.wizards.NewInterfaceBuilderTemplate"
+	    	icon="icons/2_view.gif"
+	    	name="IB template"
+	    	category="com.tvd.gameview.plugin.category.wizards"
+           	id="com.tvd.gameview.ext.wizards.NewInterfaceBuilderTemplate">
+           	<description>
+               create new interface builder template wizard
+           	</description>
+           	<selection
+                  class="org.eclipse.core.resources.IResource">
+           	</selection>
+	    </wizard>
+	    
 	    <wizard
 			id="com.tvd.gameview.ext.wizards.GameViewProjectCreationWizard"
 			name="Game view project"

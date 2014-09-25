@@ -26,7 +26,7 @@
 	</section>
 	<section name="JavaAttributeWizard">
 		<section name="NewClassWizardPage">
-			<item value="false" key="create_constructor"/>
+			<item value="true" key="create_constructor"/>
 			<item value="false" key="create_main"/>
 			<item value="true" key="create_unimplemented"/>
 		</section>

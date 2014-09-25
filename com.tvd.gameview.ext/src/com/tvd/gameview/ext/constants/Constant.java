@@ -70,4 +70,9 @@ public interface Constant {
 		public static final String DECLARE_IDS			= "declare identifiers";
 		public static final String IMPLEMENT_IDS		= "implement identifiers";
 	}
+	
+	public static interface Orientation {
+		public static final int PORTRAIT 	= 0;
+		public static final int LANDSCAPE	= 1;
+	}
 }

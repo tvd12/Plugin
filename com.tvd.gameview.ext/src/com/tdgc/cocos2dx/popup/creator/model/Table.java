@@ -123,13 +123,17 @@ public class Table extends CommonObject {
 				getSizeTemplateFilePath(), getProject());
 		
 		builder.append(pointTemplate.replace("{var_name}", mPositionName)
-				.replace("{position}", mPositionString))
+				.replace("{position}", mPositionString)
+				.replace("{spaces}", StringUtils.space(60 - mPositionName.length())))
 			.append("\t" + sizeTemplate.replace("{var_name}", mSizeName)
-				.replace("{size}", mSizeString))
+				.replace("{size}", mSizeString)
+				.replace("{spaces}", StringUtils.space(60 - mSizeName.length())))
 			.append("\t" + pointTemplate.replace("{var_name}", mCellPositionName)
-				.replace("{position}", cellPositionString))
+				.replace("{position}", cellPositionString)
+				.replace("{spaces}", StringUtils.space(60 - mCellPositionName.length())))
 			.append("\t" + sizeTemplate.replace("{var_name}", mCellSizeName)
-				.replace("{size}", cellSizeString));
+				.replace("{size}", cellSizeString)
+				.replace("{spaces}", StringUtils.space(60 - mCellSizeName.length())));
 		
 		builder.append("\t" + mCell.implementPositions());
 		
@@ -173,12 +177,11 @@ public class Table extends CommonObject {
 	
 	public void addCell(Cell cell) {
 		this.mCell = cell;
-		this.mCell.setTabCount(mTabCount + 1);
 	}
 	
 	@Override
 	public void update() {
-		this.mCell.setTabCount(mTabCount + 1);
+		this.mCell.setTabCount(mTabCount + 2);
 	}
 	
 	public Cell getCell() {
@@ -195,7 +198,12 @@ public class Table extends CommonObject {
 	public CommonObject clone() {
 		Table table = new Table();
 		this.setAllPropertiesForObject(table);
-		
+		table.mCell = mCell;
+		table.mColumns = mColumns;
+		table.mRows = mColumns;
+		table.mSizeName = mSizeName;
+		table.mCellSizeName = mCellSizeName;
+		table.mCellPositionName = mCellPositionName;
 		return table;
 	}
 	

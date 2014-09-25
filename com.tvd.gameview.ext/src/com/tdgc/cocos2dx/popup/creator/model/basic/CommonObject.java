@@ -31,7 +31,7 @@ import com.tdgc.cocos2dx.popup.creator.model.Image;
 import com.tdgc.cocos2dx.popup.creator.model.Interface;
 import com.tdgc.cocos2dx.popup.creator.model.ItemGroup;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
-import com.tdgc.cocos2dx.popup.creator.validate.Validator;
+import com.tvd.gameview.ext.value.validate.Validator;
 
 public abstract class CommonObject extends BasicObject {
 	
@@ -114,11 +114,13 @@ public abstract class CommonObject extends BasicObject {
 		if(mPositionString != null 
 				&& mPositionName != null
 				&& !mPositionString.equals(Strings.DEFAULT)) {
+			String spaces = StringUtils.space(60 - mPositionName.length());
 			template = template.replace("{var_name}", mPositionName)
 					.replace("{position}", mPositionString)
-					.replace("{tab}", "\t");
+					.replace("{tab}", "\t")
+					.replace("{spaces}", spaces);
 			builder.append(template.trim());
-		} 
+		}
 		
 		if(mIsGenerateClass && mAdvancedObject != null) {
 			builder.append(mAdvancedObject.implementPositions());

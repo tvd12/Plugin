@@ -348,7 +348,7 @@ public class NewGameViewFilePage extends WizardPage {
     	
     }
     
-    public class InterfaceBuilderCombo extends Combo implements SelectionListener {
+    private class InterfaceBuilderCombo extends Combo implements SelectionListener {
 
 		public InterfaceBuilderCombo(Composite parent) {
 			super(parent, SWT.BORDER | SWT.FLAT | SWT.READ_ONLY);

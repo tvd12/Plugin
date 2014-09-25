@@ -68,7 +68,11 @@ public class Cell extends CommonObject {
 	@Override
 	public void setImage(Image image) {
 		this.mImage = image;
-		this.mImage.setTabCount(mTabCount + 1);
+	}
+	
+	@Override
+	public void setTabCount(int tabCount) {
+		mTabCount = tabCount - 1;
 	}
 	
 	@Override

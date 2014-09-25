@@ -16,7 +16,7 @@
  * along with com.tvd.gameview.ext.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.tdgc.cocos2dx.popup.creator.validate;
+package com.tvd.gameview.ext.value.validate;
 
 public class Validator {
 	
@@ -38,13 +38,17 @@ public class Validator {
 			valid = false;
 		} else {
 			String values[] = doubleValue.split(",");
-			values[0] = values[0].trim();
-			values[1] = values[1].trim();
-			if(values[0].equals("") || !isNumeric(values[0])) {
+			if(values.length < 2) {
 				valid = false;
-			}
-			if(values[1].equals("") || !isNumeric(values[1])) {
-				valid = false;
+			} else {
+				values[0] = values[0].trim();
+				values[1] = values[1].trim();
+				if(values[0].equals("") || !isNumeric(values[0])) {
+					valid = false;
+				}
+				if(values[1].equals("") || !isNumeric(values[1])) {
+					valid = false;
+				}
 			}
 		}
 		

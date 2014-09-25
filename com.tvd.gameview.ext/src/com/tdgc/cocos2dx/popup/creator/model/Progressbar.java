@@ -27,7 +27,7 @@ import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Size;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
 import com.tdgc.cocos2dx.popup.creator.utils.ViewUtils;
-import com.tdgc.cocos2dx.popup.creator.validate.Validator;
+import com.tvd.gameview.ext.value.validate.Validator;
 
 public class Progressbar extends CommonObject {
 	

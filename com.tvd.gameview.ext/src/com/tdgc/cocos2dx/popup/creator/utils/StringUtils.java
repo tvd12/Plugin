@@ -32,6 +32,18 @@ public class StringUtils {
 		return builder.toString();
 	}
 	
+	public static String space(int pNumSpace) {
+		if(pNumSpace <= 0) {
+			return " ";
+		}
+		StringBuilder builder = new StringBuilder();
+		for(int i = 0 ; i < pNumSpace ; i++) {
+			builder.append(" ");
+		}
+		
+		return builder.toString();
+	}
+	
 	public static String convertPhonyPathToId(String pImagePhonyPath) {
 		String result = pImagePhonyPath.replace("/", "_");
 		result = result

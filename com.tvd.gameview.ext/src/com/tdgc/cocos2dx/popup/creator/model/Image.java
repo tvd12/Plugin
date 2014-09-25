@@ -29,7 +29,7 @@ import com.tdgc.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Point;
 import com.tdgc.cocos2dx.popup.creator.model.basic.Size;
 import com.tdgc.cocos2dx.popup.creator.utils.StringUtils;
-import com.tdgc.cocos2dx.popup.creator.validate.Validator;
+import com.tvd.gameview.ext.value.validate.Validator;
 
 public class Image implements Comparable<Image> {
 	

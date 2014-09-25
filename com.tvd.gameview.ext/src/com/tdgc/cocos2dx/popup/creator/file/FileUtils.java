@@ -403,6 +403,7 @@ public class FileUtils {
 					.append("\t//end");
 			}
 		}
+		NotificationCenter.getInstance().replaceTopError(null);
 		return builder.toString();
 	}
 	
