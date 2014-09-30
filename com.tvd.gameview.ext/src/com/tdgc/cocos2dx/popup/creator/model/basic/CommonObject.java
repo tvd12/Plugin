@@ -136,7 +136,7 @@ public abstract class CommonObject extends BasicObject {
 	//change
 	public void setPositionName(String pPrefix, String pPositionName) {
 		this.mPositionNamePrefix = pPrefix;
-		this.setPositionName(pPositionName);
+		this.setPositionName(pPositionName.replace("__", "_"));
 	}
 	public void setPositionName(String pPositionName) {
 		try {
