@@ -71,6 +71,12 @@ public class Config {
 		mDefaultExitResources = fileUtils.fetchDefaultExitResource(
 				"Exit button on super", fileContent);
 		
+		if(mDefaultViewSuffix == null 
+				|| mDefaultViewSuffix.trim().length() == 0
+				|| mDefaultViewSuffix.equals("default")) {
+			mDefaultViewSuffix = "";
+		}
+		
 		System.out.println("Config just have loaded");
 	}
 	
