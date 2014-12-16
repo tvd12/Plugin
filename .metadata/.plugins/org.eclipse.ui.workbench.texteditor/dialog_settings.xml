@@ -13,16 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="mDefaultViewSuffix" key="selection"/>
+		<item value="Inte" key="selection"/>
 		<list key="findhistory">
+			<item value="Inte"/>
+			<item value="next"/>
+			<item value="exit"/>
 			<item value="mDefaultViewSuffix"/>
 			<item value="setPos"/>
 			<item value="System"/>
 			<item value="setTab"/>
 			<item value="setTa"/>
-			<item value="setRef"/>
-			<item value="OrientationCombo"/>
-			<item value="writeFile"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
