@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="LoseOnlinePopup" prefix="popup_lose_online" type="popup" exitable="true" 
+		super="PopupLayer" background-name="default" size="320.0, 480.0"
+		template-name="Common extend table"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="lose_online_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Desktop/Lose_Online/lose_online_popup" />
+	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPadhd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPadhd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPadhd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPadhd" />
+	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup" />
+	<background-image id="pop_common_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		phony-path="pop_common_bg.png"  />
+	<exit-image position="0.0, 0.0" location-in-interfacebuilder="100.0, 100.0" />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="lose_online_emotion" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="lose_online_popup_lose_online_emotion" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="82.0" height="83.0"
+				phony-path="lose_online_popup/sprites/lose_online_emotion.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="lose_online_goodluck_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="lose_online_popup_lose_online_goodluck_text" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="207.0" height="20.0"
+				phony-path="lose_online_popup/sprites/lose_online_goodluck_text.png"  />
+		</sprite>
+	</sprites>
+	<menuitems array="false" comment="create group of menuitems">
+		<menuitem visible="true" comment="">
+			<position-name value="close" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="0.0, 0.0" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="lose_online_close_active" unlocated="true" />
+					<image id="lose_online_popup_close_lose_online_close_active" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="116.0" height="48.0"
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="lose_online_close_normal" unlocated="true" />
+					<image id="lose_online_popup_close_lose_online_close_normal" 
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+	</menuitems>
+	<resource comment="resource for view">
+		<image id="lose_online_popup_resource_lose_online_button_disable" 
+			phony-path="lose_online_popup/resource/lose_online_button_disable.png"  />
+	</resource>
+</view>

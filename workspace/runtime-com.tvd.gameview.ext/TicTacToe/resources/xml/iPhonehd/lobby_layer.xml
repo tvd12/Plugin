@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view class-name="LobbyLayer" prefix="layer_lobby" type="layer" exitable="false" 
-		super="CommonLayer" background-name="default" size="320.0, 568.0"
+		super="CommonLayer" background-name="default" size="320.0, 480.0"
 		template-name="Common"
 		exported="true"
 		comment=""
@@ -19,7 +19,7 @@
 	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Layer" />
 	<background-image id="lobby_layer_background_bg_home" 
 		location-in-interfacebuilder="0.0, 0.0"
-		width="320.0" height="568.0"
+		width="320.0" height="480.0"
 		phony-path="home_layer/background/bg_home.png"  />
 
 	<sprites array="false" comment="create group of sprites">
@@ -27,36 +27,36 @@
 			<position-name value="lobby_dock_bottom" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="160.0, 22.0" />
-			<z-index value="0" />
+			<z-index value="3" />
 			<image id="lobby_layer_lobby_dock_bottom" 
-				location-in-interfacebuilder="0.0, 524.0"
+				location-in-interfacebuilder="0.0, 436.0"
 				width="320.0" height="44.0"
 				phony-path="home_layer/sprites/home_dock_bottom.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="lobby_avatar_backend" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="39.5, 531.5" />
+			<position value="39.5, 440.5" />
 			<z-index value="1" />
 			<image id="lobby_layer_lobby_avatar_backend" 
-				location-in-interfacebuilder="0.0, -3.0"
+				location-in-interfacebuilder="0.0, 0.0"
 				width="79.0" height="79.0"
 				phony-path="lobby_layer/sprites/lobby_avatar_backend.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="lobby_avatar_frontend" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="38.5, 529.5" />
+			<position value="39.5, 440.5" />
 			<z-index value="2" />
 			<image id="lobby_layer_lobby_avatar_frontend" 
-				location-in-interfacebuilder="-1.0, -1.0"
+				location-in-interfacebuilder="0.0, 0.0"
 				width="79.0" height="79.0"
 				phony-path="lobby_layer/sprites/lobby_avatar_frontend.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="lobby_header" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.0, 531.5" />
+			<position value="160.0, 443.5" />
 			<z-index value="0" />
 			<image id="lobby_layer_lobby_header" 
 				location-in-interfacebuilder="0.0, 0.0"
@@ -66,7 +66,7 @@
 		<sprite visible="true" comment="">
 			<position-name value="lobby_icon_coin" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="53.0, 238.0" />
+			<position value="53.0, 150.0" />
 			<z-index value="1" />
 			<image id="lobby_layer_lobby_icon_coin" 
 				location-in-interfacebuilder="23.0, 300.0"
@@ -76,7 +76,7 @@
 		<sprite visible="true" comment="">
 			<position-name value="lobby_icon_facebook" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="53.0, 424.0" />
+			<position value="53.0, 336.0" />
 			<z-index value="1" />
 			<image id="lobby_layer_lobby_icon_facebook" 
 				location-in-interfacebuilder="23.0, 114.0"
@@ -86,7 +86,7 @@
 		<sprite visible="true" comment="">
 			<position-name value="lobby_icon_time" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="162.0, 166.5" />
+			<position value="162.0, 78.5" />
 			<z-index value="0" />
 			<image id="lobby_layer_lobby_icon_time" 
 				location-in-interfacebuilder="151.0, 391.0"
@@ -96,7 +96,7 @@
 		<sprite visible="true" comment="">
 			<position-name value="lobby_icon_video" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="53.0, 330.0" />
+			<position value="53.0, 242.0" />
 			<z-index value="1" />
 			<image id="lobby_layer_lobby_icon_video" 
 				location-in-interfacebuilder="23.0, 208.0"
@@ -106,10 +106,10 @@
 		<sprite visible="true" comment="">
 			<position-name value="user_flag" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="9.5, 561.0" />
+			<position value="10.5, 472.0" />
 			<z-index value="3" />
 			<image id="lobby_layer_user_flag" 
-				location-in-interfacebuilder="2.0, 2.0"
+				location-in-interfacebuilder="3.0, 3.0"
 				width="15.0" height="10.0"
 				phony-path="lobby_layer/sprites/user_flag.png"  />
 		</sprite>
@@ -122,7 +122,7 @@
 			<font-size value="24.0" />
 			<position-name value="title" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="170.0, 473.0" />
+			<position value="170.0, 385.0" />
 			<location-in-interfacebuilder value="62.0, 83.0" />
 			<z-index value="0" />
 		</label>
@@ -133,7 +133,7 @@
 			<font-size value="17.0" />
 			<position-name value="username" />
 			<anchorpoint value="0.0, 0.5" />
-			<position value="71.0, 551.5" />
+			<position value="71.0, 463.5" />
 			<location-in-interfacebuilder value="71.0, 8.0" />
 			<z-index value="1" />
 		</label>
@@ -144,7 +144,7 @@
 			<font-size value="24.0" />
 			<position-name value="coins" />
 			<anchorpoint value="0.0, 0.5" />
-			<position value="71.0, 523.0" />
+			<position value="71.0, 435.0" />
 			<location-in-interfacebuilder value="71.0, 33.0" />
 			<z-index value="1" />
 		</label>
@@ -155,7 +155,7 @@
 			<font-size value="24.0" />
 			<position-name value="share_fb" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="169.0, 425.0" />
+			<position value="169.0, 337.0" />
 			<location-in-interfacebuilder value="103.0, 131.0" />
 			<z-index value="1" />
 		</label>
@@ -166,7 +166,7 @@
 			<font-size value="24.0" />
 			<position-name value="watch_a_video" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.0, 337.0" />
+			<position value="160.0, 249.0" />
 			<location-in-interfacebuilder value="82.0, 219.0" />
 			<z-index value="1" />
 		</label>
@@ -177,7 +177,7 @@
 			<font-size value="15.0" />
 			<position-name value="watch_a_video_note" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.5, 317.5" />
+			<position value="160.5, 229.5" />
 			<location-in-interfacebuilder value="104.0, 243.0" />
 			<z-index value="1" />
 		</label>
@@ -188,7 +188,7 @@
 			<font-size value="24.0" />
 			<position-name value="user_1_coin" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.0, 238.0" />
+			<position value="160.0, 150.0" />
 			<location-in-interfacebuilder value="100.0, 318.0" />
 			<z-index value="1" />
 		</label>
@@ -199,7 +199,7 @@
 			<font-size value="24.0" />
 			<position-name value="waiting" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="120.0, 168.0" />
+			<position value="120.0, 80.0" />
 			<location-in-interfacebuilder value="96.0, 388.0" />
 			<z-index value="0" />
 		</label>
@@ -210,7 +210,7 @@
 			<font-size value="24.0" />
 			<position-name value="waiting_value" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="209.0, 168.0" />
+			<position value="209.0, 80.0" />
 			<location-in-interfacebuilder value="179.0, 388.0" />
 			<z-index value="0" />
 		</label>
@@ -221,7 +221,7 @@
 			<font-size value="17.0" />
 			<position-name value="or1" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.5, 377.5" />
+			<position value="160.5, 289.5" />
 			<location-in-interfacebuilder value="152.0, 182.0" />
 			<z-index value="0" />
 		</label>
@@ -232,7 +232,7 @@
 			<font-size value="17.0" />
 			<position-name value="or2" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.5, 284.5" />
+			<position value="160.5, 196.5" />
 			<location-in-interfacebuilder value="152.0, 275.0" />
 			<z-index value="0" />
 		</label>
@@ -243,7 +243,7 @@
 			<font-size value="17.0" />
 			<position-name value="or3" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.5, 192.5" />
+			<position value="160.5, 104.5" />
 			<location-in-interfacebuilder value="152.0, 367.0" />
 			<z-index value="0" />
 		</label>
@@ -254,7 +254,7 @@
 			<font-size value="17.0" />
 			<position-name value="shop_title" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="271.0, 536.5" />
+			<position value="271.0, 448.5" />
 			<location-in-interfacebuilder value="254.0, 23.0" />
 			<z-index value="2" />
 		</label>
@@ -263,14 +263,14 @@
 		<menuitem visible="true" comment="">
 			<position-name value="back" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="48.5, 48.0" />
-			<z-index value="0" />
+			<position value="76.0, 35.5" />
+			<z-index value="5" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
 					<position-name value="lobby_back_active" unlocated="true" />
 					<image id="lobby_layer_back_lobby_back_active" 
-						location-in-interfacebuilder="19.0, 487.0"
-						width="59.0" height="66.0"
+						location-in-interfacebuilder="54.0, 420.0"
+						width="44.0" height="49.0"
 						phony-path="lobby_layer/menuitems/back/sprites/lobby_back_active.png"  />
 				</sprite>
 				<sprite visible="true" comment="">
@@ -283,14 +283,14 @@
 		<menuitem visible="true" comment="">
 			<position-name value="inapp" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="272.5, 48.0" />
-			<z-index value="0" />
+			<position value="243.0, 35.5" />
+			<z-index value="5" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
 					<position-name value="lobby_inapp_active" unlocated="true" />
 					<image id="lobby_layer_inapp_lobby_inapp_active" 
-						location-in-interfacebuilder="243.0, 487.0"
-						width="59.0" height="66.0"
+						location-in-interfacebuilder="221.0, 420.0"
+						width="44.0" height="49.0"
 						phony-path="lobby_layer/menuitems/inapp/sprites/lobby_inapp_active.png"  />
 				</sprite>
 				<sprite visible="true" comment="">
@@ -303,14 +303,14 @@
 		<menuitem visible="true" comment="">
 			<position-name value="leaderboard" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="197.5, 48.0" />
-			<z-index value="0" />
+			<position value="187.0, 35.5" />
+			<z-index value="5" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
 					<position-name value="lobby_leaderboard_active" unlocated="true" />
 					<image id="lobby_layer_leaderboard_lobby_leaderboard_active" 
-						location-in-interfacebuilder="168.0, 487.0"
-						width="59.0" height="66.0"
+						location-in-interfacebuilder="165.0, 420.0"
+						width="44.0" height="49.0"
 						phony-path="lobby_layer/menuitems/leaderboard/sprites/lobby_leaderboard_active.png"  />
 				</sprite>
 				<sprite visible="true" comment="">
@@ -323,8 +323,8 @@
 		<menuitem visible="true" comment="">
 			<position-name value="share_fb_selection" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.5, 423.5" />
-			<z-index value="0" />
+			<position value="160.5, 335.5" />
+			<z-index value="5" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
 					<position-name value="lobby_share_fb_active" unlocated="true" />
@@ -343,8 +343,8 @@
 		<menuitem visible="true" comment="">
 			<position-name value="watch_selection" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.5, 330.5" />
-			<z-index value="0" />
+			<position value="160.5, 242.5" />
+			<z-index value="5" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
 					<position-name value="lobby_watch_selection_active" unlocated="true" />
@@ -363,8 +363,8 @@
 		<menuitem visible="true" comment="">
 			<position-name value="use_selection" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.5, 238.5" />
-			<z-index value="0" />
+			<position value="160.5, 150.5" />
+			<z-index value="5" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
 					<position-name value="lobby_use_selection_active" unlocated="true" />
@@ -383,14 +383,14 @@
 		<menuitem visible="true" comment="">
 			<position-name value="setting" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="122.5, 48.0" />
-			<z-index value="0" />
+			<position value="132.0, 35.5" />
+			<z-index value="5" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
 					<position-name value="lobby_setting_active" unlocated="true" />
 					<image id="lobby_layer_setting_lobby_setting_active" 
-						location-in-interfacebuilder="93.0, 487.0"
-						width="59.0" height="66.0"
+						location-in-interfacebuilder="110.0, 420.0"
+						width="44.0" height="49.0"
 						phony-path="lobby_layer/menuitems/setting/sprites/lobby_setting_active.png"  />
 				</sprite>
 				<sprite visible="true" comment="">
@@ -403,7 +403,7 @@
 		<menuitem visible="true" comment="">
 			<position-name value="shop" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="271.5, 536.5" />
+			<position value="271.5, 448.5" />
 			<z-index value="1" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">

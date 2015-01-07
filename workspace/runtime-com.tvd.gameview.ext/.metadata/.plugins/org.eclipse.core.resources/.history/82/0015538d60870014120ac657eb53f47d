@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="TournamentLayer" prefix="layer_tournament" type="layer" exitable="false" 
+		super="CommonLayer" background-name="default" size="320.0, 568.0"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="tournament_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Desktop/TicTacToe/Tournament/tournament_layer" />
+	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPhonehd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPhonehd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPhonehd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPhonehd" />
+	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Layer" />
+	<background-image id="tournament_layer_background_tour_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="320.0" height="568.0"
+		phony-path="tournament_layer/background/tour_bg.png"  />
+
+	<sprites array="true" length="8" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="small_avatar" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="tournament_layer_small_avatar_tour_avatar_small_border" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="39.0" height="39.0"
+				phony-path="tournament_layer/sprites/small_avatar/tour_avatar_small_border.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="tour_avatar_small_area" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="tournament_layer_small_avatar_tour_avatar_small_area" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="39.0" height="39.0"
+						phony-path="tournament_layer/sprites/small_avatar/sprites/tour_avatar_small_area.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="tour_small_question" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="tournament_layer_small_avatar_tour_small_question" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="39.0" height="39.0"
+						phony-path="tournament_layer/sprites/small_avatar/sprites/tour_small_question.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="user_flag" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="64.5, 230.0" />
+					<z-index value="3" />
+					<image id="profile_popup_user_flag" 
+						location-in-interfacebuilder="67.0, 106.0"
+						width="15.0" height="10.0"
+						phony-path="lobby_layer/sprites/user_flag.png"  />
+				</sprite>
+			</sprites>
+		</sprite>
+	</sprites>
+	<sprites array="true" length="4" comment="">
+		<sprite visible="true" comment="">
+			<position-name value="tour_big_winner" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="tournament_layer_tour_big_winner" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="56.0" height="56.0"
+				phony-path="tournament_layer/sprites/tour_big_winner.png"  />
+		</sprite>
+	</sprites>
+	<sprites array="true" length="4" comment="">
+		<sprite visible="true" comment="">
+			<position-name value="tour_small_winner" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="tournament_layer_tour_small_winner" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="39.0" height="39.0"
+				phony-path="tournament_layer/sprites/tour_small_winner.png"  />
+		</sprite>
+	</sprites>
+	<sprites array="false" comment="">
+		<sprite visible="true" comment="">
+			<position-name value="tour_box_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="tournament_layer_tour_box_text" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="287.0" height="36.0"
+				phony-path="tournament_layer/sprites/tour_box_text.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="tour_logo" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="tournament_layer_tour_logo" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="98.0" height="27.0"
+				phony-path="tournament_layer/sprites/tour_logo.png"  />
+		</sprite>
+	</sprites>
+	<resource comment="resource for view">
+		<image id="tournament_layer_resource_avatar_big_default" 
+			phony-path="tournament_layer/resource/avatar_big_default.png"  />
+		<image id="tournament_layer_resource_avatar_big_default2" 
+			phony-path="tournament_layer/resource/avatar_big_default2.png"  />
+		<image id="tournament_layer_resource_avatar_big_default3" 
+			phony-path="tournament_layer/resource/avatar_big_default3.png"  />
+		<image id="tournament_layer_resource_avatar_big_default4" 
+			phony-path="tournament_layer/resource/avatar_big_default4.png"  />
+		<image id="tournament_layer_resource_avatar_big_default5" 
+			phony-path="tournament_layer/resource/avatar_big_default5.png"  />
+		<image id="tournament_layer_resource_avatar_big_default6" 
+			phony-path="tournament_layer/resource/avatar_big_default6.png"  />
+		<image id="tournament_layer_resource_avatar_big_default7" 
+			phony-path="tournament_layer/resource/avatar_big_default7.png"  />
+		<image id="tournament_layer_resource_avatar_big_default8" 
+			phony-path="tournament_layer/resource/avatar_big_default8.png"  />
+		<image id="tournament_layer_resource_avatar_big_highlight" 
+			phony-path="tournament_layer/resource/avatar_big_highlight.png"  />
+		<image id="tournament_layer_resource_avatar_small_default" 
+			phony-path="tournament_layer/resource/avatar_small_default.png"  />
+		<image id="tournament_layer_resource_avatar_small_default2" 
+			phony-path="tournament_layer/resource/avatar_small_default2.png"  />
+		<image id="tournament_layer_resource_avatar_small_default3" 
+			phony-path="tournament_layer/resource/avatar_small_default3.png"  />
+		<image id="tournament_layer_resource_avatar_small_default4" 
+			phony-path="tournament_layer/resource/avatar_small_default4.png"  />
+		<image id="tournament_layer_resource_avatar_small_default5" 
+			phony-path="tournament_layer/resource/avatar_small_default5.png"  />
+		<image id="tournament_layer_resource_avatar_small_default6" 
+			phony-path="tournament_layer/resource/avatar_small_default6.png"  />
+		<image id="tournament_layer_resource_avatar_small_default7" 
+			phony-path="tournament_layer/resource/avatar_small_default7.png"  />
+		<image id="tournament_layer_resource_avatar_small_default8" 
+			phony-path="tournament_layer/resource/avatar_small_default8.png"  />
+		<image id="tournament_layer_resource_avatar_small_highlight" 
+			phony-path="tournament_layer/resource/avatar_small_highlight.png"  />
+		<image id="tournament_layer_resource_tour_avatar_big_area" 
+			phony-path="tournament_layer/resource/tour_avatar_big_area.png"  />
+		<image id="tournament_layer_resource_tour_avatar_big_border" 
+			phony-path="tournament_layer/resource/tour_avatar_big_border.png"  />
+	</resource>
+</view>

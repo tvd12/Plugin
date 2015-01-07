@@ -11,7 +11,7 @@
 	<position value="default" />
 	<define-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/Defines" />
 	<parameters-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/GameParams" />
-	<images-inputpath value="/Users/dungtavan/Desktop/Offline/main_game_layer" />
+	<images-inputpath value="/Users/dungtavan/Desktop/Online/main_game_layer" />
 	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPadhd" />
 	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPadhd" used="true" />
 	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPadhd" />
@@ -20,40 +20,137 @@
 
 	<sprites array="false" comment="create group of sprites">
 		<sprite visible="true" comment="">
-			<position-name value="main_board" />
+			<position-name value="main_online_avatar_left_backend" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="50.0, 50.0" />
 			<z-index value="0" />
-			<image id="main_game_layer_main_board" 
+			<image id="main_game_layer_main_online_avatar_left_backend" 
 				location-in-interfacebuilder="10.0, 10.0"
-				width="308.0" height="328.0"
-				phony-path="main_game_layer/sprites/main_board.png"  />
+				width="79.0" height="79.0"
+				phony-path="main_game_layer/sprites/main_online_avatar_left_backend.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
-			<position-name value="main_off_o_ai" />
+			<position-name value="main_online_avatar_left_frontend" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="50.0, 50.0" />
 			<z-index value="0" />
-			<image id="main_game_layer_main_off_o_ai" 
+			<image id="main_game_layer_main_online_avatar_left_frontend" 
 				location-in-interfacebuilder="10.0, 10.0"
-				width="29.0" height="31.0"
-				phony-path="main_game_layer/sprites/main_off_o_ai.png"  />
+				width="79.0" height="79.0"
+				phony-path="main_game_layer/sprites/main_online_avatar_left_frontend.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
-			<position-name value="main_off_x_me" />
+			<position-name value="main_online_avatar_left_white" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="50.0, 50.0" />
 			<z-index value="0" />
-			<image id="main_game_layer_main_off_x_me" 
+			<image id="main_game_layer_main_online_avatar_left_white" 
 				location-in-interfacebuilder="10.0, 10.0"
-				width="29.0" height="31.0"
-				phony-path="main_game_layer/sprites/main_off_x_me.png"  />
+				width="79.0" height="79.0"
+				phony-path="main_game_layer/sprites/main_online_avatar_left_white.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="main_online_avatar_right_backend" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="main_game_layer_main_online_avatar_right_backend" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="79.0" height="79.0"
+				phony-path="main_game_layer/sprites/main_online_avatar_right_backend.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="main_online_avatar_right_frontend" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="main_game_layer_main_online_avatar_right_frontend" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="79.0" height="79.0"
+				phony-path="main_game_layer/sprites/main_online_avatar_right_frontend.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="main_online_avatar_right_white" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="main_game_layer_main_online_avatar_right_white" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="79.0" height="79.0"
+				phony-path="main_game_layer/sprites/main_online_avatar_right_white.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="main_online_footer" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="main_game_layer_main_online_footer" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="320.0" height="94.0"
+				phony-path="main_game_layer/sprites/main_online_footer.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="main_online_header_online" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="main_game_layer_main_online_header_online" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="320.0" height="132.0"
+				phony-path="main_game_layer/sprites/main_online_header_online.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="main_online_symbol_o_top" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="main_game_layer_main_online_symbol_o_top" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="35.0" height="35.0"
+				phony-path="main_game_layer/sprites/main_online_symbol_o_top.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="main_online_symbol_x_top" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="main_game_layer_main_online_symbol_x_top" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="35.0" height="35.0"
+				phony-path="main_game_layer/sprites/main_online_symbol_x_top.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="main_online_timer_bg" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="main_game_layer_main_online_timer_bg_timer_progress_bg" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="110.0" height="10.0"
+				phony-path="main_game_layer/sprites/main_online_timer_bg/timer_progress_bg.png"  />
+			<progressbar template-name="CCProgressTimer" visible="true" comment="">
+				<type value="kCCProgressTimerTypeBar" />
+				<mid-point value="0.0, 0.0" />
+				<bar-change-rate value="1.0, 0.0" />
+				<percent value="30.0" />
+				<position-name value="timer_progress_over" unlocated="true" />
+				<anchorpoint value="0.0, 0.0" />
+				<sprite visible="true" comment="">
+					<position-name value="timer_progress_over" unlocated="true" />
+					<image id="main_game_layer_main_online_timer_bg_progressbar_timer_progress_over" 
+						phony-path="main_game_layer/sprites/main_online_timer_bg/progressbar/timer_progress_over.png"  />
+				</sprite>
+			</progressbar>
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="main_online_watch_icon" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="main_game_layer_main_online_watch_icon" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="12.0" height="11.0"
+				phony-path="main_game_layer/sprites/main_online_watch_icon.png"  />
 		</sprite>
 	</sprites>
-	<resource comment="resource for view">
-		<image id="main_game_layer_resource_main_symbol_o" 
-			phony-path="main_game_layer/resource/main_symbol_o.png"  />
-		<image id="main_game_layer_resource_main_symbol_x" 
-			phony-path="main_game_layer/resource/main_symbol_x.png"  />
-	</resource>
 </view>

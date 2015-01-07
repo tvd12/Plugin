@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="SettingOfflinePopup" prefix="popup_setting_offline" type="popup" exitable="true" 
+		super="PopupLayer" background-name="default" size="261.0, 331.0"
+		template-name="Common"
+		exported="true"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="setting_offline_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Desktop/Settings/setting_offline_popup" />
+	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPhonehd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPhonehd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPhonehd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPhonehd" />
+	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup" />
+	<background-image id="setting_offline_popup_background_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="261.0" height="331.0"
+		phony-path="profile_popup/background/bg.png"  />
+	<exit-image position="251.5, 313.5" location-in-interfacebuilder="242.0, 8.0" />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="setting_header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="130.0, 318.5" />
+			<z-index value="0" />
+			<image id="setting_offline_popup_setting_header" 
+				location-in-interfacebuilder="107.0, 15.0"
+				width="66.0" height="15.0"
+				phony-path="setting_offline_popup/sprites/setting_header.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="Sound" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="sound" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="39.0, 255.5" />
+			<location-in-interfacebuilder value="49.0, 77.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="FB Page" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="fbpage" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="39.0, 205.5" />
+			<location-in-interfacebuilder value="49.0, 127.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="Feedback" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="feedback" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="75.0, 156.5" />
+			<location-in-interfacebuilder value="51.0, 176.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="LIKE" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="13.0" />
+			<position-name value="like" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="181.0, 206.5" />
+			<location-in-interfacebuilder value="191.0, 128.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="EMAIL" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="13.0" />
+			<position-name value="email" />
+			<anchorpoint value="1.0, 0.5" />
+			<position value="211.0, 155.5" />
+			<location-in-interfacebuilder value="188.0, 179.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="HELP" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="help" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="53.0, 46.5" />
+			<location-in-interfacebuilder value="63.0, 287.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="EXIT" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="exit" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="179.0, 46.5" />
+			<location-in-interfacebuilder value="189.0, 287.0" />
+			<z-index value="0" />
+		</label>
+	</labels>
+	<menuitems array="false" comment="create group of menuitems">
+		<menuitem visible="true" comment="">
+			<position-name value="like" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="194.5, 205.5" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="setting_like_active" unlocated="true" />
+					<image id="setting_offline_popup_like_setting_button_active" 
+						location-in-interfacebuilder="164.0, 118.0"
+						width="81.0" height="35.0"
+						phony-path="setting_offline_popup/menuitems/function/sprites/setting_button_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="setting_like_normal" unlocated="true" />
+					<image id="setting_offline_popup_like_setting_button_normal" 
+						phony-path="setting_offline_popup/menuitems/function/sprites/setting_button_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+		<menuitem visible="true" comment="">
+			<position-name value="email" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="194.5, 155.5" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="setting_email_active" unlocated="true" />
+					<image id="setting_offline_popup_email_setting_button_active" 
+						location-in-interfacebuilder="164.0, 168.0"
+						width="81.0" height="35.0"
+						phony-path="setting_offline_popup/menuitems/function/sprites/setting_button_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="setting_email_normal" unlocated="true" />
+					<image id="setting_offline_popup_email_setting_button_normal" 
+						phony-path="setting_offline_popup/menuitems/function/sprites/setting_button_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+		<menuitem visible="true" comment="">
+			<position-name value="sound" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="194.0, 255.5" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="setting_button_toggle_active" unlocated="true" />
+					<image id="setting_offline_popup_sound_setting_button_toggle_active" 
+						location-in-interfacebuilder="164.0, 68.0"
+						width="80.0" height="35.0"
+						phony-path="setting_offline_popup/menuitems/sound/sprites/setting_button_toggle_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="setting_button_toggle_normal" unlocated="true" />
+					<image id="setting_offline_popup_sound_setting_button_toggle_normal" 
+						phony-path="setting_offline_popup/menuitems/sound/sprites/setting_button_toggle_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+		<menuitem visible="true" comment="">
+			<position-name value="close" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="70.0, 46.0" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="setting_offline_help_active" unlocated="true" />
+					<image id="setting_offline_popup_setting_help_active" 
+						location-in-interfacebuilder="22.0, 271.0"
+						width="116.0" height="48.0"
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="setting_offline_help_normal" unlocated="true" />
+					<image id="setting_offline_popup_setting_help_normal" 
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+		<menuitem visible="true" comment="">
+			<position-name value="exit_right" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="194.0, 46.0" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="setting_offline_exit_active" unlocated="true" />
+					<image id="setting_offline_exit_setting_exit_active" 
+						location-in-interfacebuilder="146.0, 271.0"
+						width="116.0" height="48.0"
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="setting_offline_exit_normal" unlocated="true" />
+					<image id="setting_offline_exit_setting_exit_normal" 
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+	</menuitems>
+	<resource comment="resource for view">
+		<image id="setting_offline_popup_resource_setting_button_disable" 
+			phony-path="setting_offline_popup/resource/setting_button_disable.png"  />
+		<image id="setting_offline_popup_resource_setting_button_toggle_disable" 
+			phony-path="setting_offline_popup/resource/setting_button_toggle_disable.png"  />
+	</resource>
+</view>

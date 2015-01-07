@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="LeaderboardPopup" prefix="popup_leaderboard" type="popup" exitable="true" 
+		super="PopupLayer" background-name="default" size="320.0, 480.0"
+		template-name="Common extend table"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="leaderboard_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Desktop/TicTacToe/LeaderBoard/leaderboard_popup" />
+	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPadhd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPadhd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPadhd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPadhd" />
+	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup" />
+	<background-image id="pop_common_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		phony-path="pop_common_bg.png"  />
+	<exit-image position="0.0, 0.0" location-in-interfacebuilder="100.0, 100.0" />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="ldb_header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="leaderboard_popup_ldb_header" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="90.0" height="14.0"
+				phony-path="leaderboard_popup/sprites/ldb_header.png"  />
+		</sprite>
+	</sprites>
+	<resource comment="resource for view">
+		<image id="leaderboard_popup_resource_ldb_rank_2" 
+			phony-path="leaderboard_popup/resource/ldb_rank_2.png"  />
+		<image id="leaderboard_popup_resource_ldb_rank_3" 
+			phony-path="leaderboard_popup/resource/ldb_rank_3.png"  />
+	</resource>
+</view>

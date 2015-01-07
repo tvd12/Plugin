@@ -13,30 +13,38 @@
 *
 **/
 
+//{n}
+
 #ifndef __{project_name}__{class_name}__
 #define __{project_name}__{class_name}__
+
+//{n}
 
 #include "cocos-ext.h"
 
 #include "{super_name}.h"
 #include "Defines.h"
 
+//{n}
+
 using namespace std;
 using namespace cocos2d;
 using namespace cocos2d::extension;
+
+//{n}
 
 class {class_name} : public {super_name} {
 
 public:
 	static {class_name}* create(//{parameters},
 							string pBackgroundImage = D::id.{background_id},
-                            string pExitNormalImage = "" /*D::id.{exit_normal_id}*/,
-                            string pExitSelectedImage = "" /*D::id.{exit_active_id}*/);
+                            string pExitNormalImage = D::id.{exit_normal_id},
+                            string pExitSelectedImage = D::id.{exit_active_id});
     
     virtual bool init(//{parameters},
     				string pBackgroundImage = D::id.{background_id},
-                    string pExitNormalImage = "" /*D::id.{exit_normal_id}*/,
-                    string pExitSelectedImage = "" /*D::id.{exit_active_id}*/);
+                    string pExitNormalImage = D::id.{exit_normal_id},
+                    string pExitSelectedImage = D::id.{exit_active_id});
  
  protected:
     virtual void addSprites();
@@ -75,6 +83,8 @@ private:
 *
 **/
 
+//{n}
+
 #ifndef __{project_name}__{class_name}__
 #define __{project_name}__{class_name}__
 
@@ -84,12 +94,18 @@ private:
 #include "{super_table_name}.h"
 #include "Defines.h"
 
+//{n}
+
 using namespace std;
 using namespace cocos2d;
 using namespace cocos2d::extension;
 
+//{n}
+
 class {super_cell_name};
 class TableView;
+
+//{n}
 
 class {class_name} : public {super_name}, public {super_table_name} {
 
@@ -146,6 +162,8 @@ private:
 * Created by {author} on {created_date}
 *
 **/
+
+//{n}
 
 #include "{class_name}.h"
 #include "{super_name}.h"

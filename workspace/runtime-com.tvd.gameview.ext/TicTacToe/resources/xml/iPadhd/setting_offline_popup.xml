@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="SettingOfflinePopup" prefix="popup_setting_offline" type="popup" exitable="true" 
+		super="PopupLayer" background-name="default" size="320.0, 480.0"
+		template-name="Common extend table"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="setting_offline_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Desktop/Settings/setting_offline_popup" />
+	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPadhd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPadhd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPadhd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPadhd" />
+	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup" />
+	<background-image id="pop_common_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		phony-path="pop_common_bg.png"  />
+	<exit-image position="0.0, 0.0" location-in-interfacebuilder="100.0, 100.0" />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="setting_header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="setting_offline_popup_setting_header" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="66.0" height="15.0"
+				phony-path="setting_offline_popup/sprites/setting_header.png"  />
+		</sprite>
+	</sprites>
+	<menuitems array="false" comment="create group of menuitems">
+		<menuitem visible="true" comment="">
+			<position-name value="function" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="0.0, 0.0" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="setting_button_active" unlocated="true" />
+					<image id="setting_offline_popup_function_setting_button_active" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="81.0" height="35.0"
+						phony-path="setting_offline_popup/menuitems/function/sprites/setting_button_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="setting_button_normal" unlocated="true" />
+					<image id="setting_offline_popup_function_setting_button_normal" 
+						phony-path="setting_offline_popup/menuitems/function/sprites/setting_button_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+		<menuitem visible="true" comment="">
+			<position-name value="sound" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="0.0, 0.0" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="setting_button_toggle_active" unlocated="true" />
+					<image id="setting_offline_popup_sound_setting_button_toggle_active" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="80.0" height="35.0"
+						phony-path="setting_offline_popup/menuitems/sound/sprites/setting_button_toggle_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="setting_button_toggle_normal" unlocated="true" />
+					<image id="setting_offline_popup_sound_setting_button_toggle_normal" 
+						phony-path="setting_offline_popup/menuitems/sound/sprites/setting_button_toggle_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+	</menuitems>
+	<resource comment="resource for view">
+		<image id="setting_offline_popup_resource_setting_button_disable" 
+			phony-path="setting_offline_popup/resource/setting_button_disable.png"  />
+		<image id="setting_offline_popup_resource_setting_button_toggle_disable" 
+			phony-path="setting_offline_popup/resource/setting_button_toggle_disable.png"  />
+	</resource>
+</view>

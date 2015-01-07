@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="ShopPopup" prefix="popup_shop" type="popup" exitable="true" 
+		super="PopupLayer" background-name="default" size="320.0, 480.0"
+		template-name="Common extend table"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="shop_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Desktop/TicTacToe/Buy_Coins/shop_popup" />
+	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPhonehd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPhonehd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPhonehd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPhonehd" />
+	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup" />
+	<background-image id="shop_popup_background_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="261.0" height="331.0"
+		phony-path="profile_popup/background/bg.png"  />
+	<exit-image position="251.5, 311.5" location-in-interfacebuilder="242.0, 10.0" />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="item" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="shop_popup_item_shop_item_bg" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="108.0" height="108.0"
+				phony-path="shop_popup/sprites/item/shop_item_bg.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="shop_coin_icon" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="shop_popup_item_shop_coin_icon" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="10.0" height="10.0"
+						phony-path="shop_popup/sprites/item/sprites/shop_coin_icon.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="shop_sale_bg" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="shop_popup_item_shop_sale_bg" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="50.0" height="17.0"
+						phony-path="shop_popup/sprites/item/sprites/shop_sale_bg.png"  />
+				</sprite>
+			</sprites>
+			<labels array="false" comment="create group of labels">
+				<label visible="true" comment="">
+					<text value="price" />
+					<font name="HelveticaNeue" family="Helvetica Neue" />
+					<font-color red="255" green="255" blue="255" alpha="255" />
+					<font-size value="17.0" />
+					<position-name value="position" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="107.5, 23.5" />
+					<location-in-interfacebuilder value="58.0, 309.0" />
+					<z-index value="0" />
+				</label>
+			</labels>
+			<menuitems array="false" comment="create group of menuitems">
+				<menuitem visible="true" comment="">
+					<position-name value="packet" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="0.0, 0.0" />
+					<z-index value="0" />
+					<sprites array="false" comment="create group of sprites">
+						<sprite visible="true" comment="">
+							<position-name value="shop_packet1_active" unlocated="true" />
+							<image id="shop_popup_item_packet_shop_packet1_active" 
+								location-in-interfacebuilder="10.0, 10.0"
+								width="71.0" height="71.0"
+								phony-path="shop_popup/sprites/item/menuitems/packet/sprites/shop_packet1_active.png"  />
+						</sprite>
+						<sprite visible="true" comment="">
+							<position-name value="shop_packet1_normal" unlocated="true" />
+							<image id="shop_popup_item_packet_shop_packet1_normal" 
+								phony-path="shop_popup/sprites/item/menuitems/packet/sprites/shop_packet1_normal.png"  />
+						</sprite>
+					</sprites>
+				</menuitem>
+			</menuitems>
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="shop_header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="shop_popup_shop_header" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="45.0" height="16.0"
+				phony-path="shop_popup/sprites/shop_header.png"  />
+		</sprite>
+	</sprites>
+	<resource comment="resource for view">
+		<image id="shop_popup_resource_shop_packet1_disable" 
+			phony-path="shop_popup/resource/shop_packet1_disable.png"  />
+		<image id="shop_popup_resource_shop_packet2_active" 
+			phony-path="shop_popup/resource/shop_packet2_active.png"  />
+		<image id="shop_popup_resource_shop_packet2_disable" 
+			phony-path="shop_popup/resource/shop_packet2_disable.png"  />
+		<image id="shop_popup_resource_shop_packet2_normal" 
+			phony-path="shop_popup/resource/shop_packet2_normal.png"  />
+		<image id="shop_popup_resource_shop_packet3_active" 
+			phony-path="shop_popup/resource/shop_packet3_active.png"  />
+		<image id="shop_popup_resource_shop_packet3_disable" 
+			phony-path="shop_popup/resource/shop_packet3_disable.png"  />
+		<image id="shop_popup_resource_shop_packet3_normal" 
+			phony-path="shop_popup/resource/shop_packet3_normal.png"  />
+		<image id="shop_popup_resource_shop_packet4_active" 
+			phony-path="shop_popup/resource/shop_packet4_active.png"  />
+		<image id="shop_popup_resource_shop_packet4_disable" 
+			phony-path="shop_popup/resource/shop_packet4_disable.png"  />
+		<image id="shop_popup_resource_shop_packet4_normal" 
+			phony-path="shop_popup/resource/shop_packet4_normal.png"  />
+	</resource>
+</view>

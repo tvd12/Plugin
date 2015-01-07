@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="ProfilePopup" prefix="popup_profile" type="popup" exitable="true" 
+		super="PopupLayer" background-name="default" size="261.0, 331.0"
+		template-name="Common extend table"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="profile_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Desktop/Profile/profile_popup" />
+	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPhonehd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPhonehd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPhonehd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPhonehd" />
+	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup" />
+	<background-image id="profile_popup_background_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="261.0" height="331.0"
+		phony-path="profile_popup/background/bg.png"  />
+	<exit-image position="0.0, 0.0" location-in-interfacebuilder="100.0, 100.0" />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="icon_coin" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="profile_popup_icon_coin" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="10.0" height="10.0"
+				phony-path="profile_popup/sprites/icon_coin.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="profile_header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="profile_popup_profile_header" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="65.0" height="15.0"
+				phony-path="profile_popup/sprites/profile_header.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="user_flag" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="9.5, 561.0" />
+			<z-index value="3" />
+			<image id="lobby_layer_user_flag" 
+				location-in-interfacebuilder="2.0, 2.0"
+				width="15.0" height="10.0"
+				phony-path="lobby_layer/sprites/user_flag.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="Profile" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="0" green="0" blue="255" alpha="255" />
+			<font-size value="24.0" />
+			<position-name value="title" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="138.0, 332.0" />
+			<location-in-interfacebuilder value="126.0, 115.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="Ta Van Dung" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="0" green="0" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="user_full_name" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="66.0, 299.5" />
+			<location-in-interfacebuilder value="96.0, 151.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="123,456 Coins" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="0" green="0" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="coins" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="63.0, 274.5" />
+			<location-in-interfacebuilder value="93.0, 176.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="Score: 12345" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="0" green="0" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="score" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="9.0, 213.5" />
+			<location-in-interfacebuilder value="39.0, 237.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="Champions: 123456" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="0" green="0" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="champions" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="9.0, 175.5" />
+			<location-in-interfacebuilder value="39.0, 275.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="Game Played: 12345556" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="0" green="0" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="game_played" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="9.0, 136.5" />
+			<location-in-interfacebuilder value="39.0, 314.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="Win: 12344" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="0" green="0" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="wins" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="9.0, 94.5" />
+			<location-in-interfacebuilder value="39.0, 356.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="Win percent: 100%" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="0" green="0" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="win_percent" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="9.0, 52.5" />
+			<location-in-interfacebuilder value="39.0, 398.0" />
+			<z-index value="0" />
+		</label>
+	</labels>
+	<menuitems array="false" comment="create group of menuitems">
+		<menuitem visible="true" comment="">
+			<position-name value="avatar" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="0.0, 0.0" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="big_avatar_default_active" unlocated="true" />
+					<image id="profile_popup_avatar_big_avatar_default_active" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="56.0" height="56.0"
+						phony-path="profile_popup/menuitems/avatar/sprites/big_avatar_default_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="big_avatar_default_normal" unlocated="true" />
+					<image id="profile_popup_avatar_big_avatar_default_normal" 
+						phony-path="profile_popup/menuitems/avatar/sprites/big_avatar_default_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+		<menuitem visible="true" comment="">
+			<position-name value="exit" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="0.0, 0.0" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="img_active" unlocated="true" />
+					<image id="profile_popup_exit_img_active" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="39.0" height="39.0"
+						phony-path="profile_popup/menuitems/exit/sprites/img_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="img_normal" unlocated="true" />
+					<image id="profile_popup_exit_img_normal" 
+						phony-path="profile_popup/menuitems/exit/sprites/img_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+	</menuitems>
+</view>

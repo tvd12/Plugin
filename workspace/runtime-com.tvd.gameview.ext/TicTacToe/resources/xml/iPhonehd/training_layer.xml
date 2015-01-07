@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view class-name="TrainingLayer" prefix="layer_training" type="layer" exitable="false" 
-		super="CommonLayer" background-name="default" size="320.0, 568.0"
+		super="CommonLayer" background-name="default" size="320.0, 480.0"
 		template-name="Common"
 		exported="true"
 		comment=""
@@ -19,44 +19,44 @@
 	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Layer" />
 	<background-image id="training_layer_background_bg_home" 
 		location-in-interfacebuilder="0.0, 0.0"
-		width="320.0" height="568.0"
+		width="320.0" height="480.0"
 		phony-path="home_layer/background/bg_home.png"  />
 
 	<sprites array="false" comment="create group of sprites">
 		<sprite visible="true" comment="">
 			<position-name value="training_easy_text" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.0, 399.5" />
+			<position value="160.0, 331.5" />
 			<z-index value="1" />
 			<image id="training_layer_training_easy_text" 
-				location-in-interfacebuilder="132.0, 155.0"
+				location-in-interfacebuilder="132.0, 135.0"
 				width="56.0" height="27.0"
 				phony-path="training_layer/sprites/training_easy_text.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="training_hard_text" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.5, 197.5" />
+			<position value="160.5, 129.5" />
 			<z-index value="1" />
 			<image id="training_layer_training_hard_text" 
-				location-in-interfacebuilder="127.0, 357.0"
+				location-in-interfacebuilder="127.0, 337.0"
 				width="67.0" height="27.0"
 				phony-path="training_layer/sprites/training_hard_text.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="tranining_normal_text" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.5, 298.5" />
+			<position value="160.5, 230.5" />
 			<z-index value="1" />
 			<image id="training_layer_tranining_normal_text" 
-				location-in-interfacebuilder="115.0, 256.0"
+				location-in-interfacebuilder="115.0, 236.0"
 				width="91.0" height="27.0"
 				phony-path="training_layer/sprites/tranining_normal_text.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="home_header" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.0, 518.5" />
+			<position value="160.0, 430.5" />
 			<z-index value="0" />
 			<image id="training_layer_home_header" 
 				location-in-interfacebuilder="0.0, 0.0"
@@ -68,41 +68,41 @@
 		<sprite visible="true" comment="">
 			<position-name value="training_star" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.0, 375.5" />
+			<position value="160.0, 307.5" />
 			<z-index value="1" />
 			<image id="training_layer_training_star" 
-				location-in-interfacebuilder="149.0, 182.0"
+				location-in-interfacebuilder="149.0, 162.0"
 				width="22.0" height="21.0"
 				phony-path="training_layer/sprites/training_star.png"  />
 		</sprite>
 		<next visible="true" comment="">
-			<position value="143.0, 274.5" />
+			<position value="143.0, 206.5" />
 			<image id="training_star_1" 
-				location-in-interfacebuilder="132.0, 283.0"
+				location-in-interfacebuilder="132.0, 263.0"
 				width="22.0" height="21.0" />
 		</next>
 		<next visible="true" comment="">
-			<position value="174.0, 274.5" />
+			<position value="174.0, 206.5" />
 			<image id="training_star_2" 
-				location-in-interfacebuilder="163.0, 283.0"
+				location-in-interfacebuilder="163.0, 263.0"
 				width="22.0" height="21.0" />
 		</next>
 		<next visible="true" comment="">
-			<position value="130.0, 170.5" />
+			<position value="130.0, 102.5" />
 			<image id="training_star_3" 
-				location-in-interfacebuilder="119.0, 387.0"
+				location-in-interfacebuilder="119.0, 367.0"
 				width="22.0" height="21.0" />
 		</next>
 		<next visible="true" comment="">
-			<position value="160.0, 170.5" />
+			<position value="160.0, 102.5" />
 			<image id="training_star_4" 
-				location-in-interfacebuilder="149.0, 387.0"
+				location-in-interfacebuilder="149.0, 367.0"
 				width="22.0" height="21.0" />
 		</next>
 		<next visible="true" comment="">
-			<position value="190.0, 170.5" />
+			<position value="190.0, 102.5" />
 			<image id="training_star_5" 
-				location-in-interfacebuilder="179.0, 387.0"
+				location-in-interfacebuilder="179.0, 367.0"
 				width="22.0" height="21.0" />
 		</next>
 	</sprites>
@@ -114,8 +114,8 @@
 			<font-size value="17.0" />
 			<position-name value="notify" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.5, 76.5" />
-			<location-in-interfacebuilder value="33.0, 483.0" />
+			<position value="160.5, 38.5" />
+			<location-in-interfacebuilder value="33.0, 433.0" />
 			<z-index value="0" />
 		</label>
 	</labels>
@@ -123,13 +123,13 @@
 		<menuitem visible="true" comment="">
 			<position-name value="deep" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.0, 380.0" />
+			<position value="160.0, 312.0" />
 			<z-index value="0" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
 					<position-name value="training_deep_active" unlocated="true" />
 					<image id="training_layer_deep_training_deep_active" 
-						location-in-interfacebuilder="16.0, 141.0"
+						location-in-interfacebuilder="16.0, 121.0"
 						width="288.0" height="94.0"
 						phony-path="training_layer/menuitems/deep/sprites/training_deep_active.png"  />
 				</sprite>
@@ -141,15 +141,15 @@
 			</sprites>
 		</menuitem>
 		<next visible="true" comment="">
-			<position value="160.0, 280.0" />
+			<position value="160.0, 212.0" />
 			<image id="deep_1" 
-				location-in-interfacebuilder="16.0, 241.0"
+				location-in-interfacebuilder="16.0, 221.0"
 				width="288.0" height="94.0" />
 		</next>
 		<next visible="true" comment="">
-			<position value="160.0, 179.0" />
+			<position value="160.0, 111.0" />
 			<image id="deep_2" 
-				location-in-interfacebuilder="16.0, 342.0"
+				location-in-interfacebuilder="16.0, 322.0"
 				width="288.0" height="94.0" />
 		</next>
 	</menuitems>
@@ -157,7 +157,7 @@
 		<menuitem visible="true" comment="">
 			<position-name value="back" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="18.0, 541.5" />
+			<position value="18.0, 453.5" />
 			<z-index value="1" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
@@ -177,7 +177,7 @@
 		<menuitem visible="true" comment="">
 			<position-name value="setting" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="297.0, 542.0" />
+			<position value="297.0, 454.0" />
 			<z-index value="1" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view class-name="MainGameLayer" prefix="layer_main_game" type="layer" exitable="false" 
-		super="CommonLayer" background-name="default" size="320.0, 568.0"
+		super="CommonLayer" background-name="default" size="320.0, 480.0"
 		template-name="Common"
-		exported="false"
+		exported="true"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -19,44 +19,44 @@
 	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Layer" />
 	<background-image id="main_game_layer_background_bg_home" 
 		location-in-interfacebuilder="0.0, 0.0"
-		width="320.0" height="568.0"
+		width="320.0" height="480.0"
 		phony-path="home_layer/background/bg_home.png"  />
 
 	<sprites array="false" comment="create group of sprites">
 		<sprite visible="true" comment="">
 			<position-name value="main_board" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.0, 261.0" />
+			<position value="160.0, 224.0" />
 			<z-index value="0" />
 			<image id="main_game_layer_main_board" 
-				location-in-interfacebuilder="6.0, 143.0"
+				location-in-interfacebuilder="6.0, 92.0"
 				width="308.0" height="328.0"
 				phony-path="main_game_layer/sprites/main_board.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="main_off_o_ai" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="207.5, 28.5" />
+			<position value="207.5, 26.5" />
 			<z-index value="1" />
 			<image id="main_game_layer_main_off_o_ai" 
-				location-in-interfacebuilder="193.0, 524.0"
+				location-in-interfacebuilder="193.0, 438.0"
 				width="29.0" height="31.0"
 				phony-path="main_game_layer/sprites/main_off_o_ai.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="main_off_x_me" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="66.5, 28.5" />
+			<position value="66.5, 26.5" />
 			<z-index value="1" />
 			<image id="main_game_layer_main_off_x_me" 
-				location-in-interfacebuilder="52.0, 524.0"
+				location-in-interfacebuilder="52.0, 438.0"
 				width="29.0" height="31.0"
 				phony-path="main_game_layer/sprites/main_off_x_me.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="main_off_header" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.0, 518.5" />
+			<position value="160.0, 430.5" />
 			<z-index value="0" />
 			<image id="main_game_layer_home_header" 
 				location-in-interfacebuilder="0.0, 0.0"
@@ -66,7 +66,7 @@
 		<sprite visible="true" comment="">
 			<position-name value="main_off_dock_bottom" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.0, 22.0" />
+			<position value="160.0, -66.0" />
 			<z-index value="0" />
 			<image id="main_game_layer_home_dock_bottom" 
 				location-in-interfacebuilder="0.0, 524.0"
@@ -82,8 +82,8 @@
 			<font-size value="24.0" />
 			<position-name value="me" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="110.0, 28.0" />
-			<location-in-interfacebuilder value="89.0, 528.0" />
+			<position value="107.0, 30.0" />
+			<location-in-interfacebuilder value="89.0, 438.0" />
 			<z-index value="1" />
 		</label>
 		<label visible="true" comment="">
@@ -93,8 +93,8 @@
 			<font-size value="24.0" />
 			<position-name value="ai" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="243.0, 28.0" />
-			<location-in-interfacebuilder value="225.0, 528.0" />
+			<position value="243.0, 30.0" />
+			<location-in-interfacebuilder value="225.0, 438.0" />
 			<z-index value="1" />
 		</label>
 		<label visible="true" comment="">
@@ -104,7 +104,7 @@
 			<font-size value="24.0" />
 			<position-name value="me_won" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="136.0, 28.0" />
+			<position value="136.0, -60.0" />
 			<location-in-interfacebuilder value="130.0, 528.0" />
 			<z-index value="1" />
 		</label>
@@ -115,7 +115,7 @@
 			<font-size value="24.0" />
 			<position-name value="ai_won" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="261.0, 28.0" />
+			<position value="261.0, -60.0" />
 			<location-in-interfacebuilder value="255.0, 528.0" />
 			<z-index value="1" />
 		</label>
@@ -124,7 +124,7 @@
 		<menuitem visible="true" comment="">
 			<position-name value="back" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="18.0, 541.5" />
+			<position value="18.0, 453.5" />
 			<z-index value="1" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
@@ -144,7 +144,7 @@
 		<menuitem visible="true" comment="">
 			<position-name value="setting" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="297.0, 542.0" />
+			<position value="297.0, 454.0" />
 			<z-index value="1" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">

@@ -149,7 +149,6 @@ private:
 
 #include "{class_name}.h"
 #include "{super_name}.h"
-#include "VisibleRect.h"
 #include "GameParams.h"
 
 //{n}
@@ -176,11 +175,21 @@ bool {class_name}::init(//{parameters},
 	
     {super_name}::init(pBackgroundImage,
                      pExitNormalImage,
-                     pExitSelectedImage,
-                     GPARAMS()->POP_COMMON_EXIT_BUTTON_POSITION);
-    setBackgroundPosition(VisibleRect::center());
+                     pExitSelectedImage/*,
+                     GPARAMS()->POP_COMMON_EXIT_BUTTON_POSITION*/);
+                     
+    Size visibleRect = Director::getInstance()->getVisibleSize();
+    setBackgroundPosition(Vec2(getContentSize().width/2, visibleRect.height/2));
     
     return true;
+}
+
+//{n}
+
+void {class_name}::addMenus() {
+	{super_name}::addMenus();
+	
+	//{add_menus}	
 }
 
 //{n}
@@ -254,7 +263,6 @@ void {class_name}::{class_name_prefix}MenuItemCallback(Ref *pSender) {
 #include "{super_name}.h"
 #include "{super_cell_name}.h"
 #include "TableView.h"
-#include "VisibleRect.h"
 #include "GameParams.h"
 
 //{extend_class}
@@ -283,9 +291,11 @@ bool {class_name}::init(//{parameters},
 	
     {super_name}::init(pBackgroundImage,
                      pExitNormalImage,
-                     pExitSelectedImage,
-                     GPARAMS().POP_COMMON_EXIT_BUTTON_POSITION);
-    setBackgroundPosition(VisibleRect::center());
+                     pExitSelectedImage/*,
+                     GPARAMS().POP_COMMON_EXIT_BUTTON_POSITION*/);
+    
+    Size visibleRect = Director::getInstance()->getVisibleSize();
+    setBackgroundPosition(Vec2(getContentSize().width/2, visibleRect.height/2));
     
     return true;
 }
@@ -295,6 +305,14 @@ void {class_name}::addMenus() {
 	{super_name}::addMenus();
     
     //{add_menus}
+}
+
+//{n}
+
+void {class_name}::addMenus() {
+	{super_name}::addMenus();
+	
+	//{add_menus}	
 }
 
 //{n}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view class-name="ProfilePopup" prefix="popup_profile" type="popup" exitable="true" 
-		super="PopupLayer" background-name="default" size="260.0, 350.0"
+		super="PopupLayer" background-name="default" size="261.0, 331.0"
 		template-name="Common extend table"
 		exported="false"
 		comment=""
@@ -11,68 +11,78 @@
 	<position value="default" />
 	<define-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/Defines" />
 	<parameters-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/GameParams" />
-	<images-inputpath value="/Users/dungtavan/Downloads/Skype/Profile/profile_popup" />
+	<images-inputpath value="/Users/dungtavan/Desktop/Profile/profile_popup" />
 	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPadhd" />
 	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPadhd" used="true" />
 	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPadhd" />
 	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPadhd" />
 	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup" />
-	<background-image id="profile_popup_background_profile_bg" 
+	<background-image id="profile_popup_background_bg" 
 		location-in-interfacebuilder="10.0, 10.0"
-		width="260.0" height="350.0"
-		phony-path="profile_popup/background/profile_bg.png"  />
+		width="261.0" height="331.0"
+		phony-path="profile_popup/background/bg.png"  />
 	<exit-image position="0.0, 0.0" location-in-interfacebuilder="100.0, 100.0" />
 
 	<sprites array="false" comment="create group of sprites">
 		<sprite visible="true" comment="">
-			<position-name value="profile_avatar_default" />
+			<position-name value="icon_coin" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="50.0, 50.0" />
 			<z-index value="0" />
-			<image id="profile_popup_profile_avatar_default" 
+			<image id="profile_popup_icon_coin" 
 				location-in-interfacebuilder="10.0, 10.0"
-				width="48.0" height="48.0"
-				phony-path="profile_popup/sprites/profile_avatar_default.png"  />
+				width="10.0" height="10.0"
+				phony-path="profile_popup/sprites/icon_coin.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="profile_header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="profile_popup_profile_header" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="65.0" height="15.0"
+				phony-path="profile_popup/sprites/profile_header.png"  />
 		</sprite>
 	</sprites>
 	<menuitems array="false" comment="create group of menuitems">
 		<menuitem visible="true" comment="">
-			<position-name value="close" />
+			<position-name value="avatar" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="0.0, 0.0" />
 			<z-index value="0" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
-					<position-name value="profile_close_active" unlocated="true" />
-					<image id="profile_popup_close_profile_close_active" 
+					<position-name value="big_avatar_default_active" unlocated="true" />
+					<image id="profile_popup_avatar_big_avatar_default_active" 
 						location-in-interfacebuilder="10.0, 10.0"
-						width="32.0" height="32.0"
-						phony-path="profile_popup/menuitems/close/sprites/profile_close_active.png"  />
+						width="56.0" height="56.0"
+						phony-path="profile_popup/menuitems/avatar/sprites/big_avatar_default_active.png"  />
 				</sprite>
 				<sprite visible="true" comment="">
-					<position-name value="profile_close_normal" unlocated="true" />
-					<image id="profile_popup_close_profile_close_normal" 
-						phony-path="profile_popup/menuitems/close/sprites/profile_close_normal.png"  />
+					<position-name value="big_avatar_default_normal" unlocated="true" />
+					<image id="profile_popup_avatar_big_avatar_default_normal" 
+						phony-path="profile_popup/menuitems/avatar/sprites/big_avatar_default_normal.png"  />
 				</sprite>
 			</sprites>
 		</menuitem>
 		<menuitem visible="true" comment="">
-			<position-name value="edit" />
+			<position-name value="exit" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="0.0, 0.0" />
 			<z-index value="0" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
-					<position-name value="profile_edit_active" unlocated="true" />
-					<image id="profile_popup_edit_profile_edit_active" 
+					<position-name value="img_active" unlocated="true" />
+					<image id="profile_popup_exit_img_active" 
 						location-in-interfacebuilder="10.0, 10.0"
-						width="60.0" height="25.0"
-						phony-path="profile_popup/menuitems/edit/sprites/profile_edit_active.png"  />
+						width="39.0" height="39.0"
+						phony-path="profile_popup/menuitems/exit/sprites/img_active.png"  />
 				</sprite>
 				<sprite visible="true" comment="">
-					<position-name value="profile_edit_normal" unlocated="true" />
-					<image id="profile_popup_edit_profile_edit_normal" 
-						phony-path="profile_popup/menuitems/edit/sprites/profile_edit_normal.png"  />
+					<position-name value="img_normal" unlocated="true" />
+					<image id="profile_popup_exit_img_normal" 
+						phony-path="profile_popup/menuitems/exit/sprites/img_normal.png"  />
 				</sprite>
 			</sprites>
 		</menuitem>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="TieOfflinePopup" prefix="popup_tie_offline" type="popup" exitable="true" 
+		super="PopupLayer" background-name="default" size="320.0, 480.0"
+		template-name="Common extend table"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="tie_offline_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Desktop/Tie/tie_offline_popup" />
+	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPadhd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPadhd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPadhd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPadhd" />
+	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup" />
+	<background-image id="pop_common_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		phony-path="pop_common_bg.png"  />
+	<exit-image position="0.0, 0.0" location-in-interfacebuilder="100.0, 100.0" />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="tie_offline_symbol_xo" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="tie_offline_popup_tie_offline_symbol_xo" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="109.0" height="57.0"
+				phony-path="tie_offline_popup/sprites/tie_offline_symbol_xo.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="tie_offline_watch" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="tie_offline_popup_tie_offline_watch" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="16.0" height="15.0"
+				phony-path="tie_offline_popup/sprites/tie_offline_watch.png"  />
+		</sprite>
+	</sprites>
+</view>

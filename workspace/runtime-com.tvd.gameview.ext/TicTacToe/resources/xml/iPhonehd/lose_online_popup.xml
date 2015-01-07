@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="LoseOnlinePopup" prefix="popup_lose_online" type="popup" exitable="true" 
+		super="PopupLayer" background-name="default" size="261.0, 261.0"
+		template-name="Common"
+		exported="true"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="lose_online_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Desktop/Lose_Online/lose_online_popup" />
+	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPhonehd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPhonehd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPhonehd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPhonehd" />
+	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup" />
+	<background-image id="lose_online_popup_background" 
+		location-in-interfacebuilder="30.0, 153.0"
+		width="261.0" height="261.0"
+		phony-path="won_offline_popup/background/won_offline_bg.png"  />
+	<exit-image position="0.0, 0.0" location-in-interfacebuilder="100.0, 100.0" />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="lose_online_emotion" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="130.0, 194.5" />
+			<z-index value="0" />
+			<image id="lose_online_popup_lose_online_emotion" 
+				location-in-interfacebuilder="119.0, 178.0"
+				width="82.0" height="83.0"
+				phony-path="lose_online_popup/sprites/lose_online_emotion.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="lose_online_goodluck_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="130.5, 130.0" />
+			<z-index value="0" />
+			<image id="lose_online_popup_lose_online_goodluck_text" 
+				location-in-interfacebuilder="57.0, 274.0"
+				width="207.0" height="20.0"
+				phony-path="lose_online_popup/sprites/lose_online_goodluck_text.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="lose_online_icon_coin" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="128.0, 91.5" />
+			<z-index value="1" />
+			<image id="lose_online_popup_icon_coin" 
+				location-in-interfacebuilder="150.0, 315.0"
+				width="16.0" height="15.0"
+				phony-path="profile_popup/sprites/icon_coin.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="Prize:" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="prize" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="94.5, 93.5" />
+			<location-in-interfacebuilder value="99.0, 312.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="1 coin" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="234" green="171" blue="42" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="coin" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="161.5, 92.5" />
+			<location-in-interfacebuilder value="166.0, 313.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="CLOSE" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="close" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="72.0, 38.5" />
+			<location-in-interfacebuilder value="83.0, 368.0" />
+			<z-index value="0" />
+		</label>
+		<label visible="true" comment="">
+			<text value="SHARE FB" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="share" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="190.0, 38.5" />
+			<location-in-interfacebuilder value="190.0, 368.0" />
+			<z-index value="0" />
+		</label>
+	</labels>
+	<menuitems array="false" comment="create group of menuitems">
+		<menuitem visible="true" comment="">
+			<position-name value="close" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="190.0, 38.0" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="lose_online_close_active" unlocated="true" />
+					<image id="lose_online_popup_close_lose_online_close_active" 
+						location-in-interfacebuilder="162.0, 352.0"
+						width="116.0" height="48.0"
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="lose_online_close_normal" unlocated="true" />
+					<image id="lose_online_popup_close_lose_online_close_normal" 
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+		<menuitem visible="true" comment="">
+			<position-name value="share" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="72.0, 38.0" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="lose_online_share_active" unlocated="true" />
+					<image id="lose_online_popup_share_lose_online_share_active" 
+						location-in-interfacebuilder="44.0, 352.0"
+						width="116.0" height="48.0"
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="lose_online_share_normal" unlocated="true" />
+					<image id="lose_online_popup_share_lose_online_share_normal" 
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+	</menuitems>
+	<resource comment="resource for view">
+		<image id="lose_online_popup_resource_lose_online_button_disable" 
+			phony-path="lose_online_popup/resource/lose_online_button_disable.png"  />
+	</resource>
+</view>
