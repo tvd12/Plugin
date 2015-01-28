@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="false" key="initLaunch"/>
 	<item value="false" key="generateActivator"/>
 	<item value="false" key="uiPlugin"/>
 	<item value="false" key="rcpPlugin"/>
 	<item value="false" key="apiAnalysis"/>
-	<item value="false" key="osgiProject"/>
 	<item value="3.5 or greater" key="targetName"/>
+	<item value="false" key="osgiProject"/>
 	<list key="providers">
 		<item value="TVD"/>
 		<item value="PACKTPUB"/>
 		<item value="PacktPub"/>
 	</list>
+	<section name="org.eclipse.pde.ui.dialogs.FeatureSelectionDialog">
+		<item value="true" key="ShowStatusLine"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;History/&gt;" key="History"/>
+		<section name="DialogBoundsSettings">
+			<item value="600" key="DIALOG_WIDTH"/>
+			<item value="54" key="DIALOG_Y_ORIGIN"/>
+			<item value="340" key="DIALOG_X_ORIGIN"/>
+			<item value="500" key="DIALOG_HEIGHT"/>
+			<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
+		</section>
+	</section>
 	<section name="org.eclipse.pde.ui.dialogs.PluginSelectionDialog">
 		<item value="true" key="ShowStatusLine"/>
 		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;History/&gt;" key="History"/>
 		<section name="DialogBoundsSettings">
 			<item value="600" key="DIALOG_WIDTH"/>
 			<item value="54" key="DIALOG_Y_ORIGIN"/>
-			<item value="500" key="DIALOG_HEIGHT"/>
 			<item value="325" key="DIALOG_X_ORIGIN"/>
+			<item value="500" key="DIALOG_HEIGHT"/>
 			<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 		</section>
 	</section>
@@ -39,22 +51,50 @@
 		<item value="false" key="signJAR"/>
 		<item value="/Users/dungtavan/Desktop" key="destination1"/>
 		<item value="/Users/dungtavan/Desktop" key="destination0"/>
+		<item value="true" key="allowBinaryCycles"/>
 		<item value="201411271408" key="qualifierName"/>
+	</section>
+	<section name="FeatureExportWizard">
+		<item value="true" key="exportUpdate"/>
+		<item value="Generate source bundles" key="exportSourceFormat"/>
+		<item value="/Volumes/DATA/Working/GitHub/Plugin/.metadata/.plugins/org.eclipse.pde.core/install/" key="installDestination1"/>
+		<item value="false" key="qualifier"/>
+		<item value="/Volumes/DATA/Working/GitHub/Plugin/.metadata/.plugins/org.eclipse.pde.core/install/" key="installDestination0"/>
+		<item value="true" key="create_categories"/>
+		<item value="" key="password"/>
+		<item value="false" key="jnlp"/>
+		<item value="" key="keypass"/>
+		<item value="false" key="useWorkspaceCompiledClasses"/>
+		<item value="" key="keystore"/>
+		<item value="1" key="exportType"/>
+		<item value="" key="siteURL"/>
+		<item value="false" key="saveAsAnt"/>
+		<item value="" key="alias"/>
+		<item value="true" key="p2metadata"/>
+		<item value="/Volumes/DATA/Working/GitHub/Plugin/com.tvd.gameview.ext.feature/category.xml" key="category_file"/>
+		<item value="false" key="exportSource"/>
+		<item value="/Users/dungtavan/Desktop" key="destination3"/>
+		<item value="false" key="signJAR"/>
+		<item value="/Volumes/DATA/Data/Storage/Plugin" key="destination2"/>
+		<item value="" key="jre"/>
+		<item value="/Volumes/DATA/Data/Storage/Plugin/GameViewExt" key="destination1"/>
+		<item value="/Volumes/DATA/Data/Storage/Plugin/GameViewExt" key="destination0"/>
+		<item value="201501172019" key="qualifierName"/>
 		<item value="true" key="allowBinaryCycles"/>
 	</section>
 	<section name="JavaAttributeWizard">
 		<section name="NewClassWizardPage">
 			<item value="true" key="create_constructor"/>
-			<item value="true" key="create_unimplemented"/>
 			<item value="false" key="create_main"/>
+			<item value="true" key="create_unimplemented"/>
 		</section>
 	</section>
 	<section name="PDEFormActionManager">
 	</section>
-	<section name="targetStateView">
-	</section>
 	<section name="TracingTab">
 		<item value="org.eclipse.ui" key="selectedPlugin"/>
+	</section>
+	<section name="targetStateView">
 	</section>
 	<section name="pde-form-editor">
 		<item value="dependencies" key="org.eclipse.pde.ui.manifestEditor"/>

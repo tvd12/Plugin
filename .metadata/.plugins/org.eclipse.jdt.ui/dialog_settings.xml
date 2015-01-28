@@ -136,6 +136,8 @@
 		<item value="false" key="updateTextualMatches"/>
 		<item value="false" key="updateSimilarElements"/>
 	</section>
+	<section name="RenameInformationPopup">
+	</section>
 	<section name="AddGetterSetterDialog">
 		<item value="false" key="RemoveFinal"/>
 		<item value="false" key="SortOrdering"/>

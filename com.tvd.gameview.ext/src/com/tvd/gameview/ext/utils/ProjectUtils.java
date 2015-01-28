@@ -43,8 +43,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
-import com.tdgc.cocos2dx.popup.creator.global.Config;
-import com.tdgc.cocos2dx.popup.creator.xml.XmlFileBuilder;
+import com.tvd.cocos2dx.popup.creator.global.Config;
+import com.tvd.cocos2dx.popup.creator.xml.XmlFileBuilder;
 import com.tvd.gameview.ext.model.ViewModel;
 import com.tvd.gameview.ext.views.BuildingTreeViewer;
 

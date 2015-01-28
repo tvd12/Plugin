@@ -55,10 +55,11 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.part.ViewPart;
 
-import com.tdgc.cocos2dx.popup.creator.global.Config;
-import com.tdgc.cocos2dx.popup.creator.model.View;
-import com.tdgc.cocos2dx.popup.creator.utils.NotificationCenter;
-import com.tdgc.cocos2dx.popup.creator.xml.XmlFetcher;
+import com.tvd.cocos2dx.popup.creator.global.Config;
+import com.tvd.cocos2dx.popup.creator.model.View;
+import com.tvd.cocos2dx.popup.creator.utils.NotificationCenter;
+import com.tvd.cocos2dx.popup.creator.utils.NotificationCenter.INotificationListener;
+import com.tvd.cocos2dx.popup.creator.xml.XmlFetcher;
 import com.tvd.gameview.ext.constants.Constant;
 import com.tvd.gameview.ext.model.ProjectChooserHelper;
 import com.tvd.gameview.ext.model.ViewModel;
@@ -84,9 +85,13 @@ import com.tvd.gameview.ext.utils.ProjectUtils;
  *		declare class
  *		implement class
  */
-public class BuildingTreeViewer extends ViewPart implements IDoubleClickListener {
+public class BuildingTreeViewer 
+extends ViewPart 
+implements IDoubleClickListener, INotificationListener {
 	
 	public BuildingTreeViewer() {
+		super();
+		NotificationCenter.getInstance().addListener(this);
 	}
 
 	@Override
@@ -579,6 +584,16 @@ public class BuildingTreeViewer extends ViewPart implements IDoubleClickListener
 	
 	public TreeViewer getTreeViewer() {
 		return mTreeViewer;
+	}
+	
+	@Override
+	public void onError(String error) {
+		
+	}
+
+	@Override
+	public void onWarning(String warning) {
+		
 	}
 	
 	public static final String ID = BuildingTreeViewer.class.getName();

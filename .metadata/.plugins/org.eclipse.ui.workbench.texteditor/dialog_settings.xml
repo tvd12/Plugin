@@ -13,16 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="Inte" key="selection"/>
+		<item value="Scale factor" key="selection"/>
 		<list key="findhistory">
+			<item value="Scale factor"/>
+			<item value="Scale"/>
+			<item value="image"/>
+			<item value="mDefaultScreenSizes"/>
+			<item value="fe"/>
 			<item value="Inte"/>
 			<item value="next"/>
 			<item value="exit"/>
-			<item value="mDefaultViewSuffix"/>
-			<item value="setPos"/>
-			<item value="System"/>
-			<item value="setTab"/>
-			<item value="setTa"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

@@ -30,8 +30,8 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
-import com.tdgc.cocos2dx.popup.creator.global.Config;
-import com.tdgc.cocos2dx.popup.creator.xml.XmlFileBuilder;
+import com.tvd.cocos2dx.popup.creator.global.Config;
+import com.tvd.cocos2dx.popup.creator.xml.XmlFileBuilder;
 import com.tvd.gameview.ext.model.ProjectChooserHelper.ProjectCombo;
 import com.tvd.gameview.ext.pages.NewGameViewFilePage;
 import com.tvd.gameview.ext.utils.MessageUtils;

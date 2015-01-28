@@ -24,7 +24,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 
-import com.tdgc.cocos2dx.popup.creator.model.View;
+import com.tvd.cocos2dx.popup.creator.model.View;
 import com.tvd.gameview.ext.views.BuildingListElement;
 
 class TreeViewElementInfo implements IPropertySource {

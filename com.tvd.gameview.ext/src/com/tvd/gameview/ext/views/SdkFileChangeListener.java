@@ -31,7 +31,7 @@ import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ui.part.ViewPart;
 
-import com.tdgc.cocos2dx.popup.creator.global.Config;
+import com.tvd.cocos2dx.popup.creator.global.Config;
 import com.tvd.gameview.ext.utils.ProjectUtils;
 
 public class SdkFileChangeListener implements IResourceChangeListener {

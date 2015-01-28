@@ -35,8 +35,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.statushandlers.StatusManager;
 
-import com.tdgc.cocos2dx.popup.creator.file.FileUtils;
-import com.tdgc.cocos2dx.popup.creator.utils.NotificationCenter;
+import com.tvd.cocos2dx.popup.creator.file.FileUtils;
+import com.tvd.cocos2dx.popup.creator.utils.NotificationCenter;
 import com.tvd.gameview.ext.GameViewSdk;
 import com.tvd.gameview.ext.utils.MessageUtils;
 import com.tvd.gameview.ext.utils.ProjectUtils;

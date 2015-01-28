@@ -24,9 +24,9 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 
-import com.tdgc.cocos2dx.popup.creator.global.Config;
-import com.tdgc.cocos2dx.popup.creator.model.View;
-import com.tdgc.cocos2dx.popup.creator.xml.XmlFetcher;
+import com.tvd.cocos2dx.popup.creator.global.Config;
+import com.tvd.cocos2dx.popup.creator.model.View;
+import com.tvd.cocos2dx.popup.creator.xml.XmlFetcher;
 
 public class BuildingListElement {
 	public BuildingListElement() {
