@@ -7762,3 +7762,6 @@ java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfigu
 
 !ENTRY org.eclipse.core.net 1 0 2015-02-01 16:10:29.032
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.pde.core 4 201 2015-02-01 16:32:38.549
+!MESSAGE Plug-in at '/Users/dungtavan/Downloads/org.eclipse.ui.forms.article' does not have an OSGi bundle manifest. To use a 2.0 style plug-in you must install the plug-in converter service. Go to Help > Install New Software and install 'Eclipse 2.0 Style Plugin Support' from 'The Eclipse Project Updates' software site.

@@ -312,9 +312,9 @@ public class NewGameViewFilePage extends WizardPage {
 						.getContents();
 				String gameProject = MessageUtils.getString(inputStream, "game_project");
 				mDefineSelectionField.getText().setText(gameProject
-						+ "/Classes/Utils/Defines");
+						+ "/Classes/Other/Utils/Defines");
 				mParamsSelectionField.getText().setText(gameProject 
-						+ "/Classes/Utils/GameParams");
+						+ "/Classes/Other/Utils/GameParams");
 				mXibContainerPathField.getText().setText(gameProject
 						+ "/Resources/screenshots");
 				mScreenContainerPathField.getText().setText(gameProject
@@ -322,7 +322,7 @@ public class NewGameViewFilePage extends WizardPage {
 				mAndroidContainerPathField.getText().setText(gameProject
 						+ "/proj.android/res/layout");
 				mClassPathField.getText().setText(gameProject
-						+ "/Classes");
+						+ "/Classes/View");
 				mImageOutputPathField.getText().setText(gameProject
 						+ "/Resources");
 				mGameProjectPath = gameProject;
