@@ -21,6 +21,7 @@ package com.tvd.cocos2dx.popup.creator.model;
 import java.util.ArrayList;
 
 import com.tvd.cocos2dx.popup.creator.constants.Attribute;
+import com.tvd.cocos2dx.popup.creator.constants.Constants;
 import com.tvd.cocos2dx.popup.creator.constants.ModelType;
 import com.tvd.cocos2dx.popup.creator.constants.Tag;
 import com.tvd.cocos2dx.popup.creator.file.FileUtils;
@@ -227,6 +228,16 @@ public class Table extends CommonObject {
 		builder.append("\n" + tab + "\t")
 		.append("<" + Tag.SIZE + " " + Attribute.VALUE 
 				+ "=\"" + mSize + "\" />");
+		if(getPositionType().equals(Constants.RELATIVE)) {
+			builder.append("\n" + tab + "\t")
+			.append("<" + Tag.POSITION_TYPE + " " + Attribute.VALUE
+					+ "=\"" + getPositionType() + "\" />");
+			
+			if(getMagin() != null) {
+				builder.append("\n" + tab + "\t")
+				.append(getMagin().toXML());
+			}
+		}
 		builder.append("\n" + tab + "\t")
 		.append("<" + Tag.Z_INDEX + " " + Attribute.VALUE 
 				+ "=\"" + mZIndex + "\" />");

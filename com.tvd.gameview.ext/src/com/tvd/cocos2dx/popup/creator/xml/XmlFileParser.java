@@ -40,6 +40,7 @@ import com.tvd.cocos2dx.popup.creator.model.Table;
 import com.tvd.cocos2dx.popup.creator.model.View;
 import com.tvd.cocos2dx.popup.creator.model.basic.AdvancedObject;
 import com.tvd.cocos2dx.popup.creator.model.basic.CommonObject;
+import com.tvd.cocos2dx.popup.creator.model.basic.Margin;
 import com.tvd.cocos2dx.popup.creator.model.basic.Parameter;
 
 public class XmlFileParser extends DefaultHandler {
@@ -328,6 +329,19 @@ public class XmlFileParser extends DefaultHandler {
 						(short)green, (short)blue, (short)alpha);
 			}
 		}
+		else if(qName.equals(Tag.POSITION_TYPE)) {
+			mCurrentObject.setPositionType(
+					getAttributeValue(Attribute.VALUE, atts));
+		}
+		else if(qName.equals(Tag.MARGIN)) {
+			Margin margin = new Margin();
+			margin.setLeft(getFloat(Attribute.LEFT, atts));
+			margin.setTop(getFloat(Attribute.TOP, atts));
+			margin.setRight(getFloat(Attribute.RIGHT, atts));
+			margin.setBottom(getFloat(Attribute.BOTTOM, atts));
+			
+			mCurrentObject.setMargin(margin);
+		}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -417,6 +431,16 @@ public class XmlFileParser extends DefaultHandler {
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
+		return result;
+	}
+	
+	private Float getFloat(String attName, Attributes atts) {
+		String value = getAttributeValue(attName, atts);
+		Float result = null;
+		if(value != null) {
+			result = new Float(Float.parseFloat(value));
+		}
+		
 		return result;
 	}
 	

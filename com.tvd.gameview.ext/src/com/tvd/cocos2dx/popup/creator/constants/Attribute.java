@@ -72,4 +72,9 @@ public interface Attribute {
 	
 	public static final String GENERATE_CLASS 			= "generate-class";
 	public static final String EXPORTED					= "exported";
+	
+	public static final String LEFT		= "left";
+	public static final String TOP		= "top";
+	public static final String RIGHT	= "right";
+	public static final String BOTTOM	= "bottom";
 }

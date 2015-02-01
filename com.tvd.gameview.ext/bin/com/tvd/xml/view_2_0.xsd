@@ -481,7 +481,20 @@
 	</xs:element>
 	<xs:element name="type">
 		<xs:complexType>
-		<xs:attribute name="value" type="xs:string" use="required" />
+			<xs:attribute name="value" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="position-type">
+		<xs:complexType>
+			<xs:attribute name="value" type="positiontypetype" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="margin">
+		<xs:complexType>
+			<xs:attribute name="left" type="xs:float" />
+			<xs:attribute name="top" type="xs:float" />
+			<xs:attribute name="right" type="xs:float" />
+			<xs:attribute name="bottom" type="xs:float" />
 		</xs:complexType>
 	</xs:element>
 	<xs:attributeGroup name="template">
@@ -500,6 +513,8 @@
 			<xs:element ref="position-name" maxOccurs="1" minOccurs="1" />
 			<xs:element ref="anchorpoint" maxOccurs="1" minOccurs="0" />
 			<xs:element ref="position" maxOccurs="1" minOccurs="0" />
+			<xs:element ref="position-type" maxOccurs="1" minOccurs="0" />
+			<xs:element ref="margin" maxOccurs="1" minOccurs="0" />
 			<xs:element ref="z-index" maxOccurs="1" minOccurs="0" />
 		</xs:sequence>
 	</xs:group>
@@ -518,6 +533,12 @@
 	<xs:simpleType name="vartype">
 		<xs:restriction base="xs:string">
 			<xs:pattern value="$\{[a-zA-Z_][a-zA-Z0-9_]*\}|[a-zA-Z_][a-zA-Z0-9_]*" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="positiontypetype">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="absolute" />
+			<xs:enumeration value="relative" />
 		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>

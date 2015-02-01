@@ -66,6 +66,8 @@ public class View extends AdvancedObject implements IContainer {
 		this.mSizeTemplateFile = "size.template";
 		this.mLocationInView = new Point(0, 0);
 		this.mIsExitable = true;
+		this.setPosition(0, 0);
+		this.setAnchorPoint(0, 0);
 	}
 	
 	@Override

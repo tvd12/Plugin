@@ -306,7 +306,8 @@ public class Image implements Comparable<Image> {
 			this.mX = x;
 			this.mY = y;
 			mParent.setPosition(x, y);
-			
+			mParent.setMargin();
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

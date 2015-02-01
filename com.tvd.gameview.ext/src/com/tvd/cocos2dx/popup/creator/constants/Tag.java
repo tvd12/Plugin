@@ -74,4 +74,7 @@ public interface Tag {
 	public static final String BACKGROUND_IMAGE	= "background-image";
 	
 	public static final String FONT_COLOR		= "font-color";
+	
+	public static final String POSITION_TYPE		= "position-type";
+	public static final String MARGIN				= "margin";
 }

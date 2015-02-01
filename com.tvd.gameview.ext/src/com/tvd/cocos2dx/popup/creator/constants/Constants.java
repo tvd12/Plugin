@@ -30,6 +30,9 @@ public interface Constants {
 	public static final String SCREEN					= "Screen";
 	public static final String ANDROID					= "Android";
 	
+	public static final String ABSOLUTE					= "absolute";
+	public static final String RELATIVE					= "relative";
+	
 	public static final int PLUGIN						= 1001;
 	public static final int NORMAL						= 1002;
 	

@@ -23,6 +23,8 @@
 			<position-name value="main_back" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="22.0, 458.0" />
+			<position-type value="relative" />
+			<margin top="10.0" />
 			<z-index value="0" />
 			<image id="main_game_layer_main_back" 
 				location-in-interfacebuilder="10.0, 10.0"
@@ -33,6 +35,8 @@
 			<position-name value="main_bg" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="162.5, 240.0" />
+			<position-type value="relative" />
+			<margin top="0.0" />
 			<z-index value="0" />
 			<image id="main_game_layer_main_bg" 
 				location-in-interfacebuilder="0.0, 0.0"
@@ -83,6 +87,8 @@
 			<position-name value="main_life" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="84.0, 456.0" />
+			<position-type value="relative" />
+			<margin top="12.0" />
 			<z-index value="0" />
 			<image id="main_game_layer_main_life" 
 				location-in-interfacebuilder="37.0, 12.0"

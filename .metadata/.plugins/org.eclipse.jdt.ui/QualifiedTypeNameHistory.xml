@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.w3c.dom.views.AbstractView"/>
-<fullyQualifiedTypeName name="org.eclipse.swt.widgets.Shell"/>
-<fullyQualifiedTypeName name="org.eclipse.ui.handlers.HandlerUtil"/>
-<fullyQualifiedTypeName name="java.util.Iterator"/>
-<fullyQualifiedTypeName name="java.lang.Object"/>
-<fullyQualifiedTypeName name="org.eclipse.jface.wizard.WizardDialog"/>
-<fullyQualifiedTypeName name="com.tvd.gameview.ext.wizards.NewPopupCreationWizard"/>
 <fullyQualifiedTypeName name="com.tvd.gameview.ext.pages.NewGameViewFilePage"/>
 <fullyQualifiedTypeName name="org.eclipse.jdt.internal.core.JavaProject"/>
 <fullyQualifiedTypeName name="org.eclipse.jdt.core.IJavaProject"/>
@@ -41,7 +34,6 @@
 <fullyQualifiedTypeName name="org.eclipse.swt.events.ModifyListener"/>
 <fullyQualifiedTypeName name="java.io.InputStream"/>
 <fullyQualifiedTypeName name="com.tvd.gameview.ext.pages.NewIBTemplatePage"/>
-<fullyQualifiedTypeName name="com.tvd.gameview.ext.constants.Constant"/>
 <fullyQualifiedTypeName name="com.tvd.gameview.ext.constants.Constant.Orientation"/>
 <fullyQualifiedTypeName name="com.tvd.gameview.ext.file.FileActions"/>
 <fullyQualifiedTypeName name="org.eclipse.swt.widgets.Label"/>
@@ -51,8 +43,6 @@
 <fullyQualifiedTypeName name="com.tvd.gameview.ext.pages.NewIBTemplatePage.DeviceFolderCombo"/>
 <fullyQualifiedTypeName name="org.eclipse.jface.viewers.ISelection"/>
 <fullyQualifiedTypeName name="org.eclipse.core.resources.IFolder"/>
-<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
-<fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="com.tdgc.cocos2dx.popup.creator.utils.NotificationCenter"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="org.json.JSONException"/>
@@ -60,4 +50,14 @@
 <fullyQualifiedTypeName name="java.util.concurrent.CopyOnWriteArrayList"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.utils.NotificationCenter.INotificationListener"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.utils.NotificationCenter"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.utils.StringUtils"/>
+<fullyQualifiedTypeName name="com.tvd.gameview.ext.constants.Constant"/>
+<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.basic.Point"/>
+<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.basic.CommonObject"/>
+<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.constants.Constants"/>
+<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.basic.Margin"/>
+<fullyQualifiedTypeName name="java.lang.Float"/>
+<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.constants.Attribute"/>
 </qualifiedTypeNameHistroy>

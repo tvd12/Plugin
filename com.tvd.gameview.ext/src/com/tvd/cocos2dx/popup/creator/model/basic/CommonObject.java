@@ -23,6 +23,7 @@ import java.util.List;
 
 import org.eclipse.core.resources.IProject;
 
+import com.tvd.cocos2dx.popup.creator.constants.Constants;
 import com.tvd.cocos2dx.popup.creator.constants.Strings;
 import com.tvd.cocos2dx.popup.creator.constants.Tag;
 import com.tvd.cocos2dx.popup.creator.file.FileUtils;
@@ -58,6 +59,8 @@ public abstract class CommonObject extends BasicObject {
 		mIsNewClass = false;
 		mIsNextItemInArray = false;
 		mIsGenerateClass = false;
+		mMagrin = null;
+		mPositionType = Constants.ABSOLUTE; //relative
 	}
 	
 	public abstract String implement(boolean pInfunction);
@@ -291,7 +294,92 @@ public abstract class CommonObject extends BasicObject {
 		return this.mPositionString;
 	}
 	
+	public Point getOrigin() {
+		float originX = getPosition().getX() 
+				- getAnchorPoint().getX() * getSize().getWidth();
+		float originY = getPosition().getY()
+				- getAnchorPoint().getY() * getSize().getHeight();
+		
+		return new Point(originX, originY);
+	}
+	
+	public float getOriginX() {
+		return getPosition().getX() 
+				- getAnchorPoint().getX() * getSize().getWidth();
+	}
+	
+	public float getOriginY() {
+		return getPosition().getY()
+		- getAnchorPoint().getY() * getSize().getHeight();
+	}
+	
+	public Point getLeft() {
+		return new Point(getOriginX(), 
+				getOriginY() + getSize().getHeight()/2);
+	}
+	
+	public Point getLeftTop() {
+		return new Point(getOriginX(),
+				getOriginY() + getSize().getHeight());
+	}
+	
+	public Point getTop() {
+		return new Point(getOriginX() + getSize().getWidth()/2,
+				getOriginY() + getSize().getHeight());
+	}
+	
+	public Point getRightTop() {
+		return new Point(getOriginX() + getSize().getWidth(),
+				getOriginY() + getSize().getHeight());
+	}
+	
+	public Point getRight() {
+		return new Point(getOriginX() + getSize().getWidth(),
+				getOriginY() + getSize().getHeight()/2);
+	}
+	
+	public Point getRightBottom() {
+		return new Point(getOriginX() + getSize().getWidth(),
+				getOriginY());
+	}
+	
+	public Point getBottom() {
+		return new Point(getOriginX() + getSize().getWidth()/2,
+				getOriginY());
+	}
+	
 	//========== end set and get position==========
+	
+	//========== set and get margin ===============
+	public void setMargin() {
+		Margin margin = getMagin();
+		if(margin == null) {
+			return;
+		}
+		
+		if(margin.getLeft() != null) {
+			float marginLeft = getParent().getOriginX() 
+					- getOriginX();
+			margin.setLeft(new Float(marginLeft));
+		}
+		if(margin.getTop() != null) {
+			float marginTop = getParent().getTop().getY()
+					- getTop().getY();
+			margin.setTop(marginTop);
+		}
+		if(margin.getRight() != null) {
+			float marginRight = getParent().getRight().getX() 
+					- getRight().getX();
+			margin.setRight(marginRight);
+		}
+		if(margin.getBottom() != null) {
+			float marginBottom = getParent().getBottom().getY()
+					- getBottom().getY();
+			margin.setBottom(marginBottom);
+		}
+		
+	}
+	//========== end set and get position =========
 	
 	//========== set and get anchorpoint==========
 	public void setAnchorPoint(Point pPoint) {
@@ -719,6 +807,22 @@ public abstract class CommonObject extends BasicObject {
 		return this.mCellGroups;
 	}
 	
+	public void setMargin(Margin margin) {
+		this.mMagrin = margin;
+	}
+	
+	public Margin getMagin() {
+		return this.mMagrin;
+	}
+	
+	public void setPositionType(String positionType) {
+		this.mPositionType = positionType;
+	}
+	
+	public String getPositionType() {
+		return this.mPositionType;
+	}
+	
 	public void setAllPropertiesForObject(CommonObject obj) {
 		super.setAllPropertiesForObject(obj);
 		
@@ -764,6 +868,8 @@ public abstract class CommonObject extends BasicObject {
 		obj.mZIndex = mZIndex;
 		obj.mXmlTagName = mXmlTagName;
 		obj.mPositionNamePrefix = mPositionNamePrefix;
+		obj.mMagrin = mMagrin;
+		obj.mPositionType = mPositionType;
 	}
  	
 	
@@ -808,6 +914,9 @@ public abstract class CommonObject extends BasicObject {
 	protected String mPositionString;
 	protected String mSizeString;
 
+	protected String mPositionType;
+	protected Margin mMagrin;
+	
 	protected String mDeclareObjectName;
 	protected String mZIndex;
 	protected String mXmlTagName;
