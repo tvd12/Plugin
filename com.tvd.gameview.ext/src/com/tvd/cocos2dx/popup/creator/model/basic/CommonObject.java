@@ -393,7 +393,7 @@ public abstract class CommonObject extends BasicObject {
 		}
 		if(margin.getBottom() != null) {
 			float marginBottom = - getParent().getBottom().getY()
-					+ getPosition().getX();
+					+ getPosition().getY();
 //					+ getBottom().getY();
 			margin.setBottom(marginBottom);
 		}

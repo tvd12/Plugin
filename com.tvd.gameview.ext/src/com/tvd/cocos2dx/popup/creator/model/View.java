@@ -471,12 +471,17 @@ public class View extends AdvancedObject implements IContainer {
 			for(int i = 0 ; i < mLabels.size() ; i++) {
 				mLabels.get(i).alignFollowParrent();
 			}
-			String xmlContent = this.toXML();
-//			fileUtils.setContent(xmlContent).writeToFile(mXmlFilePath, false);
-			ByteArrayInputStream inputStream = 
-	 				new ByteArrayInputStream(xmlContent.getBytes());
-	 		mXmlFile.setContents(inputStream, true, false, null);
+			
+			writeXMLToFile();
 		}
+	}
+	
+	private void writeXMLToFile() throws CoreException {
+		String xmlContent = this.toXML();
+//		fileUtils.setContent(xmlContent).writeToFile(mXmlFilePath, false);
+		ByteArrayInputStream inputStream = 
+ 				new ByteArrayInputStream(xmlContent.getBytes());
+ 		mXmlFile.setContents(inputStream, true, false, null);
 	}
 	
 	private String createImageViewsTag() {
@@ -541,6 +546,15 @@ public class View extends AdvancedObject implements IContainer {
 		}
 		
 		return builder.toString();
+	}
+	
+	public void reloadImageSizes(float scaleFactor) throws CoreException {
+		for(int i = 0 ; i < getImages().size() ; i++) {
+			if(getImages().get(i) != null) {
+				getImages().get(i).reloadSize(mImagesPath, scaleFactor);
+			}
+		}
+		writeXMLToFile();
 	}
 	
 	@Override

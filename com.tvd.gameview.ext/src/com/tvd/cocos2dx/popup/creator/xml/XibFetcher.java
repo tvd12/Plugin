@@ -18,8 +18,20 @@
 
 package com.tvd.cocos2dx.popup.creator.xml;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.List;
 
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.InputSource;
+import org.xml.sax.XMLReader;
+
+import com.tvd.cocos2dx.popup.creator.log.Log;
 import com.tvd.cocos2dx.popup.creator.model.Image;
 import com.tvd.cocos2dx.popup.creator.model.Label;
 
@@ -28,5 +40,27 @@ public class XibFetcher extends XmlFetcher {
 	public XibFetcher(List<Image> pImages, List<Label> pLabels) {
 		mHandler = new XibFileParser(pImages, pLabels);
 	}
-
+	
+	@Override
+	public void fetchData(String pOutputPath) {
+		try {
+			File file = new File(pOutputPath);
+			InputStream inputStream = new FileInputStream(file);
+			Reader reader = new InputStreamReader(inputStream, "UTF-8");
+			InputSource inputSource = new InputSource(reader);
+			inputSource.setEncoding("UTF-8");
+			
+			SAXParserFactory spf = SAXParserFactory.newInstance();
+			spf.setNamespaceAware(true);
+//			spf.setValidating(true);
+			SAXParser sp = spf.newSAXParser();
+			XMLReader xr = sp.getXMLReader();
+			xr.setContentHandler(mHandler);
+			xr.setErrorHandler(mErrorHandler);
+			xr.parse(inputSource);
+			
+		} catch (Exception e) {
+			Log.e(e);
+		}
+	}
 }

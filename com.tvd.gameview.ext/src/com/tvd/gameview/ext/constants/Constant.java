@@ -62,6 +62,7 @@ public interface Constant {
 		public static final String EXPORT_POSITIONS		= "export positions";
 		public static final String EXPORT_SRC_CODE		= "export source code";
 		public static final String EXPORT_IDS			= "export identifiers";
+		public static final String RELOAD_SIZE			= "reload size";
 		
 		public static final String DECLARE_POSITIONS	= "declare positions";
 		public static final String IMPLEMENT_POSITIONS	= "implement positions";

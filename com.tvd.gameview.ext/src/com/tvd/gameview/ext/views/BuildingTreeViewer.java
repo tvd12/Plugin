@@ -311,6 +311,8 @@ implements IDoubleClickListener, INotificationListener {
 		declareClass(element, view);
 		implementClass(element, view);
 		exportSourceCode(element, view);
+		
+		reloadSize(element, view);
 	}
 
 	private void exportImages(BuildingListElement element, View view) {
@@ -397,7 +399,6 @@ implements IDoubleClickListener, INotificationListener {
 				System.out.println("Implementing position for " + element.getDevice()
 						+ " device...");
 				view.exportXibTemplate(element.getDevice(), view.getProject(), false);
-				System.out.println();
 				System.out.println("Done!");
 				System.out.println("===============================================================");
 			}
@@ -465,6 +466,26 @@ implements IDoubleClickListener, INotificationListener {
 		}
 	}
 	
+	private void reloadSize(BuildingListElement element, View view) {
+		String device = element.getDevice();
+		if(device != null && !device.equals("")) {
+			BuildingListElement parentOfDeviceElement = element.getParent();
+			if(parentOfDeviceElement.getName()
+					.equals(Constant.TreeElement.RELOAD_SIZE)) {
+				System.out.println("Reload size for " + element.getDevice()
+						+ " device...");
+				float scaleFactor = Config.getInstance().getDefaultScaleFactor(device);
+				try {
+					view.reloadImageSizes(scaleFactor);
+				} catch (CoreException e) {
+					e.printStackTrace();
+				}
+				System.out.println("Done!");
+				System.out.println("===============================================================");
+			}
+		}
+	}
+	
 	@Override
 	public void setFocus() {
 		
@@ -500,6 +521,8 @@ implements IDoubleClickListener, INotificationListener {
 				"export source code", //6 
 					//"declare class", //6.1
 					//"implement class", //6.2	
+				"reload size",
+					//dievices
 		};
 		
 		List<IProject> sdkProjects = ProjectUtils.getSdkProjects();
@@ -558,6 +581,7 @@ implements IDoubleClickListener, INotificationListener {
 				    	elements[1].addChild(deviceElement.copy());
 				    	elements[2].addChild(deviceElement.copy());
 				    	elements[3].addChild(deviceElement.copy());
+				    	elements[7].addChild(deviceElement.copy());
 				    	
 				    	BuildingListElement implementForDeviceElement
 				    			= new BuildingListElement("implement for " + device, device);

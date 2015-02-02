@@ -3,26 +3,26 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="265" key="DIALOG_WIDTH"/>
 		<item value="204" key="DIALOG_Y_ORIGIN"/>
-		<item value="399" key="DIALOG_HEIGHT"/>
 		<item value="910" key="DIALOG_X_ORIGIN"/>
+		<item value="399" key="DIALOG_HEIGHT"/>
 		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="true" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="true" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
 		<item value="setMar" key="selection"/>
 		<list key="findhistory">
 			<item value="setMar"/>
+			<item value="reloadSi"/>
+			<item value="setPho"/>
+			<item value="reload"/>
+			<item value="size"/>
 			<item value="mPositionString"/>
 			<item value="setLo"/>
 			<item value="setPosition"/>
-			<item value="setPo"/>
-			<item value="setSize"/>
-			<item value="setPos"/>
-			<item value="toXML"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Tag"/>

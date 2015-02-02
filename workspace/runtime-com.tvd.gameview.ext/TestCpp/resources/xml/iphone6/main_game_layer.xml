@@ -23,6 +23,8 @@
 			<position-name value="main_back" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="26.5, 640.5" />
+			<position-type value="relative"/>
+			<margin top="0"/>
 			<z-index value="0" />
 			<image id="main_game_layer_main_back" 
 				location-in-interfacebuilder="10.0, 10.0"
@@ -33,6 +35,8 @@
 			<position-name value="main_bg" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="225.0, 334.0" />
+			<position-type value="relative"/>
+			<margin top="0"/>
 			<z-index value="0" />
 			<image id="main_game_layer_main_bg" 
 				location-in-interfacebuilder="0.0, 0.0"
@@ -43,6 +47,8 @@
 			<position-name value="main_ground_treesbot" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="206.5, -61.0" />
+			<position-type value="relative"/>
+			<margin bottom="0"/>
 			<z-index value="0" />
 			<image id="main_game_layer_main_ground_treesbot" 
 				location-in-interfacebuilder="-222.0, 582.0"
@@ -53,6 +59,8 @@
 			<position-name value="main_ground_treestop" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="187.5, 740.5" />
+			<position-type value="relative"/>
+			<margin top="0"/>
 			<z-index value="0" />
 			<image id="main_game_layer_main_ground_treestop" 
 				location-in-interfacebuilder="-97.0, -258.0"
@@ -63,6 +71,8 @@
 			<position-name value="main_heart" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="97.0, 636.0" />
+			<position-type value="relative"/>
+			<margin top="0"/>
 			<z-index value="0" />
 			<image id="main_game_layer_main_heart" 
 				location-in-interfacebuilder="89.0, 23.0"
@@ -73,6 +83,8 @@
 			<position-name value="main_heart_blank" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="111.5, 636.5" />
+			<position-type value="relative"/>
+			<margin top="0"/>
 			<z-index value="0" />
 			<image id="main_game_layer_main_heart_blank" 
 				location-in-interfacebuilder="105.0, 25.0"
@@ -83,6 +95,8 @@
 			<position-name value="main_life" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="114.5, 637.5" />
+			<position-type value="relative"/>
+			<margin top="0"/>
 			<z-index value="0" />
 			<image id="main_game_layer_main_life" 
 				location-in-interfacebuilder="49.0, 13.0"
@@ -93,6 +107,8 @@
 			<position-name value="main_moreoptions" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="40.5, 40.0" />
+			<position-type value="relative"/>
+			<margin bottom="0"/>
 			<z-index value="0" />
 			<image id="main_game_layer_main_moreoptions" 
 				location-in-interfacebuilder="-4.0, 595.0"
@@ -103,6 +119,8 @@
 			<position-name value="main_reload" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="181.5, 40.5" />
+			<position-type value="relative"/>
+			<margin bottom="0"/>
 			<z-index value="0" />
 			<image id="main_game_layer_main_reload" 
 				location-in-interfacebuilder="156.0, 594.0"
@@ -113,6 +131,8 @@
 			<position-name value="main_settings" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="336.5, 40.5" />
+			<position-type value="relative"/>
+			<margin bottom="0"/>
 			<z-index value="0" />
 			<image id="main_game_layer_main_settings" 
 				location-in-interfacebuilder="311.0, 594.0"
@@ -133,6 +153,8 @@
 			<position-name value="main_time" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="221.5, 638.5" />
+			<position-type value="relative"/>
+			<margin top="0"/>
 			<z-index value="0" />
 			<image id="main_game_layer_main_time" 
 				location-in-interfacebuilder="190.0, 11.0"
@@ -143,6 +165,8 @@
 			<position-name value="main_trees_bot" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="221.0, 8.5" />
+			<position-type value="relative"/>
+			<margin bottom="0"/>
 			<z-index value="0" />
 			<image id="main_game_layer_main_trees_bot" 
 				location-in-interfacebuilder="10.0, 580.0"
@@ -153,6 +177,8 @@
 			<position-name value="main_trees_top1" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="362.5, 631.0" />
+			<position-type value="relative"/>
+			<margin top="0"/>
 			<z-index value="0" />
 			<image id="main_game_layer_main_trees_top1" 
 				location-in-interfacebuilder="326.0, -25.0"
@@ -163,6 +189,8 @@
 			<position-name value="main_trees_top2" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="9.5, 631.0" />
+			<position-type value="relative"/>
+			<margin top="0"/>
 			<z-index value="0" />
 			<image id="main_game_layer_main_trees_top2" 
 				location-in-interfacebuilder="-27.0, -25.0"

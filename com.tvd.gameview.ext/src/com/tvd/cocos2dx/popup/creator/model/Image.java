@@ -187,6 +187,23 @@ public class Image implements Comparable<Image> {
 	    
 	}
 	
+	public void reloadSize(String rootPath, float scaleFactor) {
+		File file = new File(rootPath + "/" + getRealPath());
+		if(!file.exists()) {
+			System.err.println("ERROR::fetchSize::file " + file + " not exists");
+			return;
+		}
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(file);
+			int width = image.getWidth();
+		    int height = image.getHeight();
+		    setSize(width/scaleFactor, height/scaleFactor);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public int compareTo(Image o) {
 		return Integer.parseInt(this.mParent.getZIndex())
