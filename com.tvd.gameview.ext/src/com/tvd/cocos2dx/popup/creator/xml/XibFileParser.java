@@ -55,6 +55,7 @@ public class XibFileParser extends DefaultHandler {
 					break;
 				}
 			}
+			mCurrentImage.setIndex(mIndex ++);
 			mParentQName = qName;
 		}
 		else if(qName.equals(Tag.LABEL)) {
@@ -65,6 +66,7 @@ public class XibFileParser extends DefaultHandler {
 					break;
 				}
 			}
+			mCurrentLabel.setZIndex(mIndex ++);
 			mParentQName = qName;
 		}
 		else if(qName.equals(Tag.RECT)) {
@@ -142,4 +144,5 @@ public class XibFileParser extends DefaultHandler {
 	private Image mCurrentImage;
 	private Label mCurrentLabel;
 	private String mParentQName;
+	private int mIndex = 0;
 }

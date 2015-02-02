@@ -51,13 +51,13 @@
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.utils.NotificationCenter.INotificationListener"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.utils.NotificationCenter"/>
 <fullyQualifiedTypeName name="java.lang.Override"/>
-<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.utils.StringUtils"/>
 <fullyQualifiedTypeName name="com.tvd.gameview.ext.constants.Constant"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.basic.Point"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.basic.CommonObject"/>
-<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.constants.Constants"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.basic.Margin"/>
 <fullyQualifiedTypeName name="java.lang.Float"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.constants.Attribute"/>
+<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.constants.Constants"/>
+<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
 </qualifiedTypeNameHistroy>

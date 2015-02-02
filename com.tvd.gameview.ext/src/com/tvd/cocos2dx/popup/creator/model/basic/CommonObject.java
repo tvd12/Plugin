@@ -110,9 +110,16 @@ public abstract class CommonObject extends BasicObject {
 	
 	public String implementPositions() {
 		
+		boolean isRelative = false;
+		String templateName = getImplementingPositionTemplateName();
+		if(isRelativePositionType() && getMagin() != null) {
+			isRelative = true;
+			templateName = getMagin().toTemplateName() + " " + templateName;
+		}
 		String template = new FileUtils().fetchTemplate(
-				getImplementingPositionTemplateName(), 
-				getPostionTemplateFilePath(), getProject());
+				templateName, 
+				getPostionTemplateFilePath(), 
+				getProject());
 		StringBuilder builder = new StringBuilder();
 		if(mPositionString != null 
 				&& mPositionName != null
@@ -122,6 +129,15 @@ public abstract class CommonObject extends BasicObject {
 					.replace("{position}", mPositionString)
 					.replace("{tab}", "\t")
 					.replace("{spaces}", spaces);
+			if(isRelative) {
+				template = template.replace("{margin-left}", getMagin().getLeftString())
+						.replace("{margin-top}", getMagin().getTopString())
+						.replace("{margin-right}", getMagin().getRightString())
+						.replace("{margin-bottom}", getMagin().getBottomString())
+						.replace("{x}", getPosition().getXString())
+						.replace("{y}", getPosition().getYString());
+				
+			}
 			builder.append(template.trim());
 		}
 		
@@ -358,23 +374,27 @@ public abstract class CommonObject extends BasicObject {
 		}
 		
 		if(margin.getLeft() != null) {
-			float marginLeft = getParent().getOriginX() 
-					- getOriginX();
+			float marginLeft = - getParent().getOriginX()
+					+ getPosition().getX();
+//					+ getOriginX();
 			margin.setLeft(new Float(marginLeft));
 		}
 		if(margin.getTop() != null) {
 			float marginTop = getParent().getTop().getY()
-					- getTop().getY();
+					- getPosition().getY();
+//					- getTop().getY();
 			margin.setTop(marginTop);
 		}
 		if(margin.getRight() != null) {
-			float marginRight = getParent().getRight().getX() 
-					- getRight().getX();
+			float marginRight = getParent().getRight().getX()
+					- getPosition().getX();
+//					- getRight().getX();
 			margin.setRight(marginRight);
 		}
 		if(margin.getBottom() != null) {
-			float marginBottom = getParent().getBottom().getY()
-					- getBottom().getY();
+			float marginBottom = - getParent().getBottom().getY()
+					+ getPosition().getX();
+//					+ getBottom().getY();
 			margin.setBottom(marginBottom);
 		}
 		
@@ -821,6 +841,10 @@ public abstract class CommonObject extends BasicObject {
 	
 	public String getPositionType() {
 		return this.mPositionType;
+	}
+	
+	public boolean isRelativePositionType() {
+		return getPositionType().equals(Constants.RELATIVE);
 	}
 	
 	public void setAllPropertiesForObject(CommonObject obj) {

@@ -19,6 +19,26 @@
 #end
 
 #Point implementing template
-{var_name}{spaces}= Point({position});
+{var_name}{spaces}= Vec2({position});
 
-#end	
+#end
+
+#Margin-Left Point implementing template	
+{var_name}{spaces}= Vec2(VisibleRect::left().x + {margin-left}, {y});
+
+#end
+
+#Margin-Top Point implementing template
+{var_name}{spaces}= Vec2({x}, VisibleRect::top().y - {margin-top});
+
+#end
+
+#Margin-Right Point implementing template
+{var_name}{spaces}= Vec2(VisibleRect::right().x - {margin-right}, {y});
+
+#end
+
+#Margin-Bottom Point implementing template
+{var_name}{spaces}= Vec2({x}, VisibleRect::bottom().y + {margin-bottom});
+
+#end

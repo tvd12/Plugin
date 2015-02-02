@@ -487,6 +487,13 @@ public class Image implements Comparable<Image> {
 		return this.mIsResource;
 	}
 	
+	public void setIndex(int index) {
+		this.mIndex = index;
+		if(mParent != null) {
+			mParent.setZIndex(index);
+		}
+	}
+	
 	public String toXML(boolean includeSize) {
 		String tab = StringUtils.tab(mTabCount);
 		StringBuilder builder = new StringBuilder(tab);
@@ -567,4 +574,5 @@ public class Image implements Comparable<Image> {
 	private boolean mIsExists;
 	protected boolean mIsAddToInterfaceBuilder;
 	protected boolean mIsResource;
+	protected int mIndex;
 }

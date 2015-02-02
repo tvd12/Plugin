@@ -31,6 +31,30 @@ public class Margin {
 		mBottom = pBottom;
 	}
 	
+	public String getLeftString() {
+		return (getLeft() != null) 
+				? ("" + getLeft().floatValue()) : "";
+				
+	}
+	
+	public String getTopString() {
+		return (getTop() != null) 
+				? ("" + getTop().floatValue()) : "";
+				
+	}
+	
+	public String getRightString() {
+		return (getRight() != null) 
+				? ("" + getRight().floatValue()) : "";
+				
+	}
+	
+	public String getBottomString() {
+		return (getBottom() != null) 
+				? ("" + getBottom().floatValue()) : "";
+				
+	}
+	
 	public String toXML() {
 		StringBuilder builder = new StringBuilder()
 			.append("<" + Tag.MARGIN);
@@ -54,6 +78,24 @@ public class Margin {
 			.append("\"" + getBottom().floatValue() + "\"");
 		}
 		return builder.append(" />").toString();
+	}
+	
+	public String toTemplateName() {
+		StringBuilder builder = new StringBuilder("Margin");
+		if(getLeft() != null) {
+			builder.append("-Left");
+		}
+		if(getTop() != null) {
+			builder.append("-Top");
+		}
+		if(getRight() != null) {
+			builder.append("-Right");
+		}
+		if(getBottom() != null) {
+			builder.append("-Bottom");
+		}
+		
+		return builder.toString();
 	}
 	
 	@Override

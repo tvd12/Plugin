@@ -40,6 +40,14 @@ public class Point {
 		return this.mY;
 	}
 	
+	public String getXString() {
+		return "" + this.getX();
+	}
+	
+	public String getYString() {
+		return "" + this.getY();
+	}
+	
 	public void add(Point p) {
 		this.mX = mX + p.getX();
 		this.mY = mY + p.getY();

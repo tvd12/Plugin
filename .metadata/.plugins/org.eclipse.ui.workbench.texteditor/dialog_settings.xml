@@ -13,16 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="setPosition" key="selection"/>
+		<item value="setMar" key="selection"/>
 		<list key="findhistory">
+			<item value="setMar"/>
+			<item value="mPositionString"/>
+			<item value="setLo"/>
 			<item value="setPosition"/>
 			<item value="setPo"/>
 			<item value="setSize"/>
 			<item value="setPos"/>
 			<item value="toXML"/>
-			<item value="Attribute"/>
-			<item value="advancedgroup"/>
-			<item value="positiontypetype"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Tag"/>
