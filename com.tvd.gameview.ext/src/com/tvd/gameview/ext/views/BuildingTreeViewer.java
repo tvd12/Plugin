@@ -574,14 +574,17 @@ implements IDoubleClickListener, INotificationListener {
 				    	String device = devices[j].trim();
 				    	BuildingListElement deviceElement = 
 				    			new BuildingListElement("export for " + device, device);
+				    	BuildingListElement resizeDeviceElement =
+				    			new BuildingListElement("resize for " + device, device);
 				    	String filePath = "resources/xml/" + device
 				    			+ "/" + viewModels.get(k).getName();
 				    	deviceElement.setFilePath(filePath);
+				    	resizeDeviceElement.setFilePath(filePath);
 				    	elements[0].addChild(deviceElement.copy());
 				    	elements[1].addChild(deviceElement.copy());
 				    	elements[2].addChild(deviceElement.copy());
 				    	elements[3].addChild(deviceElement.copy());
-				    	elements[7].addChild(deviceElement.copy());
+				    	elements[7].addChild(resizeDeviceElement);
 				    	
 				    	BuildingListElement implementForDeviceElement
 				    			= new BuildingListElement("implement for " + device, device);

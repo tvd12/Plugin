@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.tvd.gameview.ext.feature_1.0.0.201502031142.jar" id="com.tvd.gameview.ext.feature" version="1.0.0.201502031142">
+      <category name="com.tvd.gameview.ext.category"/>
+   </feature>
+   <category-def name="com.tvd.gameview.ext.category" label="Game View Ext Category">
+      <description>
+         Contains features for the Game View Ext by Dung Ta Van
+      </description>
+   </category-def>
+</site>

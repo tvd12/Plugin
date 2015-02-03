@@ -56,8 +56,8 @@
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.constants.Attribute"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.constants.Constants"/>
 <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
-<fullyQualifiedTypeName name="com.tvd.gameview.ext.views.BuildingListElement"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.View"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.global.Config"/>
 <fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="com.tvd.gameview.ext.views.BuildingListElement"/>
 </qualifiedTypeNameHistroy>

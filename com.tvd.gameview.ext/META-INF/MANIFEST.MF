@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Linuxsagas Plugin
+Bundle-Name: Gext Plugin
 Bundle-SymbolicName: com.tvd.gameview.ext;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.tvd.gameview.ext.GameViewSdk
@@ -25,7 +25,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.views,
  org.eclipse.core.commands,
  org.eclipse.ui.workbench
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: lib/dom4j-1.6.1.jar,
  lib/jaxen-1.1-beta-6.jar,

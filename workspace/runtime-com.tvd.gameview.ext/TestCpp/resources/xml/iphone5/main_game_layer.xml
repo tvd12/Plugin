@@ -2,7 +2,7 @@
 <view class-name="MainGameLayerView" prefix="layer_main_game" type="layer" exitable="false" 
 		super="CommonLayer" background-name="default" size="320.0, 568.0"
 		template-name="Common"
-		exported="true"
+		exported="false"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -26,7 +26,7 @@
 			<z-index value="5" />
 			<image id="main_game_layer_main_back" 
 				location-in-interfacebuilder="15.0, 15.0"
-				width="28.0" height="29.0"
+				width="28.25" height="28.5"
 				phony-path="main_game_layer/sprites/main_back.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
@@ -56,7 +56,7 @@
 			<z-index value="1" />
 			<image id="main_game_layer_main_ground_treestop" 
 				location-in-interfacebuilder="-82.0, -205.0"
-				width="485.0" height="315.0"
+				width="485.0" height="314.5"
 				phony-path="main_game_layer/sprites/main_ground_treestop.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
@@ -66,7 +66,7 @@
 			<z-index value="6" />
 			<image id="main_game_layer_main_heart" 
 				location-in-interfacebuilder="96.0, 24.0"
-				width="14.0" height="13.0"
+				width="14.0" height="13.25"
 				phony-path="main_game_layer/sprites/main_heart.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
@@ -76,7 +76,7 @@
 			<z-index value="5" />
 			<image id="main_game_layer_main_heart_blank" 
 				location-in-interfacebuilder="110.0, 24.0"
-				width="11.0" height="12.0"
+				width="10.75" height="9.5"
 				phony-path="main_game_layer/sprites/main_heart_blank.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
@@ -86,7 +86,7 @@
 			<z-index value="5" />
 			<image id="main_game_layer_main_life" 
 				location-in-interfacebuilder="61.0, 15.0"
-				width="112.0" height="29.0"
+				width="111.5" height="28.5"
 				phony-path="main_game_layer/sprites/main_life.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
@@ -96,7 +96,7 @@
 			<z-index value="5" />
 			<image id="main_game_layer_main_moreoptions" 
 				location-in-interfacebuilder="6.0, 502.0"
-				width="76.0" height="55.0"
+				width="75.75" height="54.75"
 				phony-path="main_game_layer/sprites/main_moreoptions.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
@@ -106,7 +106,7 @@
 			<z-index value="5" />
 			<image id="main_game_layer_main_reload" 
 				location-in-interfacebuilder="138.0, 502.0"
-				width="44.0" height="56.0"
+				width="43.5" height="55.5"
 				phony-path="main_game_layer/sprites/main_reload.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
@@ -116,7 +116,7 @@
 			<z-index value="5" />
 			<image id="main_game_layer_main_settings" 
 				location-in-interfacebuilder="256.0, 502.0"
-				width="43.0" height="56.0"
+				width="43.25" height="55.75"
 				phony-path="main_game_layer/sprites/main_settings.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
@@ -126,7 +126,7 @@
 			<z-index value="3" />
 			<image id="main_game_layer_main_square" 
 				location-in-interfacebuilder="51.0, 157.0"
-				width="59.0" height="59.0"
+				width="59.25" height="59.25"
 				phony-path="main_game_layer/sprites/main_square.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
@@ -136,7 +136,7 @@
 			<z-index value="5" />
 			<image id="main_game_layer_main_time" 
 				location-in-interfacebuilder="200.0, 12.0"
-				width="54.0" height="30.0"
+				width="54.0" height="30.25"
 				phony-path="main_game_layer/sprites/main_time.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
@@ -146,7 +146,7 @@
 			<z-index value="4" />
 			<image id="main_game_layer_main_trees_bot" 
 				location-in-interfacebuilder="2.0, 487.0"
-				width="360.0" height="134.0"
+				width="360.0" height="133.75"
 				phony-path="main_game_layer/sprites/main_trees_bot.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
@@ -156,7 +156,7 @@
 			<z-index value="4" />
 			<image id="main_game_layer_main_trees_top1" 
 				location-in-interfacebuilder="-20.0, -9.0"
-				width="63.0" height="104.0"
+				width="62.5" height="104.25"
 				phony-path="main_game_layer/sprites/main_trees_top1.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
@@ -166,7 +166,7 @@
 			<z-index value="4" />
 			<image id="main_game_layer_main_trees_top2" 
 				location-in-interfacebuilder="276.0, -9.0"
-				width="63.0" height="104.0"
+				width="62.5" height="104.25"
 				phony-path="main_game_layer/sprites/main_trees_top2.png"  />
 		</sprite>
 	</sprites>

@@ -22,12 +22,12 @@
 		<sprite visible="true" comment="">
 			<position-name value="main_back" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="22.0, 458.0" />
+			<position value="20.0, 457.0" />
 			<position-type value="relative" />
-			<margin top="22.0" />
-			<z-index value="12" />
+			<margin top="23.0" />
+			<z-index value="6" />
 			<image id="main_game_layer_main_back" 
-				location-in-interfacebuilder="10.0, 10.0"
+				location-in-interfacebuilder="8.0, 11.0"
 				width="24.0" height="24.0"
 				phony-path="main_game_layer/sprites/main_back.png"  />
 		</sprite>
@@ -46,132 +46,154 @@
 		<sprite visible="true" comment="">
 			<position-name value="main_ground_treesbot" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="185.0, -36.5" />
-			<z-index value="1" />
+			<position value="153.0, -38.5" />
+			<position-type value="relative" />
+			<margin bottom="-38.5" />
+			<z-index value="2" />
 			<image id="main_game_layer_main_ground_treesbot" 
-				location-in-interfacebuilder="-124.0, 411.0"
+				location-in-interfacebuilder="-156.0, 413.0"
 				width="618.0" height="211.0"
 				phony-path="main_game_layer/sprites/main_ground_treesbot.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="main_ground_treestop" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="155.0, 529.0" />
-			<z-index value="2" />
+			<position value="160.0, 530.0" />
+			<position-type value="relative" />
+			<margin top="-50.0" />
+			<z-index value="1" />
 			<image id="main_game_layer_main_ground_treestop" 
-				location-in-interfacebuilder="-50.0, -182.0"
+				location-in-interfacebuilder="-45.0, -183.0"
 				width="410.0" height="266.0"
 				phony-path="main_game_layer/sprites/main_ground_treestop.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="main_heart" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="73.0, 454.5" />
-			<z-index value="5" />
+			<position value="83.0, 456.5" />
+			<position-type value="relative" />
+			<margin top="23.5" />
+			<z-index value="8" />
 			<image id="main_game_layer_main_heart" 
-				location-in-interfacebuilder="67.0, 20.0"
+				location-in-interfacebuilder="77.0, 18.0"
 				width="12.0" height="11.0"
 				phony-path="main_game_layer/sprites/main_heart.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="main_heart_blank" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="83.5, 455.0" />
-			<z-index value="4" />
+			<position value="94.5, 457.0" />
+			<position-type value="relative" />
+			<margin top="23.0" />
+			<z-index value="9" />
 			<image id="main_game_layer_main_heart_blank" 
-				location-in-interfacebuilder="79.0, 21.0"
+				location-in-interfacebuilder="90.0, 19.0"
 				width="9.0" height="8.0"
 				phony-path="main_game_layer/sprites/main_heart_blank.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="main_life" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="84.0, 456.0" />
+			<position value="93.0, 457.0" />
 			<position-type value="relative" />
-			<margin top="24.0" />
-			<z-index value="3" />
+			<margin top="23.0" />
+			<z-index value="7" />
 			<image id="main_game_layer_main_life" 
-				location-in-interfacebuilder="37.0, 12.0"
+				location-in-interfacebuilder="46.0, 11.0"
 				width="94.0" height="24.0"
 				phony-path="main_game_layer/sprites/main_life.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="main_moreoptions" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="29.0, 31.0" />
+			<position value="33.0, 26.0" />
+			<position-type value="relative" />
+			<margin bottom="26.0" />
 			<z-index value="14" />
 			<image id="main_game_layer_main_moreoptions" 
-				location-in-interfacebuilder="-3.0, 426.0"
+				location-in-interfacebuilder="1.0, 431.0"
 				width="64.0" height="46.0"
 				phony-path="main_game_layer/sprites/main_moreoptions.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="main_reload" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="162.5, 31.5" />
-			<z-index value="13" />
+			<position value="153.5, 26.5" />
+			<position-type value="relative" />
+			<margin bottom="26.5" />
+			<z-index value="11" />
 			<image id="main_game_layer_main_reload" 
-				location-in-interfacebuilder="144.0, 425.0"
+				location-in-interfacebuilder="135.0, 430.0"
 				width="37.0" height="47.0"
 				phony-path="main_game_layer/sprites/main_reload.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="main_settings" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="293.5, 30.5" />
-			<z-index value="6" />
+			<position value="286.5, 26.5" />
+			<position-type value="relative" />
+			<margin bottom="26.5" />
+			<z-index value="12" />
 			<image id="main_game_layer_main_settings" 
-				location-in-interfacebuilder="275.0, 426.0"
+				location-in-interfacebuilder="268.0, 430.0"
 				width="37.0" height="47.0"
 				phony-path="main_game_layer/sprites/main_settings.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="main_square" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="92.0, 198.0" />
-			<z-index value="7" />
+			<position value="137.0, 263.0" />
+			<z-index value="13" />
 			<image id="main_game_layer_main_square" 
-				location-in-interfacebuilder="67.0, 257.0"
+				location-in-interfacebuilder="112.0, 192.0"
 				width="50.0" height="50.0"
 				phony-path="main_game_layer/sprites/main_square.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="main_time" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="175.0, 457.0" />
-			<z-index value="8" />
+			<position value="176.0, 458.0" />
+			<position-type value="relative" />
+			<margin top="22.0" />
+			<z-index value="10" />
 			<image id="main_game_layer_main_time" 
-				location-in-interfacebuilder="152.0, 10.0"
+				location-in-interfacebuilder="153.0, 9.0"
 				width="46.0" height="26.0"
 				phony-path="main_game_layer/sprites/main_time.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="main_trees_bot" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="160.0, 13.5" />
-			<z-index value="9" />
+			<position value="160.0, 10.5" />
+			<position-type value="relative" />
+			<margin bottom="10.5" />
+			<z-index value="5" />
 			<image id="main_game_layer_main_trees_bot" 
-				location-in-interfacebuilder="8.0, 410.0"
+				location-in-interfacebuilder="8.0, 413.0"
 				width="304.0" height="113.0"
 				phony-path="main_game_layer/sprites/main_trees_bot.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="main_trees_top1" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="6.5, 456.0" />
-			<z-index value="10" />
+			<position value="305.5, 457.0" />
+			<position-type value="relative" />
+			<margin top="23.0" />
+			<z-index value="3" />
 			<image id="main_game_layer_main_trees_top1" 
-				location-in-interfacebuilder="-20.0, -20.0"
+				location-in-interfacebuilder="279.0, -21.0"
 				width="53.0" height="88.0"
 				phony-path="main_game_layer/sprites/main_trees_top1.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="main_trees_top2" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="311.5, 456.0" />
-			<z-index value="11" />
+			<position value="11.5, 457.0" />
+			<position-type value="relative" />
+			<margin top="23.0" />
+			<z-index value="4" />
 			<image id="main_game_layer_main_trees_top2" 
-				location-in-interfacebuilder="285.0, -20.0"
+				location-in-interfacebuilder="-15.0, -21.0"
 				width="53.0" height="88.0"
 				phony-path="main_game_layer/sprites/main_trees_top2.png"  />
 		</sprite>
