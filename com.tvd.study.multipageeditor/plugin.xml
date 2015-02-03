@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Gext Layout Editor"
+            extensions="xml"
+            icon="icons/gxml_icon.png"
+            contributorClass="com.tvd.gext.multipageeditor.editors.LayoutMultiPageEditorContributor"
+            class="com.tvd.gext.multipageeditor.editors.LayoutMultiPageEditor"
+            id="com.tvd.gext.multipageeditor.editors.LayoutMultiPageEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Gext Editor"
+            id="com.tvd.gext.multipageeditor">
+      </category>
+      <wizard
+            name="Gext Layout Editor"
+            icon="icons/gxml_icon.png"
+            category="com.tvd.gext.multipageeditor"
+            class="com.tvd.gext.multipageeditor.wizards.LayerNewFileWizard"
+            id="com.tvd.gext.multipageeditor.wizards.LayoutNewFileWizard">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">  
+      <content-type  
+            base-type="org.eclipse.core.runtime.xml"  
+            file-extensions="xml"  
+            id="com.tvd.gext.multipageeditor.pages.layoutxmleditor"  
+            name="Layout XML"  
+            priority="normal">  
+      </content-type>  
+   </extension>  
+   <extension  
+         point="org.eclipse.ui.editors">  
+      <editor  
+            class="com.tvd.gext.multipageeditor.pages.LayoutXMLEditorPage"  
+            id="com.tvd.gext.multipageeditor.pages.layoutxmleditor.ex"  
+            name="Example editor">  
+         <contentTypeBinding  
+               contentTypeId="com.tvd.gext.multipageeditor.pages.layoutxmleditor">  
+         </contentTypeBinding>  
+      </editor>  
+   </extension>  
+
+</plugin>
