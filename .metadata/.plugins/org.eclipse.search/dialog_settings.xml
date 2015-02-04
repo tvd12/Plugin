@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="">
-		<item value="1000" key="org.eclipse.search.resultpage.limit"/>
 		<item value="TRUE" key="org.eclipse.jdt.search.resultpage.limit_enabled"/>
 		<item value="1000" key="org.eclipse.jdt.search.resultpage.limit"/>
 	</section>
@@ -15,8 +14,8 @@
 	<section name="DialogBounds_SearchDialog">
 		<item value="572" key="DIALOG_WIDTH"/>
 		<item value="210" key="DIALOG_Y_ORIGIN"/>
-		<item value="442" key="DIALOG_HEIGHT"/>
 		<item value="162" key="DIALOG_X_ORIGIN"/>
+		<item value="442" key="DIALOG_HEIGHT"/>
 		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="Search">
@@ -39,11 +38,11 @@
 			<item value="org.eclipse.mylyn.tasks.ui.search.page"/>
 		</list>
 	</section>
-	<section name="org.eclipse.search.text.FileSearchResultPage">
-		<item value="1000" key="org.eclipse.search.resultpage.limit"/>
-	</section>
 	<section name="SearchDialog">
 		<item value="org.eclipse.search.internal.ui.text.TextSearchPage" key="PREVIOUS_PAGE"/>
+	</section>
+	<section name="org.eclipse.search.text.FileSearchResultPage">
+		<item value="1000" key="org.eclipse.search.resultpage.limit"/>
 	</section>
 	<section name="TextSearchPage">
 		<item value="true" key="CASE_SENSITIVE"/>
@@ -63,6 +62,9 @@
 			<list key="workingSets">
 			</list>
 		</section>
+		<section name="EXTENSIONS">
+			<item value="*" key="0"/>
+		</section>
 		<section name="HISTORY2">
 			<item value="false" key="isRegExSearch"/>
 			<item value="com.tvd.gext.multipageeditor.editors.GextMultiPageEditor" key="textPattern"/>
@@ -74,9 +76,6 @@
 			</list>
 			<list key="workingSets">
 			</list>
-		</section>
-		<section name="EXTENSIONS">
-			<item value="*" key="0"/>
 		</section>
 		<section name="HISTORY3">
 			<item value="false" key="isRegExSearch"/>
@@ -90,9 +89,9 @@
 			<list key="workingSets">
 			</list>
 		</section>
-		<section name="HISTORY0">
+		<section name="HISTORY10">
 			<item value="false" key="isRegExSearch"/>
-			<item value="Link Section" key="textPattern"/>
+			<item value="setTabCount" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="ignoreCase"/>
 			<item value="true" key="isWholeWord"/>
@@ -102,9 +101,9 @@
 			<list key="workingSets">
 			</list>
 		</section>
-		<section name="HISTORY10">
+		<section name="HISTORY0">
 			<item value="false" key="isRegExSearch"/>
-			<item value="setTabCount" key="textPattern"/>
+			<item value="Link Section" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="ignoreCase"/>
 			<item value="true" key="isWholeWord"/>
@@ -199,9 +198,6 @@
 			</list>
 		</section>
 	</section>
-	<section name="SearchDialog.ScopePart">
-		<item value="0" key="scope"/>
-	</section>
 	<section name="ReplaceDialog2">
 		<list key="replace_with">
 			<item value="Copyright (c) 2014 Dung Ta Van"/>
@@ -211,5 +207,8 @@
 			<item value="DefaultBackgroundOnSupers"/>
 			<item value="BackgroundOnSupers"/>
 		</list>
+	</section>
+	<section name="SearchDialog.ScopePart">
+		<item value="0" key="scope"/>
 	</section>
 </section>

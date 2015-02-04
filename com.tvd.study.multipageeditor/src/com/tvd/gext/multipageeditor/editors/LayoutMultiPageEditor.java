@@ -13,16 +13,9 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FontDialog;
@@ -37,6 +30,8 @@ import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.FileEditorInput;
 
+import com.tvd.gext.multipageeditor.pages.LayoutOverviewPage;
+import com.tvd.gext.multipageeditor.pages.LayoutXMLEditorPage;
 import com.tvd.gext.multipageeditor.pages.ThirdPage;
 
 /**
@@ -67,74 +62,20 @@ public class LayoutMultiPageEditor extends FormEditor
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
 	}
 	/**
-	 * Creates page 0 of the multi-page editor,
-	 * which contains a text editor.
-	 */
-	void createPage0() {
-		try {
-			editor = new TextEditor();
-			int index = addPage(editor, getEditorInput());
-			setPageText(index, editor.getTitle());
-		} catch (PartInitException e) {
-			ErrorDialog.openError(
-				getSite().getShell(),
-				"Error creating nested text editor",
-				null,
-				e.getStatus());
-		}
-	}
-	/**
-	 * Creates page 1 of the multi-page editor,
-	 * which allows you to change the font used in page 2.
-	 */
-	void createPage1() {
-
-		Composite composite = new Composite(getContainer(), SWT.NONE);
-		GridLayout layout = new GridLayout();
-		composite.setLayout(layout);
-		layout.numColumns = 2;
-
-		Button fontButton = new Button(composite, SWT.NONE);
-		GridData gd = new GridData(GridData.BEGINNING);
-		gd.horizontalSpan = 2;
-		fontButton.setLayoutData(gd);
-		fontButton.setText("Change Font...");
-		
-		fontButton.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent event) {
-				setFont();
-			}
-		});
-
-		int index = addPage(composite);
-		setPageText(index, "Properties");
-	}
-	/**
-	 * Creates page 2 of the multi-page editor,
-	 * which shows the sorted text.
-	 */
-	void createPage2() {
-		Composite composite = new Composite(getContainer(), SWT.NONE);
-		FillLayout layout = new FillLayout();
-		composite.setLayout(layout);
-		text = new StyledText(composite, SWT.H_SCROLL | SWT.V_SCROLL);
-		text.setEditable(false);
-
-		int index = addPage(composite);
-		setPageText(index, "Preview");
-	}
-	/**
 	 * Adds the pages of the multi-page editor.
 	 */
 	@Override
 	protected void addPages() {
-		createPage0();
-		createPage1();
-		createPage2();
 		try {
+			LayoutOverviewPage.create(this);
+			LayoutXMLEditorPage.create(this);
 			addPage(new ThirdPage(this));
 		} catch (PartInitException e) {
-			e.printStackTrace();
+			ErrorDialog.openError(
+					getSite().getShell(),
+					"Error creating nested text editor",
+					null,
+					e.getStatus());
 		}
 	}
 	/**
@@ -192,7 +133,7 @@ public class LayoutMultiPageEditor extends FormEditor
 	protected void pageChange(int newPageIndex) {
 		super.pageChange(newPageIndex);
 		if (newPageIndex == 2) {
-			sortWords();
+//			sortWords();
 		}
 	}
 	/**

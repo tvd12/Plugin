@@ -1,8 +1,11 @@
 package com.tvd.study.multipageeditor;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+
+import com.tvd.gext.multipageeditor.editors.constant.Img;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -58,4 +61,15 @@ public class Activator extends AbstractUIPlugin {
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
+	
+	@Override
+	protected void initializeImageRegistry(ImageRegistry registry) {
+		registerImage(registry, Img.LAYOUT_ICON, Img.LAYOUT_ICON);
+	}
+	
+	private void registerImage(ImageRegistry registry, String key,
+			String fileName) {
+		registry.put(key, getImageDescriptor("icons/" + fileName));
+	}
+	
 }
