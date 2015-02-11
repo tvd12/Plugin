@@ -2,7 +2,7 @@
 <view class-name="MainGameLayerView" prefix="layer_main_game" type="layer" exitable="false" 
 		super="CommonLayer" background-name="default" size="320.0, 480.0"
 		template-name="Common"
-		exported="false"
+		exported="true"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

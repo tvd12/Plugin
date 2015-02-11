@@ -847,6 +847,29 @@ public abstract class CommonObject extends BasicObject {
 		return getPositionType().equals(Constants.RELATIVE);
 	}
 	
+	public String getXMLTagName() {
+		return this.mXmlTagName;
+	}
+	
+	public List<ItemGroup> getAllGroups() {
+		List<ItemGroup> result = new ArrayList<ItemGroup>();
+		result.addAll(mSpriteGroups);
+		result.addAll(mMenuItemGroups);
+		result.addAll(mMenuGroups);
+		result.addAll(mTableGroups);
+		result.addAll(mLabelGroups);
+		
+		return result;
+	}
+	
+	public boolean hasChildren() {
+		return !(mSpriteGroups.isEmpty()
+				&& mMenuItemGroups.isEmpty()
+				&& mMenuGroups.isEmpty()
+				&& mTableGroups.isEmpty()
+				&& mLabelGroups.isEmpty());
+	}
+	
 	public void setAllPropertiesForObject(CommonObject obj) {
 		super.setAllPropertiesForObject(obj);
 		

@@ -283,4 +283,31 @@
             id="com.tvd.gameview.ext.ui.RemoveTreeViewElement"
             defaultHandler="com.tvd.gameview.ext.ui.AddPopupView" />
 	</extension>
+	
+	<!-- multi page -->
+	<extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Gext Layout Editor"
+            extensions="xml"
+            icon="icons/10_gxml_icon.png"
+            contributorClass="com.tvd.gext.multipageeditor.editors.LayoutMultiPageEditorContributor"
+            class="com.tvd.gext.multipageeditor.editors.LayoutMultiPageEditor"
+            id="com.tvd.gext.multipageeditor.editors.LayoutMultiPageEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Gext Editor"
+            id="com.tvd.gext.multipageeditor">
+      </category>
+      <wizard
+            name="Gext Layout Editor"
+            icon="icons/10_gxml_icon.png"
+            category="com.tvd.gext.multipageeditor"
+            class="com.tvd.gext.multipageeditor.wizards.LayerNewFileWizard"
+            id="com.tvd.gext.multipageeditor.wizards.LayoutNewFileWizard">
+      </wizard>
+   </extension>
 </plugin>

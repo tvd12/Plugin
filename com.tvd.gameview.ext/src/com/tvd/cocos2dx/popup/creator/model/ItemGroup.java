@@ -352,6 +352,14 @@ public class ItemGroup {
 		mReferenceCount = rfc;
 	}
 	
+	public boolean hasChildren() {
+		return !getItems().isEmpty();
+	}
+	
+	public int numberOfItems() {
+		return getItems().size();
+	}
+	
 	public interface Type {
 		public static final int MENU 		= 1000;
 		public static final int MENUITEM 	= 1001;
@@ -448,6 +456,14 @@ public class ItemGroup {
 		}
 		
 		return null;
+	}
+	
+	@Override
+	public String toString() {
+		if(mItems.size() > 0) {
+			return mItems.get(0).getXMLTagName() + " group";
+		}
+		return "";
 	}
 	
 	protected int mTabCount;

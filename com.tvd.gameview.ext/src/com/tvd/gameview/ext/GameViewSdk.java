@@ -21,10 +21,12 @@ package com.tvd.gameview.ext;
 import java.io.File;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 import com.tvd.gameview.ext.constants.Constant;
+import com.tvd.gext.multipageeditor.editors.constant.Img;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -43,7 +45,7 @@ public class GameViewSdk extends AbstractUIPlugin {
 	}
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "com.tvd.gameview.ext.plugin"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "com.tvd.gameview.ext"; //$NON-NLS-1$
 
 	// The shared instance
 	private static GameViewSdk plugin;
@@ -84,6 +86,11 @@ public class GameViewSdk extends AbstractUIPlugin {
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
+	
+//	private ImageDescriptor getImageDescriptor(String relativePath) {
+//        return ImageDescriptor.createFromURL(GameViewSdk.class
+//        		.getResource(relativePath));
+//    }
 
 	public boolean checkSdkLocationAndId(String fileName,
 			CheckSdkErrorHandler checkSdkErrorHandler) {
@@ -95,6 +102,19 @@ public class GameViewSdk extends AbstractUIPlugin {
 		}
 		
 		return file.exists();
+	}
+	
+	@Override
+	protected void initializeImageRegistry(ImageRegistry registry) {
+		registerImage(registry, Img.LAYOUT_ICON, Img.LAYOUT_ICON);
+		registerImage(registry, Img.LAYOUT_FORM_BG, Img.LAYOUT_FORM_BG);
+		registerImage(registry, Img.LAYOUT_HORIZONTAL, Img.LAYOUT_HORIZONTAL);
+		registerImage(registry, Img.LAYOUT_VERTICAL, Img.LAYOUT_VERTICAL);
+	}
+	
+	private void registerImage(ImageRegistry registry, String key,
+			String fileName) {
+		registry.put(key, getImageDescriptor("icons/" + fileName));
 	}
 
 }
