@@ -8,35 +8,28 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package com.tvd.gext.multipageeditor.elements;
+package com.tvd.gext.multipageeditor.exporting.pages;
 
-import com.tvd.cocos2dx.popup.creator.model.basic.CommonObject;
-
+import com.tvd.gext.multipageeditor.elements.pages.LayoutCommonPage;
 /**
  *
  */
-public	class LayoutElement {
+public class LayoutExportingCommonPage extends LayoutCommonPage {
 	
-	public LayoutElement() {
+	@Override
+	protected String text(String key) {
+		String className = getClass().getSimpleName();
+		return Messages.getString(className + "." + key);
 	}
 	
-	public String toString() {
-		if(mViewObject instanceof String) {
-			return mViewObject.toString();
-		}
-		else if(mViewObject instanceof CommonObject) {
-			return ((CommonObject)mViewObject).getXMLTagName();
-		}
-		return "unknown";
+	@Override
+	protected String commontext(String key) {
+		return Messages.getString("Element" + "." + key);
+	}
+
+	@Override
+	protected void update(Object pModel) {
+		
 	}
 	
-	public void setViewObject(Object obj) {
-		this.mViewObject = obj;
-	}
-	
-	public Object getViewObject() {
-		return this.mViewObject;
-	}
-	
-	protected Object mViewObject;
 }

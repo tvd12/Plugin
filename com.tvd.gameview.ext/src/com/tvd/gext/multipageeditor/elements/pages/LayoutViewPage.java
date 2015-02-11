@@ -1,115 +1,152 @@
 package com.tvd.gext.multipageeditor.elements.pages;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormText;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.forms.widgets.TableWrapData;
-import org.eclipse.ui.forms.widgets.TableWrapLayout;
+
+import com.tvd.cocos2dx.popup.creator.model.View;
 
 public class LayoutViewPage extends LayoutCommonPage {
 
 	@Override
 	public void createContents(Composite parent) {
-		TableWrapLayout layout = new TableWrapLayout();
-		layout.topMargin = 5;
-		layout.leftMargin = 5;
-		layout.rightMargin = 2;
-		layout.bottomMargin = 2;
-		parent.setLayout(layout);
-		
+		super.createContents(parent);
 		FormToolkit toolkit = mForm.getToolkit();
-		Section sectionOne = toolkit.createSection(parent, 
-				Section.DESCRIPTION | Section.TITLE_BAR);
-		sectionOne.marginWidth = 10;
-		sectionOne.setText(text("title"));
-		sectionOne.setDescription(text("desc"));
 		
-		TableWrapData td = new TableWrapData(TableWrapData.FILL, TableWrapData.TOP);
+		mExportedCheckbox = createCheckbox(toolkit, mClient, 
+				text("exported"), false);
+		mImageExportedCheckbox = createCheckbox(toolkit,
+				mClient, text("image_exported"), false);
+		mXibExportedCheckbox = createCheckbox(toolkit,
+				mClient, text("xib_exported"), false);
+		mIdExportedCheckbox = createCheckbox(toolkit,
+				mClient, text("id_exported"), false);
+		mPosExportedCheckbox = createCheckbox(toolkit,
+				mClient, text("pos_exported"), false);
+		mCodeExportedCheckbox = createCheckbox(toolkit,
+				mClient, text("code_exported"), false);
+		mSizeReloadedCheckbox = createCheckbox(toolkit, 
+				mClient, text("size_reloaded"), false);
+		
+		mXibPathText = createText(toolkit, mClient,
+				text("xib_path"), "");
+		mParamPathText = createText(toolkit, mClient,
+				text("param_path"), "");
+		mDefinePathText = createText(toolkit, mClient,
+				text("define_path"), "");
+		mClassPathText = createText(toolkit, mClient,
+				text("class_path"), "");
+		
+		mCommentText = createTextArea(toolkit, mClient, 
+				commontext("comment"), "");
+				
+		createSpacer(toolkit, mClient, 2);
+		FormText rtext = toolkit.createFormText(parent, true);
+		rtext.setText(RTEXT_DATA, true, false);
+		TableWrapData td = new TableWrapData(
+				TableWrapData.FILL, TableWrapData.TOP);
 		td.grabHorizontal = true;
-		sectionOne.setLayoutData(td);
-		
-		Composite client = toolkit.createComposite(sectionOne);
-		GridLayout glayout = new GridLayout();
-		glayout.marginWidth = glayout.marginHeight = 0;
-		glayout.numColumns = 2;
-		client.setLayout(glayout);
-		
-		SelectionListener checkListener = new SelectionAdapter() {
+		rtext.setLayoutData(td);
+	}
+	
+	private Button createCheckbox(FormToolkit toolkit, Composite parent,
+			String label, boolean isChecked) {
+		SelectionListener listener = new SelectionAdapter() {
+			
+			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("choiceListener.data = " + e.widget.getData());
+				
 			}
 		};
 		
-		mCheckboxes = new ArrayList<Button>();
-		for(int i = 0 ; i < 1 ; i++) {
-			Button checkbox = toolkit.createButton(client, "Exported", SWT.CHECK);
-			checkbox.addSelectionListener(checkListener);
-			GridData gd = new GridData();
-			gd.horizontalSpan = 2;
-			checkbox.setLayoutData(gd);
-			mCheckboxes.add(checkbox);
-		}
-		createSpacer(toolkit, client, 2);
-		mFlag = toolkit.createButton(client, "Value of the flag property", SWT.CHECK);
+		Button checkbox = super.createCheckbox(toolkit, parent, label, 
+				isChecked, listener);
 		
-		GridData gd = new GridData();
-		gd.horizontalSpan = 2;
-		mFlag.setLayoutData(gd);
-		createSpacer(toolkit, client, 2);
-		
-		toolkit.createLabel(client, "Text property:");
-		mText = toolkit.createText(client, "", SWT.SINGLE);
-		mText.addModifyListener(new ModifyListener() {
-			
-			@Override
-			public void modifyText(ModifyEvent e) {
-				
-			}
-		});
-		gd = new GridData(GridData.FILL_HORIZONTAL | GridData.VERTICAL_ALIGN_BEGINNING);
-		gd.widthHint = 10;
-		mText.setLayoutData(gd);
-		
-		createSpacer(toolkit, client, 2);
-		FormText rtext = toolkit.createFormText(parent, true);
-		rtext.setText(RTEXT_DATA, true, false);
-		td = new TableWrapData(TableWrapData.FILL, TableWrapData.TOP);
-		td.grabHorizontal = true;
-		rtext.setLayoutData(td);
-		
-		toolkit.paintBordersFor(sectionOne);
-		sectionOne.setClient(client);
+		return checkbox;
 	}
 	
-	protected String commontext(String key) {
-		return Messages.getString("Element" + "." + key);
+	private Text createText(FormToolkit toolkit, Composite parent,
+			String label, String value) {
+		ModifyListener listener = new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent event) {
+				
+			}
+		};
+		
+		return super.createText(toolkit, parent, label, 
+				value, listener);
+	}
+	
+	private Text createTextArea(FormToolkit toolkit, Composite parent,
+			String label, String value) {
+		ModifyListener listener = new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent event) {
+				
+			}
+		};
+		
+		return super.createTextArea(toolkit, parent, label, 
+				value, listener);
 	}
 	
 	@Override
 	protected void update(Object pModel) {
+		if(pModel == null) {
+			return ;
+		}
 		
+		View view = (View)pModel;
+		boolean exported = view.isExported();
+		
+		String xibPath = view.getXibContainerPath();
+		String paramPath = view.getParametersPath();
+		String definePath = view.getDefinePath();
+		String classPath = view.getClassPath();
+		String comment = view.getComment();
+		
+		mExportedCheckbox.setSelection(exported);
+		
+		mXibPathText.setText(xibPath);
+		mParamPathText.setText(paramPath);
+		mDefinePathText.setText(definePath);
+		mClassPathText.setText(classPath);
+		mCommentText.setText(comment);
 	}
 	
 	protected List<Button> mCheckboxes;
 	protected Button mFlag;
 	protected Text mText;
 	
+	protected Text mXibPathText;
+	protected Text mParamPathText;
+	protected Text mDefinePathText;
+	protected Text mClassPathText;
+	protected Text mCommentText; 
+	
+	protected Button mExportedCheckbox;
+	protected Button mImageExportedCheckbox;
+	protected Button mXibExportedCheckbox;
+	protected Button mIdExportedCheckbox;
+	protected Button mPosExportedCheckbox;
+	protected Button mCodeExportedCheckbox;
+	protected Button mSizeReloadedCheckbox;
+	
 	private static final String RTEXT_DATA =
-			"<form><p>An example of a free-form text that should be "+ //$NON-NLS-1$
+			"<form><p>An example of a layout that should be "+ //$NON-NLS-1$
 			"wrapped below the section with widgets.</p>"+ //$NON-NLS-1$
 			"<p>It can contain simple tags like <a>links</a> and <b>bold text</b>.</p></form>"; //$NON-NLS-1$
 

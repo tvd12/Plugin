@@ -811,6 +811,25 @@ public class View extends AdvancedObject implements IContainer {
 		return mResource;
 	}
 	
+	public boolean isExitable() {
+		return mIsExitable;
+	}
+	
+	public String getParametersPath() {
+		return this.mParametersPath;
+	}
+	
+	public String getDefinePath() {
+		return this.mDefinePath;
+	}
+	
+	public String getDevice() {
+		String device = getXmlFile().getParent().getName();
+		System.out.println("device = " + device);
+		
+		return device;
+	}
+	
 	@Override
 	public String toXML() {
 		StringBuilder builder = new StringBuilder("<?xml version=\"1.0\" " +
@@ -925,4 +944,5 @@ public class View extends AdvancedObject implements IContainer {
 	private int mNumberOfMenuItems;
 	private int mNumberOfTable;
 	private int mNumberOfProgressbar;
+	
 }

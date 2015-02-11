@@ -23,8 +23,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.DetailsPart;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.MasterDetailsBlock;
@@ -34,21 +32,15 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 
-import com.tvd.cocos2dx.popup.creator.model.ItemGroup;
-import com.tvd.cocos2dx.popup.creator.model.Sprite;
-import com.tvd.cocos2dx.popup.creator.model.View;
-import com.tvd.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tvd.gameview.ext.GameViewSdk;
 import com.tvd.gext.multipageeditor.editors.constant.Img;
-import com.tvd.gext.multipageeditor.elements.pages.LayoutGroupPage;
-import com.tvd.gext.multipageeditor.elements.pages.LayoutSpritePage;
-import com.tvd.gext.multipageeditor.elements.pages.LayoutViewPage;
+import com.tvd.gext.multipageeditor.exporting.pages.LayoutExportingElement;
 /**
  *
  */
-public class LayoutScrolledPropertiesBlock extends MasterDetailsBlock {
+public class LayoutScrolledExportingBlock extends MasterDetailsBlock {
 	
-	public LayoutScrolledPropertiesBlock(FormPage page) {
+	public LayoutScrolledExportingBlock(FormPage page) {
 		this.mFormPage = page;
 	}
 	/**
@@ -63,7 +55,7 @@ public class LayoutScrolledPropertiesBlock extends MasterDetailsBlock {
 						.getEditor().getEditorInput();
 
 				return new Object[] {
-					input.getView(),	
+					input.getExportingElement()	
 				};
 			}
 			return new Object[0];
@@ -78,11 +70,10 @@ public class LayoutScrolledPropertiesBlock extends MasterDetailsBlock {
 
 		@Override
 		public Object[] getChildren(Object pParentElement) {
-			if(pParentElement instanceof CommonObject) {
-				return ((CommonObject)pParentElement).getAllGroups().toArray();
-			}
-			else if(pParentElement instanceof ItemGroup) {
-				return ((ItemGroup)pParentElement).getItems().toArray();
+			if(pParentElement instanceof LayoutExportingElement) {
+				LayoutExportingElement element = 
+						(LayoutExportingElement)pParentElement;
+				return element.getChilds().toArray();
 			}
 			
 			return new Object[0];
@@ -90,26 +81,21 @@ public class LayoutScrolledPropertiesBlock extends MasterDetailsBlock {
 
 		@Override
 		public Object getParent(Object pElement) {
-			if(pElement instanceof View) {
-				return null;
+			if(pElement instanceof LayoutExportingElement) {
+				LayoutExportingElement element = 
+						(LayoutExportingElement)pElement;
+				return element.getParent();
 			}
-			else if(pElement instanceof CommonObject) {
-				return ((CommonObject)pElement).getParent();
-			}
- 			else if(pElement instanceof ItemGroup) {
- 				return ((ItemGroup)pElement).getContainer();
- 			}
 			
 			return null;
 		}
 
 		@Override
 		public boolean hasChildren(Object pElement) {
-			if(pElement instanceof CommonObject) {
-				return ((CommonObject)pElement).hasChildren();
-			}
-			else if(pElement instanceof ItemGroup) {
-				return ((ItemGroup)pElement).hasChildren();
+			if(pElement instanceof LayoutExportingElement) {
+				LayoutExportingElement element = 
+						(LayoutExportingElement)pElement;
+				return element.hasChildren();
 			}
 			return false;
 		}
@@ -118,32 +104,25 @@ public class LayoutScrolledPropertiesBlock extends MasterDetailsBlock {
 		
 		@Override
 		public Image getImage(Object obj) {
-			if (obj instanceof CommonObject) {
-				return PlatformUI.getWorkbench().getSharedImages().getImage(
-						ISharedImages.IMG_TOOL_REDO);
-			}
-			if (obj instanceof ItemGroup) {
-				return PlatformUI.getWorkbench().getSharedImages().getImage(
-						ISharedImages.IMG_TOOL_REDO);
+			if (obj instanceof LayoutExportingElement) {
+				LayoutExportingElement element = 
+						(LayoutExportingElement)obj;
+				if(element.getParent() == null) {
+					return GameViewSdk.getDefault()
+							.getImageRegistry().get(Img.LAYOUT_EXPORTING_ROOT);
+				}
+				else {
+					return GameViewSdk.getDefault()
+							.getImageRegistry().get(Img.LAYOUT_EXPORTING_ELEMENT);
+				}
 			}
 			return null;
 		}
 		
 		@Override
 		public String getText(Object element) {
-			if(element instanceof CommonObject) {
-				CommonObject obj = ((CommonObject)element);
-				return new StringBuilder()
-						.append(obj.getXmlPositionName())
-						.append(" (" + obj.getPositionString() + ")")
-						.toString();
-			}
-			else if(element instanceof ItemGroup) {
-				ItemGroup itemGroup = ((ItemGroup)element);
-				return new StringBuilder()
-						.append(itemGroup.toString())
-						.append(" (" + itemGroup.numberOfItems() + " elements)")
-						.toString();
+			if(element instanceof LayoutExportingElement) {
+				return element.toString();
 			}
 			
 			return "unknown";
@@ -178,7 +157,7 @@ public class LayoutScrolledPropertiesBlock extends MasterDetailsBlock {
 		gd.widthHint = 100;
 		tree.setLayoutData(gd);
 		toolkit.paintBordersFor(client);
-		Button b = toolkit.createButton(client, text("button.add"), 
+		Button b = toolkit.createButton(client, text("button.active"), 
 				SWT.PUSH); //$NON-NLS-1$
 		gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING);
 		b.setLayoutData(gd);
@@ -227,9 +206,7 @@ public class LayoutScrolledPropertiesBlock extends MasterDetailsBlock {
 	
 	@Override
 	protected void registerPages(DetailsPart detailsPart) {
-		detailsPart.registerPage(View.class, new LayoutViewPage());
-		detailsPart.registerPage(Sprite.class, new LayoutSpritePage());
-		detailsPart.registerPage(ItemGroup.class, new LayoutGroupPage());
+//		detailsPart.registerPage(LayoutExportingElement.class, new Layoutex);
 	}
 	
 	protected String text(String key) {

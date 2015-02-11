@@ -32,6 +32,7 @@ import org.eclipse.ui.part.FileEditorInput;
 
 import com.tvd.gext.multipageeditor.pages.LayoutDetailsPage;
 import com.tvd.gext.multipageeditor.pages.LayoutEditorInput;
+import com.tvd.gext.multipageeditor.pages.LayoutExportingPage;
 import com.tvd.gext.multipageeditor.pages.LayoutOverviewPage;
 import com.tvd.gext.multipageeditor.pages.LayoutXMLEditorPage;
 
@@ -70,6 +71,7 @@ public class LayoutMultiPageEditor extends FormEditor
 		try {
 			LayoutOverviewPage.create(this);
 			LayoutDetailsPage.create(this);
+			LayoutExportingPage.create(this);
 			LayoutXMLEditorPage.create(this);
 		} catch (PartInitException e) {
 			ErrorDialog.openError(

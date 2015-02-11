@@ -1,4 +1,4 @@
-package com.tvd.gext.multipageeditor.elements;
+package com.tvd.gext.multipageeditor.exporting.pages;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;

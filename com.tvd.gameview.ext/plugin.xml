@@ -5,7 +5,7 @@
 	<extension
          point="org.eclipse.ui.views">
 	  	<category
-            	name="Game view"
+            	name="Gext"
             id="com.tvd.gameview.ext.views">
       	</category>
       	<view
@@ -13,7 +13,7 @@
             class="com.tvd.gameview.ext.views.BuildingTreeViewer"
             icon="icons/4_viewer.gif"
             id="com.tvd.gameview.ext.views.BuildingTreeViewer"
-            name="Building list"
+            name="Exporting List"
             restorable="true">
       	</view>	
     </extension>
@@ -215,7 +215,7 @@
 	    <page
 	          class="com.tvd.gameview.ext.preference.GameViewPreferencePage"
 	          id="com.tvd.gameview.ext.preference.GameViewPreferencePage"
-	          name="Game View">
+	          name="Gext">
 	          <keywordReference
                  id="com.tvd.gameview.ext.preference.keywords">
 	          </keywordReference>
@@ -237,7 +237,7 @@
 	      	point="org.eclipse.ui.keywords">
 	      <keyword
              id="com.tvd.gameview.ext.preference.keywords"
-             label="game view">
+             label="gext">
 	      </keyword>
 	</extension>
 	

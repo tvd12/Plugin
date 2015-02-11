@@ -19,6 +19,7 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 
+import com.tvd.cocos2dx.popup.creator.model.View;
 import com.tvd.gameview.ext.GameViewSdk;
 import com.tvd.gext.multipageeditor.editors.constant.Img;
 
@@ -77,13 +78,32 @@ public class LayoutOverviewPage extends FormPage {
 		
 		textCompos.setLayout(layout);
 		
-		addTextField(textCompos, toolkit, "general.classname");
-		addTextField(textCompos, toolkit, "general.author");
-		addTextField(textCompos, toolkit, "general.type");
-		addTextField(textCompos, toolkit, "general.templatename");
+		String className = "";
+		String author = "";
+		String type = "";
+		String templateName = "";
+		boolean exitable = false;
+		boolean exported = false;
+		if(getEditor().getEditorInput() instanceof LayoutEditorInput) {
+			LayoutEditorInput input = (LayoutEditorInput)getEditor()
+					.getEditorInput();
+			View view = input.getView();
+			className = view.getClassName();
+			author = view.getAuthor();
+			type = view.getType();
+			templateName = view.getTemplateName();
+			
+			exported = view.isExported();
+			exitable = view.isExitable();
+		}
 		
-		addCheckbox(client, toolkit, "general.exitable");
-		addCheckbox(client, toolkit, "general.exported");
+		addTextField(textCompos, toolkit, "general.classname", className);
+		addTextField(textCompos, toolkit, "general.author", author);
+		addTextField(textCompos, toolkit, "general.type", type);
+		addTextField(textCompos, toolkit, "general.templatename", templateName);
+		
+		addCheckbox(client, toolkit, "general.exitable", exitable);
+		addCheckbox(client, toolkit, "general.exported", exported);
 		
 	}
 	
@@ -154,9 +174,9 @@ public class LayoutOverviewPage extends FormPage {
 	}
 	
 	private void addTextField(Composite client, FormToolkit toolkit, 
-			String titleKey) {
+			String titleKey, String value) {
 		toolkit.createLabel(client, text(titleKey)); //$NON-NLS-1$
-		Text text = toolkit.createText(client, "", SWT.SINGLE);
+		Text text = toolkit.createText(client, value, SWT.SINGLE);
 		text.setLayoutData(gridData());
 	}
 	
@@ -177,17 +197,19 @@ public class LayoutOverviewPage extends FormPage {
 	}
 	
 	private void addCheckbox(Composite client, FormToolkit toolkit, 
-			String titleKey) {
+			String titleKey, boolean isChecked) {
 		Button button = toolkit.createButton(client, 
 				text(titleKey), SWT.CHECK); //$NON-NLS-1$
 		GridData gd = new GridData();
 		gd.grabExcessHorizontalSpace = true;
 		gd.horizontalAlignment = SWT.FILL;
 		button.setLayoutData(gd);
+		button.setSelection(isChecked);
 	}
 	
 	private static String text(String key) {
 		String className = LayoutOverviewPage.class.getSimpleName();
 		return Messages.getString(className + "." + key);
 	}
+	
 }

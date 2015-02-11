@@ -38,6 +38,7 @@ public class LayoutDetailsPage extends FormPage {
 		return page;
 	}
 	
+	@Override
 	protected void createFormContent(final IManagedForm managedForm) {
 		final ScrolledForm form = managedForm.getForm();
 		//FormToolkit toolkit = managedForm.getToolkit();

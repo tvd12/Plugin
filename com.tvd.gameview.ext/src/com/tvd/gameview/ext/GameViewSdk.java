@@ -110,6 +110,8 @@ public class GameViewSdk extends AbstractUIPlugin {
 		registerImage(registry, Img.LAYOUT_FORM_BG, Img.LAYOUT_FORM_BG);
 		registerImage(registry, Img.LAYOUT_HORIZONTAL, Img.LAYOUT_HORIZONTAL);
 		registerImage(registry, Img.LAYOUT_VERTICAL, Img.LAYOUT_VERTICAL);
+		registerImage(registry, Img.LAYOUT_EXPORTING_ROOT, Img.LAYOUT_EXPORTING_ROOT);
+		registerImage(registry, Img.LAYOUT_EXPORTING_ELEMENT, Img.LAYOUT_EXPORTING_ELEMENT);
 	}
 	
 	private void registerImage(ImageRegistry registry, String key,

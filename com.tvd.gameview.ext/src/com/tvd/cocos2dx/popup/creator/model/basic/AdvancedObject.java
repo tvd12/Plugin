@@ -52,9 +52,12 @@ public class AdvancedObject extends CommonObject {
 		this.mProgressGroup = new ItemGroup(ItemGroup.Type.PROGRESSBAR);
 		
 		this.mSuper = Config.getInstance().getDefaultSuper(mSuffix);
+		
 		this.mBackgroundName = Strings.DEFAULT;
 		this.mIsNewClass = true;
 		this.mIsExported = false;
+		
+		this.mAuthor = System.getProperty("user.name");
 	}
 	
 	@Override
@@ -100,7 +103,7 @@ public class AdvancedObject extends CommonObject {
 				getClassDeclaringTemplateName(),
 				getClassTemplateFilePath(), getProject());
 		String result = template.replace("{class_name}", mClassName)
-				.replace("{author}", System.getProperty("user.name"))
+				.replace("{author}", getAuthor())
 				.replace("{project_name}", getProject().getName())
 				.replace("{created_date}", createdDate.toString())
 				.replace("{super_name}", mSuper)
@@ -519,6 +522,14 @@ public class AdvancedObject extends CommonObject {
 		return mIsExported;
 	}
 	
+	public void setAuthor(String author) {
+		this.mAuthor = author;
+	}
+	
+	public String getAuthor() {
+		return this.mAuthor;
+	}
+	
 	@Override
 	public IProject getProject() {
 		IProject project = mProject;
@@ -550,6 +561,8 @@ public class AdvancedObject extends CommonObject {
 		
 		obj.mAdvancedParent = mAdvancedParent;
 		
+		obj.mAuthor = mAuthor;
+		
 		return obj;
 	}
 	
@@ -573,4 +586,6 @@ public class AdvancedObject extends CommonObject {
 	private List<AdvancedObject> mAdvancedChilds;
 	
 	protected boolean mIsExported;
+	
+	protected String mAuthor;
 }
