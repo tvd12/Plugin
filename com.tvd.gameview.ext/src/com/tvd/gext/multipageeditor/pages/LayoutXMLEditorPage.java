@@ -17,10 +17,15 @@ public class LayoutXMLEditorPage extends StructuredTextEditor {
 
 	public boolean init(LayoutMultiPageEditor editor) 
 			throws PartInitException {
-		int index = editor.addPage(this, editor.getEditorInput());
-		editor.setPageText(index, getTitle());
+		mIndex = editor.addPage(this, editor.getEditorInput());
+		editor.setPageText(mIndex, getTitle());
 		
 		return true;
 	}
 	
+	public int getIndex() {
+		return mIndex;
+	}
+	
+	protected int mIndex;
 }

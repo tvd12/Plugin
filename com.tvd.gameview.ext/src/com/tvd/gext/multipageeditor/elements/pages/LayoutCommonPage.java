@@ -24,6 +24,7 @@ public abstract class LayoutCommonPage implements IDetailsPage {
 	@Override
 	public void initialize(IManagedForm pForm) {
 		this.mForm = pForm;
+		this.mColumn = 2;
 	}
 
 	@Override
@@ -92,7 +93,7 @@ public abstract class LayoutCommonPage implements IDetailsPage {
 		Composite client = toolkit.createComposite(sectionOne);
 		GridLayout glayout = new GridLayout();
 		glayout.marginWidth = glayout.marginHeight = 0;
-		glayout.numColumns = 2;
+		glayout.numColumns = mColumn;
 		client.setLayout(glayout);
 		
 		toolkit.paintBordersFor(sectionOne);
@@ -116,6 +117,17 @@ public abstract class LayoutCommonPage implements IDetailsPage {
 		return text;
 	}
 	
+	protected Button createButton(FormToolkit toolkit, Composite parent,
+			String label, SelectionListener listener) {
+		Button button = toolkit.createButton(parent, label, 
+				SWT.PUSH); //$NON-NLS-1$
+		GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING);
+		button.setLayoutData(gd);
+		button.addSelectionListener(listener);
+		
+		return button;
+	}
+	
 	protected Button createCheckbox(FormToolkit toolkit, Composite parent,
 			String label, boolean isChecked, SelectionListener listener) {
 		Button checkbox = toolkit.createButton(parent, label, SWT.CHECK);
@@ -129,12 +141,17 @@ public abstract class LayoutCommonPage implements IDetailsPage {
 	
 	protected Text createTextArea(FormToolkit toolkit, Composite parent,
 			String label, String value, ModifyListener listener) {
+		return createTextArea(toolkit, parent, label, value, listener, 50);
+	}
+	
+	protected Text createTextArea(FormToolkit toolkit, Composite parent,
+			String label, String value, ModifyListener listener, int height) {
 		toolkit.createLabel(parent, label);
 		Text text = toolkit.createText(parent, value, 
 				SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
 
 		final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-		gridData.heightHint = 50;
+		gridData.heightHint = height;
 		text.setLayoutData(gridData);
 		
 		return text;
@@ -159,4 +176,5 @@ public abstract class LayoutCommonPage implements IDetailsPage {
 	protected IManagedForm mForm;
 	protected Composite mClient;
 	protected Section mSection;
+	protected int mColumn;
 }

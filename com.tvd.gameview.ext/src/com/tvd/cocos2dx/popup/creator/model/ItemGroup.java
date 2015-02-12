@@ -458,6 +458,14 @@ public class ItemGroup {
 		return null;
 	}
 	
+	public void refresh() {
+		setReferenceCount(0);
+		setAddToView(true);
+		for(int i = 0 ; i < numberOfItems() ; i++) {
+			mItems.get(i).setReferenceCount(0);
+		}
+	}
+	
 	@Override
 	public String toString() {
 		if(mItems.size() > 0) {

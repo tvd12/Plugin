@@ -9,14 +9,26 @@
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
 package com.tvd.gext.multipageeditor.pages;
+import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -32,9 +44,12 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 
+import com.tvd.cocos2dx.popup.creator.model.View;
 import com.tvd.gameview.ext.GameViewSdk;
+import com.tvd.gameview.ext.constants.Constant.TreeElement;
 import com.tvd.gext.multipageeditor.editors.constant.Img;
 import com.tvd.gext.multipageeditor.exporting.pages.LayoutExportingElement;
+import com.tvd.gext.multipageeditor.exporting.pages.LayoutExportingElementPage;
 /**
  *
  */
@@ -136,7 +151,7 @@ public class LayoutScrolledExportingBlock extends MasterDetailsBlock {
 	
 	@Override
 	protected void createMasterPart(final IManagedForm managedForm,
-			Composite parent) {
+			final Composite parent) {
 		//final ScrolledForm form = managedForm.getForm();
 		FormToolkit toolkit = managedForm.getToolkit();
 		Section section = toolkit.createSection(parent, 
@@ -157,10 +172,9 @@ public class LayoutScrolledExportingBlock extends MasterDetailsBlock {
 		gd.widthHint = 100;
 		tree.setLayoutData(gd);
 		toolkit.paintBordersFor(client);
-		Button b = toolkit.createButton(client, text("button.active"), 
-				SWT.PUSH); //$NON-NLS-1$
-		gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING);
-		b.setLayoutData(gd);
+		
+		mActiveButton = createButton(toolkit, client, text("button.active"));
+		
 		section.setClient(client);
 		final SectionPart spart = new SectionPart(section);
 		managedForm.addPart(spart);
@@ -170,11 +184,31 @@ public class LayoutScrolledExportingBlock extends MasterDetailsBlock {
 		treeViewer.setLabelProvider(new MasterLabelProvider());
 		treeViewer.setInput(mFormPage.getEditor().getEditorInput());
 		treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+			
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				managedForm.fireSelectionChanged(spart, event.getSelection());
 			}
 		});
+		
+		treeViewer.addDoubleClickListener(new IDoubleClickListener() {
+			
+			@Override
+			public void doubleClick(DoubleClickEvent pEvent) {
+				ISelection selection = pEvent.getSelection();
+				if(selection instanceof IStructuredSelection) {
+					IStructuredSelection s = (IStructuredSelection)selection;
+					String name = s.getFirstElement().toString();
+					exportWithProgress(parent, name);
+				}
+			}
+		});
+		
 		treeViewer.expandAll();
+		LayoutEditorInput input = (LayoutEditorInput) mFormPage
+				.getEditor().getEditorInput();
+		mView = input.getView();
+		mTreeViewer = treeViewer;
 	}
 	
 	protected void createToolBarActions(IManagedForm managedForm) {
@@ -206,7 +240,8 @@ public class LayoutScrolledExportingBlock extends MasterDetailsBlock {
 	
 	@Override
 	protected void registerPages(DetailsPart detailsPart) {
-//		detailsPart.registerPage(LayoutExportingElement.class, new Layoutex);
+		detailsPart.registerPage(LayoutExportingElement.class, 
+				new LayoutExportingElementPage());
 	}
 	
 	protected String text(String key) {
@@ -214,5 +249,96 @@ public class LayoutScrolledExportingBlock extends MasterDetailsBlock {
 		return Messages.getString(className + "." + key);
 	}
 	
+	protected Button createButton(final FormToolkit toolkit, 
+			final Composite parent,
+			String label) {
+		Button button = toolkit.createButton(parent, label, 
+				SWT.PUSH); //$NON-NLS-1$
+		GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING);
+		button.setLayoutData(gd);
+		button.addSelectionListener(new SelectionAdapter() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent event) {
+				ISelection selection = mTreeViewer.getSelection();
+				IStructuredSelection s = (IStructuredSelection)selection;
+				String name = s.getFirstElement().toString();
+				exportWithProgress(parent, name);
+			}
+		});
+		
+		return button;
+	}
+	
+	private void exportWithProgress(final Composite parent, 
+			final String name) {
+		ProgressMonitorDialog dialog =
+				new ProgressMonitorDialog(parent.getShell());
+		try {
+			dialog.run(true, true, new IRunnableWithProgress() {
+				
+				@Override
+				public void run(IProgressMonitor pMonitor)
+						throws InvocationTargetException, 
+						InterruptedException {
+					export(name);
+				}
+			});
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	private void export(String name) {
+		if(name.equals(TreeElement.EXPORT_POSITIONS)) {
+			mView.exportDeclaringPositions();
+			mView.exportPositions();
+		}
+		if(name.equals(TreeElement.DECLARE_POSITIONS)) {
+			mView.exportDeclaringPositions();
+		}
+		else if(name.equals(TreeElement.IMPLEMENT_POSITIONS)) {
+			mView.exportImplementedPositions();
+		}
+		else if(name.equals(TreeElement.EXPORT_IDS)) {
+			mView.exportIdentifiers();
+		}
+		else if(name.equals(TreeElement.DECLARE_IDS)) {
+			mView.exportDeclaringImageIds();
+		}
+		else if(name.equals(TreeElement.IMPLEMENT_IDS)) {
+			mView.exportImplementedImageIds();
+		}
+		else if(name.equals(TreeElement.EXPORT_SRC_CODE)) {
+			mView.exportSourceCode();
+		}
+		else if(name.equals(TreeElement.DECLARE_CLASS)) {
+			mView.exportHeaderCode();
+		}
+		else if(name.equals(TreeElement.IMPLEMENT_CLASS)) {
+			mView.exportImplementedCode();
+		}
+		else if(name.equals(TreeElement.EXPORT_XIB_TPL)) {
+			mView.exportXibTemplate(false);
+		}
+		else if(name.equals(TreeElement.RELOAD_SIZE)) {
+				mView.reloadImageSizes();
+		}
+		else if(name.equals(TreeElement.REFRESH_CONTENT)) {
+			try {
+				mView.refreshXMLFile();
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	protected TreeViewer mTreeViewer;
+	protected Button mActiveButton;
+	
 	private FormPage mFormPage;
+	private View mView;
+	
 }

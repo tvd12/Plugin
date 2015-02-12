@@ -3,26 +3,26 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="265" key="DIALOG_WIDTH"/>
 		<item value="204" key="DIALOG_Y_ORIGIN"/>
-		<item value="910" key="DIALOG_X_ORIGIN"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
+		<item value="910" key="DIALOG_X_ORIGIN"/>
 		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="true" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="initialize" key="selection"/>
+		<item value="mClassPath" key="selection"/>
 		<list key="findhistory">
+			<item value="mClassPath"/>
+			<item value="createGeneralSection"/>
+			<item value="exitab"/>
+			<item value="author"/>
+			<item value="{author}"/>
 			<item value="initialize"/>
 			<item value="init"/>
 			<item value="ScrolledPropertiesBlock.sdesc"/>
-			<item value="ScrolledPropertiesBlock.sname"/>
-			<item value="toString"/>
-			<item value="getTag"/>
-			<item value="getXml"/>
-			<item value="getXML"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Activator"/>

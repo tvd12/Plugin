@@ -151,17 +151,7 @@ public class View extends AdvancedObject implements IContainer {
 	
 	@Override
 	public String implementPositions() {
-		StringBuilder builder = new StringBuilder("\n");
-		createHeaderCommentTemplate(builder, Constants.POSITION_IMPLEMENTING_CMM);
-		builder.append(super.implementPositions());
-		if(mExitSprite != null) {
-			builder.append("\t" + mExitSprite.implementPositions());
-		}
-		builder.append("\n")
-			.append("\t" + Constants.DONT_DELETE_THIS_LINE);
-		
-		return StringUtils.standardizeCode(
-				builder.toString().trim());
+		return implementPositions(getDevice());
 	}
 	
 	public String implementPositions(String device) {
@@ -269,6 +259,30 @@ public class View extends AdvancedObject implements IContainer {
 //		System.out.println(xibContent);
 		fileUtils.setContent(xibContent).writeToFile(xibFilePath, pCreateACopy);
 							
+	}
+	
+	public void exportXibTemplate(boolean pCreateACopy) {
+		final String xibFilePath = mXibContainerPath + "/" 
+				+ "/" + mClassName + ".xib";
+		new FileUtils().setContent(xibContent())
+		.writeToFile(xibFilePath, pCreateACopy);
+	}
+	
+	public String xibContent() {
+		FileUtils fileUtils = new FileUtils();
+		IProject project = getXmlFile().getProject();
+		IFile file = project.getFile("resources/xib/" 
+				+ getDevice() + "/template.xib");
+		String xibContent = fileUtils.readFromFile(file);
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append(createImageViewsTag())
+			.append("\n")
+			.append(createLabelsTagForXib());
+		xibContent = xibContent.replace("<!--{imageviews_tag}-->", builder.toString())
+			.replace("<!--{images_tag}-->", createImagesTag());
+		
+		return xibContent;
 	}
 	
 	public void exportScreenTemplate(String pDevice, IProject pProject) {
@@ -389,6 +403,10 @@ public class View extends AdvancedObject implements IContainer {
 			.writeToFile(mParametersPath + ".h", false);
 	}
 	
+	public void exportImplementedPositions() {
+		exportImplementedPositions(getDevice());
+	}
+	
 	public void exportImplementedPositions(String device) {
 		if(isExported()) {
 			NotificationCenter.i("Implemented positions of " 
@@ -437,6 +455,21 @@ public class View extends AdvancedObject implements IContainer {
 				+ mDirectoryName + "/" + mClassName + ".cpp", false);
 	}
 	
+	public void exportIdentifiers() {
+		exportDeclaringImageIds();
+		exportImplementedImageIds();
+	}
+	
+	public void exportPositions() {
+		exportDeclaringPositions();
+		exportImplementedPositions();
+	}
+	
+	public void exportSourceCode() {
+		exportHeaderCode();
+		exportImplementedCode();
+	}
+	
 //	public void refreshXMLFile() {
 	public void refreshXMLFile() throws CoreException {
 		if(isExported()) {
@@ -476,7 +509,7 @@ public class View extends AdvancedObject implements IContainer {
 		}
 	}
 	
-	private void writeXMLToFile() throws CoreException {
+	public void writeXMLToFile() throws CoreException {
 		String xmlContent = this.toXML();
 //		fileUtils.setContent(xmlContent).writeToFile(mXmlFilePath, false);
 		ByteArrayInputStream inputStream = 
@@ -555,6 +588,16 @@ public class View extends AdvancedObject implements IContainer {
 			}
 		}
 		writeXMLToFile();
+	}
+	
+	public void reloadImageSizes() {
+		float scaleFactor = Config.getInstance()
+				.getDefaultScaleFactor(getDevice());
+		try {
+			reloadImageSizes(scaleFactor);
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -825,9 +868,12 @@ public class View extends AdvancedObject implements IContainer {
 	
 	public String getDevice() {
 		String device = getXmlFile().getParent().getName();
-		System.out.println("device = " + device);
 		
 		return device;
+	}
+	
+	public void refresh() {
+		ViewUtils.refreshObject(this);
 	}
 	
 	@Override

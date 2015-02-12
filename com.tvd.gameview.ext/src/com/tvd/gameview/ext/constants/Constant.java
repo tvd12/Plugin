@@ -73,6 +73,8 @@ public interface Constant {
 		public static final String IMPLEMENT_CLASS		= "implement class";
 		public static final String DECLARE_IDS			= "declare identifiers";
 		public static final String IMPLEMENT_IDS		= "implement identifiers";
+		
+		public static final String REFRESH_CONTENT		= "refresh content";
 	}
 	
 	public static interface Orientation {

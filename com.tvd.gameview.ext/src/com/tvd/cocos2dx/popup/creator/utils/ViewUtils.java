@@ -191,4 +191,34 @@ public class ViewUtils {
 			}
 		}
 	}
+	
+	public static void refreshObject(CommonObject obj) {
+		if(obj == null) {
+			return;
+		}
+		
+		List<List<ItemGroup>> groups = new ArrayList<List<ItemGroup>>();
+		groups.add(obj.getSpriteGroups());
+		groups.add(obj.getMenuGroups());
+		groups.add(obj.getMenuItemGroups());
+		groups.add(obj.getLabelGroups());
+		groups.add(obj.getTableGroups());
+		if(obj.getCellGroups() != null) {
+			groups.add(obj.getCellGroups());
+		}
+		for(int k = 0 ; k < groups.size() ; k++) {
+			List<ItemGroup> group = groups.get(k);
+			for(int i = group.size() - 1 ; i >= 0  ; i--) {
+				if(group.get(i) == null) {
+					continue;
+				}
+				for(int j = group.get(i).getItems().size() - 1 ; 
+						 j >= 0 ; j--) {
+					refreshObject(
+							group.get(i).getItems().get(j));
+				}
+				group.get(i).refresh();
+			}
+		}
+	}
 }

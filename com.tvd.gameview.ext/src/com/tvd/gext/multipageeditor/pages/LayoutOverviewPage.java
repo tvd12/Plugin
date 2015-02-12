@@ -1,6 +1,12 @@
 package com.tvd.gext.multipageeditor.pages;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -95,15 +101,23 @@ public class LayoutOverviewPage extends FormPage {
 			
 			exported = view.isExported();
 			exitable = view.isExitable();
+			
+			mView = view;
 		}
 		
-		addTextField(textCompos, toolkit, "general.classname", className);
-		addTextField(textCompos, toolkit, "general.author", author);
-		addTextField(textCompos, toolkit, "general.type", type);
-		addTextField(textCompos, toolkit, "general.templatename", templateName);
+		mClassNameText = addTextField(textCompos, toolkit, 
+				"general.classname", className);
+		mAuthorText = addTextField(textCompos, toolkit, 
+				"general.author", author);
+		mTypeText = addTextField(textCompos, toolkit, 
+				"general.type", type);
+		mTemplateNameText = addTextField(textCompos, toolkit, 
+				"general.templatename", templateName);
 		
-		addCheckbox(client, toolkit, "general.exitable", exitable);
-		addCheckbox(client, toolkit, "general.exported", exported);
+		mExiableCheckbox = addCheckbox(client, toolkit, 
+				"general.exitable", exitable);
+		mExportedCheckbox = addCheckbox(client, toolkit, 
+				"general.exported", exported);
 		
 	}
 	
@@ -173,11 +187,33 @@ public class LayoutOverviewPage extends FormPage {
 		return gd;
 	}
 	
-	private void addTextField(Composite client, FormToolkit toolkit, 
+	private Text addTextField(Composite client, FormToolkit toolkit, 
 			String titleKey, String value) {
 		toolkit.createLabel(client, text(titleKey)); //$NON-NLS-1$
-		Text text = toolkit.createText(client, value, SWT.SINGLE);
+		final Text text = toolkit.createText(client, value, SWT.SINGLE);
 		text.setLayoutData(gridData());
+		text.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent event) {
+				setDirty(true);
+				Object source = event.getSource();
+				if(source == mClassNameText) {
+					mView.setClassName(text.getText());
+				}
+				else if(source == mAuthorText) {
+					mView.setAuthor(text.getText());
+				}
+				else if(source == mTypeText) {
+					mView.setType(text.getText());
+				}
+				else if(source == mTemplateNameText) {
+					mView.setTemplateName(text.getText());
+				}
+			}
+		});
+		
+		return text;
 	}
 	
 	private void addHyperlink(Composite client, FormToolkit toolkit,
@@ -196,15 +232,30 @@ public class LayoutOverviewPage extends FormPage {
 		toolkit.createLabel(composite, content); //$NON-NLS-1$
 	}
 	
-	private void addCheckbox(Composite client, FormToolkit toolkit, 
+	private Button addCheckbox(Composite client, FormToolkit toolkit, 
 			String titleKey, boolean isChecked) {
-		Button button = toolkit.createButton(client, 
+		final Button button = toolkit.createButton(client, 
 				text(titleKey), SWT.CHECK); //$NON-NLS-1$
 		GridData gd = new GridData();
 		gd.grabExcessHorizontalSpace = true;
 		gd.horizontalAlignment = SWT.FILL;
 		button.setLayoutData(gd);
 		button.setSelection(isChecked);
+		
+		button.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				Object source = e.getSource();
+				if(source == mExiableCheckbox) {
+					mView.setExitable(button.getSelection());
+				}
+				else if(source == mExportedCheckbox) {
+					mView.setExported(button.getSelection());
+				}
+			}
+		});
+		
+		return button;
 	}
 	
 	private static String text(String key) {
@@ -212,4 +263,36 @@ public class LayoutOverviewPage extends FormPage {
 		return Messages.getString(className + "." + key);
 	}
 	
+	@Override
+	public boolean isDirty() {
+		return mIsDirty;
+	}
+	
+	public void setDirty(boolean isDirty) {
+		this.mIsDirty = isDirty;
+		getManagedForm().dirtyStateChanged();
+	}
+	
+	@Override
+	public void doSave(IProgressMonitor monitor) {
+		try {
+			mView.writeXMLToFile();
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
+		super.doSave(monitor);
+		setDirty(false);
+	}
+	
+	protected boolean mIsDirty;
+	
+	protected Text mClassNameText;
+	protected Text mAuthorText;
+	protected Text mTypeText;
+	protected Text mTemplateNameText;
+	
+	protected Button mExportedCheckbox;
+	protected Button mExiableCheckbox;
+	
+	private View mView;
 }

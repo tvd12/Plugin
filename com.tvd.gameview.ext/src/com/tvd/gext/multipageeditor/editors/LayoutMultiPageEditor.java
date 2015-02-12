@@ -69,10 +69,10 @@ public class LayoutMultiPageEditor extends FormEditor
 	@Override
 	protected void addPages() {
 		try {
-			LayoutOverviewPage.create(this);
+			mOverviewPage = LayoutOverviewPage.create(this);
 			LayoutDetailsPage.create(this);
 			LayoutExportingPage.create(this);
-			LayoutXMLEditorPage.create(this);
+			mXMLEditorPage = LayoutXMLEditorPage.create(this);
 		} catch (PartInitException e) {
 			ErrorDialog.openError(
 					getSite().getShell(),
@@ -94,7 +94,15 @@ public class LayoutMultiPageEditor extends FormEditor
 	 * Saves the multi-page editor's document.
 	 */
 	public void doSave(IProgressMonitor monitor) {
-		getEditor(0).doSave(monitor);
+		Object selectedPage = getSelectedPage();
+		if(selectedPage == mOverviewPage) {
+			mOverviewPage.doSave(monitor);
+		}
+		else {
+			mXMLEditorPage.doSave(monitor);
+		}
+		System.out.println("dosave selectedPage = " + selectedPage
+				+ "\nactive page = " + getActivePage());
 	}
 	/**
 	 * Saves the multi-page editor's document as another file.
@@ -125,6 +133,7 @@ public class LayoutMultiPageEditor extends FormEditor
 		FileEditorInput input = (FileEditorInput)editorInput;
 		super.init(site, new LayoutEditorInput(input.getFile()));
 		setPartName(input.getFile().getName());
+		
 	}
 	/* (non-Javadoc)
 	 * Method declared on IEditorPart.
@@ -140,6 +149,7 @@ public class LayoutMultiPageEditor extends FormEditor
 		if (newPageIndex == 2) {
 //			sortWords();
 		}
+		System.out.println("pageChange = " + getSelectedPage());
 	}
 	/**
 	 * Closes all project files on project close.
@@ -209,4 +219,6 @@ public class LayoutMultiPageEditor extends FormEditor
 		super.setPageText(index, text);
 	}
 	
+	private LayoutOverviewPage mOverviewPage;
+	private LayoutXMLEditorPage mXMLEditorPage;
 }

@@ -157,7 +157,7 @@ public class LayoutScrolledPropertiesBlock extends MasterDetailsBlock {
 	
 	@Override
 	protected void createMasterPart(final IManagedForm managedForm,
-			Composite parent) {
+			final Composite parent) {
 		//final ScrolledForm form = managedForm.getForm();
 		FormToolkit toolkit = managedForm.getToolkit();
 		Section section = toolkit.createSection(parent, 
@@ -195,6 +195,7 @@ public class LayoutScrolledPropertiesBlock extends MasterDetailsBlock {
 				managedForm.fireSelectionChanged(spart, event.getSelection());
 			}
 		});
+		
 		treeViewer.expandAll();
 	}
 	
