@@ -15,8 +15,8 @@
 	<section name="DialogBounds_SearchDialog">
 		<item value="572" key="DIALOG_WIDTH"/>
 		<item value="210" key="DIALOG_Y_ORIGIN"/>
-		<item value="162" key="DIALOG_X_ORIGIN"/>
 		<item value="472" key="DIALOG_HEIGHT"/>
+		<item value="162" key="DIALOG_X_ORIGIN"/>
 		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="Search">
@@ -39,11 +39,11 @@
 			<item value="org.eclipse.mylyn.tasks.ui.search.page"/>
 		</list>
 	</section>
-	<section name="SearchDialog">
-		<item value="org.eclipse.search.internal.ui.text.TextSearchPage" key="PREVIOUS_PAGE"/>
-	</section>
 	<section name="org.eclipse.search.text.FileSearchResultPage">
 		<item value="1000" key="org.eclipse.search.resultpage.limit"/>
+	</section>
+	<section name="SearchDialog">
+		<item value="org.eclipse.search.internal.ui.text.TextSearchPage" key="PREVIOUS_PAGE"/>
 	</section>
 	<section name="TextSearchPage">
 		<item value="true" key="CASE_SENSITIVE"/>
@@ -53,7 +53,19 @@
 		<item value="12" key="HISTORY_SIZE"/>
 		<section name="HISTORY11">
 			<item value="false" key="isRegExSearch"/>
-			<item value="//custom" key="textPattern"/>
+			<item value="com.tvd.study.linuxsagas.plugin" key="textPattern"/>
+			<item value="0" key="scope"/>
+			<item value="false" key="ignoreCase"/>
+			<item value="true" key="isWholeWord"/>
+			<list key="fileNamePatterns">
+				<item value="*"/>
+			</list>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY2">
+			<item value="false" key="isRegExSearch"/>
+			<item value="com.tvd.gameview.ext.plugin" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="ignoreCase"/>
 			<item value="true" key="isWholeWord"/>
@@ -66,7 +78,7 @@
 		<section name="EXTENSIONS">
 			<item value="*" key="0"/>
 		</section>
-		<section name="HISTORY2">
+		<section name="HISTORY3">
 			<item value="false" key="isRegExSearch"/>
 			<item value="&quot;com.tvd.gameview.ext.plugin&quot;" key="textPattern"/>
 			<item value="0" key="scope"/>
@@ -78,9 +90,9 @@
 			<list key="workingSets">
 			</list>
 		</section>
-		<section name="HISTORY3">
+		<section name="HISTORY0">
 			<item value="false" key="isRegExSearch"/>
-			<item value="user_use_coin" key="textPattern"/>
+			<item value="setDirty" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="ignoreCase"/>
 			<item value="true" key="isWholeWord"/>
@@ -92,19 +104,7 @@
 		</section>
 		<section name="HISTORY10">
 			<item value="false" key="isRegExSearch"/>
-			<item value="com.tvd.study.linuxsagas.plugin" key="textPattern"/>
-			<item value="0" key="scope"/>
-			<item value="false" key="ignoreCase"/>
-			<item value="true" key="isWholeWord"/>
-			<list key="fileNamePatterns">
-				<item value="*"/>
-			</list>
-			<list key="workingSets">
-			</list>
-		</section>
-		<section name="HISTORY0">
-			<item value="false" key="isRegExSearch"/>
-			<item value="device =" key="textPattern"/>
+			<item value="getDefaultViewSuffix" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="ignoreCase"/>
 			<item value="true" key="isWholeWord"/>
@@ -116,7 +116,7 @@
 		</section>
 		<section name="HISTORY1">
 			<item value="false" key="isRegExSearch"/>
-			<item value="com.tvd.gameview.ext.plugin" key="textPattern"/>
+			<item value="device =" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="ignoreCase"/>
 			<item value="true" key="isWholeWord"/>
@@ -128,7 +128,7 @@
 		</section>
 		<section name="HISTORY9">
 			<item value="false" key="isRegExSearch"/>
-			<item value="getDefaultViewSuffix" key="textPattern"/>
+			<item value="getSdkProjectNames" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="ignoreCase"/>
 			<item value="true" key="isWholeWord"/>
@@ -140,7 +140,7 @@
 		</section>
 		<section name="HISTORY8">
 			<item value="false" key="isRegExSearch"/>
-			<item value="getSdkProjectNames" key="textPattern"/>
+			<item value="com.tvd.gext.multipageeditor.editors.GextMultiPageEditor" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="ignoreCase"/>
 			<item value="true" key="isWholeWord"/>
@@ -152,7 +152,7 @@
 		</section>
 		<section name="HISTORY5">
 			<item value="false" key="isRegExSearch"/>
-			<item value="Link Section" key="textPattern"/>
+			<item value="createImageHyperlink" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="ignoreCase"/>
 			<item value="true" key="isWholeWord"/>
@@ -164,7 +164,7 @@
 		</section>
 		<section name="HISTORY4">
 			<item value="false" key="isRegExSearch"/>
-			<item value="createImageHyperlink" key="textPattern"/>
+			<item value="user_use_coin" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="ignoreCase"/>
 			<item value="true" key="isWholeWord"/>
@@ -176,7 +176,7 @@
 		</section>
 		<section name="HISTORY7">
 			<item value="false" key="isRegExSearch"/>
-			<item value="com.tvd.gext.multipageeditor.editors.GextMultiPageEditor" key="textPattern"/>
+			<item value="com.tvd.gext.multipageeditor.wizards.GextNewFileWizard" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="ignoreCase"/>
 			<item value="true" key="isWholeWord"/>
@@ -188,7 +188,7 @@
 		</section>
 		<section name="HISTORY6">
 			<item value="false" key="isRegExSearch"/>
-			<item value="com.tvd.gext.multipageeditor.wizards.GextNewFileWizard" key="textPattern"/>
+			<item value="Link Section" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="ignoreCase"/>
 			<item value="true" key="isWholeWord"/>
@@ -199,6 +199,9 @@
 			</list>
 		</section>
 	</section>
+	<section name="SearchDialog.ScopePart">
+		<item value="0" key="scope"/>
+	</section>
 	<section name="ReplaceDialog2">
 		<list key="replace_with">
 			<item value="Copyright (c) 2014 Dung Ta Van"/>
@@ -208,8 +211,5 @@
 			<item value="DefaultBackgroundOnSupers"/>
 			<item value="BackgroundOnSupers"/>
 		</list>
-	</section>
-	<section name="SearchDialog.ScopePart">
-		<item value="0" key="scope"/>
 	</section>
 </section>

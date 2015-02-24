@@ -69,10 +69,10 @@ public class LayoutMultiPageEditor extends FormEditor
 	@Override
 	protected void addPages() {
 		try {
-			mOverviewPage = LayoutOverviewPage.create(this);
-			LayoutDetailsPage.create(this);
-			LayoutExportingPage.create(this);
-			mXMLEditorPage = LayoutXMLEditorPage.create(this);
+			mOverviewPage 	= LayoutOverviewPage.create(this);
+			mDetailsPage 	= LayoutDetailsPage.create(this);
+			mExportingPage 	= LayoutExportingPage.create(this);
+			mXMLEditorPage 	= LayoutXMLEditorPage.create(this);
 		} catch (PartInitException e) {
 			ErrorDialog.openError(
 					getSite().getShell(),
@@ -98,8 +98,17 @@ public class LayoutMultiPageEditor extends FormEditor
 		if(selectedPage == mOverviewPage) {
 			mOverviewPage.doSave(monitor);
 		}
+		else if(selectedPage == mDetailsPage) {
+			mDetailsPage.doSave(monitor);
+		}
+		else if(selectedPage == mExportingPage) {
+			
+		}
 		else {
 			mXMLEditorPage.doSave(monitor);
+			mExportingPage.update();
+			mDetailsPage.update();
+			mOverviewPage.update();
 		}
 		System.out.println("dosave selectedPage = " + selectedPage
 				+ "\nactive page = " + getActivePage());
@@ -221,4 +230,6 @@ public class LayoutMultiPageEditor extends FormEditor
 	
 	private LayoutOverviewPage mOverviewPage;
 	private LayoutXMLEditorPage mXMLEditorPage;
+	private LayoutExportingPage mExportingPage;
+	private LayoutDetailsPage mDetailsPage;
 }

@@ -1,5 +1,6 @@
 package com.tvd.gext.multipageeditor.pages;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.wst.sse.ui.StructuredTextEditor;
 
@@ -21,6 +22,14 @@ public class LayoutXMLEditorPage extends StructuredTextEditor {
 		editor.setPageText(mIndex, getTitle());
 		
 		return true;
+	}
+	
+	@Override
+	public void doSave(IProgressMonitor monitor) {
+		super.doSave(monitor);
+		
+		LayoutEditorInput input = (LayoutEditorInput)getEditorInput();
+		input.update();
 	}
 	
 	public int getIndex() {

@@ -20,7 +20,7 @@
 	<background-image id="loading_layer_background_common_bg" 
 		location-in-interfacebuilder="10.0, 10.0"
 		width="768.0" height="1136.0"
-		phony-path="loading_layer/background/common_bg.png"  />
+		phony-path="common_bg.png"  />
 
 	<sprites array="false" comment="create group of sprites">
 		<sprite visible="true" comment="">
@@ -31,7 +31,7 @@
 			<image id="loading_layer_common_alle_logo" 
 				location-in-interfacebuilder="10.0, 10.0"
 				width="81.5" height="77.5"
-				phony-path="loading_layer/sprites/common_alle_logo.png"  />
+				phony-path="common_alle_logo.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="loading_dots" />

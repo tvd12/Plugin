@@ -29,7 +29,8 @@ import com.tvd.cocos2dx.popup.creator.model.View;
 import com.tvd.gameview.ext.GameViewSdk;
 import com.tvd.gext.multipageeditor.editors.constant.Img;
 
-public class LayoutOverviewPage extends FormPage {
+public class LayoutOverviewPage extends FormPage 
+		implements ILayoutUpdateable {
 
 	public LayoutOverviewPage(FormEditor editor, String id, String title) {
 		super(editor, id, title);
@@ -84,41 +85,23 @@ public class LayoutOverviewPage extends FormPage {
 		
 		textCompos.setLayout(layout);
 		
-		String className = "";
-		String author = "";
-		String type = "";
-		String templateName = "";
-		boolean exitable = false;
-		boolean exported = false;
-		if(getEditor().getEditorInput() instanceof LayoutEditorInput) {
-			LayoutEditorInput input = (LayoutEditorInput)getEditor()
-					.getEditorInput();
-			View view = input.getView();
-			className = view.getClassName();
-			author = view.getAuthor();
-			type = view.getType();
-			templateName = view.getTemplateName();
-			
-			exported = view.isExported();
-			exitable = view.isExitable();
-			
-			mView = view;
-		}
-		
 		mClassNameText = addTextField(textCompos, toolkit, 
-				"general.classname", className);
+				"general.classname", "");
 		mAuthorText = addTextField(textCompos, toolkit, 
-				"general.author", author);
+				"general.author", "");
 		mTypeText = addTextField(textCompos, toolkit, 
-				"general.type", type);
+				"general.type", "");
 		mTemplateNameText = addTextField(textCompos, toolkit, 
-				"general.templatename", templateName);
+				"general.templatename", "");
 		
 		mExiableCheckbox = addCheckbox(client, toolkit, 
-				"general.exitable", exitable);
+				"general.exitable", false);
 		mExportedCheckbox = addCheckbox(client, toolkit, 
-				"general.exported", exported);
+				"general.exported", false);
 		
+		update();
+		
+		setDirty(false);
 	}
 	
 	private void createContentSection(IManagedForm pForm) {
@@ -196,7 +179,6 @@ public class LayoutOverviewPage extends FormPage {
 			
 			@Override
 			public void modifyText(ModifyEvent event) {
-				setDirty(true);
 				Object source = event.getSource();
 				if(source == mClassNameText) {
 					mView.setClassName(text.getText());
@@ -210,6 +192,7 @@ public class LayoutOverviewPage extends FormPage {
 				else if(source == mTemplateNameText) {
 					mView.setTemplateName(text.getText());
 				}
+				setDirty(true);
 			}
 		});
 		
@@ -252,6 +235,7 @@ public class LayoutOverviewPage extends FormPage {
 				else if(source == mExportedCheckbox) {
 					mView.setExported(button.getSelection());
 				}
+				setDirty(true);
 			}
 		});
 		
@@ -282,6 +266,26 @@ public class LayoutOverviewPage extends FormPage {
 		}
 		super.doSave(monitor);
 		setDirty(false);
+	}
+	
+	@Override
+	public void update() {
+		if(!(getEditor().getEditorInput() instanceof LayoutEditorInput)) {
+			return;
+		}
+		LayoutEditorInput input = (LayoutEditorInput)getEditor()
+					.getEditorInput();
+		View view = input.getView();
+		mView = view;
+		
+		mClassNameText.setText(view.getClassName());
+		mAuthorText.setText(view.getAuthor());
+		mTypeText.setText(view.getType());
+		mTemplateNameText.setText(mView.getTemplateName());
+		
+		mExportedCheckbox.setSelection(view.isExported());
+		mExiableCheckbox.setSelection(view.isExitable());
+			
 	}
 	
 	protected boolean mIsDirty;

@@ -15,8 +15,13 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.TableWrapData;
 
 import com.tvd.cocos2dx.popup.creator.model.View;
+import com.tvd.gext.multipageeditor.pages.LayoutDetailsPage;
 
 public class LayoutViewPage extends LayoutCommonPage {
+	
+	public LayoutViewPage(LayoutDetailsPage page) {
+		this.mFormPage = page;
+	}
 
 	@Override
 	public void createContents(Composite parent) {
@@ -38,14 +43,22 @@ public class LayoutViewPage extends LayoutCommonPage {
 		mSizeReloadedCheckbox = createCheckbox(toolkit, 
 				mClient, text("size_reloaded"), false);
 		
-		mXibPathText = createText(toolkit, mClient,
-				text("xib_path"), "");
-		mParamPathText = createText(toolkit, mClient,
-				text("param_path"), "");
-		mDefinePathText = createText(toolkit, mClient,
-				text("define_path"), "");
-		mClassPathText = createText(toolkit, mClient,
-				text("class_path"), "");
+		mXibPathSelector = createFileSelector(toolkit, mClient,
+				text("xib_path"), "", 
+				LayoutFileSelector.DIRECTORY);
+		mParamPathSelector = createFileSelector(toolkit, mClient,
+				text("param_path"), "",
+				LayoutFileSelector.FILE);
+		mDefinePathSelector = createFileSelector(toolkit, mClient,
+				text("define_path"), "", 
+				LayoutFileSelector.FILE);
+		mImagePathSelector = createFileSelector(toolkit, 
+				mClient, text("image_path"), "", 
+				LayoutFileSelector.DIRECTORY);
+		
+		mClassPathSelector = createFileSelector(toolkit, mClient,
+				text("class_path"), "",
+				LayoutFileSelector.DIRECTORY);
 		
 		mCommentText = createTextArea(toolkit, mClient, 
 				commontext("comment"), "");
@@ -75,6 +88,7 @@ public class LayoutViewPage extends LayoutCommonPage {
 		return checkbox;
 	}
 	
+	@SuppressWarnings("unused")
 	private Text createText(FormToolkit toolkit, Composite parent,
 			String label, String value) {
 		ModifyListener listener = new ModifyListener() {
@@ -95,12 +109,63 @@ public class LayoutViewPage extends LayoutCommonPage {
 			
 			@Override
 			public void modifyText(ModifyEvent event) {
+				Text text = (Text)event.getSource();
+				if(!text.isFocusControl()) {
+					return ;
+				}
+				if(text == mCommentText) {
+					mView.setComment(text.getText());
+				}
 				
+				mFormPage.setDirty(true);
 			}
+			
 		};
 		
 		return super.createTextArea(toolkit, parent, label, 
 				value, listener);
+	}
+	
+	private LayoutFileSelector createFileSelector(FormToolkit toolkit, Composite parent,
+			String label, String value, int type) {
+		LayoutFileSelector selector = LayoutFileSelector.create(toolkit, 
+				parent, label, value, type);
+		selector.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent event) {
+				Text text = (Text)event.getSource();
+				LayoutFileSelector container = (LayoutFileSelector)
+						text.getData();
+				if(container == mXibPathSelector) {
+					mView.setXibContainerPath(text.getText());
+				}
+				else if(container == mParamPathSelector) {
+					String txt = standardizedPath(
+							mParamPathSelector.getText());
+					if(txt != null) {
+						text.setText(txt);
+						mView.setParametersPath(text.getText());
+					}
+				}
+				else if(container == mDefinePathSelector) {
+					String txt = standardizedPath(
+							mDefinePathSelector.getText());
+					if(txt != null) {
+						text.setText(txt);
+						mView.setDefinePath(text.getText());
+					}
+				}
+				else if(container == mImagePathSelector) {
+					mView.setImagesPath(text.getText());
+				}
+				else if(container == mClassPathSelector) {
+					mView.setClassPath(text.getText());
+				}
+			}
+		});
+		
+		return selector;
 	}
 	
 	@Override
@@ -110,31 +175,49 @@ public class LayoutViewPage extends LayoutCommonPage {
 		}
 		
 		View view = (View)pModel;
-		boolean exported = view.isExported();
+		mView = view;
+
+		mExportedCheckbox.setSelection(view.isExported());
 		
-		String xibPath = view.getXibContainerPath();
-		String paramPath = view.getParametersPath();
-		String definePath = view.getDefinePath();
-		String classPath = view.getClassPath();
-		String comment = view.getComment();
-		
-		mExportedCheckbox.setSelection(exported);
-		
-		mXibPathText.setText(xibPath);
-		mParamPathText.setText(paramPath);
-		mDefinePathText.setText(definePath);
-		mClassPathText.setText(classPath);
-		mCommentText.setText(comment);
+		mXibPathSelector.setText(view.getXibContainerPath());
+		mParamPathSelector.setText(view.getParametersPath());
+		mDefinePathSelector.setText(view.getDefinePath());
+		mImagePathSelector.setText(view.getImagePath());
+		mClassPathSelector.setText(view.getClassPath());
+		mCommentText.setText(view.getComment());
 	}
+	
+	private String standardizedPath(String text) {
+		if(text == null || text.trim().length() == 0
+				|| !text.contains(".")) {
+			return null;
+		}
+		
+		if(!text.contains(".")) {
+			return text;
+		}
+		
+		int lastIndexOf = text.lastIndexOf(".");
+		if(lastIndexOf > text.lastIndexOf("/")) {
+			return text.substring(0, lastIndexOf);
+		}
+		
+		return null;
+	}
+	
+	protected View mView;
+	
+	protected LayoutDetailsPage mFormPage;
 	
 	protected List<Button> mCheckboxes;
 	protected Button mFlag;
 	protected Text mText;
 	
-	protected Text mXibPathText;
-	protected Text mParamPathText;
-	protected Text mDefinePathText;
-	protected Text mClassPathText;
+	protected LayoutFileSelector mXibPathSelector;
+	protected LayoutFileSelector mParamPathSelector;
+	protected LayoutFileSelector mDefinePathSelector;
+	protected LayoutFileSelector mImagePathSelector;
+	protected LayoutFileSelector mClassPathSelector;
 	protected Text mCommentText; 
 	
 	protected Button mExportedCheckbox;

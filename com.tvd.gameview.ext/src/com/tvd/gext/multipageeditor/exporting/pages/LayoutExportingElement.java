@@ -51,6 +51,16 @@ public class LayoutExportingElement {
 		mView = parent.mView;
 	}
 	
+	public void update(View view) {
+		mView = view;
+		if(mChilds == null) {
+			return;
+		}
+		for(int i = 0 ; i < mChilds.size() ; i++) {
+			mChilds.get(i).update(view);
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return getName();

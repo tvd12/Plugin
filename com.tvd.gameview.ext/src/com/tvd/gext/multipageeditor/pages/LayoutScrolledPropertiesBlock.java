@@ -29,26 +29,37 @@ import org.eclipse.ui.forms.DetailsPart;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.MasterDetailsBlock;
 import org.eclipse.ui.forms.SectionPart;
-import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 
+import com.tvd.cocos2dx.popup.creator.model.Cell;
 import com.tvd.cocos2dx.popup.creator.model.ItemGroup;
+import com.tvd.cocos2dx.popup.creator.model.Label;
+import com.tvd.cocos2dx.popup.creator.model.Menu;
+import com.tvd.cocos2dx.popup.creator.model.MenuItem;
+import com.tvd.cocos2dx.popup.creator.model.Progressbar;
 import com.tvd.cocos2dx.popup.creator.model.Sprite;
+import com.tvd.cocos2dx.popup.creator.model.Table;
 import com.tvd.cocos2dx.popup.creator.model.View;
 import com.tvd.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tvd.gameview.ext.GameViewSdk;
 import com.tvd.gext.multipageeditor.editors.constant.Img;
+import com.tvd.gext.multipageeditor.elements.pages.LayoutCellLayout;
 import com.tvd.gext.multipageeditor.elements.pages.LayoutGroupPage;
+import com.tvd.gext.multipageeditor.elements.pages.LayoutElementPage;
+import com.tvd.gext.multipageeditor.elements.pages.LayoutMenuItemPage;
+import com.tvd.gext.multipageeditor.elements.pages.LayoutMenuPage;
+import com.tvd.gext.multipageeditor.elements.pages.LayoutProgressbarPage;
 import com.tvd.gext.multipageeditor.elements.pages.LayoutSpritePage;
+import com.tvd.gext.multipageeditor.elements.pages.LayoutTablePage;
 import com.tvd.gext.multipageeditor.elements.pages.LayoutViewPage;
 /**
  *
  */
 public class LayoutScrolledPropertiesBlock extends MasterDetailsBlock {
 	
-	public LayoutScrolledPropertiesBlock(FormPage page) {
+	public LayoutScrolledPropertiesBlock(LayoutDetailsPage page) {
 		this.mFormPage = page;
 	}
 	/**
@@ -197,6 +208,7 @@ public class LayoutScrolledPropertiesBlock extends MasterDetailsBlock {
 		});
 		
 		treeViewer.expandAll();
+		mTreeViewer = treeViewer;
 	}
 	
 	protected void createToolBarActions(IManagedForm managedForm) {
@@ -228,9 +240,16 @@ public class LayoutScrolledPropertiesBlock extends MasterDetailsBlock {
 	
 	@Override
 	protected void registerPages(DetailsPart detailsPart) {
-		detailsPart.registerPage(View.class, new LayoutViewPage());
-		detailsPart.registerPage(Sprite.class, new LayoutSpritePage());
+		detailsPart.registerPage(View.class, new LayoutViewPage(mFormPage));
 		detailsPart.registerPage(ItemGroup.class, new LayoutGroupPage());
+		detailsPart.registerPage(Sprite.class, new LayoutSpritePage(mFormPage));
+		detailsPart.registerPage(Label.class, new LayoutSpritePage(mFormPage));
+		detailsPart.registerPage(Menu.class, new LayoutMenuPage(mFormPage));
+		detailsPart.registerPage(MenuItem.class, new LayoutMenuItemPage(mFormPage));
+		detailsPart.registerPage(Table.class, new LayoutTablePage(mFormPage));
+		detailsPart.registerPage(Cell.class, new LayoutCellLayout(mFormPage));
+		detailsPart.registerPage(Progressbar.class, new LayoutProgressbarPage(mFormPage));
+		detailsPart.registerPage(CommonObject.class, new LayoutElementPage(mFormPage));
 	}
 	
 	protected String text(String key) {
@@ -238,5 +257,13 @@ public class LayoutScrolledPropertiesBlock extends MasterDetailsBlock {
 		return Messages.getString(className + "." + key);
 	}
 	
-	private FormPage mFormPage;
+	public void update() {
+		if(mTreeViewer != null) {
+			mTreeViewer.refresh();
+			mTreeViewer.expandAll();
+		}
+	}
+	
+	private LayoutDetailsPage mFormPage;
+	private TreeViewer mTreeViewer;
 }

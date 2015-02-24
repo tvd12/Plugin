@@ -69,6 +69,7 @@ public class XmlFileParser extends DefaultHandler {
 					getAttributeValue(Attribute.TEMPLATE_FILE, atts));
 			mView.setExported(
 					getBoolean(getAttributeValue(Attribute.EXPORTED, atts)));
+			mView.setExitable(getBoolean(Attribute.EXITABLE, atts));
 			mCurrentObject = mView;
 			mPositionPrefix = mView.getPrefix();
 			mAdvancedObject = mView;
@@ -455,6 +456,11 @@ public class XmlFileParser extends DefaultHandler {
 		}
 		
 		return result;
+	}
+	
+	private boolean getBoolean(String attName, Attributes atts) {
+		String value = getAttributeValue(attName, atts);
+		return getBoolean(value); 
 	}
 	
 	private void addGroupToView(ItemGroup group) {

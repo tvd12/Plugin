@@ -13,7 +13,7 @@ public class LayoutEditorInput extends FileEditorInput {
 
 	public LayoutEditorInput(IFile file) {
 		super(file);
-		this.init(file);
+		this.init();
 	}
 	
 	public LayoutExportingElement getExportingElement() {
@@ -24,7 +24,8 @@ public class LayoutEditorInput extends FileEditorInput {
 		return mView;
 	}
 	
-	protected void init(IFile file) {
+	protected void init() {
+		IFile file = getFile();
 		XmlFetcher fetcher = new XmlFetcher();
 		Config.getInstance().setProject(file.getProject());
 		mView = fetcher.fetchView(file);
@@ -60,6 +61,14 @@ public class LayoutEditorInput extends FileEditorInput {
 				new LayoutExportingElement(TreeElement.DECLARE_CLASS),
 				new LayoutExportingElement(TreeElement.IMPLEMENT_CLASS),
 			});
+	}
+	
+	public void update() {
+		IFile file = getFile();
+		XmlFetcher fetcher = new XmlFetcher();
+		Config.getInstance().setProject(file.getProject());
+		mView = fetcher.fetchView(file);
+		mExportingElement.update(mView);
 	}
 	
 	protected View mView;

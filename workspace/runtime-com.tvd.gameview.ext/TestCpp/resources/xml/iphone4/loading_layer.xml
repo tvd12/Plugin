@@ -3,7 +3,7 @@
 		super="CommonLayer" background-name="default" size="324.73572, 480.33826"
 		template-name="Common"
 		exported="false"
-		comment=""
+		comment="this is a test version of loading layer"
 		xmlns="http://www.tvd.com/tools"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
@@ -12,15 +12,11 @@
 	<define-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Classes/Other/Utils/Defines" />
 	<parameters-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Classes/Other/Utils/GameParams" />
 	<images-inputpath value="/Users/dungtavan/Downloads/loading/loading_layer" />
-	<images-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Resources/iphone4" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Resources/common" />
 	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Resources/screenshots/iphone4" used="true" />
 	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Wireframing/WireframingScreen/iphone4" />
 	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/proj.android/res/layout/iphone4" />
 	<class-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Classes/View/Layer" />
-	<background-image id="loading_layer_background_common_bg" 
-		location-in-interfacebuilder="10.0, 10.0"
-		width="324.73572" height="480.33826"
-		phony-path="loading_layer/background/common_bg.png"  />
 
 	<sprites array="false" comment="create group of sprites">
 		<sprite visible="true" comment="">
@@ -31,7 +27,7 @@
 			<image id="loading_layer_common_alle_logo" 
 				location-in-interfacebuilder="10.0, 10.0"
 				width="34.460888" height="32.769554"
-				phony-path="loading_layer/sprites/common_alle_logo.png"  />
+				phony-path="common_alle_logo.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="loading_dots" />

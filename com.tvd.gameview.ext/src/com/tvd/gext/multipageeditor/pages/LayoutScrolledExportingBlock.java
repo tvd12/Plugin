@@ -334,6 +334,15 @@ public class LayoutScrolledExportingBlock extends MasterDetailsBlock {
 			}
 		}
 	}
+	
+	public void update() {
+		LayoutEditorInput input = (LayoutEditorInput) mFormPage
+				.getEditor().getEditorInput();
+		mView = input.getView();
+		if(mTreeViewer != null) {
+			mTreeViewer.refresh();
+		}
+	}
 
 	protected TreeViewer mTreeViewer;
 	protected Button mActiveButton;

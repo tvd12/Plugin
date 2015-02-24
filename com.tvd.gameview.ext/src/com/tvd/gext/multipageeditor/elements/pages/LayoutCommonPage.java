@@ -153,6 +153,7 @@ public abstract class LayoutCommonPage implements IDetailsPage {
 		final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.heightHint = height;
 		text.setLayoutData(gridData);
+		text.addModifyListener(listener);
 		
 		return text;
 	}

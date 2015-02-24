@@ -3,26 +3,26 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="265" key="DIALOG_WIDTH"/>
 		<item value="204" key="DIALOG_Y_ORIGIN"/>
-		<item value="910" key="DIALOG_X_ORIGIN"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
+		<item value="910" key="DIALOG_X_ORIGIN"/>
 		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="true" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="" key="selection"/>
+		<item value="com.tvd" key="selection"/>
 		<list key="findhistory">
+			<item value="if(getEditor().getEditorInput() instanceof LayoutEditorInput) {&#x0A;&#x09;&#x09;&#x09;LayoutEditorInput input = (LayoutEditorInput)getEditor()&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;.getEditorInput();&#x0A;&#x09;&#x09;&#x09;View view = input.getView();&#x0A;&#x09;&#x09;&#x09;className = view.getClassName();&#x0A;&#x09;&#x09;&#x09;author = view.getAuthor();&#x0A;&#x09;&#x09;&#x09;type = view.getType();&#x0A;&#x09;&#x09;&#x09;templateName = view.getTemplateName();&#x0A;&#x09;&#x09;&#x09;&#x0A;&#x09;&#x09;&#x09;exported = view.isExported();&#x0A;&#x09;&#x09;&#x09;exitable = view.isExitable();&#x0A;&#x09;&#x09;&#x09;&#x0A;&#x09;&#x09;&#x09;mView = view;&#x0A;&#x09;&#x09;}"/>
+			<item value="com.tvd"/>
+			<item value="export"/>
 			<item value="System.out"/>
 			<item value="referen"/>
 			<item value="implement"/>
 			<item value="imple"/>
 			<item value="isSave"/>
-			<item value="do"/>
-			<item value="doAllo"/>
-			<item value="doSave"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Activator"/>

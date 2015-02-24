@@ -9,12 +9,15 @@
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
 package com.tvd.gext.multipageeditor.pages;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 
+import com.tvd.cocos2dx.popup.creator.model.View;
 import com.tvd.gameview.ext.GameViewSdk;
 import com.tvd.gext.multipageeditor.editors.constant.Img;
 /**
@@ -23,7 +26,8 @@ import com.tvd.gext.multipageeditor.editors.constant.Img;
  * To change the template for this generated type comment go to Window -
  * Preferences - Java - Code Generation - Code and Comments
  */
-public class LayoutDetailsPage extends FormPage {
+public class LayoutDetailsPage extends FormPage 
+		implements ILayoutUpdateable {
 	
 	public LayoutDetailsPage(FormEditor editor) {
 		super(editor, LayoutDetailsPage.class.getName(), text("title")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -53,5 +57,35 @@ public class LayoutDetailsPage extends FormPage {
 		return Messages.getString(className + "." + key);
 	}
 	
+	@Override
+	public boolean isDirty() {
+		return mIsDirty;
+	}
+	
+	public void setDirty(boolean isDirty) {
+		this.mIsDirty = isDirty;
+		getManagedForm().dirtyStateChanged();
+	}
+	
+	@Override
+	public void doSave(IProgressMonitor monitor) {
+		LayoutEditorInput input = (LayoutEditorInput)getEditor()
+				.getEditorInput();
+		View view = input.getView();
+		try {
+			view.writeXMLToFile();
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
+		super.doSave(monitor);
+		setDirty(false);
+	}
+	
+	@Override
+	public void update() {
+		mBlock.update();
+	}
+	
 	private LayoutScrolledPropertiesBlock mBlock;
+	protected boolean mIsDirty;
 }

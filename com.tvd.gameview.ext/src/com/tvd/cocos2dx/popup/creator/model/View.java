@@ -876,6 +876,10 @@ public class View extends AdvancedObject implements IContainer {
 		ViewUtils.refreshObject(this);
 	}
 	
+	public String getImagePath() {
+		return this.mImagesPath;
+	}
+	
 	@Override
 	public String toXML() {
 		StringBuilder builder = new StringBuilder("<?xml version=\"1.0\" " +
@@ -940,7 +944,7 @@ public class View extends AdvancedObject implements IContainer {
 		if(mBackgroundImage != null) {
 			builder.append(mBackgroundImage.toXML() + "\n");
 		}
-		if(mIsExitable) {
+		if(mIsExitable && mExitResource != null) {
 			Image exitImg = mExitResource.getImage(0);
 			builder.append("\t<" + Tag.EXIT_IMAGE + " " + Attribute.POSITION + "=\"")
 			.append(exitImg.getPosition() + "\" ")

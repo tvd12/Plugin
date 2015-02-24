@@ -2,9 +2,9 @@ package com.tvd.gext.multipageeditor.elements.pages;
 
 import com.tvd.gext.multipageeditor.pages.LayoutDetailsPage;
 
-public class LayoutSpritePage extends LayoutElementPage {
+public class LayoutMenuPage extends LayoutElementPage {
 
-	public LayoutSpritePage(LayoutDetailsPage pPage) {
+	public LayoutMenuPage(LayoutDetailsPage pPage) {
 		super(pPage);
 	}
 

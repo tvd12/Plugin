@@ -9,7 +9,8 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import com.tvd.gameview.ext.GameViewSdk;
 import com.tvd.gext.multipageeditor.editors.constant.Img;
 
-public class LayoutExportingPage extends FormPage {
+public class LayoutExportingPage extends FormPage 
+		implements ILayoutUpdateable {
 	
 	public LayoutExportingPage(FormEditor pEditor) {
 		super(pEditor, LayoutExportingPage.class.getName(), 
@@ -24,6 +25,12 @@ public class LayoutExportingPage extends FormPage {
 		
 		return page;
 	}
+	
+	@Override
+	public void update() {
+		mBlock.update();
+	}
+	
 	
 	@Override
 	protected void createFormContent(final IManagedForm managedForm) {

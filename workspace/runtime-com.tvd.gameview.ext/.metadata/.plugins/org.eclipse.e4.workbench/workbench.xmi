@@ -9,6 +9,7 @@
     <persistedState key="workingSets" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workingSets/>"/>
     <persistedState key="aggregateWorkingSetId" value="Aggregate for window 1407725625626"/>
     <tags>topLevel</tags>
+    <tags>shellMaximized</tags>
     <children xsi:type="basic:PartSashContainer" xmi:id="_6w8gIqahEeSN7NxGhFBO2w" selectedElement="_6w8gI6ahEeSN7NxGhFBO2w" horizontal="true">
       <children xsi:type="advanced:PerspectiveStack" xmi:id="_6w8gI6ahEeSN7NxGhFBO2w" elementId="org.eclipse.ui.ide.perspectivestack" containerData="7500" selectedElement="_6w8gJKahEeSN7NxGhFBO2w">
         <children xsi:type="advanced:Perspective" xmi:id="_6w8gJKahEeSN7NxGhFBO2w" elementId="org.eclipse.jdt.ui.JavaPerspective" selectedElement="_6w8gJaahEeSN7NxGhFBO2w" label="Java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/eview16/jperspective.gif">
@@ -161,7 +162,7 @@
           <tags>removeOnHide</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="_VQt-4Lu8EeSgJMWzTrHDig" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="loading_layer.xml" iconURI="platform:/plugin/org.eclipse.wst.xml.ui/icons/xmldoc.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;loading_layer.xml&quot; partName=&quot;loading_layer.xml&quot; title=&quot;loading_layer.xml&quot; tooltip=&quot;SuperMemory/resources/xml/iphone6plus/loading_layer.xml&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/SuperMemory/resources/xml/iphone6plus/loading_layer.xml&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;953&quot; selectionTopPixel=&quot;262&quot;/>&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;loading_layer.xml&quot; partName=&quot;loading_layer.xml&quot; title=&quot;loading_layer.xml&quot; tooltip=&quot;SuperMemory/resources/xml/iphone6plus/loading_layer.xml&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/SuperMemory/resources/xml/iphone6plus/loading_layer.xml&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;953&quot; selectionTopPixel=&quot;45&quot;/>&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart</tags>
           <tags>removeOnHide</tags>
@@ -2976,7 +2977,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_6w-Wh6ahEeSN7NxGhFBO2w" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_-nt5ELu4EeSgJMWzTrHDig" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_6xD126ahEeSN7NxGhFBO2w"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_OkD0ALxIEeS61afaS8tFyw" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_6xD126ahEeSN7NxGhFBO2w"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_6w-8aKahEeSN7NxGhFBO2w" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -3009,7 +3010,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_6w-8qaahEeSN7NxGhFBO2w" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_-n7Ucbu4EeSgJMWzTrHDig" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_6xDPRaahEeSN7NxGhFBO2w"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_OkKhsrxIEeS61afaS8tFyw" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_6xDPRaahEeSN7NxGhFBO2w"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_6w-8taahEeSN7NxGhFBO2w" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -3331,7 +3332,7 @@
     </bindings>
     <bindings xmi:id="_AQLFkKtbEeSjPIpuxeUpVQ" keySequence="ALT+SHIFT+H" command="_6xEdAaahEeSN7NxGhFBO2w"/>
     <bindings xmi:id="_AQLsoKtbEeSjPIpuxeUpVQ" keySequence="ALT+COMMAND+SHIFT+ARROW_DOWN" command="_6xEc-KahEeSN7NxGhFBO2w"/>
-    <bindings xmi:id="_9yzDQLu4EeSgJMWzTrHDig" keySequence="COMMAND+CTRL+F" command="_6xEcP6ahEeSN7NxGhFBO2w"/>
+    <bindings xmi:id="_OGixkbxIEeS61afaS8tFyw" keySequence="COMMAND+CTRL+F" command="_6xEcP6ahEeSN7NxGhFBO2w"/>
   </bindingTables>
   <bindingTables xmi:id="_6w_jzaahEeSN7NxGhFBO2w" elementId="org.eclipse.ui.textEditorScope" bindingContext="_6xALEqahEeSN7NxGhFBO2w">
     <bindings xmi:id="_6w_jzqahEeSN7NxGhFBO2w" keySequence="COMMAND+SHIFT+NUMPAD_MULTIPLY" command="_6xDPUKahEeSN7NxGhFBO2w"/>
@@ -3566,7 +3567,7 @@
     <bindings xmi:id="_6xAKlaahEeSN7NxGhFBO2w" keySequence="CTRL+D" command="_6xDOK6ahEeSN7NxGhFBO2w"/>
   </bindingTables>
   <bindingTables xmi:id="_6xAKlqahEeSN7NxGhFBO2w" contributorURI="platform:/fragment/org.eclipse.e4.ui.workbench.renderers.swt.cocoa" bindingContext="_6xALNKahEeSN7NxGhFBO2w">
-    <bindings xmi:id="_9y04cLu4EeSgJMWzTrHDig" keySequence="M1+W" command="_6xEcQaahEeSN7NxGhFBO2w"/>
+    <bindings xmi:id="_OGjYoLxIEeS61afaS8tFyw" keySequence="M1+W" command="_6xEcQaahEeSN7NxGhFBO2w"/>
   </bindingTables>
   <bindingTables xmi:id="_6xAKmKahEeSN7NxGhFBO2w" bindingContext="_6xALO6ahEeSN7NxGhFBO2w"/>
   <bindingTables xmi:id="_6xAKmaahEeSN7NxGhFBO2w" bindingContext="_6xALPKahEeSN7NxGhFBO2w"/>
