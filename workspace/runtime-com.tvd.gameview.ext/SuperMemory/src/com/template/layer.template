@@ -16,15 +16,19 @@
 #ifndef __{project_name}__{class_name}__
 #define __{project_name}__{class_name}__
 
+//{n}
 #include "cocos-ext.h"
 
+//{n}
 #include "{super_name}.h"
 #include "Defines.h"
 
+//{n}
 using namespace std;
 using namespace cocos2d;
 using namespace cocos2d::extension;
 
+//{n}
 class {class_name} : public {super_name} {
 
 public:
@@ -83,19 +87,24 @@ private:
 #ifndef __{project_name}__{class_name}__
 #define __{project_name}__{class_name}__
 
+//{n}
 #include "cocos-ext.h"
 
+//{n}
 #include "{super_name}.h"
 #include "{super_table_name}.h"
 #include "Defines.h"
 
+//{n}
 using namespace std;
 using namespace cocos2d;
 using namespace cocos2d::extension;
 
+//{n}
 class {super_cell_name};
 class TableView;
 
+//{n}
 class {class_name} : public {super_name}, public {super_table_name} {
 
 public:
@@ -161,7 +170,8 @@ private:
 //{n}
 Scene* {class_name}::createScene(//{parameters}
 								) {
-    {class_name}* layer = {class_name}::create(//{importing_params},);
+    {class_name}* layer = {class_name}::create(//{importing_params},
+  											);
     Scene* pRet = Scene::create();
     pRet->addChild(layer);
     
@@ -173,7 +183,8 @@ Scene* {class_name}::createScene(//{parameters}
 								) {
     {class_name}* pRet = new {class_name}();
     pRet->autorelease();
-    pRet->init(//{importing_params},);
+    pRet->init(//{importing_params},
+    		);
     
     return pRet;
 }

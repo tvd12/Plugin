@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="LoadingLayer" prefix="layer_loading" type="layer" exitable="false" 
+		super="CommonLayer" background-name="default" size="450.43988, 666.27563"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="loading_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/loading/loading_layer" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/iphone6" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/iphone6" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/iphone6" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphone6" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Layer" />
+	<background-image id="loading_layer_background_common_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="450.43988" height="666.27563"
+		phony-path="loading_layer/background/common_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="common_alle_logo" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="loading_layer_common_alle_logo" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="47.800587" height="45.454544"
+				phony-path="loading_layer/sprites/common_alle_logo.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="loading_dots" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="loading_layer_loading_dots" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="4.398827" height="4.1055717"
+				phony-path="loading_layer/sprites/loading_dots.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="loading_game_logo" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="loading_layer_loading_game_logo" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="272.72726" height="97.3607"
+				phony-path="loading_layer/sprites/loading_game_logo.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="loading_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="loading_layer_loading_text" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="51.612904" height="10.557184"
+				phony-path="loading_layer/sprites/loading_text.png"  />
+		</sprite>
+	</sprites>
+</view>

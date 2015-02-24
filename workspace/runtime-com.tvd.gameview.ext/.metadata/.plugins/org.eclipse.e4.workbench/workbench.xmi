@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="ASCII"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_6w8gIKahEeSN7NxGhFBO2w" elementId="org.eclipse.e4.legacy.ide.application" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_6w8gIaahEeSN7NxGhFBO2w" bindingContexts="_6xALBKahEeSN7NxGhFBO2w">
-  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workbench>&#xA;&lt;mruList>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;main_game_layer.xml&quot; tooltip=&quot;TestCpp/resources/xml/iphone4/main_game_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/resources/xml/iphone4/main_game_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;main_game_layer.xml&quot; tooltip=&quot;TestCpp/resources/xml/iphone5/main_game_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/resources/xml/iphone5/main_game_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;main_game_layer.xml&quot; tooltip=&quot;TestCpp/resources/xml/ipadhd/main_game_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/resources/xml/ipadhd/main_game_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;main_game_layer.xml&quot; tooltip=&quot;TestCpp/resources/xml/iphone6plus/main_game_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/resources/xml/iphone6plus/main_game_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;main_game_layer.xml&quot; tooltip=&quot;TestCpp/resources/xml/iphone6/main_game_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/resources/xml/iphone6/main_game_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.PropertiesFileEditor&quot; name=&quot;default.properties&quot; tooltip=&quot;TestCpp/src/com/config/default.properties&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/src/com/config/default.properties&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;main_game_layer.xml&quot; tooltip=&quot;TestCpp/resources/xml/ipadsd/main_game_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/resources/xml/ipadsd/main_game_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.ui.DefaultTextEditor&quot; name=&quot;point.template&quot; tooltip=&quot;TestCpp/src/com/template/point.template&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/src/com/template/point.template&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.ui.DefaultTextEditor&quot; name=&quot;table.template&quot; tooltip=&quot;TestCpp/src/com/template/table.template&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/src/com/template/table.template&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.ui.DefaultTextEditor&quot; name=&quot;sprite.template&quot; tooltip=&quot;TestCpp/src/com/template/sprite.template&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/src/com/template/sprite.template&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.ui.DefaultTextEditor&quot; name=&quot;layer.template&quot; tooltip=&quot;TestCpp/src/com/template/layer.template&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/src/com/template/layer.template&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.PropertiesFileEditor&quot; name=&quot;default.properties&quot; tooltip=&quot;TicTacToe/src/com/config/default.properties&quot;>&#xA;&lt;persistable path=&quot;/TicTacToe/src/com/config/default.properties&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.PropertiesFileEditor&quot; name=&quot;default.properties&quot; tooltip=&quot;SuperMemory/src/com/config/default.properties&quot;>&#xA;&lt;persistable path=&quot;/SuperMemory/src/com/config/default.properties&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.PropertiesFileEditor&quot; name=&quot;global.properties&quot; tooltip=&quot;TestCpp/src/com/properties/global.properties&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/src/com/properties/global.properties&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;main_game_layer.xml&quot; tooltip=&quot;TicTacToe/resources/xml/iPhonehd/main_game_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TicTacToe/resources/xml/iPhonehd/main_game_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;/mruList>&#xA;&lt;/workbench>"/>
+  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workbench>&#xA;&lt;mruList>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;loading_layer.xml&quot; tooltip=&quot;TestCpp/resources/xml/iphone6plus/loading_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/resources/xml/iphone6plus/loading_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;loading_layer.xml&quot; tooltip=&quot;SuperMemory/resources/xml/iphone6plus/loading_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/SuperMemory/resources/xml/iphone6plus/loading_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.PropertiesFileEditor&quot; name=&quot;default.properties&quot; tooltip=&quot;SuperMemory/src/com/config/default.properties&quot;>&#xA;&lt;persistable path=&quot;/SuperMemory/src/com/config/default.properties&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.PropertiesFileEditor&quot; name=&quot;global.properties&quot; tooltip=&quot;SuperMemory/src/com/properties/global.properties&quot;>&#xA;&lt;persistable path=&quot;/SuperMemory/src/com/properties/global.properties&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.PropertiesFileEditor&quot; name=&quot;global.properties&quot; tooltip=&quot;TestCpp/src/com/properties/global.properties&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/src/com/properties/global.properties&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;loading_layer.xml&quot; tooltip=&quot;TestCpp/resources/xml/iphone5/loading_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/resources/xml/iphone5/loading_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;lobby_layer.xml&quot; tooltip=&quot;TicTacToe/resources/xml/iPhonehd/lobby_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TicTacToe/resources/xml/iPhonehd/lobby_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.PropertiesFileEditor&quot; name=&quot;default.properties&quot; tooltip=&quot;TestCpp/src/com/config/default.properties&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/src/com/config/default.properties&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;main_game_layer.xml&quot; tooltip=&quot;TestCpp/resources/xml/iphone4/main_game_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/resources/xml/iphone4/main_game_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;main_game_layer.xml&quot; tooltip=&quot;TestCpp/resources/xml/iphone5/main_game_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/resources/xml/iphone5/main_game_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;main_game_layer.xml&quot; tooltip=&quot;TestCpp/resources/xml/ipadhd/main_game_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/resources/xml/ipadhd/main_game_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;main_game_layer.xml&quot; tooltip=&quot;TestCpp/resources/xml/iphone6plus/main_game_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/resources/xml/iphone6plus/main_game_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;main_game_layer.xml&quot; tooltip=&quot;TestCpp/resources/xml/iphone6/main_game_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/resources/xml/iphone6/main_game_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;main_game_layer.xml&quot; tooltip=&quot;TestCpp/resources/xml/ipadsd/main_game_layer.xml&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/resources/xml/ipadsd/main_game_layer.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.ui.DefaultTextEditor&quot; name=&quot;point.template&quot; tooltip=&quot;TestCpp/src/com/template/point.template&quot;>&#xA;&lt;persistable path=&quot;/TestCpp/src/com/template/point.template&quot;/>&#xA;&lt;/file>&#xA;&lt;/mruList>&#xA;&lt;/workbench>"/>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <tags>ModelMigrationProcessor.001</tags>
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_6w8gIaahEeSN7NxGhFBO2w" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_6w8gIqahEeSN7NxGhFBO2w" label="%trimmedwindow.label.eclipseSDK" x="1319" y="70" width="1600" height="774">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_6w8gIaahEeSN7NxGhFBO2w" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_6w8gIqahEeSN7NxGhFBO2w" label="%trimmedwindow.label.eclipseSDK" x="196" y="23" width="1600" height="774">
     <persistedState key="coolBarVisible" value="true"/>
     <persistedState key="perspectiveBarVisible" value="true"/>
     <persistedState key="workingSets" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workingSets/>"/>
     <persistedState key="aggregateWorkingSetId" value="Aggregate for window 1407725625626"/>
     <tags>topLevel</tags>
-    <tags>shellMaximized</tags>
     <children xsi:type="basic:PartSashContainer" xmi:id="_6w8gIqahEeSN7NxGhFBO2w" selectedElement="_6w8gI6ahEeSN7NxGhFBO2w" horizontal="true">
       <children xsi:type="advanced:PerspectiveStack" xmi:id="_6w8gI6ahEeSN7NxGhFBO2w" elementId="org.eclipse.ui.ide.perspectivestack" containerData="7500" selectedElement="_6w8gJKahEeSN7NxGhFBO2w">
         <children xsi:type="advanced:Perspective" xmi:id="_6w8gJKahEeSN7NxGhFBO2w" elementId="org.eclipse.jdt.ui.JavaPerspective" selectedElement="_6w8gJaahEeSN7NxGhFBO2w" label="Java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/eview16/jperspective.gif">
@@ -72,6 +71,10 @@
           <tags>persp.actionSet:adt.actionSet.avdManager</tags>
           <tags>persp.actionSet:adt.actionSet.lint</tags>
           <tags>persp.actionSet:adt.actionSet.refactorings</tags>
+          <tags>persp.actionSet:com.yattasolutions.umllab.introActionSet</tags>
+          <tags>persp.actionSet:com.yattasolutions.umllab.reporting.actionSet1</tags>
+          <tags>persp.actionSet:com.yattasolutions.umllab.registrationActionSet</tags>
+          <tags>persp.actionSet:org.eclipse.m2m.qvt.oml.runtime.actions</tags>
           <children xsi:type="basic:PartSashContainer" xmi:id="_6w8gJaahEeSN7NxGhFBO2w" selectedElement="_6w8gL6ahEeSN7NxGhFBO2w" horizontal="true">
             <children xsi:type="basic:PartSashContainer" xmi:id="_6w8gJqahEeSN7NxGhFBO2w" containerData="2500" selectedElement="_6w8gJ6ahEeSN7NxGhFBO2w">
               <children xsi:type="basic:PartStack" xmi:id="_6w8gJ6ahEeSN7NxGhFBO2w" elementId="left" containerData="6000" selectedElement="_6w8gKKahEeSN7NxGhFBO2w">
@@ -146,10 +149,23 @@
       <tags>categoryTag:Help</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_6w9IGKahEeSN7NxGhFBO2w" elementId="org.eclipse.ui.editorss" selectedElement="_6w9IGaahEeSN7NxGhFBO2w">
-      <children xsi:type="basic:PartStack" xmi:id="_6w9IGaahEeSN7NxGhFBO2w" elementId="org.eclipse.e4.primaryDataStack">
+      <children xsi:type="basic:PartStack" xmi:id="_6w9IGaahEeSN7NxGhFBO2w" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_VQt-4Lu8EeSgJMWzTrHDig">
         <tags>newtablook</tags>
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
+        <tags>noFocus</tags>
+        <children xsi:type="basic:Part" xmi:id="_Xe90kLu7EeSgJMWzTrHDig" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="default.properties" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/file_obj.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.PropertiesFileEditor&quot; name=&quot;default.properties&quot; partName=&quot;default.properties&quot; title=&quot;default.properties&quot; tooltip=&quot;SuperMemory/src/com/config/default.properties&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/SuperMemory/src/com/config/default.properties&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;738&quot; selectionTopPixel=&quot;654&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.eclipse.jdt.ui.PropertiesFileEditor</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_VQt-4Lu8EeSgJMWzTrHDig" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="loading_layer.xml" iconURI="platform:/plugin/org.eclipse.wst.xml.ui/icons/xmldoc.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;loading_layer.xml&quot; partName=&quot;loading_layer.xml&quot; title=&quot;loading_layer.xml&quot; tooltip=&quot;SuperMemory/resources/xml/iphone6plus/loading_layer.xml&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/SuperMemory/resources/xml/iphone6plus/loading_layer.xml&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;953&quot; selectionTopPixel=&quot;262&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart</tags>
+          <tags>removeOnHide</tags>
+        </children>
       </children>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_6w9uXKahEeSN7NxGhFBO2w" elementId="org.eclipse.jdt.ui.PackageExplorer" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Package Explorer" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/eview16/package.gif" closeable="true">
@@ -2960,7 +2976,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_6w-Wh6ahEeSN7NxGhFBO2w" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_eEKVUau0EeSi9M5D-jRytw" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_6xD126ahEeSN7NxGhFBO2w"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_-nt5ELu4EeSgJMWzTrHDig" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_6xD126ahEeSN7NxGhFBO2w"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_6w-8aKahEeSN7NxGhFBO2w" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -2993,7 +3009,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_6w-8qaahEeSN7NxGhFBO2w" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_eERDAKu0EeSi9M5D-jRytw" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_6xDPRaahEeSN7NxGhFBO2w"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_-n7Ucbu4EeSgJMWzTrHDig" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_6xDPRaahEeSN7NxGhFBO2w"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_6w-8taahEeSN7NxGhFBO2w" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -3315,7 +3331,7 @@
     </bindings>
     <bindings xmi:id="_AQLFkKtbEeSjPIpuxeUpVQ" keySequence="ALT+SHIFT+H" command="_6xEdAaahEeSN7NxGhFBO2w"/>
     <bindings xmi:id="_AQLsoKtbEeSjPIpuxeUpVQ" keySequence="ALT+COMMAND+SHIFT+ARROW_DOWN" command="_6xEc-KahEeSN7NxGhFBO2w"/>
-    <bindings xmi:id="_dk-e8au0EeSi9M5D-jRytw" keySequence="COMMAND+CTRL+F" command="_6xEcP6ahEeSN7NxGhFBO2w"/>
+    <bindings xmi:id="_9yzDQLu4EeSgJMWzTrHDig" keySequence="COMMAND+CTRL+F" command="_6xEcP6ahEeSN7NxGhFBO2w"/>
   </bindingTables>
   <bindingTables xmi:id="_6w_jzaahEeSN7NxGhFBO2w" elementId="org.eclipse.ui.textEditorScope" bindingContext="_6xALEqahEeSN7NxGhFBO2w">
     <bindings xmi:id="_6w_jzqahEeSN7NxGhFBO2w" keySequence="COMMAND+SHIFT+NUMPAD_MULTIPLY" command="_6xDPUKahEeSN7NxGhFBO2w"/>
@@ -3550,7 +3566,7 @@
     <bindings xmi:id="_6xAKlaahEeSN7NxGhFBO2w" keySequence="CTRL+D" command="_6xDOK6ahEeSN7NxGhFBO2w"/>
   </bindingTables>
   <bindingTables xmi:id="_6xAKlqahEeSN7NxGhFBO2w" contributorURI="platform:/fragment/org.eclipse.e4.ui.workbench.renderers.swt.cocoa" bindingContext="_6xALNKahEeSN7NxGhFBO2w">
-    <bindings xmi:id="_dk_tEKu0EeSi9M5D-jRytw" keySequence="M1+W" command="_6xEcQaahEeSN7NxGhFBO2w"/>
+    <bindings xmi:id="_9y04cLu4EeSgJMWzTrHDig" keySequence="M1+W" command="_6xEcQaahEeSN7NxGhFBO2w"/>
   </bindingTables>
   <bindingTables xmi:id="_6xAKmKahEeSN7NxGhFBO2w" bindingContext="_6xALO6ahEeSN7NxGhFBO2w"/>
   <bindingTables xmi:id="_6xAKmaahEeSN7NxGhFBO2w" bindingContext="_6xALPKahEeSN7NxGhFBO2w"/>
@@ -3669,6 +3685,18 @@
   <bindingTables xmi:id="_6xALAaahEeSN7NxGhFBO2w" bindingContext="_6xALeaahEeSN7NxGhFBO2w"/>
   <bindingTables xmi:id="_6xALAqahEeSN7NxGhFBO2w" bindingContext="_6xALeqahEeSN7NxGhFBO2w"/>
   <bindingTables xmi:id="_6xALA6ahEeSN7NxGhFBO2w" bindingContext="_6xALe6ahEeSN7NxGhFBO2w"/>
+  <bindingTables xmi:id="_G3PPILaeEeSActCV_0V_Gw" elementId="org.eclipse.xpand.ui.XpandEditorScope" bindingContext="_G2BHILaeEeSActCV_0V_Gw"/>
+  <bindingTables xmi:id="_G3REULaeEeSActCV_0V_Gw" elementId="org.eclipse.m2m.qvt.oml.editor.ui.context" bindingContext="_G2BHIbaeEeSActCV_0V_Gw"/>
+  <bindingTables xmi:id="_G3YZELaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.diagram.context" bindingContext="_G2BHJLaeEeSActCV_0V_Gw"/>
+  <bindingTables xmi:id="_G3ZnMLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagrameditor.context" bindingContext="_G2BHJbaeEeSActCV_0V_Gw"/>
+  <bindingTables xmi:id="_G359gLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.umllab.window.context" bindingContext="_G2BHI7aeEeSActCV_0V_Gw"/>
+  <bindingTables xmi:id="_G36kkbaeEeSActCV_0V_Gw" elementId="org.eclipse.m2m.qvt.oml.metamodelBrowser" bindingContext="_G2BHIraeEeSActCV_0V_Gw"/>
+  <bindingTables xmi:id="_HZBtkbaeEeSActCV_0V_Gw" bindingContext="_HZBtkLaeEeSActCV_0V_Gw"/>
+  <bindingTables xmi:id="_HZCUobaeEeSActCV_0V_Gw" bindingContext="_HZCUoLaeEeSActCV_0V_Gw"/>
+  <bindingTables xmi:id="_HZC7sbaeEeSActCV_0V_Gw" bindingContext="_HZC7sLaeEeSActCV_0V_Gw"/>
+  <bindingTables xmi:id="_HZDiwbaeEeSActCV_0V_Gw" bindingContext="_HZDiwLaeEeSActCV_0V_Gw"/>
+  <bindingTables xmi:id="_HZDiw7aeEeSActCV_0V_Gw" bindingContext="_HZDiwraeEeSActCV_0V_Gw"/>
+  <bindingTables xmi:id="_HZEJ0baeEeSActCV_0V_Gw" bindingContext="_HZEJ0LaeEeSActCV_0V_Gw"/>
   <rootContext xmi:id="_6xALBKahEeSN7NxGhFBO2w" elementId="org.eclipse.ui.contexts.dialogAndWindow" contributorURI="platform:/plugin/org.eclipse.platform" name="In Dialogs and Windows" description="Either a dialog or a window is open">
     <children xmi:id="_6xALBaahEeSN7NxGhFBO2w" elementId="org.eclipse.ui.contexts.window" contributorURI="platform:/plugin/org.eclipse.platform" name="In Windows" description="A window is open">
       <children xmi:id="_6xALBqahEeSN7NxGhFBO2w" elementId="org.eclipse.e4.ui.contexts.views" contributorURI="platform:/plugin/org.eclipse.platform" name="%bindingcontext.name.bindingView"/>
@@ -3717,14 +3745,22 @@
         </children>
         <children xmi:id="_6xALLqahEeSN7NxGhFBO2w" elementId="org.eclipse.cdt.make.ui.makefileEditorScope" name="Makefile Editor" description="Editor for makefiles"/>
         <children xmi:id="_6xALL6ahEeSN7NxGhFBO2w" elementId="org.eclipse.cdt.ui.cEditorScope" name="C/C++ Editor" description="Editor for C/C++ Source Files"/>
+        <children xmi:id="_G2BHILaeEeSActCV_0V_Gw" elementId="org.eclipse.xpand.ui.XpandEditorScope" name="Editing Xpand Files" description="Editing Xpand Files Scope"/>
+        <children xmi:id="_G2BHIbaeEeSActCV_0V_Gw" elementId="org.eclipse.m2m.qvt.oml.editor.ui.context" name="In Operational QVT Editor" description="Operational QVT Editing context"/>
       </children>
       <children xmi:id="_6xALMKahEeSN7NxGhFBO2w" elementId="org.eclipse.debug.ui.memoryview" name="In Memory View" description="In memory view"/>
       <children xmi:id="_6xALMaahEeSN7NxGhFBO2w" elementId="org.eclipse.ui.console.ConsoleView" name="In Console View" description="In Console View"/>
       <children xmi:id="_6xALMqahEeSN7NxGhFBO2w" elementId="org.eclipse.mylyn.tasks.ui.views.tasks" name="In Tasks View"/>
       <children xmi:id="_6xALM6ahEeSN7NxGhFBO2w" elementId="org.eclipse.cdt.ui.cViewScope" name="In C/C++ Views" description="In C/C++ Views"/>
+      <children xmi:id="_G2BHI7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.umllab.window.context" name="UML Lab Context" description="Base context for UML Lab">
+        <children xmi:id="_G2BHJLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.diagram.context" name="in UML Lab editor" description="Parent Context for all UML Lab editors">
+          <children xmi:id="_G2BHJbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagrameditor.context" name="in UML Lab classdiagram editor" description="Context for the UML Lab classdiagram editor"/>
+        </children>
+      </children>
     </children>
     <children xmi:id="_6xALNKahEeSN7NxGhFBO2w" elementId="org.eclipse.ui.contexts.dialog" contributorURI="platform:/plugin/org.eclipse.platform" name="In Dialogs" description="A dialog is open"/>
     <children xmi:id="_6xALNaahEeSN7NxGhFBO2w" elementId="org.eclipse.cdt.ui.macroExpansionHoverScope" name="In Macro Expansion Hover" description="In Macro Expansion Hover"/>
+    <children xmi:id="_G2BHIraeEeSActCV_0V_Gw" elementId="org.eclipse.m2m.qvt.oml.metamodelBrowser" name="Metamodel Explorer View"/>
   </rootContext>
   <rootContext xmi:id="_6xALNqahEeSN7NxGhFBO2w" elementId="org.eclipse.wst.xsd.ui.editor.designView" name="XSD Editor Design View" description="XSD Editor Design View"/>
   <rootContext xmi:id="_6xALN6ahEeSN7NxGhFBO2w" elementId="org.eclipse.ui.contexts.workbenchMenu" name="Workbench Menu" description="When no Workbench windows are active"/>
@@ -3796,6 +3832,12 @@
   <rootContext xmi:id="_6xALeaahEeSN7NxGhFBO2w" elementId="org.eclipse.cdt.ui.buildConfigActionSet" name="Auto::org.eclipse.cdt.ui.buildConfigActionSet"/>
   <rootContext xmi:id="_6xALeqahEeSN7NxGhFBO2w" elementId="org.eclipse.cdt.ui.CElementCreationActionSet" name="Auto::org.eclipse.cdt.ui.CElementCreationActionSet"/>
   <rootContext xmi:id="_6xALe6ahEeSN7NxGhFBO2w" elementId="org.eclipse.cdt.ui.text.c.actionSet.presentation" name="Auto::org.eclipse.cdt.ui.text.c.actionSet.presentation"/>
+  <rootContext xmi:id="_HZBtkLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.umllab.introActionSet" name="Auto::com.yattasolutions.umllab.introActionSet"/>
+  <rootContext xmi:id="_HZCUoLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.umllab.reporting.actionSet1" name="Auto::com.yattasolutions.umllab.reporting.actionSet1"/>
+  <rootContext xmi:id="_HZC7sLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.umllab.registrationActionSet" name="Auto::com.yattasolutions.umllab.registrationActionSet"/>
+  <rootContext xmi:id="_HZDiwLaeEeSActCV_0V_Gw" elementId="org.eclipse.m2m.qvt.oml.editor.ui.actionSet.navigation" name="Auto::org.eclipse.m2m.qvt.oml.editor.ui.actionSet.navigation"/>
+  <rootContext xmi:id="_HZDiwraeEeSActCV_0V_Gw" elementId="org.eclipse.m2m.qvt.oml.runtime.actions" name="Auto::org.eclipse.m2m.qvt.oml.runtime.actions"/>
+  <rootContext xmi:id="_HZEJ0LaeEeSActCV_0V_Gw" elementId="org.eclipse.xpand.ui.refactoring.CodingActionSet" name="Auto::org.eclipse.xpand.ui.refactoring.CodingActionSet"/>
   <descriptors xmi:id="_6xALfKahEeSN7NxGhFBO2w" elementId="org.eclipse.e4.ui.compatibility.editor" allowMultiple="true" category="org.eclipse.e4.primaryDataStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor">
     <tags>Editor</tags>
   </descriptors>
@@ -4286,6 +4328,18 @@
   <descriptors xmi:id="_6xAx9qahEeSN7NxGhFBO2w" elementId="org.eclipse.swt.tools.views.SleakView" label="Sleak" iconURI="platform:/plugin/org.eclipse.swt.tools/icons/sleak.gif" category="org.eclipse.e4.secondaryDataStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
     <tags>View</tags>
     <tags>categoryTag:SWT Tools</tags>
+  </descriptors>
+  <descriptors xmi:id="_G9eaALaeEeSActCV_0V_Gw" elementId="com.yattasolutions.umllab.hintView" label="UML Lab Hints" iconURI="platform:/plugin/com.yattasolutions.umllab.ui/icons/YattaLogo_16x16.png" category="org.eclipse.e4.secondaryDataStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:UML Lab</tags>
+  </descriptors>
+  <descriptors xmi:id="_G9hdULaeEeSActCV_0V_Gw" elementId="com.yattasolutions.umllab.views.treeview" label="UML Lab Tree" iconURI="platform:/plugin/com.yattasolutions.umllab.ui/icons/YattaLogo_16x16.png" allowMultiple="true" category="org.eclipse.e4.secondaryDataStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:UML Lab</tags>
+  </descriptors>
+  <descriptors xmi:id="_G9ircLaeEeSActCV_0V_Gw" elementId="org.eclipse.m2m.internal.qvt.oml.common.views.MetamodelBrowserView" label="Metamodel Explorer" iconURI="platform:/plugin/org.eclipse.m2m.qvt.oml.common.ui/icons/metamodels.gif" category="org.eclipse.e4.secondaryDataStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:Operational QVT</tags>
   </descriptors>
   <trimContributions xmi:id="_2r10UF9tEeO-yojH_y4TJA" elementId="org.eclipse.ui.ide.application.trimcontribution.QuickAccess" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" toBeRendered="false" parentId="org.eclipse.ui.main.toolbar" positionInParent="last">
     <children xsi:type="menu:ToolControl" xmi:id="_76uUAF9tEeO-yojH_y4TJA" elementId="Spacer Glue" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">
@@ -5572,6 +5626,153 @@
   <commands xmi:id="_Lo3T8qasEeSKKthyBTAQmQ" elementId="org.eclipse.cdt.managedbuilder.ui.rebuildConfigurations" commandName="Build Selected Configurations" category="_Lo1ewaasEeSKKthyBTAQmQ"/>
   <commands xmi:id="_Lo3T86asEeSKKthyBTAQmQ" elementId="org.eclipse.cdt.managedbuilder.ui.buildFiles" commandName="Build Selected File(s)" description="Rebuilds the selected source files" category="_Lo1ewaasEeSKKthyBTAQmQ"/>
   <commands xmi:id="_Lo3T9KasEeSKKthyBTAQmQ" elementId="org.eclipse.cdt.managedbuilder.ui.cleanAllConfigurations" commandName="Clean All Configurations" category="_Lo1ewaasEeSKKthyBTAQmQ"/>
+  <commands xmi:id="_G1054LaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.toggleTentaclesCommand" commandName="Enable/Disable tentacles" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G1054baeEeSActCV_0V_Gw" elementId="com.yattasolutions.codegen.common.ui.setCodeGeneratorCommand" commandName="Set Code Generator" category="_6xEdzqahEeSN7NxGhFBO2w">
+    <parameters xmi:id="_G1054raeEeSActCV_0V_Gw" elementId="org.eclipse.ui.commands.radioStateParameter" name="State" optional="false"/>
+  </commands>
+  <commands xmi:id="_G10547aeEeSActCV_0V_Gw" elementId="com.yattasolutions.linking.showstats" commandName="Linking Cache..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G1055LaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.filter.hideNonPublicElements" commandName="Hide Non-Public Elements" category="_6xEdzqahEeSN7NxGhFBO2w">
+    <parameters xmi:id="_G1055baeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.gef.activatefilter.param1" name="Filter ID" optional="false"/>
+  </commands>
+  <commands xmi:id="_G1055raeEeSActCV_0V_Gw" elementId="com.yattasolutions.codegen.reverse.ui.ReparseAllFilesCommand" commandName="Reparse All Files" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G10557aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.configureElementImportsCommand" commandName="Configure Element Imports" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G1056LaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertDataTypeToClassCommand" commandName="Convert to Class" description="Convert the selected type into a class" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G1056baeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.createDependency" commandName="Create Dependency" description="Creates a new Dependency connection between two Elements" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G1056raeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertDataTypeToPrimitiveTypeCommand" commandName="Convert to Primitive Type" description="Convert the selected data type into a primitive type" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G10567aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.gef.unhideRelationshipsCommand" commandName="Unhide Relationships" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G1057LaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.createCommentCommand" commandName="Create new Comment" description="Create a new Comment" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11g8LaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.toggleShowTemplateBindingClass" commandName="Show/hide template binding class" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11g8baeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.unhideLabelsCommand" commandName="Unhide Labels" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11g8raeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.createInterfaceCommand" commandName="Create new Interface" description="Create a new Interface" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11g87aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertToReference" commandName="Convert to Reference" description="Convert the selected Property into a Reference" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11g9LaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.create.stereotypeextension" commandName="Create new Extension" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11g9baeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.layout.toggleEnableLayoutCommand" commandName="Route edges when moving/resizing classifiers" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11g9raeEeSActCV_0V_Gw" elementId="org.eclipse.m2m.qvt.oml.findClassifier" commandName="Find Classifier" category="_G1zrwraeEeSActCV_0V_Gw"/>
+  <commands xmi:id="_G11g97aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertInterfaceToPrimitiveTypeCommand" commandName="Convert to Primitive Type" description="Convert the selected interface into a primitive type" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11g-LaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertEnumerationToDataTypeCommand" commandName="Convert to Data Type" description="Convert the selected enumeration into a data type" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11g-baeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.gef.hideElementCommand" commandName="Hide Element" description="Hide an element from the diagram" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11g-raeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.filter.colorpublicmembers" commandName="Color Public Members" category="_6xEdzqahEeSN7NxGhFBO2w">
+    <parameters xmi:id="_G11g-7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.gef.activatefilter.param1" name="Filter ID" optional="false"/>
+  </commands>
+  <commands xmi:id="_G11g_LaeEeSActCV_0V_Gw" elementId="org.eclipse.xpand.ui.insertRT" commandName="Insert RT" description="Insert Xpand end terminal" category="_G1zrxLaeEeSActCV_0V_Gw"/>
+  <commands xmi:id="_G11g_baeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.createContainmentCommand" commandName="Create Containment" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11g_raeEeSActCV_0V_Gw" elementId="com.yattasolutions.qvto.chooseQVTOFile" commandName="Apply QVTo Transformation..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11g_7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.refreshdiagramCommand" commandName="Refresh" description="Refresh all diagram elements" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11hALaeEeSActCV_0V_Gw" elementId="com.yattasolutions.codegen.reverse.ui.reloadTemplates" commandName="Reload Templates" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11hAbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.importMetclassCommand" commandName="Add/Remove Metaclass" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11hAraeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.collapseExpandCommand" commandName="Collapse/Expand" category="_6xEdzqahEeSN7NxGhFBO2w">
+    <parameters xmi:id="_G11hA7aeEeSActCV_0V_Gw" elementId="collapse" name="collapse" optional="false"/>
+  </commands>
+  <commands xmi:id="_G11hBLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.gef.resetAppearance" commandName="Reset Appearance" description="Revert the changes on the selected element's visual properties" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11hBbaeEeSActCV_0V_Gw" elementId="org.eclipse.xpand.ui.insertLT" commandName="Insert LT" description="Insert Xpand start terminal" category="_G1zrxLaeEeSActCV_0V_Gw"/>
+  <commands xmi:id="_G11hBraeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertClassToDataTypeCommand" commandName="Convert to Data Type" description="Convert the selected class into a data type" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11hB7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.configureClassdiagramCommand" commandName="Configure Class Diagram" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11hCLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.create.packageMerge" commandName="Create new Package Merge" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11hCbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.umllab.templateworkbench.redefineTemplate" commandName="Redefine Templates" description="Adds Templates from refined Code Styles" category="_6xEdzaahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11hCraeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.createAggregationCommand" commandName="Create new Aggregation" description="Create a new Aggregation" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G11hC7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.showParentsCommand" commandName="Show Parents" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12IALaeEeSActCV_0V_Gw" elementId="com.yattasolutions.codegen.ui.handler.compareGeneratedCode" commandName="Compare Generated Code" description="Compares the generated code for the current project with the existing" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12IAbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.createClassCommand" commandName="Create new Class" description="Create a new Class" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12IAraeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.filter.hideStereotypeApplications" commandName="Hide Stereotype Applications" category="_6xEdzqahEeSN7NxGhFBO2w">
+    <parameters xmi:id="_G12IA7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.gef.activatefilter.param1" name="Filter ID" optional="false"/>
+  </commands>
+  <commands xmi:id="_G12IBLaeEeSActCV_0V_Gw" elementId="org.eclipse.emf.codegen.ecore.ui.Generate" commandName="Generate Code" description="Generate code for the EMF models in the workspace" category="_G1zrwbaeEeSActCV_0V_Gw"/>
+  <commands xmi:id="_G12IBbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.createComponentCommand" commandName="Create new Component" description="Create a new Component" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12IBraeEeSActCV_0V_Gw" elementId="org.eclipse.m2m.qvt.oml.editor.ui.openDecl" commandName="Open Declaration" description="Open an editor on the selected element's declaration(s)" category="_6xEd1qahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12IB7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.umllab.roundtrip.ReverseEngineerIntoExistingModel" commandName="Reverse Engineer additional Files into this Model/Diagram" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12ICLaeEeSActCV_0V_Gw" elementId="org.eclipse.xpand.ui.refactoring.quickMenu" commandName="Refactoring..." description="Open the refactoring quick menu" category="_G1zrw7aeEeSActCV_0V_Gw"/>
+  <commands xmi:id="_G12ICbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.showAssociatedCommand" commandName="Show Associated" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12ICraeEeSActCV_0V_Gw" elementId="com.yattasolutions.umllab.roundtrip.ReverseEngineerIntoNewModel" commandName="Reverse Engineer selected File(s) into a new Model and Diagram" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12IC7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.createCompositionCommand" commandName="Create new Composition" description="Create a new Composition" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12IDLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.linking.searchReferences" commandName="Search references" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12IDbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.aligncommand" commandName="AlignCommand" category="_6xEdzqahEeSN7NxGhFBO2w">
+    <parameters xmi:id="_G12IDraeEeSActCV_0V_Gw" elementId="alignmentType" name="alignmentType" optional="false"/>
+  </commands>
+  <commands xmi:id="_G12ID7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertClassToEnumerationCommand" commandName="Convert to Enumeration" description="Convert the selected class into an enumeration" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12IELaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.create.primitivetype" commandName="Create new PrimitiveType" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12IEbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.create.packageImport" commandName="Create new Package Import" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12IEraeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.createGeneralizationCommand" commandName="Create new Generalization" description="Create a new Generalization relationship" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12IE7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.linking.linkDocument" commandName="Associate Document with Selection" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12IFLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.createReferenceCommand" commandName="Create new Reference" description="Create a new Reference" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12IFbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.umllab.loadResourcesCommand" commandName="Load resources..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vELaeEeSActCV_0V_Gw" elementId="org.eclipse.xpand.ui.refactoring.rename.define" commandName="Rename Define" description="Rename Define Refactoring" category="_G1zrw7aeEeSActCV_0V_Gw"/>
+  <commands xmi:id="_G12vEbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertDataTypeToInterfaceCommand" commandName="Convert to Interface" description="Convert the selected type into an interface" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vEraeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.replaceOccurrencesCommand" commandName="Replace Occurrences..." description="Replace all occurrences of this Type" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vE7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.createPackageCommand" commandName="Create new Package" description="Create a new Package" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vFLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertInterfaceToDataTypeCommand" commandName="Convert to Data Type" description="Convert the selected interface into a data type" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vFbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.codegen.reverse.ui.ClearCodeDetailsCommand" commandName="Clear Code Details (Whitespace and Layout Data)" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vFraeEeSActCV_0V_Gw" elementId="com.yattasolutions.codegen.reverse.ui.updateFromClassPath" commandName="Update from ClassPath" description="Performs a Reverse Engineering of the currently selected Classifier" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vF7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.linking.navigateto" commandName="Navigate To" category="_6xEdzqahEeSN7NxGhFBO2w">
+    <parameters xmi:id="_G12vGLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.linking.navigateto.path" name="path" typeId="org.eclipse.ui.ide.resourcePath" optional="false"/>
+    <parameters xmi:id="_G12vGbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.linking.navigateto.internallocation" name="internal location"/>
+  </commands>
+  <commands xmi:id="_G12vGraeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertClassToPrimitiveTypeCommand" commandName="Convert to Primitive Type" description="Convert the selected class into a primitive type" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vG7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertClassToInterfaceCommand" commandName="Convert to Interface" description="Convert the selected class into an interface" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vHLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.marker.ignore" commandName="Ignore Warning" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vHbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.hidederived" commandName="Hide derived properties and associations" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vHraeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.showChildrenCommand" commandName="Show Children" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vH7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.deleteElementCommand" commandName="Delete Element" description="Delete an element from the model" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vILaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.exportImage" commandName="Export Diagram as Image..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vIbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.filter.comments" commandName="Hide Comment Icons" category="_6xEdzqahEeSN7NxGhFBO2w">
+    <parameters xmi:id="_G12vIraeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.gef.activatefilter.param1" name="Filter ID" optional="false"/>
+  </commands>
+  <commands xmi:id="_G12vI7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.createAssociationCommand" commandName="Create new Association" description="Create a new Association" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vJLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertInterfaceToClassCommand" commandName="Convert to Class" description="Convert the selected interface into a class" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vJbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.toggleExplorativeBrowsingCommand" commandName="Toggle explorative browsing" description="Enable/Disable explorative browsing tentacles" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vJraeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertPrimitiveTypeToEnumerationCommand" commandName="Convert to Data Type" description="Convert the selected primitive type into an enumeration" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vJ7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.revealElement" commandName="Reveal Element in Diagram" description="Add a model element to the current diagram or, if it is already in the diagram, move the viewport to reveal it." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G12vKLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.ecore.ui.export" commandName="Export EMF Ecore Model" description="Create a GenModel and Ecore file from the UML model" category="_6xEdzqahEeSN7NxGhFBO2w">
+    <parameters xmi:id="_G13WILaeEeSActCV_0V_Gw" elementId="com.yattasolutions.ecore.ui.forceWizard" name="forceWizard"/>
+  </commands>
+  <commands xmi:id="_G13WIbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.commands.validate.constraints" commandName="Validate Model Constraints" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WIraeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.showNeighborsDialogCommand" commandName="Show Neigbors..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WI7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.layout.autoLayoutCommand" commandName="Layout Diagram" category="_6xEdzqahEeSN7NxGhFBO2w">
+    <parameters xmi:id="_G13WJLaeEeSActCV_0V_Gw" elementId="partial" name="partial"/>
+    <parameters xmi:id="_G13WJbaeEeSActCV_0V_Gw" elementId="edgesOnly" name="edgesOnly"/>
+  </commands>
+  <commands xmi:id="_G13WJraeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertPrimitiveTypeToDataTypeCommand" commandName="Convert to Data Type" description="Convert the selected primitive type into a data type" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WJ7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.mergeAssoc" commandName="Merge Association" description="Merge two unidirectional associations into one bidirectional association" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WKLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.codegen.reverse.ui.InvokeParserAndDisplayResultViewer" commandName="Invoke Parser and Display ResultViewer" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WKbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.createStereotypeCommand" commandName="Create new Stereotype" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WKraeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.createEnumerationCommand" commandName="Create new Enumeration" description="Create a new Enumeration" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WK7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.create.datatype" commandName="Create new DataType" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WLLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertDataTypeToEnumerationCommand" commandName="Convert to Enumeration" description="Convert the selected data type into an enumeration" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WLbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.createUsage" commandName="Create Usage" description="Creates a new Usage connection between two Elements" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WLraeEeSActCV_0V_Gw" elementId="com.yattasolutions.xpandpp.formatTemplate" commandName="Format Template" description="Formats an Xpand++ temaplate if manual format mode is enabled" category="_6xEdzaahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WL7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.createEnumerationLiteralCommand" commandName="Create new Literal" description="Create a new Enumeration literal" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WMLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.linking.addtestdata" commandName="Add some Linking Test Data" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WMbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.codegen.reverse.ui.copyCodeDetails" commandName="Toggle: Copy Code Details for Build Server" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WMraeEeSActCV_0V_Gw" elementId="org.eclipse.m2m.qvt.oml.editor.ui.show.outline" commandName="Quick Outline" description="Show the quick outline for the editor input" category="_6xEd1qahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WM7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.codegen.common.generateCode" commandName="Generate Code" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WNLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.convertInterfaceToEnumerationCommand" commandName="Convert to Enumeration" description="Convert the selected interface into an enumeration" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WNbaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.gef.createOpenPackage" commandName="Create new Class Diagram" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WNraeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.toggleSnapToGeometryCommand" commandName="Snap to geometry" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WN7aeEeSActCV_0V_Gw" elementId="com.yattasolutions.umllab.closeModelCommand" commandName="Close Model" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WOLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.resetsize" commandName="Reset Size" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_G13WObaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.filter.hideStaticFeatures" commandName="Hide Static Features" category="_6xEdzqahEeSN7NxGhFBO2w">
+    <parameters xmi:id="_G13WOraeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.editor.gef.activatefilter.param1" name="Filter ID" optional="false"/>
+  </commands>
+  <commands xmi:id="_G139MLaeEeSActCV_0V_Gw" elementId="com.yattasolutions.diagrams.classdiagram.swapreadingdirection" commandName="Swap reading direction" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYN1QLaeEeSActCV_0V_Gw" elementId="AUTOGEN:::com.yattasolutions.umllab.introActionSet/com.yattasolutions.umllab.intro.action" commandName="Getting started with UML Lab" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYOcULaeEeSActCV_0V_Gw" elementId="AUTOGEN:::com.yattasolutions.umllab.reporting.actionSet1/com.yattasolutions.umllab.reporting.reportFreeBug" commandName="Report Issue or Enhancement in UML Lab" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYOcUbaeEeSActCV_0V_Gw" elementId="AUTOGEN:::com.yattasolutions.umllab.registrationActionSet/com.yattasolutions.umllab.register" commandName="Register UML Lab..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYOcUraeEeSActCV_0V_Gw" elementId="AUTOGEN:::com.yattasolutions.umllab.registrationActionSet/com.yattasolutions.umllab.feedbackform" commandName="UML Lab Feedback..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYPDYLaeEeSActCV_0V_Gw" elementId="AUTOGEN:::org.eclipse.m2m.qvt.oml.runtime.actions/org.eclipse.m2m.internal.qvt.oml.runtime.ui.wizards.RunInterpretedTransformationActionId" commandName="Transformation..." description="Run QVT Transformation" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYRfoLaeEeSActCV_0V_Gw" elementId="AUTOGEN:::org.eclipse.emf.exporter.genModelEditorContribution/org.eclipse.emf.exporter.ui.GenModelExportActionDelegate.Editor" commandName="Export Model..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYRfobaeEeSActCV_0V_Gw" elementId="AUTOGEN:::org.eclipse.emf.importer.genModelEditorContribution/org.eclipse.emf.importer.ui.GenModelReloadActionDelegate.Editor" commandName="Reload..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYSGsLaeEeSActCV_0V_Gw" elementId="AUTOGEN:::org.eclipse.uml2.uml.editor.UMLEditorContributionID/org.eclipse.uml2.uml.editor.CreateExtensionActionID" commandName="Create Extension..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYStwLaeEeSActCV_0V_Gw" elementId="AUTOGEN:::org.eclipse.uml2.uml.editor.UMLEditorContributionID/org.eclipse.uml2.uml.editor.ReferenceMetamodelActionID" commandName="Reference Metamodel..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYStwbaeEeSActCV_0V_Gw" elementId="AUTOGEN:::org.eclipse.uml2.uml.editor.UMLEditorContributionID/org.eclipse.uml2.uml.editor.ReferenceMetaclassActionID" commandName="Reference Metaclass..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYStwraeEeSActCV_0V_Gw" elementId="AUTOGEN:::org.eclipse.uml2.uml.editor.UMLEditorContributionID/org.eclipse.uml2.uml.editor.DefineProfileActionID" commandName="Define" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYTU0LaeEeSActCV_0V_Gw" elementId="AUTOGEN:::org.eclipse.uml2.uml.editor.UMLEditorContributionID/org.eclipse.uml2.uml.editor.UnapplyProfileActionID" commandName="Unapply Profile..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYTU0baeEeSActCV_0V_Gw" elementId="AUTOGEN:::org.eclipse.uml2.uml.editor.UMLEditorContributionID/org.eclipse.uml2.uml.editor.MergePackageActionID" commandName="Merge..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYTU0raeEeSActCV_0V_Gw" elementId="AUTOGEN:::org.eclipse.uml2.uml.editor.UMLEditorContributionID/org.eclipse.uml2.uml.editor.ImportTypeActionID" commandName="Import Type..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYT74LaeEeSActCV_0V_Gw" elementId="AUTOGEN:::org.eclipse.uml2.uml.editor.UMLEditorContributionID/org.eclipse.uml2.uml.editor.ApplyProfileActionID" commandName="Apply Profile..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYT74baeEeSActCV_0V_Gw" elementId="AUTOGEN:::org.eclipse.uml2.uml.editor.UMLEditorContributionID/org.eclipse.uml2.uml.editor.ExpandTemplatesActionID" commandName="Expand Templates..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYT74raeEeSActCV_0V_Gw" elementId="AUTOGEN:::org.eclipse.uml2.uml.editor.UMLEditorContributionID/org.eclipse.uml2.uml.editor.UnapplyStereotypeActionID" commandName="Unapply Stereotype..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYT747aeEeSActCV_0V_Gw" elementId="AUTOGEN:::org.eclipse.uml2.uml.editor.UMLEditorContributionID/org.eclipse.uml2.uml.editor.DestroyElementActionID" commandName="Destroy" category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYUi8LaeEeSActCV_0V_Gw" elementId="AUTOGEN:::org.eclipse.uml2.uml.editor.UMLEditorContributionID/org.eclipse.uml2.uml.editor.ApplyStereotypeActionID" commandName="Apply Stereotype..." category="_6xEdzqahEeSN7NxGhFBO2w"/>
+  <commands xmi:id="_HYXmQLaeEeSActCV_0V_Gw" elementId="AUTOGEN:::com.yattasolutions.umllab.reporting.ReportBugContribution1/com.yattasolutions.umllab.reporting.ReportBugAction1" commandName="Report Issue in UML Lab" description="Report an issue related to UML Lab." category="_6xEdzqahEeSN7NxGhFBO2w"/>
   <addons xmi:id="_6xEdsKahEeSN7NxGhFBO2w" elementId="org.eclipse.e4.core.commands.service" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_6xEdsaahEeSN7NxGhFBO2w" elementId="org.eclipse.e4.ui.contexts.service" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_6xEdsqahEeSN7NxGhFBO2w" elementId="org.eclipse.e4.ui.bindings.service" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
@@ -5633,4 +5834,8 @@
   <categories xmi:id="_6xEd6qahEeSN7NxGhFBO2w" elementId="org.eclipse.cdt.debug.ui.category.runControl" name="Run Control Commands" description="Set of commands for Run Control"/>
   <categories xmi:id="_6xEd66ahEeSN7NxGhFBO2w" elementId="org.eclipse.cdt.debug.ui.category.tracing" name="Tracing Commands" description="Category for Tracing Commands"/>
   <categories xmi:id="_Lo1ewaasEeSKKthyBTAQmQ" elementId="org.eclipse.cdt.managedbuilder.ui.category.build" name="C/C++ Build" description="C/C++ Build Actions"/>
+  <categories xmi:id="_G1zrwbaeEeSActCV_0V_Gw" elementId="org.eclipse.emf.codegen.ecore.ui.Commands" name="EMF Code Generation" description="Commands for the EMF code generation tools"/>
+  <categories xmi:id="_G1zrwraeEeSActCV_0V_Gw" elementId="org.eclipse.m2m.qvt.oml.category" name="QVT Operational"/>
+  <categories xmi:id="_G1zrw7aeEeSActCV_0V_Gw" elementId="org.eclipse.xpand.ui.refactoring" name="XPand Refactoring" description="Xpand Refactoring Commands"/>
+  <categories xmi:id="_G1zrxLaeEeSActCV_0V_Gw" elementId="org.eclipse.xpand.ui" name="Xpand Editor" description="Xpand Editor Commands"/>
 </application:Application>
