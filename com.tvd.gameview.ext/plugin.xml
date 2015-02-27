@@ -310,4 +310,11 @@
             id="com.tvd.gext.multipageeditor.wizards.LayoutNewFileWizard">
       </wizard>
    </extension>
+   <extension
+         point="org.eclipse.ui.dropActions">
+      <action
+            class="com.tvd.gext.multipageeditor.pages.LayoutPropertiesDropListener"
+            id="com.tvd.gext.multipageeditor.pages.LayoutPropertiesDropListener">
+      </action>
+   </extension>
 </plugin>

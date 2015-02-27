@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+   id="org.eclipse.ui.examples.gdt"
+   name="Gdt Plug-in"
+   version="1.0.0"
+   provider-name="">
+
+   <runtime>
+      <library name="gdt.jar"/>
+   </runtime>
+   <requires>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.ui"/>
+   </requires>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Gadgets"
+            id="org.eclipse.ui.examples.gdt">
+      </category>
+      <view
+            name="Gadgetry"
+            icon="icons/sample.gif"
+            category="org.eclipse.ui.examples.gdt"
+            class="org.eclipse.ui.examples.gdt.views.GadgetTreeView"
+            id="org.eclipse.ui.examples.gdt.views.GadgetTreeView">
+      </view>
+      <view
+            name="Gadgetable"
+            icon="icons/sample.gif"
+            category="org.eclipse.ui.examples.gdt"
+            class="org.eclipse.ui.examples.gdt.views.GadgetTableView"
+            id="org.eclipse.ui.examples.gdt.views.GadgetTableView">
+      </view>
+   </extension>
+   <extension
+         id="gadgetDrop"
+         name="Gadget Resource Drop"
+         point="org.eclipse.ui.dropActions">
+      <action
+            class="org.eclipse.ui.examples.gdt.dnd.GadgetPluginDropAdapter"
+            id="org.eclipse.ui.examples.gdt.gadgetDrop">
+      </action>
+   </extension>
+</plugin>

@@ -42,3 +42,13 @@
 {var_name}{spaces}= Vec2({x}, VisibleRect::bottom().y + {margin-bottom});
 
 #end
+
+#Margin-Center-Top Point implementing template
+{var_name}{spaces}= Vec2({x}, VisibleRect::center().y + {margin-center-top});
+
+#end
+
+#Margin-Center-Bottom Point implementing template
+{var_name}{spaces}= Vec2({x}, VisibleRect::center().y - {margin-center-bottom});
+
+#end

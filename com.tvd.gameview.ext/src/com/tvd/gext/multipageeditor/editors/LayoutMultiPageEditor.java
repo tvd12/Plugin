@@ -140,8 +140,10 @@ public class LayoutMultiPageEditor extends FormEditor
 		if (!(editorInput instanceof IFileEditorInput))
 			throw new PartInitException("Invalid Input: Must be IFileEditorInput");
 		FileEditorInput input = (FileEditorInput)editorInput;
-		super.init(site, new LayoutEditorInput(input.getFile()));
-		setPartName(input.getFile().getName());
+		mEditorInput = new LayoutEditorInput(input.getFile());
+		super.init(site, mEditorInput);
+		setPartName(input.getFile().getName()
+				+ " (" + mEditorInput.getView().getDevice() + ")");
 		
 	}
 	/* (non-Javadoc)
@@ -232,4 +234,5 @@ public class LayoutMultiPageEditor extends FormEditor
 	private LayoutXMLEditorPage mXMLEditorPage;
 	private LayoutExportingPage mExportingPage;
 	private LayoutDetailsPage mDetailsPage;
+	private LayoutEditorInput mEditorInput;
 }

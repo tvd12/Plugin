@@ -712,18 +712,30 @@ public class View extends AdvancedObject implements IContainer {
 	
 	@Override
 	public void setType(String type) {
+		if(type == null || type.trim().length() == 0) {
+			return;
+		}
+		
 		super.setType(type);
 		if(type != null) {
 			Config config = Config.getInstance();
 			this.mSuper = config.getDefaultSuper(mType);
-			this.mBackgroundImage = config.getDefaultBackgroundImage(
+			Image bgImg = config.getDefaultBackgroundImage(
 					type);
+			if(bgImg != null) {
+				if(mBackgroundImage == null) {
+					this.mBackgroundImage = bgImg;
+					this.mImages.add(mBackgroundImage);
+				}
+				else {
+					this.mBackgroundImage.replaceWithAnother(bgImg);
+				}
+			}
 			if(mBackgroundImage != null) {
 				this.mBackgroundImage = mBackgroundImage.clone();
 				this.mBackgroundImage.setIsBackground(true);
 				this.mBackgroundImage.setExists(true);
 				this.mBackgroundImage.setParent(this);
-				this.mImages.add(mBackgroundImage);
 			}
 			this.mExitResource = config.getDefaultExitResource(
 					type);
@@ -878,6 +890,11 @@ public class View extends AdvancedObject implements IContainer {
 	
 	public String getImagePath() {
 		return this.mImagesPath;
+	}
+	
+	@Override
+	public String getId() {
+		return getDevice() + "/" + super.getId();
 	}
 	
 	@Override

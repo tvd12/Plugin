@@ -28,7 +28,7 @@ import com.tvd.cocos2dx.popup.creator.utils.StringUtils;
 import com.tvd.cocos2dx.popup.creator.utils.ViewUtils;
 import com.tvd.gameview.ext.value.validate.Validator;
 
-public class ItemGroup {
+public class ItemGroup implements Identifier {
 	public ItemGroup(int pType) {
 		super();
 		this.mType = pType;
@@ -161,6 +161,7 @@ public class ItemGroup {
 	}
 	
 	public void pushBack() {
+		setIndex(mContainer.numberOfItemGroups());
 		switch (mType) {
 		case Type.MENU:
 			mContainer.addMenuGroup(this);
@@ -264,6 +265,7 @@ public class ItemGroup {
 			return;
 		}
 		this.mItems.add(pObject);
+		pObject.setGroup(this);
 		pObject.setTabCount(mTabCount + 1);
 	}
 	
@@ -466,6 +468,58 @@ public class ItemGroup {
 		}
 	}
 	
+	public void setIndex(int index) {
+		this.mIndex = index;
+	}
+	
+	public int getIndex() {
+		return mIndex;
+	}
+	
+	@Override
+	public String getId() {
+		String id = mXmlTagName + "[" + getIndex() + "]";
+		if(getContainer() != null) {
+			id = getContainer().getId() + "/" + id;
+		}
+		return id;
+	}
+	
+	public CommonObject getItem(String id) {
+		for(int i = 0 ; i < numberOfItems() ; i++) {
+			if(getItems().get(i).getId().equals(id)) {
+				return getItems().get(i);
+			}
+		}
+		
+		return null;
+	}
+	
+	public void removeItem(Object obj) {
+		getItems().remove(obj);
+	}
+	
+	public int getIndex(Object obj) {
+		return getItems().indexOf(obj);
+	}
+	
+	public void insert(Object obj, int index) {
+		if(index < numberOfItems()) {
+			getItems().add(index, (CommonObject) obj);
+		}
+		else {
+			getItems().add((CommonObject)obj);
+		}
+	}
+	
+	public void set(Object obj, int index) {
+		getItems().set(index, (CommonObject)obj);
+	}
+	
+	public CommonObject getItem(int index) {
+		return getItems().get(index);
+	}
+	
 	@Override
 	public String toString() {
 		if(mItems.size() > 0) {
@@ -474,6 +528,7 @@ public class ItemGroup {
 		return "";
 	}
 	
+	protected int mIndex;
 	protected int mTabCount;
 	protected List<CommonObject> mItems;
 	protected String mBlockComment;

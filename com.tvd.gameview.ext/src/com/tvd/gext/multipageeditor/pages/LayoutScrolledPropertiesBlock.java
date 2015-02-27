@@ -11,12 +11,17 @@
 package com.tvd.gext.multipageeditor.pages;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DragSourceEvent;
+import org.eclipse.swt.dnd.DragSourceListener;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -32,6 +37,8 @@ import org.eclipse.ui.forms.SectionPart;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.part.PluginTransfer;
+import org.eclipse.ui.part.PluginTransferData;
 
 import com.tvd.cocos2dx.popup.creator.model.Cell;
 import com.tvd.cocos2dx.popup.creator.model.ItemGroup;
@@ -46,8 +53,8 @@ import com.tvd.cocos2dx.popup.creator.model.basic.CommonObject;
 import com.tvd.gameview.ext.GameViewSdk;
 import com.tvd.gext.multipageeditor.editors.constant.Img;
 import com.tvd.gext.multipageeditor.elements.pages.LayoutCellLayout;
-import com.tvd.gext.multipageeditor.elements.pages.LayoutGroupPage;
 import com.tvd.gext.multipageeditor.elements.pages.LayoutElementPage;
+import com.tvd.gext.multipageeditor.elements.pages.LayoutGroupPage;
 import com.tvd.gext.multipageeditor.elements.pages.LayoutMenuItemPage;
 import com.tvd.gext.multipageeditor.elements.pages.LayoutMenuPage;
 import com.tvd.gext.multipageeditor.elements.pages.LayoutProgressbarPage;
@@ -201,6 +208,16 @@ public class LayoutScrolledPropertiesBlock extends MasterDetailsBlock {
 		treeViewer.setContentProvider(new MasterContentProvider());
 		treeViewer.setLabelProvider(new MasterLabelProvider());
 		treeViewer.setInput(mFormPage.getEditor().getEditorInput());
+		
+		treeViewer.addDragSupport(DND.DROP_MOVE | DND.DROP_COPY, 
+				new Transfer[]{LayoutPropertiesDragTransfer.getInstance(),
+					PluginTransfer.getInstance()}, 
+				new TreeViewDragListener(treeViewer));
+		treeViewer.addDropSupport(DND.DROP_MOVE | DND.DROP_COPY, 
+				new Transfer[]{LayoutPropertiesDragTransfer.getInstance(),
+					PluginTransfer.getInstance()}, 
+				new LayoutPropertiesDropListener(treeViewer, mFormPage));
+		
 		treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			public void selectionChanged(SelectionChangedEvent event) {
 				managedForm.fireSelectionChanged(spart, event.getSelection());
@@ -267,3 +284,45 @@ public class LayoutScrolledPropertiesBlock extends MasterDetailsBlock {
 	private LayoutDetailsPage mFormPage;
 	private TreeViewer mTreeViewer;
 }
+
+/**
+ * Drag Listener
+*/
+
+class TreeViewDragListener implements DragSourceListener {
+	
+	public TreeViewDragListener(TreeViewer viewer) {
+		this.mViewer = viewer;
+	}
+
+	@Override
+	public void dragStart(DragSourceEvent pEvent) {
+		pEvent.doit = !mViewer.getSelection().isEmpty();
+		System.out.println("Start Drag doit = " + pEvent.doit);
+	}
+
+	@Override
+	public void dragSetData(DragSourceEvent pEvent) {
+		System.out.println("Drag set data");
+		IStructuredSelection selection = 
+				(IStructuredSelection)mViewer.getSelection();
+		Object[] objects = selection.toList().toArray();
+		if(LayoutPropertiesDragTransfer.getInstance().isSupportedType(pEvent.dataType)) {
+			pEvent.data = objects;
+		}
+		else if(PluginTransfer.getInstance().isSupportedType(pEvent.dataType)) {
+			byte[] data = LayoutPropertiesDragTransfer.getInstance().toByteArray(objects);
+			pEvent.data = new PluginTransferData(
+					LayoutPropertiesDropListener.class.getName(), 
+					data);
+		}
+	}
+
+	@Override
+	public void dragFinished(DragSourceEvent pEvent) {
+		System.out.println("Finshed Drag");
+	}
+	
+	protected TreeViewer mViewer;
+}
+

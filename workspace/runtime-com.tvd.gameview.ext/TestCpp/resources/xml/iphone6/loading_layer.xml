@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view class-name="LoadingLayerView" prefix="layer_loading" type="layer" exitable="false" 
-		super="CommonLayer" background-name="default" size="450.43988, 666.27563"
+		super="CommonLayer" background-name="default" size="375.0, 667.0"
 		template-name="Common"
 		exported="false"
 		comment=""
@@ -11,28 +11,14 @@
 	<position value="default" />
 	<define-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Classes/Other/Utils/Defines" />
 	<parameters-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Classes/Other/Utils/GameParams" />
-	<images-inputpath value="/Users/dungtavan/Downloads/loading/loading_layer" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/loading/loading_layer" />
 	<images-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Resources/iphone6" />
 	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Resources/screenshots/iphone6" used="true" />
 	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Wireframing/WireframingScreen/iphone6" />
 	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/proj.android/res/layout/iphone6" />
-	<class-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Classes/View/Layer" />
-	<background-image id="loading_layer_background_common_bg" 
-		location-in-interfacebuilder="10.0, 10.0"
-		width="450.43988" height="666.27563"
-		phony-path="common_bg.png"  />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Classes/View" />
 
 	<sprites array="false" comment="create group of sprites">
-		<sprite visible="true" comment="">
-			<position-name value="common_alle_logo" />
-			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
-			<image id="loading_layer_common_alle_logo" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="47.800587" height="45.454544"
-				phony-path="common_alle_logo.png"  />
-		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="loading_dots" />
 			<anchorpoint value="0.5, 0.5" />

@@ -31,6 +31,30 @@ public class Margin {
 		mBottom = pBottom;
 	}
 	
+	public Float getCenterLeft() {
+		return mCenterLeft;
+	}
+	public void setCenterLeft(Float pCenterLeft) {
+		mCenterLeft = pCenterLeft;
+	}
+	public Float getCenterTop() {
+		return mCenterTop;
+	}
+	public void setCenterTop(Float pCenterTop) {
+		mCenterTop = pCenterTop;
+	}
+	public Float getCenterRight() {
+		return mCenterRight;
+	}
+	public void setCenterRight(Float pCenterRight) {
+		mCenterRight = pCenterRight;
+	}
+	public Float getCenterBottom() {
+		return mCenterBottom;
+	}
+	public void setCenterBottom(Float pCenterBottom) {
+		mCenterBottom = pCenterBottom;
+	}
 	public String getLeftString() {
 		return (getLeft() != null) 
 				? ("" + getLeft().floatValue()) : "";
@@ -52,6 +76,30 @@ public class Margin {
 	public String getBottomString() {
 		return (getBottom() != null) 
 				? ("" + getBottom().floatValue()) : "";
+				
+	}
+	
+	public String getCenterLeftString() {
+		return (getCenterLeft() != null) 
+				? ("" + getCenterLeft().floatValue()) : "";
+				
+	}
+	
+	public String getCenterTopString() {
+		return (getCenterTop() != null) 
+				? ("" + getCenterTop().floatValue()) : "";
+				
+	}
+	
+	public String getCenterRightString() {
+		return (getCenterRight() != null) 
+				? ("" + getCenterRight().floatValue()) : "";
+				
+	}
+	
+	public String getCenterBottomString() {
+		return (getCenterBottom() != null) 
+				? ("" + getCenterBottom().floatValue()) : "";
 				
 	}
 	
@@ -77,6 +125,26 @@ public class Margin {
 			.append(Attribute.BOTTOM + "=")
 			.append("\"" + getBottom().floatValue() + "\"");
 		}
+		if(getCenterLeft() != null) {
+			builder.append(" ")
+			.append(Attribute.CENTER_LEFT + "=")
+			.append("\"" + getCenterLeft().floatValue() + "\"");
+		}
+		if(getCenterTop() != null) {
+			builder.append(" ")
+			.append(Attribute.CENTER_TOP + "=")
+			.append("\"" + getCenterTop().floatValue() + "\"");
+		}
+		if(getCenterRight() != null) {
+			builder.append(" ")
+			.append(Attribute.CENTER_RIGHT + "=")
+			.append("\"" + getCenterRight().floatValue() + "\"");
+		}
+		if(getCenterBottom() != null) {
+			builder.append(" ")
+			.append(Attribute.CENTER_BOTTOM + "=")
+			.append("\"" + getCenterBottom().floatValue() + "\"");
+		}
 		return builder.append(" />").toString();
 	}
 	
@@ -94,6 +162,18 @@ public class Margin {
 		if(getBottom() != null) {
 			builder.append("-Bottom");
 		}
+		if(getCenterLeft() != null) {
+			builder.append("-Center-Top");
+		}
+		if(getCenterTop() != null) {
+			builder.append("-Center-Top");
+		}
+		if(getCenterRight() != null) {
+			builder.append("-Center-Right");
+		}
+		if(getCenterBottom() != null) {
+			builder.append("-Center-Bottom");
+		}
 		
 		return builder.toString();
 	}
@@ -107,4 +187,9 @@ public class Margin {
 	protected Float mTop;
 	protected Float mRight;
 	protected Float mBottom;
+	
+	protected Float mCenterLeft;
+	protected Float mCenterTop;
+	protected Float mCenterRight;
+	protected Float mCenterBottom;
 }

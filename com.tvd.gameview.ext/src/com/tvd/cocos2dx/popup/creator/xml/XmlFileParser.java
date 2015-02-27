@@ -340,6 +340,10 @@ public class XmlFileParser extends DefaultHandler {
 			margin.setTop(getFloat(Attribute.TOP, atts));
 			margin.setRight(getFloat(Attribute.RIGHT, atts));
 			margin.setBottom(getFloat(Attribute.BOTTOM, atts));
+			margin.setCenterLeft(getFloat(Attribute.CENTER_LEFT, atts));
+			margin.setCenterTop(getFloat(Attribute.CENTER_TOP, atts));
+			margin.setCenterRight(getFloat(Attribute.CENTER_RIGHT, atts));
+			margin.setCenterBottom(getFloat(Attribute.CENTER_BOTTOM, atts));
 			
 			mCurrentObject.setMargin(margin);
 		}

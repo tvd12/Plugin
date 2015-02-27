@@ -28,13 +28,15 @@ import com.tvd.cocos2dx.popup.creator.constants.Strings;
 import com.tvd.cocos2dx.popup.creator.constants.Tag;
 import com.tvd.cocos2dx.popup.creator.file.FileUtils;
 import com.tvd.cocos2dx.popup.creator.global.Config;
+import com.tvd.cocos2dx.popup.creator.model.Identifier;
 import com.tvd.cocos2dx.popup.creator.model.Image;
 import com.tvd.cocos2dx.popup.creator.model.Interface;
 import com.tvd.cocos2dx.popup.creator.model.ItemGroup;
 import com.tvd.cocos2dx.popup.creator.utils.StringUtils;
 import com.tvd.gameview.ext.value.validate.Validator;
 
-public abstract class CommonObject extends BasicObject {
+public abstract class CommonObject extends BasicObject 
+		implements Identifier {
 	
 	public CommonObject() {
 		mMenuGroups = new ArrayList<ItemGroup>();
@@ -134,6 +136,10 @@ public abstract class CommonObject extends BasicObject {
 						.replace("{margin-top}", getMagin().getTopString())
 						.replace("{margin-right}", getMagin().getRightString())
 						.replace("{margin-bottom}", getMagin().getBottomString())
+						.replace("{margin-center-left}", getMagin().getCenterLeftString())
+						.replace("{margin-center-top}", getMagin().getCenterTopString())
+						.replace("{margin-center-right}", getMagin().getCenterRightString())
+						.replace("{margin-center-bottom}", getMagin().getCenterBottomString())
 						.replace("{x}", getPosition().getXString())
 						.replace("{y}", getPosition().getYString());
 				
@@ -364,6 +370,11 @@ public abstract class CommonObject extends BasicObject {
 				getOriginY());
 	}
 	
+	public Point getCenter() {
+		return new Point(getSize().getWidth()/2,
+				getSize().getHeight()/2);
+	}
+	
 	//========== end set and get position==========
 	
 	//========== set and get margin ===============
@@ -396,6 +407,27 @@ public abstract class CommonObject extends BasicObject {
 					+ getPosition().getY();
 //					+ getBottom().getY();
 			margin.setBottom(marginBottom);
+		}
+		
+		if(margin.getCenterLeft() != null) {
+			float marginCenterLeft = getParent().getCenter().getX()
+					- getPosition().getX();
+			margin.setCenterLeft(marginCenterLeft);
+		}
+		if(margin.getCenterTop() != null) {
+			float marginCenterTop = - getParent().getCenter().getY()
+					+ getPosition().getY();
+			margin.setCenterTop(marginCenterTop);
+		}
+		if(margin.getCenterRight() != null) {
+			float marginCenterRight = - getParent().getCenter().getX()
+					+ getPosition().getX();
+			margin.setCenterRight(marginCenterRight);
+		}
+		if(margin.getCenterBottom() != null) {
+			float marginCenterBottom = getParent().getCenter().getX()
+					- getPosition().getY();
+			margin.setCenterBottom(marginCenterBottom);
 		}
 		
 	}
@@ -870,6 +902,66 @@ public abstract class CommonObject extends BasicObject {
 				&& mLabelGroups.isEmpty());
 	}
 	
+	public void setGroup(ItemGroup group) {
+		this.mGroup = group;
+	}
+	
+	public ItemGroup getGroup() {
+		return this.mGroup;
+	}
+	
+	public int numberOfItemGroups() {
+		int size = getSpriteGroups().size()
+				+ getLabelGroups().size()
+				+ getMenuGroups().size()
+				+ getMenuItemGroups().size()
+				+ getTableGroups().size();
+		if(getCellGroups() != null) {
+			size += getCellGroups().size();
+		}
+		
+		return size;
+	}
+	
+	@Override
+	public String getId() {
+		String id = getXmlPositionName();
+		if(getGroup() != null) {
+			id = getGroup().getId() +"/" + id;
+		}
+		else if(getParent() != null) {
+			id = getParent().getId() + "/" + id;
+		}
+		
+		return id;
+	}
+	
+	public ItemGroup getItemGroup(String id) {
+		List<ItemGroup> groups = getAllGroups();
+		for(int i = 0 ; i < groups.size() ; i++) {
+			if(groups.get(i).getId().equals(id)) {
+				return groups.get(i);
+			}
+		}
+		
+		return null;
+	}
+	
+	public CommonObject getObject(String id) {
+		if(id.equals(getId())) {
+			return this;
+		}
+		
+		int lastIndex = id.lastIndexOf('/');
+		String groupId = id.substring(0, lastIndex);
+		ItemGroup group = getItemGroup(groupId);
+		if(group != null) {
+			return group.getItem(id);
+		}
+		
+		return null;
+	}
+	
 	public void setAllPropertiesForObject(CommonObject obj) {
 		super.setAllPropertiesForObject(obj);
 		
@@ -972,6 +1064,8 @@ public abstract class CommonObject extends BasicObject {
 	protected Interface mInterface;
 	
 	protected AdvancedObject mAdvancedObject;
+	
+	protected ItemGroup mGroup;
 	
 	protected Image mImage;
 	
