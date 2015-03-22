@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view class-name="LoadingLayer" prefix="layer_loading" type="layer" exitable="false" 
-		super="CommonLayer" background-name="default" size="384.0, 568.0"
+		super="CommonLayer" background-name="default" size="320.0, 568.0"
 		template-name="Common"
 		exported="false"
 		comment=""
@@ -36,12 +36,12 @@
 		<sprite visible="true" comment="">
 			<position-name value="loading_dots" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="177.0, 276.0" />
+			<position value="184.0, 276.0" />
 			<position-type value="relative" />
 			<margin center-top="-8.0" />
 			<z-index value="4" />
 			<image id="loading_layer_loading_dots" 
-				location-in-interfacebuilder="175.0, 290.0"
+				location-in-interfacebuilder="182.0, 290.0"
 				width="4.0" height="4.0"
 				phony-path="loading_layer/sprites/loading_dots.png"  />
 		</sprite>
@@ -60,12 +60,12 @@
 		<sprite visible="true" comment="">
 			<position-name value="loading_text" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="150.0, 278.5" />
+			<position value="157.0, 278.5" />
 			<position-type value="relative" />
 			<margin center-top="-5.5" />
 			<z-index value="3" />
 			<image id="loading_layer_loading_text" 
-				location-in-interfacebuilder="128.0, 285.0"
+				location-in-interfacebuilder="135.0, 285.0"
 				width="44.0" height="9.0"
 				phony-path="loading_layer/sprites/loading_text.png"  />
 		</sprite>

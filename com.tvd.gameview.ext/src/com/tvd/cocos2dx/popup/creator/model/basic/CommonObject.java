@@ -406,6 +406,10 @@ public abstract class CommonObject extends BasicObject
 			float marginBottom = - getParent().getBottom().getY()
 					+ getPosition().getY();
 //					+ getBottom().getY();
+			System.out.println("\nparent = " + getParent().getName()
+					+ ", parent pos = " + getParent().getPosition()
+					+ ", me = " + getName()
+					+ ", me pos = " + getPosition());
 			margin.setBottom(marginBottom);
 		}
 		

@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="263" key="DIALOG_WIDTH"/>
-		<item value="122" key="DIALOG_Y_ORIGIN"/>
+		<item value="265" key="DIALOG_WIDTH"/>
+		<item value="118" key="DIALOG_Y_ORIGIN"/>
+		<item value="133" key="DIALOG_X_ORIGIN"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
-		<item value="674" key="DIALOG_X_ORIGIN"/>
-		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
+		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="main_bg" key="selection"/>
+		<item value="info_b" key="selection"/>
 		<list key="findhistory">
+			<item value="info_b"/>
+			<item value="common_setting"/>
+			<item value="home_setting"/>
 			<item value="main_bg"/>
 			<item value="doc"/>
 			<item value="setPosition"/>
 			<item value=".height"/>
 			<item value="Vis"/>
-			<item value="Vi"/>
-			<item value="&lt;labels array=&quot;false&quot; comment=&quot;create group of labels&quot;&gt;&#x0A;&#x09;&#x09;&lt;label visible=&quot;true&quot; comment=&quot;&quot;&gt;&#x0A;&#x09;&#x09;&#x09;&lt;text value=&quot;Ancient windmil&quot; /&gt;&#x0A;&#x09;&#x09;&#x09;&lt;font name=&quot;HelveticaNeue&quot; family=&quot;Helvetica Neue&quot; /&gt;&#x0A;&#x09;&#x09;&#x09;&lt;font-color red=&quot;0&quot; green=&quot;0&quot; blue=&quot;255&quot; alpha=&quot;255&quot; /&gt;&#x0A;&#x09;&#x09;&#x09;&lt;font-size value=&quot;17.0&quot; /&gt;&#x0A;&#x09;&#x09;&#x09;&lt;position-name value=&quot;gate1_title&quot; /&gt;&#x0A;&#x09;&#x09;&#x09;&lt;anchorpoint value=&quot;0.5, 0.5&quot; /&gt;&#x0A;&#x09;&#x09;&#x09;&lt;position value=&quot;246.0, 94.5&quot; /&gt;&#x0A;&#x09;&#x09;&#x09;&lt;location-in-interfacebuilder value=&quot;168.0, 424.0&quot; /&gt;&#x0A;&#x09;&#x09;&#x09;&lt;z-index value=&quot;3&quot; /&gt;&#x0A;&#x09;&#x09;&lt;/label&gt;"/>
-			<item value="setting_offline"/>
 		</list>
 		<list key="replacehistory">
 			<item value="setting_online"/>

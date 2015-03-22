@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view class-name="LoadingLayer" prefix="layer_loading" type="layer" exitable="false" 
-		super="CommonLayer" background-name="default" size="497.0, 735.0"
+		super="CommonLayer" background-name="default" size="414.0, 736.0"
 		template-name="Common"
 		exported="false"
 		comment=""
@@ -26,7 +26,7 @@
 		<sprite visible="true" comment="">
 			<position-name value="common_alle_logo" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="207.5, 32.0" />
+			<position value="207.5, 33.0" />
 			<z-index value="1" />
 			<image id="loading_layer_common_alle_logo" 
 				location-in-interfacebuilder="181.0, 678.0"
@@ -36,18 +36,22 @@
 		<sprite visible="true" comment="">
 			<position-name value="loading_dots" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="213.5, 363.5" />
-			<z-index value="2" />
+			<position value="235.5, 364.5" />
+			<position-type value="relative" />
+			<margin center-top="-3.5" />
+			<z-index value="3" />
 			<image id="loading_layer_loading_dots" 
-				location-in-interfacebuilder="211.0, 369.0"
+				location-in-interfacebuilder="233.0, 369.0"
 				width="5.0" height="5.0"
 				phony-path="loading_layer/sprites/loading_dots.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="loading_game_logo" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="207.5, 438.5" />
-			<z-index value="3" />
+			<position value="207.5, 439.5" />
+			<position-type value="relative" />
+			<margin center-top="71.5" />
+			<z-index value="2" />
 			<image id="loading_layer_loading_game_logo" 
 				location-in-interfacebuilder="57.0, 243.0"
 				width="301.0" height="107.0"
@@ -56,10 +60,12 @@
 		<sprite visible="true" comment="">
 			<position-name value="loading_text" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="176.5, 367.0" />
+			<position value="201.5, 368.0" />
+			<position-type value="relative" />
+			<margin center-top="0.0" />
 			<z-index value="4" />
 			<image id="loading_layer_loading_text" 
-				location-in-interfacebuilder="148.0, 362.0"
+				location-in-interfacebuilder="173.0, 362.0"
 				width="57.0" height="12.0"
 				phony-path="loading_layer/sprites/loading_text.png"  />
 		</sprite>

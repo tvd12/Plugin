@@ -496,6 +496,8 @@ public class View extends AdvancedObject implements IContainer {
 			XibFetcher xibFetcher = new XibFetcher(mImages, mLabels);
 			xibFetcher.fetchData(xibFilePath);
 //			FileUtils fileUtils = new FileUtils();
+			setSize(Config.getInstance()
+					.getDefaultScreenSizeString(getDevice()));
 			
 //			String fileContent = fileUtils.readFromFile(mXmlFile);
 			for(int i = 0 ; i < mImages.size() ; i++) {
@@ -587,6 +589,11 @@ public class View extends AdvancedObject implements IContainer {
 				getImages().get(i).reloadSize(mImagesPath, scaleFactor);
 			}
 		}
+		if(mBackgroundImage != null) {
+			mBackgroundImage.reloadSize(mImagesPath, scaleFactor);
+		}
+		setSize(Config.getInstance()
+				.getDefaultScreenSizeString(getDevice()));
 		writeXMLToFile();
 	}
 	
@@ -895,6 +902,11 @@ public class View extends AdvancedObject implements IContainer {
 	@Override
 	public String getId() {
 		return getDevice() + "/" + super.getId();
+	}
+	
+	@Override
+	public void setPosition(Point pos) {
+		
 	}
 	
 	@Override

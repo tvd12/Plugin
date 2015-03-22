@@ -16,13 +16,13 @@
 		<item value="refresh" key="selection"/>
 		<list key="findhistory">
 			<item value="refresh"/>
+			<item value="refreshCon"/>
+			<item value="setPosition"/>
+			<item value="reloadSize"/>
+			<item value="refreshC"/>
+			<item value="setSize"/>
+			<item value="setBack"/>
 			<item value="refreshcon"/>
-			<item value="getId"/>
-			<item value="pushB"/>
-			<item value="push_b"/>
-			<item value="addItem"/>
-			<item value="push"/>
-			<item value="setCon"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Activator"/>

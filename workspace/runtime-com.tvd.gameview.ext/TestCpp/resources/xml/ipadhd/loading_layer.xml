@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view class-name="LoadingLayerView" prefix="layer_loading" type="layer" exitable="false" 
-		super="CommonLayer" background-name="default" size="768.0, 1024.0"
+		super="CommonLayer" background-name="default" size="768.0, 1136.0"
 		template-name="Common"
 		exported="false"
 		comment=""
@@ -17,6 +17,10 @@
 	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Wireframing/WireframingScreen/ipadhd" />
 	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/proj.android/res/layout/ipadhd" />
 	<class-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Classes/View" />
+	<background-image id="loading_layer_background_common_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="768.0" height="1136.0"
+		phony-path="common_bg.png"  />
 
 	<sprites array="false" comment="create group of sprites">
 		<sprite visible="true" comment="">

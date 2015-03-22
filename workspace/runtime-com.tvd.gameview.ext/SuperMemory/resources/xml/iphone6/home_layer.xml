@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="HomeLayer" prefix="layer_home" type="layer" exitable="false" 
+		super="CommonLayer" background-name="default" size="450.43988, 666.27563"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="home_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/home/home_layer" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/iphone6" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/iphone6" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/iphone6" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphone6" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Layer" />
+	<background-image id="home_layer_background_home_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="450.43988" height="666.27563"
+		phony-path="home_layer/background/home_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="bottom_bg" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="home_layer_bottom_bg_home_bottom_bg" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="526.6862" height="240.46921"
+				phony-path="home_layer/sprites/bottom_bg/home_bottom_bg.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="home_tree" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="home_layer_bottom_bg_home_tree" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="180.05864" height="235.48387"
+						phony-path="home_layer/sprites/bottom_bg/sprites/home_tree.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="ship_water" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="home_layer_bottom_bg_ship_water_home_ship_water" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="109.97067" height="20.821114"
+						phony-path="home_layer/sprites/bottom_bg/sprites/ship_water/home_ship_water.png"  />
+					<sprites array="false" comment="create group of sprites">
+						<sprite visible="true" comment="">
+							<position-name value="home_ship" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="50.0, 50.0" />
+							<z-index value="0" />
+							<image id="home_layer_bottom_bg_ship_water_home_ship" 
+								location-in-interfacebuilder="10.0, 10.0"
+								width="154.54546" height="155.13196"
+								phony-path="home_layer/sprites/bottom_bg/sprites/ship_water/sprites/home_ship.png"  />
+						</sprite>
+						<sprite visible="true" comment="">
+							<position-name value="home_ship_flag_1" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="50.0, 50.0" />
+							<z-index value="0" />
+							<image id="home_layer_bottom_bg_ship_water_home_ship_flag_1" 
+								location-in-interfacebuilder="10.0, 10.0"
+								width="29.325512" height="13.78299"
+								phony-path="home_layer/sprites/bottom_bg/sprites/ship_water/sprites/home_ship_flag_1.png"  />
+						</sprite>
+						<sprite visible="true" comment="">
+							<position-name value="home_ship_flag_2" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="50.0, 50.0" />
+							<z-index value="0" />
+							<image id="home_layer_bottom_bg_ship_water_home_ship_flag_2" 
+								location-in-interfacebuilder="10.0, 10.0"
+								width="29.325512" height="13.78299"
+								phony-path="home_layer/sprites/bottom_bg/sprites/ship_water/sprites/home_ship_flag_2.png"  />
+						</sprite>
+					</sprites>
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="windmill" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="home_layer_bottom_bg_windmill_home_windmill" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="53.665688" height="64.22287"
+						phony-path="home_layer/sprites/bottom_bg/sprites/windmill/home_windmill.png"  />
+					<sprites array="false" comment="create group of sprites">
+						<sprite visible="true" comment="">
+							<position-name value="home_windmill_propeller" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="50.0, 50.0" />
+							<z-index value="0" />
+							<image id="home_layer_bottom_bg_windmill_home_windmill_propeller" 
+								location-in-interfacebuilder="10.0, 10.0"
+								width="48.387096" height="47.800587"
+								phony-path="home_layer/sprites/bottom_bg/sprites/windmill/sprites/home_windmill_propeller.png"  />
+						</sprite>
+					</sprites>
+				</sprite>
+			</sprites>
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="common_info" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="home_layer_common_info" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="50.146626" height="51.02639"
+				phony-path="home_layer/sprites/common_info.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="common_info_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="home_layer_common_info_text" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="29.912024" height="10.85044"
+				phony-path="home_layer/sprites/common_info_text.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="common_setting" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="home_layer_common_setting" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="49.26686" height="50.733135"
+				phony-path="home_layer/sprites/common_setting.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="common_setting_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="home_layer_common_setting_text" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="49.560116" height="11.143695"
+				phony-path="home_layer/sprites/common_setting_text.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="common_settings" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="home_layer_common_settings" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="49.85337" height="65.39589"
+				phony-path="home_layer/sprites/common_settings.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="heart_container" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="home_layer_heart_container_home_heart_container" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="143.98827" height="35.777126"
+				phony-path="home_layer/sprites/heart_container/home_heart_container.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="home_heart" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="home_layer_heart_container_home_heart" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="18.181818" height="17.008797"
+						phony-path="home_layer/sprites/heart_container/sprites/home_heart.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="home_heart_blank" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="home_layer_heart_container_home_heart_blank" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="18.181818" height="17.008797"
+						phony-path="home_layer/sprites/heart_container/sprites/home_heart_blank.png"  />
+				</sprite>
+			</sprites>
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="home_play" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="home_layer_home_play" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="96.480934" height="96.480934"
+				phony-path="home_layer/sprites/home_play.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="infor_bg" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="home_layer_infor_bg_common_info_bg" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="43.695015" height="201.46628"
+				phony-path="home_layer/sprites/infor_bg/common_info_bg.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="common_hidden_story" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="home_layer_infor_bg_common_hidden_story" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="20.821114" height="25.21994"
+						phony-path="home_layer/sprites/infor_bg/sprites/common_hidden_story.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="common_leader_board" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="home_layer_infor_bg_common_leader_board" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="28.152493" height="22.8739"
+						phony-path="home_layer/sprites/infor_bg/sprites/common_leader_board.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="common_profile" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="home_layer_infor_bg_common_profile" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="21.407623" height="24.63343"
+						phony-path="home_layer/sprites/infor_bg/sprites/common_profile.png"  />
+				</sprite>
+			</sprites>
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="settings_bg" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="home_layer_settings_bg_common_settings_bg" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="43.695015" height="201.46628"
+				phony-path="home_layer/sprites/settings_bg/common_settings_bg.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="common_music" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="home_layer_settings_bg_common_music" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="22.580645" height="28.152493"
+						phony-path="home_layer/sprites/settings_bg/sprites/common_music.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="common_setting" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="home_layer_settings_bg_common_setting" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="28.445747" height="28.445747"
+						phony-path="home_layer/sprites/settings_bg/sprites/common_setting.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="common_sound" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="home_layer_settings_bg_common_sound" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="26.392962" height="23.753666"
+						phony-path="home_layer/sprites/settings_bg/sprites/common_sound.png"  />
+				</sprite>
+			</sprites>
+		</sprite>
+	</sprites>
+	<resource comment="resource for view">
+		<image id="home_layer_resource_common_disable" 
+			phony-path="home_layer/resource/common_disable.png"  />
+		<image id="home_layer_resource_common_down" 
+			phony-path="home_layer/resource/common_down.png"  />
+	</resource>
+</view>

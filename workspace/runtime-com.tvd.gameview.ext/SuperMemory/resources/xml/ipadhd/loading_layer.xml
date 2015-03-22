@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view class-name="LoadingLayer" prefix="layer_loading" type="layer" exitable="false" 
-		super="CommonLayer" background-name="default" size="768.0, 1136.0"
+		super="CommonLayer" background-name="default" size="768.0, 1024.0"
 		template-name="Common"
 		exported="false"
 		comment=""
@@ -12,54 +12,60 @@
 	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
 	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
 	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/loading/loading_layer" />
-	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/ipadhd" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/common" />
 	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/ipadhd" used="true" />
-	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/ipadhd" />
-	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/ipadhd" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/iphone6" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphone6" />
 	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Layer" />
 	<background-image id="loading_layer_background_common_bg" 
 		location-in-interfacebuilder="10.0, 10.0"
 		width="768.0" height="1136.0"
-		phony-path="loading_layer/background/common_bg.png"  />
+		phony-path="common_bg.png"  />
 
 	<sprites array="false" comment="create group of sprites">
 		<sprite visible="true" comment="">
 			<position-name value="common_alle_logo" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="384.0, 47.0" />
+			<z-index value="1" />
 			<image id="loading_layer_common_alle_logo" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="81.5" height="77.5"
-				phony-path="loading_layer/sprites/common_alle_logo.png"  />
+				location-in-interfacebuilder="343.0, 938.0"
+				width="82.0" height="78.0"
+				phony-path="common_alle_logo.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="loading_dots" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="425.0, 461.5" />
+			<position-type value="relative" />
+			<margin center-top="-50.5" />
+			<z-index value="4" />
 			<image id="loading_layer_loading_dots" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="7.5" height="7.0"
+				location-in-interfacebuilder="421.0, 559.0"
+				width="8.0" height="7.0"
 				phony-path="loading_layer/sprites/loading_dots.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="loading_game_logo" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="384.5, 577.0" />
+			<position-type value="relative" />
+			<margin center-top="65.0" />
+			<z-index value="2" />
 			<image id="loading_layer_loading_game_logo" 
-				location-in-interfacebuilder="10.0, 10.0"
+				location-in-interfacebuilder="152.0, 364.0"
 				width="465.0" height="166.0"
 				phony-path="loading_layer/sprites/loading_game_logo.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="loading_text" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="371.0, 467.0" />
+			<position-type value="relative" />
+			<margin center-top="-45.0" />
+			<z-index value="3" />
 			<image id="loading_layer_loading_text" 
-				location-in-interfacebuilder="10.0, 10.0"
+				location-in-interfacebuilder="327.0, 548.0"
 				width="88.0" height="18.0"
 				phony-path="loading_layer/sprites/loading_text.png"  />
 		</sprite>

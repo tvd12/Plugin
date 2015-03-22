@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.tvd.gext.multipageeditor.elements.pages.LayoutMenuPage"/>
-<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.MenuItem"/>
-<fullyQualifiedTypeName name="com.tvd.gext.multipageeditor.elements.pages.LayoutMenuItemPage"/>
-<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.Table"/>
-<fullyQualifiedTypeName name="com.tvd.gext.multipageeditor.elements.pages.LayoutTablePage"/>
-<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.Cell"/>
-<fullyQualifiedTypeName name="com.tvd.gext.multipageeditor.elements.pages.LayoutCellLayout"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.Progressbar"/>
 <fullyQualifiedTypeName name="com.tvd.gext.multipageeditor.elements.pages.LayoutProgressbarPage"/>
 <fullyQualifiedTypeName name="org.omg.CORBA.OMGVMCID"/>
@@ -35,7 +28,6 @@
 <fullyQualifiedTypeName name="org.eclipse.swt.dnd.DragSourceListener"/>
 <fullyQualifiedTypeName name="org.eclipse.jface.viewers.ViewerDropAdapter"/>
 <fullyQualifiedTypeName name="org.eclipse.swt.dnd.DropTargetEvent"/>
-<fullyQualifiedTypeName name="org.eclipse.swt.dnd.DND"/>
 <fullyQualifiedTypeName name="org.eclipse.jface.viewers.TreeViewer"/>
 <fullyQualifiedTypeName name="com.tvd.gext.multipageeditor.pages.TreeViewDragListener"/>
 <fullyQualifiedTypeName name="com.tvd.gext.multipageeditor.pages.TreeViewDropListener"/>
@@ -52,12 +44,20 @@
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.Identifier"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.constants.Attribute"/>
+<fullyQualifiedTypeName name="org.eclipse.jface.viewers.IStructuredSelection"/>
+<fullyQualifiedTypeName name="org.eclipse.ui.part.PluginTransfer"/>
+<fullyQualifiedTypeName name="org.eclipse.ui.part.PluginTransferData"/>
+<fullyQualifiedTypeName name="com.tvd.gext.multipageeditor.pages.TreeDragTransfer"/>
+<fullyQualifiedTypeName name="com.tvd.gext.multipageeditor.pages.LayoutPropertiesDropListener"/>
+<fullyQualifiedTypeName name="com.tvd.gext.multipageeditor.pages.LayoutPropertiesDragTransfer"/>
+<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.View"/>
+<fullyQualifiedTypeName name="org.eclipse.swt.dnd.DND"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.ItemGroup"/>
 <fullyQualifiedTypeName name="java.lang.Object"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.basic.CommonObject"/>
-<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.View"/>
+<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.global.Config"/>
+<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.basic.Size"/>
 <fullyQualifiedTypeName name="java.lang.Override"/>
-<fullyQualifiedTypeName name="org.eclipse.ui.part.PluginTransfer"/>
-<fullyQualifiedTypeName name="com.tvd.gext.multipageeditor.pages.TreeDragTransfer"/>
-<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.constants.Attribute"/>
+<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.basic.Point"/>
 </qualifiedTypeNameHistroy>
