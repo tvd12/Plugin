@@ -26,13 +26,13 @@
 		<sprite visible="true" comment="">
 			<position-name value="bottom_bg" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="154.5, 77.5" />
+			<position value="125.5, 77.5" />
 			<position-type value="relative" />
 			<margin bottom="77.5" />
 			<z-index value="3" />
 			<image id="home_layer_bottom_bg_home_bottom_bg" 
 				location-in-interfacebuilder="-70.0, 388.0"
-				width="449.0" height="205.0"
+				width="391.0" height="205.0"
 				phony-path="home_layer/sprites/bottom_bg/home_bottom_bg.png"  />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
@@ -92,11 +92,11 @@
 				<sprite visible="true" comment="">
 					<position-name value="windmill" />
 					<anchorpoint value="0.5, 0.5" />
-					<position value="338.5, 183.5" />
+					<position value="340.0, 183.5" />
 					<z-index value="1" />
 					<image id="home_layer_bottom_bg_windmill_home_windmill" 
 						location-in-interfacebuilder="247.0, 382.0"
-						width="43.0" height="55.0"
+						width="46.0" height="55.0"
 						phony-path="home_layer/sprites/bottom_bg/sprites/windmill/home_windmill.png"  />
 					<sprites array="false" comment="create group of sprites">
 						<sprite visible="true" comment="">
@@ -144,11 +144,11 @@
 				<sprite visible="true" comment="">
 					<position-name value="common_settings" />
 					<anchorpoint value="0.5, 0.5" />
-					<position value="108.5, 70.0" />
+					<position value="108.0, 70.5" />
 					<z-index value="20" />
 					<image id="home_layer_common_settings" 
 						location-in-interfacebuilder="17.0, 501.0"
-						width="43.0" height="44.0"
+						width="42.0" height="43.0"
 						phony-path="home_layer/sprites/common_settings.png"  />
 				</sprite>
 				<sprite visible="true" comment="">
