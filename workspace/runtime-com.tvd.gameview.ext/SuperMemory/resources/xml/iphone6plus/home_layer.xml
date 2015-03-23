@@ -153,8 +153,8 @@
 				</sprite>
 				<sprite visible="true" comment="">
 					<position-name value="infor_bg" />
-					<anchorpoint value="0.5, 0.5" />
-					<position value="452.0, 168.0" />
+					<anchorpoint value="0.5, 0.0" />
+					<position value="452.0, 57.0" />
 					<z-index value="18" />
 					<image id="home_layer_infor_bg_common_info_bg" 
 						location-in-interfacebuilder="336.0, 488.0"
@@ -195,8 +195,8 @@
 				</sprite>
 				<sprite visible="true" comment="">
 					<position-name value="settings_bg" />
-					<anchorpoint value="0.5, 0.5" />
-					<position value="144.0, 168.0" />
+					<anchorpoint value="0.5, 0.0" />
+					<position value="144.0, 57.0" />
 					<z-index value="13" />
 					<image id="home_layer_settings_bg_common_settings_bg" 
 						location-in-interfacebuilder="28.0, 488.0"
