@@ -56,6 +56,8 @@ public class AdvancedObject extends CommonObject {
 		this.mBackgroundName = Strings.DEFAULT;
 		this.mIsNewClass = true;
 		this.mIsExported = false;
+		this.mIsDeclarePositions = false;
+		this.mIsImplementPositions = false;
 		
 		this.mAuthor = System.getProperty("user.name");
 	}
@@ -586,6 +588,8 @@ public class AdvancedObject extends CommonObject {
 	private List<AdvancedObject> mAdvancedChilds;
 	
 	protected boolean mIsExported;
+	protected boolean mIsDeclarePositions;
+	protected boolean mIsImplementPositions;
 	
 	protected String mAuthor;
 }

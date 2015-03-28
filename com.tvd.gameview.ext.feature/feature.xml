@@ -2,7 +2,7 @@
 <feature
       id="com.tvd.gameview.ext.feature"
       label="Game View Ext"
-      version="1.9.4.qualifier"
+      version="1.9.7.qualifier"
       provider-name="TVD"
       plugin="com.tvd.gameview.ext">
 
@@ -34,7 +34,7 @@
          id="com.tvd.gameview.ext"
          download-size="0"
          install-size="0"
-         version="1.9.4.qualifier"
+         version="1.9.7.qualifier"
          unpack="false"/>
 
 </feature>

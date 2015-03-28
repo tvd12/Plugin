@@ -13,16 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="refresh" key="selection"/>
+		<item value="setType" key="selection"/>
 		<list key="findhistory">
-			<item value="refresh"/>
-			<item value="refreshCon"/>
-			<item value="setPosition"/>
-			<item value="reloadSize"/>
-			<item value="refreshC"/>
-			<item value="setSize"/>
+			<item value="setType"/>
+			<item value="declareImageI"/>
+			<item value="device"/>
+			<item value="reloadSi"/>
+			<item value="refres"/>
+			<item value="refresg"/>
 			<item value="setBack"/>
-			<item value="refreshcon"/>
+			<item value="background"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Activator"/>

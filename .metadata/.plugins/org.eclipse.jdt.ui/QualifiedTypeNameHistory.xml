@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.Progressbar"/>
-<fullyQualifiedTypeName name="com.tvd.gext.multipageeditor.elements.pages.LayoutProgressbarPage"/>
 <fullyQualifiedTypeName name="org.omg.CORBA.OMGVMCID"/>
 <fullyQualifiedTypeName name="org.eclipse.swt.events.SelectionListener"/>
 <fullyQualifiedTypeName name="org.eclipse.swt.events.SelectionAdapter"/>
@@ -55,9 +53,11 @@
 <fullyQualifiedTypeName name="org.eclipse.swt.dnd.DND"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.ItemGroup"/>
 <fullyQualifiedTypeName name="java.lang.Object"/>
-<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.basic.CommonObject"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.global.Config"/>
-<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.basic.Size"/>
-<fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.basic.Point"/>
+<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.basic.CommonObject"/>
+<fullyQualifiedTypeName name="com.tvd.cocos2dx.popup.creator.model.basic.Size"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
 </qualifiedTypeNameHistroy>

@@ -86,7 +86,8 @@ public abstract class CommonObject extends BasicObject
 	
 	public String declarePositions() {
 		StringBuilder builder = new StringBuilder();
-		if(mPositionName != null 
+		if(!isUnlocated()
+				&& mPositionName != null 
 				&& mPositionString != null
 				&& !mPositionString.equals(Strings.DEFAULT)) {
 			String template = new FileUtils().fetchTemplate(
@@ -123,7 +124,8 @@ public abstract class CommonObject extends BasicObject
 				getPostionTemplateFilePath(), 
 				getProject());
 		StringBuilder builder = new StringBuilder();
-		if(mPositionString != null 
+		if(!isUnlocated()
+				&& mPositionString != null 
 				&& mPositionName != null
 				&& !mPositionString.equals(Strings.DEFAULT)) {
 			String spaces = StringUtils.space(60 - mPositionName.length());
@@ -964,6 +966,21 @@ public abstract class CommonObject extends BasicObject
 		}
 		
 		return null;
+	}
+	
+	public void reloadSizeForImageOfFriends() {
+		if(getImage() == null
+				|| getGroup() == null
+				|| !getGroup().isArray()
+				|| getGroup().numberOfItems() == 0) {
+			return;
+		}
+		for(int i = 0 ; i < getGroup().getArrayLength() ; i++) {
+			CommonObject obj = getGroup().getItem(i);
+			if(obj != null && obj.getImage() != null) {
+				obj.getImage().setSize(getImage().getSize(), false);
+			}
+		}
 	}
 	
 	public void setAllPropertiesForObject(CommonObject obj) {

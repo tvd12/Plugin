@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view class-name="WonOfflinePopup" prefix="popup_won_offline" type="popup" exitable="true" 
-		super="PopupLayer" background-name="default" size="261.0, 261.0"
-		template-name="Common extend table"
+		super="PopupLayer" background-name="default" size="576.0, 586.0"
+		template-name="Common"
 		exported="false"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
@@ -14,27 +14,63 @@
 	<images-inputpath value="/Users/dungtavan/Desktop/Dialog/won_offline_popup" />
 	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPadhd" />
 	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPadhd" used="true" />
-	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPadhd" />
-	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPadhd" />
-	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup" />
+	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPhonehd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPhonehd" />
+	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup/Dialog" />
 	<background-image id="won_offline_popup_background_won_offline_bg" 
-		location-in-interfacebuilder="10.0, 10.0"
-		width="261.0" height="261.0"
+		location-in-interfacebuilder="30.0, 153.0"
+		width="576.0" height="586.0"
 		phony-path="won_offline_popup/background/won_offline_bg.png"  />
 	<exit-image position="0.0, 0.0" location-in-interfacebuilder="100.0, 100.0" />
 
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="won_offline_player" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="288.5, 406.5" />
+			<z-index value="1" />
+			<image id="won_offline_player" 
+				location-in-interfacebuilder="255.0, 269.0"
+				width="127.0" height="127.0"
+				phony-path="main_game_layer/resource/main_symbol_x.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="You win!" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="24.0" />
+			<position-name value="notify" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="288.0, 293.0" />
+			<location-in-interfacebuilder value="270.0, 434.0" />
+			<z-index value="4" />
+		</label>
+		<label visible="true" comment="">
+			<text value="GOOD LUCK NEXT TIME" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="13.0" />
+			<position-name value="finish_title" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="288.0, 127.5" />
+			<location-in-interfacebuilder value="256.0, 605.0" />
+			<z-index value="3" />
+		</label>
+	</labels>
 	<menuitems array="false" comment="create group of menuitems">
 		<menuitem visible="true" comment="">
 			<position-name value="finish" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="0.0, 0.0" />
+			<position value="288.0, 127.0" />
 			<z-index value="0" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
 					<position-name value="won_offline_finish_active" unlocated="true" />
 					<image id="won_offline_popup_finish_won_offline_finish_active" 
-						location-in-interfacebuilder="10.0, 10.0"
-						width="177.0" height="45.0"
+						location-in-interfacebuilder="153.0, 567.0"
+						width="330.0" height="90.0"
 						phony-path="won_offline_popup/menuitems/finish/sprites/won_offline_finish_active.png"  />
 				</sprite>
 				<sprite visible="true" comment="">

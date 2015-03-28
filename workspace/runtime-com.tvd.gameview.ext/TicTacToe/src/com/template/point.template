@@ -8,7 +8,7 @@
 #end
 
 #CCPoint implementing template
-{var_name}{tab}{tab}{tab}= CCPoint({position});
+{var_name}{spaces}= CCPoint({position});
 
 #end	
 
@@ -18,6 +18,6 @@
 #end
 
 #Point implementing template
-{var_name}{tab}{tab}{tab}= Point({position});
+{var_name}{spaces}= Point({position});
 
 #end

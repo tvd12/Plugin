@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view class-name="HomeLayer" prefix="layer_home" type="layer" exitable="false" 
-		super="CommonLayer" background-name="default" size="320.0, 568.0"
+		super="CommonLayer" background-name="default" size="768.0, 1024.0"
 		template-name="Common"
 		exported="false"
 		comment=""
@@ -18,39 +18,39 @@
 	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPadhd" />
 	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Layer" />
 	<background-image id="home_layer_background_bg_home" 
-		location-in-interfacebuilder="10.0, 10.0"
-		width="320.0" height="568.0"
+		location-in-interfacebuilder="0.0, 0.0"
+		width="768.0" height="1024.0"
 		phony-path="home_layer/background/bg_home.png"  />
 
 	<sprites array="false" comment="create group of sprites">
 		<sprite visible="true" comment="">
 			<position-name value="home_dock_bottom" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="384.0, 39.5" />
+			<z-index value="2" />
 			<image id="home_layer_home_dock_bottom" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="320.0" height="44.0"
+				location-in-interfacebuilder="0.0, 945.0"
+				width="768.0" height="79.0"
 				phony-path="home_layer/sprites/home_dock_bottom.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="home_header" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="384.0, 914.5" />
+			<z-index value="3" />
 			<image id="home_layer_home_header" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="320.0" height="99.0"
+				location-in-interfacebuilder="0.0, 0.0"
+				width="768.0" height="219.0"
 				phony-path="home_layer/sprites/home_header.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="home_xo" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="384.5, 153.5" />
+			<z-index value="4" />
 			<image id="home_layer_home_xo" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="58.0" height="120.0"
+				location-in-interfacebuilder="339.0, 782.0"
+				width="91.0" height="177.0"
 				phony-path="home_layer/sprites/home_xo.png"  />
 		</sprite>
 	</sprites>
@@ -58,14 +58,14 @@
 		<menuitem visible="true" comment="">
 			<position-name value="facebook" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="0.0, 0.0" />
+			<position value="643.0, 96.5" />
 			<z-index value="0" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
 					<position-name value="home_facebook_active" unlocated="true" />
 					<image id="home_layer_facebook_home_facebook_active" 
-						location-in-interfacebuilder="10.0, 10.0"
-						width="60.0" height="67.0"
+						location-in-interfacebuilder="585.0, 867.0"
+						width="116.0" height="121.0"
 						phony-path="home_layer/menuitems/facebook/sprites/home_facebook_active.png"  />
 				</sprite>
 				<sprite visible="true" comment="">
@@ -78,14 +78,14 @@
 		<menuitem visible="true" comment="">
 			<position-name value="multiplayer" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="0.0, 0.0" />
+			<position value="384.0, 622.0" />
 			<z-index value="0" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
 					<position-name value="home_multiplayer_active" unlocated="true" />
 					<image id="home_layer_multiplayer_home_multiplayer_active" 
-						location-in-interfacebuilder="10.0, 10.0"
-						width="286.0" height="93.0"
+						location-in-interfacebuilder="96.0, 308.0"
+						width="576.0" height="188.0"
 						phony-path="home_layer/menuitems/multiplayer/sprites/home_multiplayer_active.png"  />
 				</sprite>
 				<sprite visible="true" comment="">
@@ -98,14 +98,14 @@
 		<menuitem visible="true" comment="">
 			<position-name value="rate" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="0.0, 0.0" />
+			<position value="128.0, 96.5" />
 			<z-index value="0" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
 					<position-name value="home_rate_active" unlocated="true" />
 					<image id="home_layer_rate_home_rate_active" 
-						location-in-interfacebuilder="10.0, 10.0"
-						width="60.0" height="67.0"
+						location-in-interfacebuilder="70.0, 867.0"
+						width="116.0" height="121.0"
 						phony-path="home_layer/menuitems/rate/sprites/home_rate_active.png"  />
 				</sprite>
 				<sprite visible="true" comment="">
@@ -118,14 +118,14 @@
 		<menuitem visible="true" comment="">
 			<position-name value="training" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="0.0, 0.0" />
+			<position value="384.0, 417.0" />
 			<z-index value="0" />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
 					<position-name value="home_training_active" unlocated="true" />
 					<image id="home_layer_training_home_training_active" 
-						location-in-interfacebuilder="10.0, 10.0"
-						width="286.0" height="93.0"
+						location-in-interfacebuilder="96.0, 513.0"
+						width="576.0" height="188.0"
 						phony-path="home_layer/menuitems/training/sprites/home_training_active.png"  />
 				</sprite>
 				<sprite visible="true" comment="">

@@ -289,7 +289,7 @@ public class Image implements Comparable<Image> {
 		this.mX = pX;// + mAnchorPoint.getX()*mSize.getWidth();
 		this.mY = pY;// + mAnchorPoint.getY()*mSize.getHeight();
 		this.setLocationInInterfaceBuilder(pX, pY);
-		this.mParent.setLocationInView(pX, pY);
+//		this.mParent.setLocationInView(pX, pY);
 	}
 	
 	public void alignFollowParrent() {
@@ -405,11 +405,15 @@ public class Image implements Comparable<Image> {
 		}
 	}
 	
-	public void setSize(Size size) {
+	public void setSize(Size size, boolean setForParent) {
 		this.mSize = size;
-		if(mParent != null) {
+		if(setForParent && mParent != null) {
 			this.mParent.setSize(size);
 		}
+	}
+	
+	public void setSize(Size size) {
+		setSize(size, true);
 	}
 	
 	public void setSize(float w, float h) {
@@ -453,10 +457,7 @@ public class Image implements Comparable<Image> {
 	}
 	
 	public void setLocationInInterfaceBuilder(Point location) {
-		this.mLocationInInterfaceBuilder = location;
-		if(mParent != null) {
-			this.mParent.setLocationInView(location);
-		}
+		setLocationInInterfaceBuilder(location, true);
 	}
 	
 	public void setLocationInInterfaceBuilder(Point location,

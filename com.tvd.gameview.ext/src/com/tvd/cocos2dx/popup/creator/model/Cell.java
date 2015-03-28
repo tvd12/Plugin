@@ -93,6 +93,22 @@ public class Cell extends CommonObject {
 		return "this";
 	}
 	
+	@Override
+	public String declarePositions() {
+		StringBuilder builder = new StringBuilder()
+			.append(super.declarePositions())
+			.append(getAdvancedObject().declarePositions());
+		return builder.toString();
+	}
+	
+	@Override
+	public String implementPositions() {
+		StringBuilder builder = new StringBuilder()
+			.append(super.implementPositions())
+			.append(getAdvancedObject().implementPositions());
+		return builder.toString();
+	}
+	
 	private void checkColumnArray() {
 		List<List<ItemGroup>> groups = new ArrayList<List<ItemGroup>>();
 		groups.add(mLabelGroups);

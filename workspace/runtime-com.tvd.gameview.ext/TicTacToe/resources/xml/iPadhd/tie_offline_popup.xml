@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view class-name="TieOfflinePopup" prefix="popup_tie_offline" type="popup" exitable="true" 
-		super="PopupLayer" background-name="default" size="320.0, 480.0"
-		template-name="Common extend table"
+		super="PopupLayer" background-name="default" size="576.0, 586.0"
+		template-name="Common"
 		exported="false"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
@@ -15,33 +15,69 @@
 	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPadhd" />
 	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPadhd" used="true" />
 	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPadhd" />
-	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPadhd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPhonehd" />
 	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup" />
-	<background-image id="pop_common_bg" 
-		location-in-interfacebuilder="10.0, 10.0"
-		phony-path="pop_common_bg.png"  />
+	<background-image id="tie_offline_popup_background_tie_offline_bg" 
+		location-in-interfacebuilder="109.0, 206.0"
+		width="576.0" height="586.0"
+		phony-path="won_offline_popup/background/won_offline_bg.png"  />
 	<exit-image position="0.0, 0.0" location-in-interfacebuilder="100.0, 100.0" />
 
 	<sprites array="false" comment="create group of sprites">
 		<sprite visible="true" comment="">
 			<position-name value="tie_offline_symbol_xo" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="288.0, 392.0" />
+			<z-index value="1" />
 			<image id="tie_offline_popup_tie_offline_symbol_xo" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="109.0" height="57.0"
+				location-in-interfacebuilder="240.0, 314.0"
+				width="314.0" height="172.0"
 				phony-path="tie_offline_popup/sprites/tie_offline_symbol_xo.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="tie_offline_watch" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="394.0, 196.0" />
+			<z-index value="2" />
 			<image id="tie_offline_popup_tie_offline_watch" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="16.0" height="15.0"
+				location-in-interfacebuilder="486.0, 579.0"
+				width="34.0" height="34.0"
 				phony-path="tie_offline_popup/sprites/tie_offline_watch.png"  />
 		</sprite>
 	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="It's a Tie!" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="24.0" />
+			<position-name value="main_notify" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="288.0, 257.0" />
+			<location-in-interfacebuilder value="331.0, 523.0" />
+			<z-index value="3" />
+		</label>
+		<label visible="true" comment="">
+			<text value="The New Game will in:" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="16.0" />
+			<position-name value="sub_notify" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="215.0, 196.0" />
+			<location-in-interfacebuilder value="240.0, 588.0" />
+			<z-index value="4" />
+		</label>
+		<label visible="true" comment="">
+			<text value="3s" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="170" blue="15" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="second_value" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="430.0, 196.5" />
+			<location-in-interfacebuilder value="528.0, 586.0" />
+			<z-index value="5" />
+		</label>
+	</labels>
 </view>

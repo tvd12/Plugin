@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<view class-name="SettingOnlinePopup" prefix="popup_setting_online" type="popup" exitable="true" 
-		super="PopupLayer" background-name="default" size="320.0, 480.0"
-		template-name="Common extend table"
+<view class-name="SettingOnlinePopup" prefix="popup_setting_online" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" size="586.0, 716.0"
+		template-name="Common"
 		exported="false"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
@@ -14,12 +14,236 @@
 	<images-inputpath value="/Users/dungtavan/Desktop/Settings/setting_online_popup" />
 	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPadhd" />
 	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPadhd" used="true" />
-	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPadhd" />
-	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPadhd" />
+	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPhonehd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPhonehd" />
 	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup" />
-	<background-image id="pop_common_bg" 
-		location-in-interfacebuilder="10.0, 10.0"
-		phony-path="pop_common_bg.png"  />
-	<exit-image position="251.5, 313.5" location-in-interfacebuilder="242.0, 8.0" />
+	<background-image id="setting_online_popup_background_bg" 
+		location-in-interfacebuilder="91.0, 154.0"
+		width="586.0" height="716.0"
+		phony-path="profile_popup/background/bg.png"  />
 
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="setting_header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="293.0, 676.0" />
+			<z-index value="2" />
+			<image id="setting_online_popup_setting_header" 
+				location-in-interfacebuilder="310.0, 179.0"
+				width="148.0" height="30.0"
+				phony-path="setting_offline_popup/sprites/setting_header.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="Sound" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="sound" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="85.0, 562.5" />
+			<location-in-interfacebuilder value="176.0, 299.0" />
+			<z-index value="9" />
+		</label>
+		<label visible="true" comment="">
+			<text value="FB Connect" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="fbconnect" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="85.0, 452.5" />
+			<location-in-interfacebuilder value="176.0, 409.0" />
+			<z-index value="10" />
+		</label>
+		<label visible="true" comment="">
+			<text value="FB Page" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="fbpage" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="85.0, 341.5" />
+			<location-in-interfacebuilder value="176.0, 520.0" />
+			<z-index value="11" />
+		</label>
+		<label visible="true" comment="">
+			<text value="Feedback" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="feedback" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="85.0, 238.5" />
+			<location-in-interfacebuilder value="176.0, 623.0" />
+			<z-index value="16" />
+		</label>
+		<label visible="true" comment="">
+			<text value="LIKE" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="13.0" />
+			<position-name value="like" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="429.0, 341.5" />
+			<location-in-interfacebuilder value="520.0, 522.0" />
+			<z-index value="12" />
+		</label>
+		<label visible="true" comment="">
+			<text value="EMAIL" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="13.0" />
+			<position-name value="email" />
+			<anchorpoint value="1.0, 0.5" />
+			<position value="459.0, 238.5" />
+			<location-in-interfacebuilder value="517.0, 625.0" />
+			<z-index value="13" />
+		</label>
+		<label visible="true" comment="">
+			<text value="HELP" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="help" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="149.0, 97.5" />
+			<location-in-interfacebuilder value="240.0, 765.0" />
+			<z-index value="14" />
+		</label>
+		<label visible="true" comment="">
+			<text value="EXIT" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="exit" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="405.0, 94.5" />
+			<location-in-interfacebuilder value="496.0, 768.0" />
+			<z-index value="15" />
+		</label>
+	</labels>
+	<menuitems array="false" comment="create group of menuitems">
+		<menuitem visible="true" comment="">
+			<position-name value="like" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="442.5, 341.5" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="setting_like_active" unlocated="true" />
+					<image id="setting_online_popup_like_setting_button_active" 
+						location-in-interfacebuilder="453.0, 492.0"
+						width="161.0" height="73.0"
+						phony-path="setting_offline_popup/menuitems/function/sprites/setting_button_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="setting_like_normal" unlocated="true" />
+					<image id="setting_online_popup_like_setting_button_normal" 
+						phony-path="setting_offline_popup/menuitems/function/sprites/setting_button_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+		<menuitem visible="true" comment="">
+			<position-name value="email" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="442.5, 238.5" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="setting_email_active" unlocated="true" />
+					<image id="setting_online_popup_email_setting_button_active" 
+						location-in-interfacebuilder="453.0, 595.0"
+						width="161.0" height="73.0"
+						phony-path="setting_offline_popup/menuitems/function/sprites/setting_button_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="setting_email_normal" unlocated="true" />
+					<image id="setting_online_popup_email_setting_button_normal" 
+						phony-path="setting_offline_popup/menuitems/function/sprites/setting_button_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+		<menuitem visible="true" comment="">
+			<position-name value="sound" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="442.5, 562.5" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="setting_sound_toggle_active" unlocated="true" />
+					<image id="setting_online_popup_sound_setting_button_toggle_active" 
+						location-in-interfacebuilder="453.0, 271.0"
+						width="161.0" height="73.0"
+						phony-path="setting_offline_popup/menuitems/sound/sprites/setting_button_toggle_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="setting_sound_toggle_normal" unlocated="true" />
+					<image id="setting_online_popup_sound_setting_button_toggle_normal" 
+						phony-path="setting_offline_popup/menuitems/sound/sprites/setting_button_toggle_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+		<menuitem visible="true" comment="">
+			<position-name value="fb_connect" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="442.5, 452.5" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="setting_fb_connect_toggle_active" unlocated="true" />
+					<image id="setting_online_popup_fb_connect_setting_button_toggle_active" 
+						location-in-interfacebuilder="453.0, 381.0"
+						width="161.0" height="73.0"
+						phony-path="setting_offline_popup/menuitems/sound/sprites/setting_button_toggle_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="setting_fb_connect_toggle_normal" unlocated="true" />
+					<image id="setting_online_popup_fb_connect_setting_button_toggle_normal" 
+						phony-path="setting_offline_popup/menuitems/sound/sprites/setting_button_toggle_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+		<menuitem visible="true" comment="">
+			<position-name value="close" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="164.0, 97.0" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="setting_online_help_active" unlocated="true" />
+					<image id="setting_online_popup_setting_help_active" 
+						location-in-interfacebuilder="146.0, 732.0"
+						width="218.0" height="82.0"
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="setting_online_help_normal" unlocated="true" />
+					<image id="setting_online_popup_setting_help_normal" 
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+		<menuitem visible="true" comment="">
+			<position-name value="exit_right" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="420.0, 97.0" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="setting_online_exit_active" unlocated="true" />
+					<image id="setting_online_exit_setting_exit_active" 
+						location-in-interfacebuilder="402.0, 732.0"
+						width="218.0" height="82.0"
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="setting_online_exit_normal" unlocated="true" />
+					<image id="setting_online_exit_setting_exit_normal" 
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+	</menuitems>
 </view>

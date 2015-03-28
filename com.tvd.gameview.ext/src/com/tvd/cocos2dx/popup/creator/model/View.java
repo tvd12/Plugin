@@ -507,6 +507,11 @@ public class View extends AdvancedObject implements IContainer {
 				mLabels.get(i).alignFollowParrent();
 			}
 			
+			if(mBackgroundImage != null) {
+				mBackgroundImage.setLocationInInterfaceBuilder(getLocationInView(), 
+						false);
+			}
+			
 			writeXMLToFile();
 		}
 	}
@@ -587,6 +592,7 @@ public class View extends AdvancedObject implements IContainer {
 		for(int i = 0 ; i < getImages().size() ; i++) {
 			if(getImages().get(i) != null) {
 				getImages().get(i).reloadSize(mImagesPath, scaleFactor);
+				getImages().get(i).getParent().reloadSizeForImageOfFriends();
 			}
 		}
 		if(mBackgroundImage != null) {
@@ -715,6 +721,13 @@ public class View extends AdvancedObject implements IContainer {
 		} else {
 			mBackgroundImage.replaceWithAnother(img);
 		}
+		
+		if(mBackgroundImage != null) {
+//			this.mBackgroundImage = mBackgroundImage.clone();
+			this.mBackgroundImage.setIsBackground(true);
+//			this.mBackgroundImage.setExists(true);
+			this.mBackgroundImage.setParent(this);
+		}
 	}
 	
 	@Override
@@ -730,6 +743,9 @@ public class View extends AdvancedObject implements IContainer {
 			Image bgImg = config.getDefaultBackgroundImage(
 					type);
 			if(bgImg != null) {
+				bgImg.setParent(this);
+				bgImg.setExists(true);
+				bgImg.setXMLTagName(Tag.BACKGROUND_IMAGE);
 				if(mBackgroundImage == null) {
 					this.mBackgroundImage = bgImg;
 					this.mImages.add(mBackgroundImage);
@@ -739,9 +755,9 @@ public class View extends AdvancedObject implements IContainer {
 				}
 			}
 			if(mBackgroundImage != null) {
-				this.mBackgroundImage = mBackgroundImage.clone();
+//				this.mBackgroundImage = mBackgroundImage.clone();
 				this.mBackgroundImage.setIsBackground(true);
-				this.mBackgroundImage.setExists(true);
+//				this.mBackgroundImage.setExists(true);
 				this.mBackgroundImage.setParent(this);
 			}
 			this.mExitResource = config.getDefaultExitResource(
@@ -753,6 +769,7 @@ public class View extends AdvancedObject implements IContainer {
 				Image exitImage = mExitResource.getImage(0);
 				exitImage.setExists(true);
 				mExitSprite = new Sprite(exitImage);
+				exitImage.setParent(mExitSprite);
 				mExitSprite.setParent(this);
 				mExitSprite.setPositionName(mPrefix, 
 						mExitResource.getImage(0).getId());
