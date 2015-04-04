@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<view class-name="WinOnlinePopup" prefix="popup_win_online" type="popup" exitable="true" 
-		super="PopupLayer" background-name="default" size="320.0, 480.0"
-		template-name="Common extend table"
+<view class-name="WinOnlinePopup" prefix="popup_win_online" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" 
+		size="576.0, 586.0" size-by="background"
+		template-name="Common"
 		exported="false"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
@@ -14,44 +15,164 @@
 	<images-inputpath value="/Users/dungtavan/Desktop/Win_Online/win_online_popup" />
 	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPadhd" />
 	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPadhd" used="true" />
-	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPadhd" />
-	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPadhd" />
+	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPhonehd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPhonehd" />
 	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup" />
-	<background-image id="pop_common_bg" 
-		location-in-interfacebuilder="10.0, 10.0"
-		phony-path="pop_common_bg.png"  />
-	<exit-image position="0.0, 0.0" location-in-interfacebuilder="100.0, 100.0" />
+	<background-image id="win_online_popup_background" 
+		location-in-interfacebuilder="32.0, 153.0"
+		width="576.0" height="586.0"
+		phony-path="won_offline_popup/background/won_offline_bg.png"  />
 
 	<sprites array="false" comment="create group of sprites">
 		<sprite visible="true" comment="">
 			<position-name value="win_online_congrats_text" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="288.0, 334.5" />
+			<z-index value="1" />
 			<image id="win_online_popup_win_online_congrats_text" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="168.0" height="26.0"
+				location-in-interfacebuilder="236.0, 391.0"
+				width="168.0" height="27.0"
 				phony-path="win_online_popup/sprites/win_online__congrats_text.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="win_online_emotion" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="288.0, 446.0" />
+			<z-index value="2" />
 			<image id="win_online_popup_win_online_emotion" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="82.0" height="82.0"
+				location-in-interfacebuilder="230.0, 203.0"
+				width="180.0" height="180.0"
 				phony-path="win_online_popup/sprites/win_online_emotion.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="win_online_icon_star" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="288.0, 298.0" />
+			<z-index value="3" />
 			<image id="win_online_popup_win_online_icon_star" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="15.0" height="14.0"
+				location-in-interfacebuilder="305.0, 426.0"
+				width="30.0" height="30.0"
 				phony-path="win_online_popup/sprites/win_online_icon_star.png"  />
 		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="win_online_icon_coin" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="288.0, 260.0" />
+			<z-index value="6" />
+			<image id="win_online_popup_icon_coin" 
+				location-in-interfacebuilder="305.0, 464.0"
+				width="30.0" height="30.0"
+				phony-path="profile_popup/sprites/icon_coin.png"  />
+		</sprite>
 	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="Bonus:" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="bonus" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="238.0, 298.5" />
+			<location-in-interfacebuilder value="240.0, 432.0" />
+			<z-index value="7" />
+		</label>
+		<label visible="true" comment="">
+			<text value="3 score" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="234" green="171" blue="42" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="score" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="339.0, 298.5" />
+			<location-in-interfacebuilder value="341.0, 432.0" />
+			<z-index value="8" />
+		</label>
+		<label visible="true" comment="">
+			<text value="Prize:" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="prize" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="239.5, 260.5" />
+			<location-in-interfacebuilder value="250.0, 470.0" />
+			<z-index value="9" />
+		</label>
+		<label visible="true" comment="">
+			<text value="1 coin" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="234" green="171" blue="42" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="coin" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="336.5, 259.5" />
+			<location-in-interfacebuilder value="343.0, 471.0" />
+			<z-index value="12" />
+		</label>
+		<label visible="true" comment="">
+			<text value="CLOSE" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="close" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="159.0, 104.5" />
+			<location-in-interfacebuilder value="172.0, 627.0" />
+			<z-index value="10" />
+		</label>
+		<label visible="true" comment="">
+			<text value="SHARE FB" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="share" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="418.0, 101.5" />
+			<location-in-interfacebuilder value="420.0, 630.0" />
+			<z-index value="11" />
+		</label>
+	</labels>
+	<menuitems array="false" comment="create group of menuitems">
+		<menuitem visible="true" comment="">
+			<position-name value="close" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="239.0, 346.0" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="win_online_close_active" unlocated="true" />
+					<image id="win_online_popup_close_win_online_close_active" 
+						location-in-interfacebuilder="82.0, 594.0"
+						width="218.0" height="82.0"
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="win_online_close_normal" unlocated="true" />
+					<image id="win_online_popup_close_win_online_close_normal" 
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+		<menuitem visible="true" comment="">
+			<position-name value="share" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="121.0, 346.0" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="win_online_share_active" unlocated="true" />
+					<image id="win_online_popup_share_win_online_share_active" 
+						location-in-interfacebuilder="341.0, 594.0"
+						width="218.0" height="82.0"
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="win_online_share_normal" unlocated="true" />
+					<image id="win_online_popup_share_win_online_share_normal" 
+						phony-path="lose_online_popup/menuitems/close/sprites/lose_online_close_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+	</menuitems>
 </view>

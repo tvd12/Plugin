@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<view class-name="ShopPopup" prefix="popup_shop" type="popup" exitable="true" 
-		super="PopupLayer" background-name="default" size="320.0, 480.0"
-		template-name="Common extend table"
-		exported="false"
+<view class-name="ShopPopup" prefix="popup_shop" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" size="586.0, 716.0"
+		template-name="Common"
+		exported="true"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -14,58 +14,104 @@
 	<images-inputpath value="/Users/dungtavan/Desktop/TicTacToe/Buy_Coins/shop_popup" />
 	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPadhd" />
 	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPadhd" used="true" />
-	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPadhd" />
-	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPadhd" />
+	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPhonehd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPhonehd" />
 	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup" />
-	<background-image id="pop_common_bg" 
-		location-in-interfacebuilder="10.0, 10.0"
-		phony-path="pop_common_bg.png"  />
-	<exit-image position="0.0, 0.0" location-in-interfacebuilder="100.0, 100.0" />
+	<background-image id="shop_popup_background_bg" 
+		location-in-interfacebuilder="14.0, 1.0"
+		width="586.0" height="716.0"
+		phony-path="profile_popup/background/bg.png"  />
 
-	<sprites array="false" comment="create group of sprites">
+	<sprites array="true" length="4" comment="create group of sprites">
 		<sprite visible="true" comment="">
 			<position-name value="item" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="171.0, 512.0" />
+			<z-index value="1" />
 			<image id="shop_popup_item_shop_item_bg" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="108.0" height="108.0"
+				location-in-interfacebuilder="68.0, 88.0"
+				width="234.0" height="234.0"
 				phony-path="shop_popup/sprites/item/shop_item_bg.png"  />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
 					<position-name value="shop_coin_icon" />
 					<anchorpoint value="0.5, 0.5" />
-					<position value="50.0, 50.0" />
-					<z-index value="0" />
+					<position value="163.5, 25.5" />
+					<z-index value="2" />
 					<image id="shop_popup_item_shop_coin_icon" 
-						location-in-interfacebuilder="10.0, 10.0"
-						width="10.0" height="10.0"
+						location-in-interfacebuilder="222.0, 287.0"
+						width="19.0" height="19.0"
 						phony-path="shop_popup/sprites/item/sprites/shop_coin_icon.png"  />
 				</sprite>
 				<sprite visible="true" comment="">
 					<position-name value="shop_sale_bg" />
 					<anchorpoint value="0.5, 0.5" />
-					<position value="50.0, 50.0" />
-					<z-index value="0" />
+					<position value="117.0, 228.0" />
+					<z-index value="3" />
 					<image id="shop_popup_item_shop_sale_bg" 
-						location-in-interfacebuilder="10.0, 10.0"
-						width="50.0" height="17.0"
+						location-in-interfacebuilder="130.0, 75.0"
+						width="110.0" height="38.0"
 						phony-path="shop_popup/sprites/item/sprites/shop_sale_bg.png"  />
 				</sprite>
 			</sprites>
+			<labels array="false" comment="create group of labels">
+				<label visible="true" comment="">
+					<text value="$0.99" />
+					<font name="HelveticaNeue" family="Helvetica Neue" />
+					<font-color red="255" green="255" blue="255" alpha="255" />
+					<font-size value="13.0" />
+					<position-name value="price" />
+					<anchorpoint value="0.0, 0.5" />
+					<position value="24.0, 25.5" />
+					<location-in-interfacebuilder value="92.0, 290.0" />
+					<z-index value="8" />
+				</label>
+				<label visible="true" comment="">
+					<text value="100" />
+					<font name="HelveticaNeue" family="Helvetica Neue" />
+					<font-color red="255" green="255" blue="255" alpha="255" />
+					<font-size value="11.0" />
+					<position-name value="old_coins" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="188.5, 46.5" />
+					<location-in-interfacebuilder value="246.0, 270.0" />
+					<z-index value="9" />
+				</label>
+				<label visible="true" comment="">
+					<text value="-50%" />
+					<font name="HelveticaNeue" family="Helvetica Neue" />
+					<font-color red="234" green="171" blue="42" alpha="255" />
+					<font-size value="11.0" />
+					<position-name value="sale" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="117.0, 228.5" />
+					<location-in-interfacebuilder value="174.0, 88.0" />
+					<z-index value="10" />
+				</label>
+				<label visible="true" comment="">
+					<text value="100" />
+					<font name="HelveticaNeue" family="Helvetica Neue" />
+					<font-color red="234" green="171" blue="42" alpha="255" />
+					<font-size value="13.0" />
+					<position-name value="coins" />
+					<anchorpoint value="0.0, 0.5" />
+					<position value="177.0, 25.5" />
+					<location-in-interfacebuilder value="245.0, 290.0" />
+					<z-index value="11" />
+				</label>
+			</labels>
 			<menuitems array="false" comment="create group of menuitems">
 				<menuitem visible="true" comment="">
 					<position-name value="packet" />
 					<anchorpoint value="0.5, 0.5" />
-					<position value="0.0, 0.0" />
+					<position value="117.0, 133.0" />
 					<z-index value="0" />
 					<sprites array="false" comment="create group of sprites">
 						<sprite visible="true" comment="">
 							<position-name value="shop_packet1_active" unlocated="true" />
 							<image id="shop_popup_item_packet_shop_packet1_active" 
-								location-in-interfacebuilder="10.0, 10.0"
-								width="71.0" height="71.0"
+								location-in-interfacebuilder="117.0, 121.0"
+								width="136.0" height="136.0"
 								phony-path="shop_popup/sprites/item/menuitems/packet/sprites/shop_packet1_active.png"  />
 						</sprite>
 						<sprite visible="true" comment="">
@@ -77,14 +123,34 @@
 				</menuitem>
 			</menuitems>
 		</sprite>
+		<next visible="true" comment="">
+			<position value="420.0, 512.0" />
+			<image id="item_1" 
+				location-in-interfacebuilder="317.0, 88.0"
+				width="234.0" height="234.0" />
+		</next>
+		<next visible="true" comment="">
+			<position value="171.0, 239.0" />
+			<image id="item_2" 
+				location-in-interfacebuilder="68.0, 361.0"
+				width="234.0" height="234.0" />
+		</next>
+		<next visible="true" comment="">
+			<position value="420.0, 239.0" />
+			<image id="item_3" 
+				location-in-interfacebuilder="317.0, 361.0"
+				width="234.0" height="234.0" />
+		</next>
+	</sprites>
+	<sprites array="false" comment="create group of sprites">
 		<sprite visible="true" comment="">
 			<position-name value="shop_header" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="293.0, 677.0" />
+			<z-index value="7" />
 			<image id="shop_popup_shop_header" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="45.0" height="16.0"
+				location-in-interfacebuilder="261.0, 24.0"
+				width="92.0" height="32.0"
 				phony-path="shop_popup/sprites/shop_header.png"  />
 		</sprite>
 	</sprites>

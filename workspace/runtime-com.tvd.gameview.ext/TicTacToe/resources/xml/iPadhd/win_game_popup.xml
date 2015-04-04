@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<view class-name="WinGamePopup" prefix="popup_win_game" type="popup" exitable="true" 
-		super="PopupLayer" background-name="default" size="320.0, 480.0"
-		template-name="Common extend table"
+<view class-name="WinGamePopup" prefix="popup_win_game" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" 
+		size="576.0, 586.0" size-by="background"
+		template-name="Common"
 		exported="false"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
@@ -14,12 +15,102 @@
 	<images-inputpath value="/Users/dungtavan/Desktop/TicTacToe/Win_game/win_game_popup" />
 	<images-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/iPadhd" />
 	<xibcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Resources/screenshots/iPadhd" used="true" />
-	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPadhd" />
-	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPadhd" />
-	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup" />
-	<background-image id="pop_common_bg" 
-		location-in-interfacebuilder="10.0, 10.0"
-		phony-path="pop_common_bg.png"  />
-	<exit-image position="0.0, 0.0" location-in-interfacebuilder="100.0, 100.0" />
+	<screencontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Wireframing/WireframingScreen/iPhonehd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/proj.android/res/layout/iPhonehd" />
+	<class-path value="/Volumes/DATA/Working/TicTacToe/client/caroonline/CaroOnline/Classes/View/UI/Popup/Dialog" />
+	<background-image id="won_game_popup_background_won_offline_bg" 
+		location-in-interfacebuilder="30.0, 153.0"
+		width="576.0" height="586.0"
+		phony-path="won_offline_popup/background/won_offline_bg.png"  />
 
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="won_game_player" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="288.5, 413.5" />
+			<z-index value="1" />
+			<image id="won_game_player" 
+				location-in-interfacebuilder="255.0, 262.0"
+				width="127.0" height="127.0"
+				phony-path="main_game_layer/resource/main_symbol_x.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="win_game_icon_star" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="288.0, 267.0" />
+			<z-index value="2" />
+			<image id="win_game_popup_win_online_icon_star" 
+				location-in-interfacebuilder="303.0, 457.0"
+				width="30.0" height="30.0"
+				phony-path="win_online_popup/sprites/win_online_icon_star.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="Mr.Moon win!" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="24.0" />
+			<position-name value="username" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="288.0, 302.0" />
+			<location-in-interfacebuilder value="246.0, 425.0" />
+			<z-index value="4" />
+		</label>
+		<label visible="true" comment="">
+			<text value="Bonus:" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="bonus" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="231.0, 267.5" />
+			<location-in-interfacebuilder value="233.0, 463.0" />
+			<z-index value="7" />
+		</label>
+		<label visible="true" comment="">
+			<text value="3 score" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="234" green="171" blue="42" alpha="255" />
+			<font-size value="17.0" />
+			<position-name value="score" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="341.0, 267.5" />
+			<location-in-interfacebuilder value="341.0, 463.0" />
+			<z-index value="5" />
+		</label>
+		<label visible="true" comment="">
+			<text value="CONTINUE TOURNAMENT" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="13.0" />
+			<position-name value="finish_title" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="288.0, 94.5" />
+			<location-in-interfacebuilder value="256.0, 638.0" />
+			<z-index value="6" />
+		</label>
+	</labels>
+	<menuitems array="false" comment="create group of menuitems">
+		<menuitem visible="true" comment="">
+			<position-name value="finish" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="288.0, 94.0" />
+			<z-index value="0" />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="won_game_finish_active" unlocated="true" />
+					<image id="won_game_popup_finish_won_game_finish_active" 
+						location-in-interfacebuilder="153.0, 600.0"
+						width="330.0" height="90.0"
+						phony-path="won_offline_popup/menuitems/finish/sprites/won_offline_finish_active.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="won_game_finish_normal" unlocated="true" />
+					<image id="won_game_popup_finish_won_game_finish_normal" 
+						phony-path="won_offline_popup/menuitems/finish/sprites/won_offline_finish_normal.png"  />
+				</sprite>
+			</sprites>
+		</menuitem>
+	</menuitems>
 </view>

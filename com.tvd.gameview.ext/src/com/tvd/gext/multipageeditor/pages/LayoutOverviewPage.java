@@ -192,7 +192,7 @@ public class LayoutOverviewPage extends FormPage
 				else if(source == mTemplateNameText) {
 					mView.setTemplateName(text.getText());
 				}
-				setDirty(true);
+//				setDirty(true);
 			}
 		});
 		

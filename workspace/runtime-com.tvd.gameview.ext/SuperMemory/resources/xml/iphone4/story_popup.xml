@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="StoryPopup" prefix="popup_story" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" 
+		size="254.0, 381.0" size-by="background"
+		template-name="Common"
+		exported="true"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="story_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/story/story_popup" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/iphone4" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/iphone5" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphone5" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Popup" />
+	<background-image id="story_popup_background_common_popup_large_bg" 
+		location-in-interfacebuilder="33.0, 63.0"
+		width="254.0" height="381.0"
+		phony-path="common_popup_large_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="popup_common_close" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="98.5, 3.5" />
+			<z-index value="5" />
+			<image id="story_popup_popup_common_close" 
+				location-in-interfacebuilder="115.0, 424.0"
+				width="33.0" height="33.0"
+				phony-path="setting_popup/sprites/popup_common_close.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="story_play" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="156.5, 3.5" />
+			<z-index value="6" />
+			<image id="story_popup_play" 
+				location-in-interfacebuilder="173.0, 424.0"
+				width="33.0" height="33.0"
+				phony-path="custom_game_popup/sprites/custom_play.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="popup_common_ribbon" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="127.0, 376.0" />
+			<z-index value="1" />
+			<image id="story_popup_common_ribbon" 
+				location-in-interfacebuilder="65.0, 44.0"
+				width="190.0" height="48.0"
+				phony-path="setting_popup/sprites/popup_common_ribbon.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="story_header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="127.5, 384.5" />
+			<z-index value="2" />
+			<image id="story_popup_story_header" 
+				location-in-interfacebuilder="108.0, 50.0"
+				width="105.0" height="19.0"
+				phony-path="story_popup/sprites/story_header.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="story_roller" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="237.5, 336.5" />
+			<z-index value="4" />
+			<image id="story_popup_story_roller" 
+				location-in-interfacebuilder="268.0, 93.0"
+				width="5.0" height="29.0"
+				phony-path="story_popup/sprites/story_roller.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="story_ver_scrollbar" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="237.5, 190.5" />
+			<z-index value="3" />
+			<image id="story_popup_story_ver_scrollbar" 
+				location-in-interfacebuilder="268.0, 86.0"
+				width="5.0" height="335.0"
+				phony-path="story_popup/sprites/story_ver_scrollbar.png"  />
+		</sprite>
+	</sprites>
+</view>

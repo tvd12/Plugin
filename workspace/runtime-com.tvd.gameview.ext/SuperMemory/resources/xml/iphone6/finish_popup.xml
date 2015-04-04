@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="FinishPopup" prefix="popup_finish" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" 
+		size="299.0, 297.0" size-by="background"
+		template-name="Common"
+		exported="true"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="finish_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/finish/finish_popup" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/iphone6" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/iphone5" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphone5" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Popup" />
+	<background-image id="finish_popup_background" 
+		location-in-interfacebuilder="38.0, 187.0"
+		width="299.0" height="297.0"
+		phony-path="common_popup_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="popup_common_close" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="91.5, 4.0" />
+			<z-index value="12" />
+			<image id="finish_popup_popup_common_close" 
+				location-in-interfacebuilder="107.0, 457.0"
+				width="45.0" height="46.0"
+				phony-path="setting_popup/sprites/popup_common_close.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="popup_common_dashed" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="149.0, 143.0" />
+			<z-index value="10" />
+			<image id="finish_popup_popup_common_dashed" 
+				location-in-interfacebuilder="70.0, 340.0"
+				width="234.0" height="2.0"
+				phony-path="setting_popup/sprites/popup_common_dashed.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="popup_common_ribbon" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="149.5, 291.0" />
+			<z-index value="1" />
+			<image id="finish_popup_popup_common_ribbon" 
+				location-in-interfacebuilder="56.0, 160.0"
+				width="263.0" height="66.0"
+				phony-path="setting_popup/sprites/popup_common_ribbon.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="finish_next" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="206.5, 4.0" />
+			<z-index value="2" />
+			<image id="finish_popup_finish_next" 
+				location-in-interfacebuilder="222.0, 457.0"
+				width="45.0" height="46.0"
+				phony-path="finish_popup/sprites/finish_next.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="finish_best_score_text" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="35.0, 114.0" />
+			<z-index value="3" />
+			<image id="finish_popup_finish_best_score_text" 
+				location-in-interfacebuilder="73.0, 362.0"
+				width="104.0" height="16.0"
+				phony-path="finish_popup/sprites/finish_best_score_text.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="finish_replay" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="148.5, 4.0" />
+			<z-index value="4" />
+			<image id="finish_popup_finish_replay" 
+				location-in-interfacebuilder="164.0, 457.0"
+				width="45.0" height="46.0"
+				phony-path="finish_popup/sprites/finish_replay.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="finish_score_text" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="35.0, 172.0" />
+			<z-index value="5" />
+			<image id="finish_popup_finish_score_text" 
+				location-in-interfacebuilder="73.0, 304.0"
+				width="43.0" height="16.0"
+				phony-path="finish_popup/sprites/finish_score_text.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="finish_share_facebook" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="149.0, 53.5" />
+			<z-index value="6" />
+			<image id="finish_popup_finish_share_facebook" 
+				location-in-interfacebuilder="93.0, 412.0"
+				width="188.0" height="37.0"
+				phony-path="finish_popup/sprites/finish_share_facebook.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="finish_star_1" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="84.0, 219.0" />
+			<z-index value="7" />
+			<image id="finish_popup_finish_star_1" 
+				location-in-interfacebuilder="102.0, 245.0"
+				width="40.0" height="40.0"
+				phony-path="finish_popup/sprites/finish_star_1.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="finish_star_2" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="148.5, 227.5" />
+			<z-index value="8" />
+			<image id="finish_popup_finish_star_2" 
+				location-in-interfacebuilder="161.0, 232.0"
+				width="51.0" height="49.0"
+				phony-path="finish_popup/sprites/finish_star_2.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="finish_star_3" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="214.0, 219.0" />
+			<z-index value="9" />
+			<image id="finish_popup_finish_star_3" 
+				location-in-interfacebuilder="232.0, 245.0"
+				width="40.0" height="40.0"
+				phony-path="finish_popup/sprites/finish_star_3.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="finish_you_win_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="149.0, 304.5" />
+			<z-index value="11" />
+			<image id="finish_popup_finish_you_win_text" 
+				location-in-interfacebuilder="135.0, 168.0"
+				width="104.0" height="23.0"
+				phony-path="finish_popup/sprites/finish_you_win_text.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="3500" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="13.0" />
+			<position-name value="score" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="212.0, 170.5" />
+			<location-in-interfacebuilder value="250.0, 307.0" />
+			<z-index value="13" />
+		</label>
+		<label visible="true" comment="">
+			<text value="4321" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="13.0" />
+			<position-name value="best_score" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="212.0, 112.5" />
+			<location-in-interfacebuilder value="250.0, 365.0" />
+			<z-index value="14" />
+		</label>
+	</labels>
+	<resource comment="resource for view">
+		<image id="finish_popup_resource_finish_star_empty_1" 
+			phony-path="finish_popup/resource/finish_star_empty_1.png"  />
+		<image id="finish_popup_resource_finish_star_empty_2" 
+			phony-path="finish_popup/resource/finish_star_empty_2.png"  />
+		<image id="finish_popup_resource_finish_star_empty_3" 
+			phony-path="finish_popup/resource/finish_star_empty_3.png"  />
+		<image id="finish_popup_resource_finish_you_lose_text" 
+			phony-path="finish_popup/resource/finish_you_lose_text.png"  />
+	</resource>
+</view>

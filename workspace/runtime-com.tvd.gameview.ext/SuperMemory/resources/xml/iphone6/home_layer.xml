@@ -2,7 +2,7 @@
 <view class-name="HomeLayer" prefix="layer_home" type="layer" exitable="false" 
 		super="CommonLayer" background-name="this" size="375.0, 667.0"
 		template-name="Common"
-		exported="false"
+		exported="true"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

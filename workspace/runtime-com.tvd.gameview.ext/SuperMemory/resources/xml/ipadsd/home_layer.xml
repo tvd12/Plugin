@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view class-name="HomeLayer" prefix="layer_home" type="layer" exitable="false" 
-		super="CommonLayer" background-name="default" size="768.0, 1136.0"
+		super="CommonLayer" background-name="default" 
+		size="768.0, 1136.0" size-by="self"
 		template-name="Common"
 		exported="false"
 		comment=""
@@ -11,7 +12,7 @@
 	<position value="default" />
 	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
 	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
-	<images-inputpath value="/Users/dungtavan/Downloads/home/home_layer" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/home/home_layer" />
 	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/ipadsd" />
 	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/ipadsd" used="true" />
 	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/ipadsd" />
@@ -30,7 +31,7 @@
 			<z-index value="0" />
 			<image id="home_layer_bottom_bg_home_bottom_bg" 
 				location-in-interfacebuilder="10.0, 10.0"
-				width="898.0" height="410.0"
+				width="782.0" height="410.0"
 				phony-path="home_layer/sprites/bottom_bg/home_bottom_bg.png"  />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
@@ -54,34 +55,46 @@
 						phony-path="home_layer/sprites/bottom_bg/sprites/ship_water/home_ship_water.png"  />
 					<sprites array="false" comment="create group of sprites">
 						<sprite visible="true" comment="">
-							<position-name value="home_ship" />
+							<position-name value="ship" />
 							<anchorpoint value="0.5, 0.5" />
 							<position value="50.0, 50.0" />
 							<z-index value="0" />
-							<image id="home_layer_bottom_bg_ship_water_home_ship" 
+							<image id="home_layer_bottom_bg_ship_water_ship_home_ship" 
 								location-in-interfacebuilder="10.0, 10.0"
 								width="263.5" height="264.5"
-								phony-path="home_layer/sprites/bottom_bg/sprites/ship_water/sprites/home_ship.png"  />
-						</sprite>
-						<sprite visible="true" comment="">
-							<position-name value="home_ship_flag_1" />
-							<anchorpoint value="0.5, 0.5" />
-							<position value="50.0, 50.0" />
-							<z-index value="0" />
-							<image id="home_layer_bottom_bg_ship_water_home_ship_flag_1" 
-								location-in-interfacebuilder="10.0, 10.0"
-								width="50.0" height="23.5"
-								phony-path="home_layer/sprites/bottom_bg/sprites/ship_water/sprites/home_ship_flag_1.png"  />
-						</sprite>
-						<sprite visible="true" comment="">
-							<position-name value="home_ship_flag_2" />
-							<anchorpoint value="0.5, 0.5" />
-							<position value="50.0, 50.0" />
-							<z-index value="0" />
-							<image id="home_layer_bottom_bg_ship_water_home_ship_flag_2" 
-								location-in-interfacebuilder="10.0, 10.0"
-								width="50.0" height="23.5"
-								phony-path="home_layer/sprites/bottom_bg/sprites/ship_water/sprites/home_ship_flag_2.png"  />
+								phony-path="home_layer/sprites/bottom_bg/sprites/ship_water/sprites/ship/home_ship.png"  />
+							<sprites array="false" comment="create group of sprites">
+								<sprite visible="true" comment="">
+									<position-name value="home_ship_flag_1" />
+									<anchorpoint value="0.5, 0.5" />
+									<position value="50.0, 50.0" />
+									<z-index value="0" />
+									<image id="home_layer_bottom_bg_ship_water_ship_home_ship_flag_1" 
+										location-in-interfacebuilder="10.0, 10.0"
+										width="50.0" height="23.5"
+										phony-path="home_layer/sprites/bottom_bg/sprites/ship_water/sprites/ship/sprites/home_ship_flag_1.png"  />
+								</sprite>
+								<sprite visible="true" comment="">
+									<position-name value="home_ship_flag_2" />
+									<anchorpoint value="0.5, 0.5" />
+									<position value="50.0, 50.0" />
+									<z-index value="0" />
+									<image id="home_layer_bottom_bg_ship_water_ship_home_ship_flag_2" 
+										location-in-interfacebuilder="10.0, 10.0"
+										width="50.0" height="23.5"
+										phony-path="home_layer/sprites/bottom_bg/sprites/ship_water/sprites/ship/sprites/home_ship_flag_2.png"  />
+								</sprite>
+								<sprite visible="true" comment="">
+									<position-name value="home_ship_flag_3" />
+									<anchorpoint value="0.5, 0.5" />
+									<position value="50.0, 50.0" />
+									<z-index value="0" />
+									<image id="home_layer_bottom_bg_ship_water_ship_home_ship_flag_3" 
+										location-in-interfacebuilder="10.0, 10.0"
+										width="54.0" height="25.0"
+										phony-path="home_layer/sprites/bottom_bg/sprites/ship_water/sprites/ship/sprites/home_ship_flag_3.png"  />
+								</sprite>
+							</sprites>
 						</sprite>
 					</sprites>
 				</sprite>
@@ -95,6 +108,16 @@
 						width="91.5" height="109.5"
 						phony-path="home_layer/sprites/bottom_bg/sprites/windmill/home_windmill.png"  />
 					<sprites array="false" comment="create group of sprites">
+						<sprite visible="true" comment="">
+							<position-name value="home_windmill_middle" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="50.0, 50.0" />
+							<z-index value="0" />
+							<image id="home_layer_bottom_bg_windmill_home_windmill_middle" 
+								location-in-interfacebuilder="10.0, 10.0"
+								width="27.0" height="26.0"
+								phony-path="home_layer/sprites/bottom_bg/sprites/windmill/sprites/home_windmill_middle.png"  />
+						</sprite>
 						<sprite visible="true" comment="">
 							<position-name value="home_windmill_propeller" />
 							<anchorpoint value="0.5, 0.5" />
@@ -130,16 +153,6 @@
 				phony-path="home_layer/sprites/common_info_text.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
-			<position-name value="common_setting" />
-			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
-			<image id="home_layer_common_setting" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="84.0" height="86.5"
-				phony-path="home_layer/sprites/common_setting.png"  />
-		</sprite>
-		<sprite visible="true" comment="">
 			<position-name value="common_setting_text" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="50.0, 50.0" />
@@ -156,7 +169,7 @@
 			<z-index value="0" />
 			<image id="home_layer_common_settings" 
 				location-in-interfacebuilder="10.0, 10.0"
-				width="85.0" height="111.5"
+				width="84.0" height="86.5"
 				phony-path="home_layer/sprites/common_settings.png"  />
 		</sprite>
 		<sprite visible="true" comment="">

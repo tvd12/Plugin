@@ -65,9 +65,11 @@ public class View extends AdvancedObject implements IContainer {
 				Config.getInstance().getDefaultTemplateName("size");
 		this.mSizeTemplateFile = "size.template";
 		this.mLocationInView = new Point(0, 0);
-		this.mIsExitable = true;
+		this.mIsExitable = false;
 		this.setPosition(0, 0);
 		this.setAnchorPoint(0, 0);
+		
+		this.mSizeBy = Constants.SELF;
 	}
 	
 	@Override
@@ -496,8 +498,10 @@ public class View extends AdvancedObject implements IContainer {
 			XibFetcher xibFetcher = new XibFetcher(mImages, mLabels);
 			xibFetcher.fetchData(xibFilePath);
 //			FileUtils fileUtils = new FileUtils();
-			setSize(Config.getInstance()
+			if(getSizeBy().equals(Constants.SELF)) {
+				setSize(Config.getInstance()
 					.getDefaultScreenSizeString(getDevice()));
+			}
 			
 //			String fileContent = fileUtils.readFromFile(mXmlFile);
 			for(int i = 0 ; i < mImages.size() ; i++) {
@@ -760,28 +764,36 @@ public class View extends AdvancedObject implements IContainer {
 //				this.mBackgroundImage.setExists(true);
 				this.mBackgroundImage.setParent(this);
 			}
-			this.mExitResource = config.getDefaultExitResource(
-					type);
-			if(mExitResource != null 
-					&& mExitResource.getImages().size() > 0
-					&& mExitResource.getImage(0) != null 
-					&& mIsExitable) {
-				Image exitImage = mExitResource.getImage(0);
-				exitImage.setExists(true);
-				mExitSprite = new Sprite(exitImage);
-				exitImage.setParent(mExitSprite);
-				mExitSprite.setParent(this);
-				mExitSprite.setPositionName(mPrefix, 
-						mExitResource.getImage(0).getId());
-				this.mImages.add(exitImage);
-			} else {
-				mExitResource = null;
-			}
+			setExitItem();
 		}
 	}
 	
 	public void setExitable(boolean exitable) {
 		this.mIsExitable = exitable;
+		setExitItem();
+	}
+	
+	public void setExitItem() {
+		if(!mIsExitable) {
+			return;
+		}
+		this.mExitResource = Config.getInstance().getDefaultExitResource(
+				getType());
+		if(mExitResource != null 
+				&& mExitResource.getImages().size() > 0
+				&& mExitResource.getImage(0) != null 
+				&& mIsExitable) {
+			Image exitImage = mExitResource.getImage(0);
+			exitImage.setExists(true);
+			mExitSprite = new Sprite(exitImage);
+			exitImage.setParent(mExitSprite);
+			mExitSprite.setParent(this);
+			mExitSprite.setPositionName(mPrefix, 
+					mExitResource.getImage(0).getId());
+			this.mImages.add(exitImage);
+		} else {
+			mExitResource = null;
+		}
 	}
 	
 	public void setExitImageLocationInView(String location) {
@@ -926,6 +938,16 @@ public class View extends AdvancedObject implements IContainer {
 		
 	}
 	
+	public void setSizeBy(String sizeBy) {
+		if(sizeBy != null) {
+			mSizeBy = sizeBy;
+		}
+	}
+	
+	public String getSizeBy() {
+		return mSizeBy;
+	}
+	
 	@Override
 	public String toXML() {
 		StringBuilder builder = new StringBuilder("<?xml version=\"1.0\" " +
@@ -939,7 +961,8 @@ public class View extends AdvancedObject implements IContainer {
 			.append(Attribute.EXITABLE + "=\"" + mIsExitable + "\" ")
 			.append("\n\t\t" + Attribute.SUPER + "=\"" + mSuper + "\" ")
 			.append(Attribute.BACKGROUND_NAME + "=\"" + mBackgroundName + "\" ")
-			.append(Attribute.SIZE + "=\"" + mSize + "\"")
+			.append("\n\t\t" + Attribute.SIZE + "=\"" + mSize + "\" ")
+			.append(Attribute.SIZE_BY + "=\"" + getSizeBy() + "\"")
 			.append("\n\t\t" + Attribute.TEMPLATE_NAME + "=\"" + mTemplateName + "\"")
 			.append(exportedAtt)
 			.append("\n\t\t" + Attribute.COMMENT + "=\"" + mComment + "\"")
@@ -1021,6 +1044,7 @@ public class View extends AdvancedObject implements IContainer {
 	private String mAndroidContainerPath;
 	private String mScreenContainerPath;
 	private String mInterfaceBuilder;
+	private String mSizeBy;
 	
 	@SuppressWarnings("unused")
 	private String mXmlFilePath;

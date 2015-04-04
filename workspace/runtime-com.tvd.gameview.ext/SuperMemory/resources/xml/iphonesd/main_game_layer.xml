@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="MainGameLayer" prefix="layer_main_game" type="layer" exitable="false" 
+		super="CommonLayer" background-name="default" 
+		size="324.73572, 480.33826" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="main_game_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/main/main_game_layer" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/iphonesd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/iphonesd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/iphonesd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphonesd" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Layer" />
+	<background-image id="main_game_layer_background_main_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="324.73572" height="480.33826"
+		phony-path="main_game_layer/background/main_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="bottom" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="main_game_layer_bottom_main_bot_bg" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="618.1818" height="210.57083"
+				phony-path="main_game_layer/sprites/bottom/main_bot_bg.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="main_reset" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="main_game_layer_bottom_main_reset" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="36.78647" height="46.93446"
+						phony-path="main_game_layer/sprites/bottom/sprites/main_reset.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="main_trees_bot" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="main_game_layer_bottom_main_trees_bot" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="304.43976" height="113.10782"
+						phony-path="main_game_layer/sprites/bottom/sprites/main_trees_bot.png"  />
+				</sprite>
+			</sprites>
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="top" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="main_game_layer_top_main_top_bg" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="410.14798" height="265.96194"
+				phony-path="main_game_layer/sprites/top/main_top_bg.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="heart_container" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="main_game_layer_top_heart_container_main_life" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="94.291756" height="24.10148"
+						phony-path="main_game_layer/sprites/top/sprites/heart_container/main_life.png"  />
+					<sprites array="false" comment="create group of sprites">
+						<sprite visible="true" comment="">
+							<position-name value="main_heart" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="50.0, 50.0" />
+							<z-index value="0" />
+							<image id="main_game_layer_top_heart_container_main_heart" 
+								location-in-interfacebuilder="10.0, 10.0"
+								width="11.839323" height="11.205074"
+								phony-path="main_game_layer/sprites/top/sprites/heart_container/sprites/main_heart.png"  />
+						</sprite>
+						<sprite visible="true" comment="">
+							<position-name value="main_heart_blank" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="50.0, 50.0" />
+							<z-index value="0" />
+							<image id="main_game_layer_top_heart_container_main_heart_blank" 
+								location-in-interfacebuilder="10.0, 10.0"
+								width="9.090909" height="8.033827"
+								phony-path="main_game_layer/sprites/top/sprites/heart_container/sprites/main_heart_blank.png"  />
+						</sprite>
+					</sprites>
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="main_back" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="main_game_layer_top_main_back" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="23.890064" height="24.10148"
+						phony-path="main_game_layer/sprites/top/sprites/main_back.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="main_taps" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="main_game_layer_top_main_taps" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="44.39746" height="24.73573"
+						phony-path="main_game_layer/sprites/top/sprites/main_taps.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="main_time" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="main_game_layer_top_main_time" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="45.665962" height="25.581396"
+						phony-path="main_game_layer/sprites/top/sprites/main_time.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="main_trees_top1" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="main_game_layer_top_main_trees_top1" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="52.854122" height="88.160675"
+						phony-path="main_game_layer/sprites/top/sprites/main_trees_top1.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="main_trees_top2" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="50.0, 50.0" />
+					<z-index value="0" />
+					<image id="main_game_layer_top_main_trees_top2" 
+						location-in-interfacebuilder="10.0, 10.0"
+						width="52.854122" height="88.160675"
+						phony-path="main_game_layer/sprites/top/sprites/main_trees_top2.png"  />
+				</sprite>
+			</sprites>
+		</sprite>
+	</sprites>
+	<resource comment="resource for view">
+		<image id="main_game_layer_resource_main_square_big_active" 
+			phony-path="main_game_layer/resource/main_square_big_active.png"  />
+		<image id="main_game_layer_resource_main_square_big_normal" 
+			phony-path="main_game_layer/resource/main_square_big_normal.png"  />
+		<image id="main_game_layer_resource_main_square_small_active" 
+			phony-path="main_game_layer/resource/main_square_small_active.png"  />
+		<image id="main_game_layer_resource_main_square_small_normal" 
+			phony-path="main_game_layer/resource/main_square_small_normal.png"  />
+	</resource>
+</view>

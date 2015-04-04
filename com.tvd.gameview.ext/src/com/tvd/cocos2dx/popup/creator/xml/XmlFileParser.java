@@ -63,6 +63,7 @@ public class XmlFileParser extends DefaultHandler {
 			mView.setBackgroundName(getAttributeValue(Attribute.BACKGROUND_NAME, atts));
 			mView.setComment(getAttributeValue(Attribute.COMMENT, atts));
 			mView.setSize(getAttributeValue(Attribute.SIZE, atts));
+			mView.setSizeBy(getAttributeValue(Attribute.SIZE_BY, atts));
 			mView.setTemplateName(
 					getAttributeValue(Attribute.TEMPLATE_NAME, atts));
 			mView.setTemplateFile(

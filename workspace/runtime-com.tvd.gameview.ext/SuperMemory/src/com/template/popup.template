@@ -29,14 +29,14 @@ class {class_name} : public {super_name} {
 
 public:
 	static {class_name}* create(//{parameters},
-							string pBackgroundImage = D::id.{background_id},
+							string pBackgroundImage = "",
                             string pExitNormalImage = "",
                             string pExitSelectedImage = "");
     
     virtual bool init(//{parameters}
-    				string pBackgroundImage = D::id.{background_id},
-                    string pExitNormalImage = "",
-                    string pExitSelectedImage = "");	
+    				string pBackgroundImage,
+                    string pExitNormalImage,
+                    string pExitSelectedImage);	
  
  protected:
     virtual void addSprites();
@@ -187,7 +187,6 @@ bool {class_name}::init(//{parameters},
 //{n}
 
 void {class_name}::addMenus() {
-	{super_name}::addMenus();
 	
 	//{add_menus}	
 }

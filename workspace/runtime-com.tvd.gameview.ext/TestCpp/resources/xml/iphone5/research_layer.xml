@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="ResearchLayerView" prefix="layer_research" type="layer" exitable="false" 
+		super="CommonLayer" background-name="this" size="384.0, 568.0"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="research_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Volumes/DATA/try/research_layer" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Resources/screenshots/iphone5" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Wireframing/WireframingScreen/iphone5" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/proj.android/res/layout/iphone5" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/cocos2dx-test/TestCpp/Classes/View/Layer" />
+	<background-image id="research_layer_background_background" 
+		location-in-interfacebuilder="0.0, 0.0"
+		width="384.0" height="568.0"
+		phony-path="research_layer/background/background.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="board" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="160.0, 259.5" />
+			<z-index value="1" />
+			<image id="research_layer_board_chalkboard" 
+				location-in-interfacebuilder="4.0, 150.0"
+				width="312.0" height="317.0"
+				phony-path="research_layer/sprites/board/chalkboard.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="symbol_o" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="151.0, 255.0" />
+					<z-index value="2" />
+					<image id="research_layer_board_symbol_o" 
+						location-in-interfacebuilder="123.0, 180.0"
+						width="64.0" height="64.0"
+						phony-path="research_layer/sprites/board/sprites/symbol_o.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="symbol_x" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="253.0, 255.0" />
+					<z-index value="3" />
+					<image id="research_layer_board_symbol_x" 
+						location-in-interfacebuilder="225.0, 180.0"
+						width="64.0" height="64.0"
+						phony-path="research_layer/sprites/board/sprites/symbol_x.png"  />
+				</sprite>
+			</sprites>
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="top" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="160.0, 505.0" />
+			<z-index value="4" />
+			<image id="research_layer_top_header_online" 
+				location-in-interfacebuilder="-32.0, 0.0"
+				width="384.0" height="126.0"
+				phony-path="research_layer/sprites/top/header_online.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="avatar_left_backend" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="70.0, 88.0" />
+					<z-index value="5" />
+					<image id="research_layer_top_avatar_left_backend" 
+						location-in-interfacebuilder="0.0, 0.0"
+						width="76.0" height="76.0"
+						phony-path="research_layer/sprites/top/sprites/avatar_left_backend.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="avatar_left_default" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="327.0, 88.0" />
+					<z-index value="6" />
+					<image id="research_layer_top_avatar_left_default" 
+						location-in-interfacebuilder="257.0, 0.0"
+						width="76.0" height="76.0"
+						phony-path="research_layer/sprites/top/sprites/avatar_left_default.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="avatar_left_frontend" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="245.0, 74.0" />
+					<z-index value="14" />
+					<image id="research_layer_top_avatar_left_frontend" 
+						location-in-interfacebuilder="195.0, 34.0"
+						width="36.0" height="36.0"
+						phony-path="research_layer/sprites/top/sprites/avatar_left_frontend.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="avatar_right_backend" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="314.0, 88.0" />
+					<z-index value="8" />
+					<image id="research_layer_top_avatar_right_backend" 
+						location-in-interfacebuilder="244.0, 0.0"
+						width="76.0" height="76.0"
+						phony-path="research_layer/sprites/top/sprites/avatar_right_backend.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="avatar_right_default" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="67.0, 88.0" />
+					<z-index value="17" />
+					<image id="research_layer_top_avatar_right_default" 
+						location-in-interfacebuilder="0.0, 0.0"
+						width="70.0" height="76.0"
+						phony-path="research_layer/sprites/top/sprites/avatar_right_default.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="avatar_right_frontend" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="137.0, 74.0" />
+					<z-index value="15" />
+					<image id="research_layer_top_avatar_right_frontend" 
+						location-in-interfacebuilder="87.0, 34.0"
+						width="36.0" height="36.0"
+						phony-path="research_layer/sprites/top/sprites/avatar_right_frontend.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="avatar_sample_1" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="56.0, 88.0" />
+					<z-index value="7" />
+					<image id="research_layer_top_avatar_sample_1" 
+						location-in-interfacebuilder="-14.0, 0.0"
+						width="76.0" height="76.0"
+						phony-path="research_layer/sprites/top/sprites/avatar_sample_1.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="avatar_sample_2" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="317.0, 88.0" />
+					<z-index value="18" />
+					<image id="research_layer_top_avatar_sample_2" 
+						location-in-interfacebuilder="250.0, 0.0"
+						width="70.0" height="76.0"
+						phony-path="research_layer/sprites/top/sprites/avatar_sample_2.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="flag_sample_ad" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="56.0, 88.0" />
+					<z-index value="9" />
+					<image id="research_layer_top_flag_sample_ad" 
+						location-in-interfacebuilder="-14.0, 0.0"
+						width="76.0" height="76.0"
+						phony-path="research_layer/sprites/top/sprites/flag_sample_ad.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="flag_sample_ae" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="328.0, 88.0" />
+					<z-index value="10" />
+					<image id="research_layer_top_flag_sample_ae" 
+						location-in-interfacebuilder="258.0, 0.0"
+						width="76.0" height="76.0"
+						phony-path="research_layer/sprites/top/sprites/flag_sample_ae.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="ico_countdown_brown" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="40.5, 118.5" />
+					<z-index value="11" />
+					<image id="research_layer_top_ico_countdown_brown" 
+						location-in-interfacebuilder="4.0, 4.0"
+						width="9.0" height="7.0"
+						phony-path="research_layer/sprites/top/sprites/ico_countdown_brown.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="progress_bar_frontend" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="192.0, -391.0" />
+					<z-index value="16" />
+					<image id="research_layer_top_progress_bar_frontend" 
+						location-in-interfacebuilder="75.0, 495.0"
+						width="170.0" height="44.0"
+						phony-path="research_layer/sprites/top/sprites/progress_bar_frontend.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="symbol_o_top" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="341.5, 118.5" />
+					<z-index value="12" />
+					<image id="research_layer_top_symbol_o_top" 
+						location-in-interfacebuilder="303.0, 4.0"
+						width="13.0" height="7.0"
+						phony-path="research_layer/sprites/top/sprites/symbol_o_top.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="symbol_x_top" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="46.0, 43.0" />
+					<z-index value="13" />
+					<image id="research_layer_top_symbol_x_top" 
+						location-in-interfacebuilder="8.0, 77.0"
+						width="12.0" height="12.0"
+						phony-path="research_layer/sprites/top/sprites/symbol_x_top.png"  />
+				</sprite>
+			</sprites>
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="ttc_at_bottom" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="53.5, 474.0" />
+			<z-index value="19" />
+			<image id="research_layer_ttc_at_bottom" 
+				location-in-interfacebuilder="-22.0, 88.0"
+				width="151.0" height="12.0"
+				phony-path="research_layer/sprites/ttc_at_bottom.png"  />
+		</sprite>
+	</sprites>
+</view>

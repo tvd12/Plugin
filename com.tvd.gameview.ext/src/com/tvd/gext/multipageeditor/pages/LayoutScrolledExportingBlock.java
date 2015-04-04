@@ -292,7 +292,10 @@ public class LayoutScrolledExportingBlock extends MasterDetailsBlock {
 	}
 	
 	private void export(String name) {
-		if(name.equals(TreeElement.EXPORT_POSITIONS)) {
+		if(name.equals(TreeElement.EXPORT_IMAGES)) {
+			mView.exportImages();
+		}
+		else if(name.equals(TreeElement.EXPORT_POSITIONS)) {
 			mView.exportDeclaringPositions();
 			mView.exportPositions();
 		}

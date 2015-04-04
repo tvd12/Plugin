@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="SettingPopup" prefix="popup_setting" type="popup" exitable="true" 
+		super="PopupLayer" background-name="default" size="509.5, 507.0"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="setting_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/setting/setting_popup" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/ipadsd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/ipadsd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/ipadsd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/ipadsd" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Popup" />
+	<background-image id="setting_popup_background_popup_common_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="509.5" height="507.0"
+		phony-path="setting_popup/background/popup_common_bg.png"  />
+	<exit-image position="0.0, 0.0" location-in-interfacebuilder="100.0, 100.0" />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="popup_common_close" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="setting_popup_popup_common_close" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="77.0" height="78.5"
+				phony-path="setting_popup/sprites/popup_common_close.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="popup_common_dashed" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="setting_popup_popup_common_dashed" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="399.5" height="4.0"
+				phony-path="setting_popup/sprites/popup_common_dashed.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="popup_common_ribbon" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="setting_popup_popup_common_ribbon" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="448.5" height="113.0"
+				phony-path="setting_popup/sprites/popup_common_ribbon.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="setting_accept" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="setting_popup_setting_accept" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="77.0" height="79.0"
+				phony-path="setting_popup/sprites/setting_accept.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="setting_custom_mode" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="setting_popup_setting_custom_mode" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="246.5" height="40.0"
+				phony-path="setting_popup/sprites/setting_custom_mode.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="setting_header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="setting_popup_setting_header" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="153.0" height="39.0"
+				phony-path="setting_popup/sprites/setting_header.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="setting_music" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="setting_popup_setting_music" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="133.5" height="51.0"
+				phony-path="setting_popup/sprites/setting_music.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="setting_on" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="setting_popup_setting_on" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="111.0" height="51.0"
+				phony-path="setting_popup/sprites/setting_on.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="setting_sound" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="setting_popup_setting_sound" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="144.0" height="42.5"
+				phony-path="setting_popup/sprites/setting_sound.png"  />
+		</sprite>
+	</sprites>
+	<resource comment="resource for view">
+		<image id="setting_popup_resource_setting_off" 
+			phony-path="setting_popup/resource/setting_off.png"  />
+	</resource>
+</view>

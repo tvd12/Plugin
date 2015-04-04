@@ -29,6 +29,7 @@
 			<xs:attribute name="background-name" type="xs:string" use="optional" />
 			<xs:attribute name="type" type="xs:string" use="required" />
 			<xs:attribute name="size" type="pointtype" use="required" />
+			<xs:attribute name="size-by" type="sizebytype" />
 			<xs:attribute name="exitable" type="xs:boolean" use="optional" />
 			<xs:attributeGroup ref="template" />
 			<xs:attributeGroup ref="advancedattributegroup" />
@@ -394,7 +395,7 @@
 			<xs:simpleContent>
 				<xs:extension base="xs:string">
 					<xs:attribute name="value" type="xs:string" use="required" />
-					<xs:attribute name="varname" type="xs:string" use="optional" />
+					<xs:attribute name="varname" type="vartype" use="optional" />
 				</xs:extension>
 			</xs:simpleContent>
 		</xs:complexType>
@@ -405,7 +406,7 @@
 				<xs:extension base="xs:string">
 					<xs:attribute name="name" type="xs:string" use="required" />
 					<xs:attribute name="family" type="xs:string" use="optional" />
-					<xs:attribute name="varname" type="xs:string" use="optional" />
+					<xs:attribute name="varname" type="vartype" use="optional" />
 				</xs:extension>
 			</xs:simpleContent>
 		</xs:complexType>
@@ -426,7 +427,7 @@
 	<xs:element name="font-size">
 		<xs:complexType>
 			<xs:attribute name="value" type="xs:float" use="required" />
-			<xs:attribute name="varname" type="xs:string" use="optional" />
+			<xs:attribute name="varname" type="vartype" use="optional" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="cell-position">
@@ -464,24 +465,41 @@
 	<xs:element name="mid-point">
 		<xs:complexType>
 			<xs:attribute name="value" type="pointtype" use="required" />
-			<xs:attribute name="varname" type="xs:string" use="optional" />
+			<xs:attribute name="varname" type="vartype" use="optional" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="bar-change-rate">
 		<xs:complexType>
 			<xs:attribute name="value" type="pointtype" use="required" />
-			<xs:attribute name="varname" type="xs:string" use="optional" />
+			<xs:attribute name="varname" type="vartype" use="optional" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="percent">
 		<xs:complexType>
 			<xs:attribute name="value" type="xs:float" use="required" />
-			<xs:attribute name="varname" type="xs:string" use="optional" />
+			<xs:attribute name="varname" type="vartype" use="optional" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="type">
 		<xs:complexType>
-		<xs:attribute name="value" type="xs:string" use="required" />
+			<xs:attribute name="value" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="position-type">
+		<xs:complexType>
+			<xs:attribute name="value" type="positiontypetype" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="margin">
+		<xs:complexType>
+			<xs:attribute name="left" type="xs:float" />
+			<xs:attribute name="top" type="xs:float" />
+			<xs:attribute name="right" type="xs:float" />
+			<xs:attribute name="bottom" type="xs:float" />
+			<xs:attribute name="center-left" type="xs:float" />
+			<xs:attribute name="center-top" type="xs:float" />
+			<xs:attribute name="center-right" type="xs:float" />
+			<xs:attribute name="center-bottom" type="xs:float" />
 		</xs:complexType>
 	</xs:element>
 	<xs:attributeGroup name="template">
@@ -500,6 +518,8 @@
 			<xs:element ref="position-name" maxOccurs="1" minOccurs="1" />
 			<xs:element ref="anchorpoint" maxOccurs="1" minOccurs="0" />
 			<xs:element ref="position" maxOccurs="1" minOccurs="0" />
+			<xs:element ref="position-type" maxOccurs="1" minOccurs="0" />
+			<xs:element ref="margin" maxOccurs="1" minOccurs="0" />
 			<xs:element ref="z-index" maxOccurs="1" minOccurs="0" />
 		</xs:sequence>
 	</xs:group>
@@ -514,5 +534,22 @@
 		<xs:restriction base="xs:string">
     		<xs:pattern value="[A-Z]*"/>
  		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="vartype">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="$\{[a-zA-Z_][a-zA-Z0-9_]*\}|[a-zA-Z_][a-zA-Z0-9_]*" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="positiontypetype">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="absolute" />
+			<xs:enumeration value="relative" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="sizebytype">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="self" />
+			<xs:enumeration value="background" />
+		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>

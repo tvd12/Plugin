@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view class-name="HomeLayer" prefix="layer_home" type="layer" exitable="false" 
-		super="CommonLayer" background-name="default" size="768.0, 1136.0"
+		super="CommonLayer" background-name="default" 
+		size="768.0, 1024"
 		template-name="Common"
-		exported="false"
+		exported="true"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

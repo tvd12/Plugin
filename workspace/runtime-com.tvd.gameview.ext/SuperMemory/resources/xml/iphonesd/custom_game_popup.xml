@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="CustomGamePopup" prefix="popup_custom_game" type="popup" exitable="true" 
+		super="PopupLayer" background-name="default" size="320.0, 480.0"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="custom_game_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/custom/custom_game_popup" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/iphonesd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/iphonesd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/iphonesd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphonesd" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Popup" />
+	<background-image id="common_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		phony-path="common_bg.png"  />
+	<exit-image position="0.0, 0.0" location-in-interfacebuilder="100.0, 100.0" />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="custom_bar" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="custom_game_popup_custom_bar" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="164.90486" height="26.427061"
+				phony-path="custom_game_popup/sprites/custom_bar.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="custom_board_size_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="custom_game_popup_custom_board_size_text" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="58.139534" height="10.782241"
+				phony-path="custom_game_popup/sprites/custom_board_size_text.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="custom_game_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="custom_game_popup_custom_game_text" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="108.03383" height="18.816067"
+				phony-path="custom_game_popup/sprites/custom_game_text.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="custom_play" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="custom_game_popup_custom_play" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="32.55814" height="33.403805"
+				phony-path="custom_game_popup/sprites/custom_play.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="custom_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="custom_game_popup_custom_text" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="67.230446" height="10.993657"
+				phony-path="custom_game_popup/sprites/custom_text.png"  />
+		</sprite>
+	</sprites>
+</view>
