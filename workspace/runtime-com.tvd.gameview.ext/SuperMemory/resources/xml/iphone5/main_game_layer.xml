@@ -98,8 +98,8 @@
 				</sprite>
 				<sprite visible="true" comment="">
 					<position-name value="infor_bg" />
-					<anchorpoint value="0.5, 0.5" />
-					<position value="490.5, 252.0" />
+					<anchorpoint value="0.5, 0.0" />
+					<position value="490.5, 166.0" />
 					<z-index value="13" />
 					<image id="main_game_layer_infor_bg_common_info_bg" 
 						location-in-interfacebuilder="268.0, 376.0"
@@ -140,8 +140,8 @@
 				</sprite>
 				<sprite visible="true" comment="">
 					<position-name value="settings_bg" />
-					<anchorpoint value="0.5, 0.5" />
-					<position value="238.5, 252.0" />
+					<anchorpoint value="0.5, 0.0" />
+					<position value="238.5, 166.0" />
 					<z-index value="14" />
 					<image id="main_game_layer_settings_bg_common_settings_bg" 
 						location-in-interfacebuilder="16.0, 376.0"
@@ -207,20 +207,20 @@
 						<sprite visible="true" comment="">
 							<position-name value="main_heart" />
 							<anchorpoint value="0.5, 0.5" />
-							<position value="43.0, 13.5" />
+							<position value="49.0, 13.5" />
 							<z-index value="9" />
 							<image id="main_game_layer_top_heart_container_main_heart" 
-								location-in-interfacebuilder="84.0, 23.0"
+								location-in-interfacebuilder="90.0, 23.0"
 								width="14.0" height="13.0"
 								phony-path="main_game_layer/sprites/top/sprites/heart_container/sprites/main_heart.png"  />
 						</sprite>
 						<sprite visible="true" comment="">
 							<position-name value="main_heart_blank" />
 							<anchorpoint value="0.5, 0.5" />
-							<position value="56.5, 13.0" />
+							<position value="62.5, 13.0" />
 							<z-index value="12" />
 							<image id="main_game_layer_top_heart_container_main_heart_blank" 
-								location-in-interfacebuilder="99.0, 25.0"
+								location-in-interfacebuilder="105.0, 25.0"
 								width="11.0" height="10.0"
 								phony-path="main_game_layer/sprites/top/sprites/heart_container/sprites/main_heart_blank.png"  />
 						</sprite>
@@ -233,8 +233,8 @@
 							<font-size value="11.0" />
 							<position-name value="lifes" />
 							<anchorpoint value="0.0, 0.5" />
-							<position value="29.0, 26.5" />
-							<location-in-interfacebuilder value="77.0, 11.0" />
+							<position value="34.0, 27.5" />
+							<location-in-interfacebuilder value="82.0, 10.0" />
 							<z-index value="25" />
 						</label>
 						<label visible="true" comment="">
@@ -244,8 +244,8 @@
 							<font-size value="11.0" />
 							<position-name value="bonus_time" />
 							<anchorpoint value="0.5, 0.5" />
-							<position value="92.0, 26.5" />
-							<location-in-interfacebuilder value="126.0, 11.0" />
+							<position value="97.0, 27.5" />
+							<location-in-interfacebuilder value="131.0, 10.0" />
 							<z-index value="26" />
 						</label>
 					</labels>
