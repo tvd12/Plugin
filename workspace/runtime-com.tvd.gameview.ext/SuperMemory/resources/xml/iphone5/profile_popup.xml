@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="ProfilePopup" prefix="popup_profile" type="popup" exitable="false" 
+		super="PopupLayer" background-name="mBackgroundSprite" 
+		size="300.0, 450.0" size-by="background"
+		template-name="Common"
+		exported="true"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="profile_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/profile/profile_popup" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/iphone5" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/iphone5" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphone5" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Popup" />
+	<background-image id="profile_popup_background_common_popup_large_bg" 
+		location-in-interfacebuilder="10.0, 59.0"
+		width="300.0" height="450.0"
+		phony-path="common_popup_large_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="popup_common_close" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="109.5, 2.5" />
+			<z-index value="11" />
+			<image id="profile_popup_common_close" 
+				location-in-interfacebuilder="100.0, 487.0"
+				width="39.0" height="39.0"
+				phony-path="setting_popup/sprites/popup_common_close.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="popup_common_ribbon" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="150.0, 442.5" />
+			<z-index value="1" />
+			<image id="profile_popup_common_ribbon" 
+				location-in-interfacebuilder="48.0, 38.0"
+				width="224.0" height="57.0"
+				phony-path="setting_popup/sprites/popup_common_ribbon.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="popup_common_dashed_1" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="137.0, 364.0" />
+			<z-index value="3" />
+			<image id="profile_popup_common_dashed_1" 
+				location-in-interfacebuilder="147.0, 144.0"
+				width="200.0" height="2.0"
+				phony-path="setting_popup/sprites/popup_common_dashed.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="popup_common_dashed_2" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="137.0, 326.0" />
+			<z-index value="4" />
+			<image id="profile_popup_common_dashed_2" 
+				location-in-interfacebuilder="147.0, 182.0"
+				width="200.0" height="2.0"
+				phony-path="setting_popup/sprites/popup_common_dashed.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="profile_bananas" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="80.0, 99.5" />
+			<z-index value="9" />
+			<image id="profile_popup_profile_bananas" 
+				location-in-interfacebuilder="32.0, 391.0"
+				width="116.0" height="37.0"
+				phony-path="profile_popup/sprites/profile_bananas.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="profile_best_score_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="150.0, 251.5" />
+			<z-index value="7" />
+			<image id="profile_popup_profile_best_score_text" 
+				location-in-interfacebuilder="122.0, 251.0"
+				width="76.0" height="13.0"
+				phony-path="profile_popup/sprites/profile_best_score_text.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="profile_cart" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="192.0, 2.5" />
+			<z-index value="12" />
+			<image id="profile_popup_profile_cart" 
+				location-in-interfacebuilder="183.0, 487.0"
+				width="38.0" height="39.0"
+				phony-path="profile_popup/sprites/profile_cart.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="profile_default_avatar" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="75.5, 343.5" />
+			<z-index value="5" />
+			<image id="profile_popup_profile_default_avatar" 
+				location-in-interfacebuilder="32.0, 111.0"
+				width="107.0" height="109.0"
+				phony-path="profile_popup/sprites/profile_default_avatar.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="profile_facebook_login" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="207.5, 297.0" />
+			<z-index value="6" />
+			<image id="profile_popup_profile_facebook_login" 
+				location-in-interfacebuilder="147.0, 196.0"
+				width="141.0" height="32.0"
+				phony-path="profile_popup/sprites/profile_facebook_login.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="profile_header_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="150.0, 454.5" />
+			<z-index value="2" />
+			<image id="profile_popup_profile_header_text" 
+				location-in-interfacebuilder="122.0, 45.0"
+				width="76.0" height="19.0"
+				phony-path="profile_popup/sprites/profile_header_text.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="profile_heart" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="231.5, 99.5" />
+			<z-index value="10" />
+			<image id="profile_popup_profile_heart" 
+				location-in-interfacebuilder="196.0, 395.0"
+				width="91.0" height="29.0"
+				phony-path="profile_popup/sprites/profile_heart.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="profile_overall_score_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="150.0, 185.5" />
+			<z-index value="8" />
+			<image id="profile_popup_profile_overall_score_text" 
+				location-in-interfacebuilder="122.0, 317.0"
+				width="76.0" height="13.0"
+				phony-path="profile_popup/sprites/profile_overall_score_text.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="Dung Ta Van" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="name" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="137.0, 384.5" />
+			<location-in-interfacebuilder value="147.0, 117.0" />
+			<z-index value="13" />
+		</label>
+		<label visible="true" comment="">
+			<text value="D.O.B: 30/05/1992" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="birth_date" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="137.0, 345.5" />
+			<location-in-interfacebuilder value="147.0, 156.0" />
+			<z-index value="14" />
+		</label>
+		<label visible="true" comment="">
+			<text value="3500" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="18.0" />
+			<position-name value="best_score" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="150.0, 228.0" />
+			<location-in-interfacebuilder value="142.0, 272.0" />
+			<z-index value="15" />
+		</label>
+		<label visible="true" comment="">
+			<text value="123456" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="18.0" />
+			<position-name value="overall_score" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="150.0, 162.0" />
+			<location-in-interfacebuilder value="133.0, 338.0" />
+			<z-index value="16" />
+		</label>
+		<label visible="true" comment="">
+			<text value="50" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="18.0" />
+			<position-name value="bananas" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="85.0, 75.0" />
+			<location-in-interfacebuilder value="86.0, 425.0" />
+			<z-index value="17" />
+		</label>
+		<label visible="true" comment="">
+			<text value="15" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="18.0" />
+			<position-name value="lifes" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="236.0, 74.0" />
+			<location-in-interfacebuilder value="237.0, 426.0" />
+			<z-index value="18" />
+		</label>
+	</labels>
+</view>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="Map1Layer" prefix="layer_map_1" type="layer" exitable="false" 
+		super="CommonLayer" background-name="default" 
+		size="324.73572, 480.33826" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="map_1_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/map/map_1_layer" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/iphone4" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/iphone4" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/iphone4" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphone4" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Layer" />
+	<background-image id="map_1_layer_background_map_1_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="324.73572" height="480.33826"
+		phony-path="map_1_layer/background/map_1_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="map_checkpoint" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_1_layer_map_checkpoint" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="26.004229" height="25.792812"
+				phony-path="map_1_layer/sprites/map_checkpoint.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_dinosaur" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_1_layer_map_dinosaur" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="88.58351" height="79.28118"
+				phony-path="map_1_layer/sprites/map_dinosaur.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_line2" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_1_layer_map_line2" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="59.408035" height="75.89852"
+				phony-path="map_1_layer/sprites/map_line2.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_line3" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_1_layer_map_line3" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="36.78647" height="68.71036"
+				phony-path="map_1_layer/sprites/map_line3.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_line4" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_1_layer_map_line4" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="107.399574" height="59.830868"
+				phony-path="map_1_layer/sprites/map_line4.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_line5" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_1_layer_map_line5" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="46.511627" height="104.86258"
+				phony-path="map_1_layer/sprites/map_line5.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_line6" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_1_layer_map_line6" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="20.295982" height="94.503174"
+				phony-path="map_1_layer/sprites/map_line6.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_line7" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_1_layer_map_line7" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="111.20507" height="53.488373"
+				phony-path="map_1_layer/sprites/map_line7.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_line8" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_1_layer_map_line8" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="20.718817" height="104.86258"
+				phony-path="map_1_layer/sprites/map_line8.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_line9" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_1_layer_map_line9" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="150.73996" height="24.524313"
+				phony-path="map_1_layer/sprites/map_line9.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_windmill" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_1_layer_map_windmill" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="38.689217" height="46.300213"
+				phony-path="map_1_layer/sprites/map_windmill.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_windmill_propeller" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_1_layer_map_windmill_propeller" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="34.88372" height="34.460888"
+				phony-path="map_1_layer/sprites/map_windmill_propeller.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_windmill_propeller_tree" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_1_layer_map_windmill_propeller_tree" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="11.416491" height="10.993657"
+				phony-path="map_1_layer/sprites/map_windmill_propeller_tree.png"  />
+		</sprite>
+	</sprites>
+</view>

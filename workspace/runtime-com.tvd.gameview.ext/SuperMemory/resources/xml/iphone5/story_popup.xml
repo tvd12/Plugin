@@ -3,7 +3,7 @@
 		super="PopupLayer" background-name="default" 
 		size="300.0, 450.0" size-by="background"
 		template-name="Common"
-		exported="true"
+		exported="false"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

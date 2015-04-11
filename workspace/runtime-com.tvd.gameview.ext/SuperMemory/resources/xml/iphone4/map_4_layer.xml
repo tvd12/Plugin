@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="Map4Layer" prefix="layer_map_4" type="layer" exitable="false" 
+		super="CommonLayer" background-name="default" 
+		size="324.73572, 480.33826" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="map_4_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/map/map_4_layer" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/iphone4" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/iphone4" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/iphone4" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphone4" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Layer" />
+	<background-image id="map_4_layer_background_map_4_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="324.73572" height="480.33826"
+		phony-path="map_4_layer/background/map_4_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="map_line1" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_4_layer_map_line1" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="48.837208" height="82.66385"
+				phony-path="map_4_layer/sprites/map_line1.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_line16" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_4_layer_map_line16" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="46.300213" height="54.545456"
+				phony-path="map_4_layer/sprites/map_line16.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_line19" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_4_layer_map_line19" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="71.88161" height="46.300213"
+				phony-path="map_4_layer/sprites/map_line19.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_line20" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_4_layer_map_line20" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="105.708244" height="108.24524"
+				phony-path="map_4_layer/sprites/map_line20.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_line24" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_4_layer_map_line24" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="97.25159" height="54.334038"
+				phony-path="map_4_layer/sprites/map_line24.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_line25" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_4_layer_map_line25" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="50.951374" height="103.38266"
+				phony-path="map_4_layer/sprites/map_line25.png"  />
+		</sprite>
+	</sprites>
+</view>
