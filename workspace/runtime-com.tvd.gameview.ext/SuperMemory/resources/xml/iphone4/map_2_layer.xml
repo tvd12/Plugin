@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view class-name="Map2Layer" prefix="layer_map_2" type="layer" exitable="false" 
 		super="CommonLayer" background-name="default" 
-		size="324.73572, 480.33826" size-by="self"
+		size="325.0, 480.0" size-by="background"
 		template-name="Common"
-		exported="false"
+		exported="true"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -13,85 +13,115 @@
 	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
 	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
 	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/map/map_2_layer" />
-	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/iphone4" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/common" />
 	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/iphone4" used="true" />
-	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/iphone4" />
-	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphone4" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/iphone5" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphone5" />
 	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Layer" />
 	<background-image id="map_2_layer_background_map_2_bg" 
-		location-in-interfacebuilder="10.0, 10.0"
-		width="324.73572" height="480.33826"
-		phony-path="map_2_layer/background/map_2_bg.png"  />
+		location-in-interfacebuilder="0.0, 0.0"
+		width="325.0" height="480.0"
+		phony-path="map_layer/background/map_2_bg.png"  />
 
+	<sprites array="true" length="4" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="map_checkpoint" />
+			<anchorpoint value="0.5, 1.0" />
+			<position value="31.0, 50.0" />
+			<z-index value="7" />
+			<image id="map_2_layer_map_checkpoint" 
+				location-in-interfacebuilder="18.0, 430.0"
+				width="26.0" height="26.0"
+				phony-path="map_1_layer/sprites/map_checkpoint.png"  />
+		</sprite>
+		<next visible="true" comment="">
+			<position value="221.0, 50.0" />
+			<image id="map_checkpoint_1" 
+				location-in-interfacebuilder="208.0, 430.0"
+				width="26.0" height="26.0" />
+		</next>
+		<next visible="true" comment="">
+			<position value="244.0, 209.0" />
+			<image id="map_checkpoint_2" 
+				location-in-interfacebuilder="231.0, 271.0"
+				width="26.0" height="26.0" />
+		</next>
+		<next visible="true" comment="">
+			<position value="21.0, 352.0" />
+			<image id="map_checkpoint_4" 
+				location-in-interfacebuilder="8.0, 128.0"
+				width="26.0" height="26.0" />
+		</next>
+	</sprites>
 	<sprites array="false" comment="create group of sprites">
 		<sprite visible="true" comment="">
 			<position-name value="map_dolphin" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="157.5, 279.0" />
+			<z-index value="6" />
 			<image id="map_2_layer_map_dolphin" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="65.11628" height="57.7167"
+				location-in-interfacebuilder="125.0, 172.0"
+				width="65.0" height="58.0"
 				phony-path="map_2_layer/sprites/map_dolphin.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="map_line10" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="127.5, 45.5" />
+			<z-index value="1" />
 			<image id="map_2_layer_map_line10" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="191.33192" height="25.158562"
+				location-in-interfacebuilder="32.0, 422.0"
+				width="191.0" height="25.0"
 				phony-path="map_2_layer/sprites/map_line10.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="map_line11" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="227.0, 116.0" />
+			<z-index value="2" />
 			<image id="map_2_layer_map_line11" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="36.152218" height="164.27061"
+				location-in-interfacebuilder="209.0, 282.0"
+				width="36.0" height="164.0"
 				phony-path="map_2_layer/sprites/map_line11.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="map_line12" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="125.5, 226.5" />
+			<z-index value="3" />
 			<image id="map_2_layer_map_line12" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="235.30655" height="61.099365"
+				location-in-interfacebuilder="8.0, 223.0"
+				width="235.0" height="61.0"
 				phony-path="map_2_layer/sprites/map_line12.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="map_line13" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="11.5, 296.5" />
+			<z-index value="11" />
 			<image id="map_2_layer_map_line13" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="23.044397" height="92.600426"
+				location-in-interfacebuilder="0.0, 137.0"
+				width="23.0" height="93.0"
 				phony-path="map_2_layer/sprites/map_line13.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="map_ship_bot" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="251.0, 285.0" />
+			<z-index value="4" />
 			<image id="map_2_layer_map_ship_bot" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="127.69556" height="134.24947"
+				location-in-interfacebuilder="187.0, 128.0"
+				width="128.0" height="134.0"
 				phony-path="map_2_layer/sprites/map_ship_bot.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="map_whale" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="50.0, 50.0" />
-			<z-index value="0" />
+			<position value="189.5, 420.0" />
+			<z-index value="5" />
 			<image id="map_2_layer_map_whale" 
-				location-in-interfacebuilder="10.0, 10.0"
-				width="107.399574" height="90.06342"
+				location-in-interfacebuilder="136.0, 15.0"
+				width="107.0" height="90.0"
 				phony-path="map_2_layer/sprites/map_whale.png"  />
 		</sprite>
 	</sprites>

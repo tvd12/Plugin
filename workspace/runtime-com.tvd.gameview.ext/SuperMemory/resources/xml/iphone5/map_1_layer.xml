@@ -19,9 +19,9 @@
 	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphone5" />
 	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Layer" />
 	<background-image id="map_1_layer_background_map_1_bg" 
-		location-in-interfacebuilder="0.0, 20.0"
+		location-in-interfacebuilder="0.0, 0.0"
 		width="384.0" height="568.0"
-		phony-path="map_1_layer/background/map_1_bg.png"  />
+		phony-path="map_layer/background/map_1_bg.png"  />
 
 	<sprites array="true" length="11" comment="create group of sprites">
 		<sprite visible="true" comment="">
@@ -30,68 +30,68 @@
 			<position value="41.5, 584.0" />
 			<z-index value="13" />
 			<image id="map_1_layer_map_checkpoint" 
-				location-in-interfacebuilder="26.0, 4.0"
+				location-in-interfacebuilder="26.0, -16.0"
 				width="31.0" height="31.0"
 				phony-path="map_1_layer/sprites/map_checkpoint.png"  />
 		</sprite>
 		<next visible="true" comment="">
 			<position value="108.5, 498.0" />
 			<image id="map_checkpoint_1" 
-				location-in-interfacebuilder="93.0, 90.0"
+				location-in-interfacebuilder="93.0, 70.0"
 				width="31.0" height="31.0" />
 		</next>
 		<next visible="true" comment="">
 			<position value="71.5, 415.0" />
 			<image id="map_checkpoint_2" 
-				location-in-interfacebuilder="56.0, 173.0"
+				location-in-interfacebuilder="56.0, 153.0"
 				width="31.0" height="31.0" />
 		</next>
 		<next visible="true" comment="">
 			<position value="193.5, 352.0" />
 			<image id="map_checkpoint_3" 
-				location-in-interfacebuilder="178.0, 236.0"
+				location-in-interfacebuilder="178.0, 216.0"
 				width="31.0" height="31.0" />
 		</next>
 		<next visible="true" comment="">
 			<position value="158.5, 230.0" />
 			<image id="map_checkpoint_4" 
-				location-in-interfacebuilder="143.0, 358.0"
+				location-in-interfacebuilder="143.0, 338.0"
 				width="31.0" height="31.0" />
 		</next>
 		<next visible="true" comment="">
 			<position value="139.5, 125.0" />
 			<image id="map_checkpoint_5" 
-				location-in-interfacebuilder="124.0, 463.0"
+				location-in-interfacebuilder="124.0, 443.0"
 				width="31.0" height="31.0" />
 		</next>
 		<next visible="true" comment="">
 			<position value="265.5, 176.0" />
 			<image id="map_checkpoint_6" 
-				location-in-interfacebuilder="250.0, 412.0"
+				location-in-interfacebuilder="250.0, 392.0"
 				width="31.0" height="31.0" />
 		</next>
 		<next visible="true" comment="">
 			<position value="246.5, 60.0" />
 			<image id="map_checkpoint_7" 
-				location-in-interfacebuilder="231.0, 528.0"
+				location-in-interfacebuilder="231.0, 508.0"
 				width="31.0" height="31.0" />
 		</next>
 		<next visible="true" comment="">
 			<position value="389.5, 315.0" />
 			<image id="map_checkpoint_8" 
-				location-in-interfacebuilder="374.0, 273.0"
+				location-in-interfacebuilder="374.0, 253.0"
 				width="31.0" height="31.0" />
 		</next>
 		<next visible="true" comment="">
 			<position value="249.5, 425.0" />
 			<image id="map_checkpoint_9" 
-				location-in-interfacebuilder="234.0, 163.0"
+				location-in-interfacebuilder="234.0, 143.0"
 				width="31.0" height="31.0" />
 		</next>
 		<next visible="true" comment="">
 			<position value="264.5, 576.0" />
 			<image id="map_checkpoint_10" 
-				location-in-interfacebuilder="249.0, 12.0"
+				location-in-interfacebuilder="249.0, -8.0"
 				width="31.0" height="31.0" />
 		</next>
 	</sprites>
@@ -102,7 +102,7 @@
 			<position value="376.5, 215.0" />
 			<z-index value="1" />
 			<image id="map_1_layer_map_dinosaur" 
-				location-in-interfacebuilder="324.0, 326.0"
+				location-in-interfacebuilder="324.0, 306.0"
 				width="105.0" height="94.0"
 				phony-path="map_1_layer/sprites/map_dinosaur.png"  />
 		</sprite>
@@ -110,9 +110,9 @@
 			<position-name value="map_line2" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="71.0, 526.0" />
-			<z-index value="23" />
+			<z-index value="24" />
 			<image id="map_1_layer_map_line2" 
-				location-in-interfacebuilder="36.0, 17.0"
+				location-in-interfacebuilder="36.0, -3.0"
 				width="70.0" height="90.0"
 				phony-path="map_1_layer/sprites/map_line2.png"  />
 		</sprite>
@@ -122,7 +122,7 @@
 			<position value="88.0, 443.5" />
 			<z-index value="2" />
 			<image id="map_1_layer_map_line3" 
-				location-in-interfacebuilder="66.0, 104.0"
+				location-in-interfacebuilder="66.0, 84.0"
 				width="44.0" height="81.0"
 				phony-path="map_1_layer/sprites/map_line3.png"  />
 		</sprite>
@@ -132,7 +132,7 @@
 			<position value="131.5, 364.5" />
 			<z-index value="3" />
 			<image id="map_1_layer_map_line4" 
-				location-in-interfacebuilder="68.0, 188.0"
+				location-in-interfacebuilder="68.0, 168.0"
 				width="127.0" height="71.0"
 				phony-path="map_1_layer/sprites/map_line4.png"  />
 		</sprite>
@@ -142,7 +142,7 @@
 			<position value="181.5, 275.0" />
 			<z-index value="4" />
 			<image id="map_1_layer_map_line5" 
-				location-in-interfacebuilder="154.0, 251.0"
+				location-in-interfacebuilder="154.0, 231.0"
 				width="55.0" height="124.0"
 				phony-path="map_1_layer/sprites/map_line5.png"  />
 		</sprite>
@@ -152,7 +152,7 @@
 			<position value="148.0, 163.0" />
 			<z-index value="5" />
 			<image id="map_1_layer_map_line6" 
-				location-in-interfacebuilder="136.0, 369.0"
+				location-in-interfacebuilder="136.0, 349.0"
 				width="24.0" height="112.0"
 				phony-path="map_1_layer/sprites/map_line6.png"  />
 		</sprite>
@@ -162,7 +162,7 @@
 			<position value="204.0, 135.5" />
 			<z-index value="6" />
 			<image id="map_1_layer_map_line7" 
-				location-in-interfacebuilder="138.0, 421.0"
+				location-in-interfacebuilder="138.0, 401.0"
 				width="132.0" height="63.0"
 				phony-path="map_1_layer/sprites/map_line7.png"  />
 		</sprite>
@@ -172,7 +172,7 @@
 			<position value="255.5, 102.0" />
 			<z-index value="7" />
 			<image id="map_1_layer_map_line8" 
-				location-in-interfacebuilder="243.0, 424.0"
+				location-in-interfacebuilder="243.0, 404.0"
 				width="25.0" height="124.0"
 				phony-path="map_1_layer/sprites/map_line8.png"  />
 		</sprite>
@@ -182,7 +182,7 @@
 			<position value="335.0, 54.5" />
 			<z-index value="8" />
 			<image id="map_1_layer_map_line9" 
-				location-in-interfacebuilder="246.0, 519.0"
+				location-in-interfacebuilder="246.0, 499.0"
 				width="178.0" height="29.0"
 				phony-path="map_1_layer/sprites/map_line9.png"  />
 		</sprite>
@@ -190,9 +190,9 @@
 			<position-name value="map_line14" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="329.5, 381.5" />
-			<z-index value="24" />
+			<z-index value="25" />
 			<image id="map_1_layer_map_line14" 
-				location-in-interfacebuilder="246.0, 180.0"
+				location-in-interfacebuilder="246.0, 160.0"
 				width="167.0" height="53.0"
 				phony-path="map_1_layer/sprites/map_line14.png"  />
 		</sprite>
@@ -202,7 +202,7 @@
 			<position value="238.5, 486.0" />
 			<z-index value="9" />
 			<image id="map_1_layer_map_line15" 
-				location-in-interfacebuilder="209.0, 24.0"
+				location-in-interfacebuilder="209.0, 4.0"
 				width="59.0" height="156.0"
 				phony-path="map_1_layer/sprites/map_line15.png"  />
 		</sprite>
@@ -212,7 +212,7 @@
 			<position value="119.0, 423.5" />
 			<z-index value="10" />
 			<image id="map_1_layer_map_windmill" 
-				location-in-interfacebuilder="96.0, 137.0"
+				location-in-interfacebuilder="96.0, 117.0"
 				width="46.0" height="55.0"
 				phony-path="map_1_layer/sprites/map_windmill.png"  />
 		</sprite>
@@ -222,7 +222,7 @@
 			<position value="119.5, 423.5" />
 			<z-index value="11" />
 			<image id="map_1_layer_map_windmill_propeller" 
-				location-in-interfacebuilder="99.0, 144.0"
+				location-in-interfacebuilder="99.0, 124.0"
 				width="41.0" height="41.0"
 				phony-path="map_1_layer/sprites/map_windmill_propeller.png"  />
 		</sprite>
@@ -232,7 +232,7 @@
 			<position value="119.0, 423.5" />
 			<z-index value="12" />
 			<image id="map_1_layer_map_windmill_propeller_tree" 
-				location-in-interfacebuilder="112.0, 158.0"
+				location-in-interfacebuilder="112.0, 138.0"
 				width="14.0" height="13.0"
 				phony-path="map_1_layer/sprites/map_windmill_propeller_tree.png"  />
 		</sprite>

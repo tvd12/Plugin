@@ -21,7 +21,7 @@
 	<background-image id="map_4_layer_background_map_4_bg" 
 		location-in-interfacebuilder="0.0, 0.0"
 		width="384.0" height="568.0"
-		phony-path="map_4_layer/background/map_4_bg.png"  />
+		phony-path="map_layer/background/map_4_bg.png"  />
 
 	<sprites array="true" length="7" comment="create group of sprites">
 		<sprite visible="true" comment="">

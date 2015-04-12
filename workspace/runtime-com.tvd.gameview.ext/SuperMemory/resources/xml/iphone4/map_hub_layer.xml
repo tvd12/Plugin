@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="MapHubLayer" prefix="layer_map_hub" type="layer" exitable="false" 
+		super="CommonLayer" background-name="this" 
+		size="320.0, 480.0" size-by="self"
+		template-name="Common"
+		exported="true"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="map_hub_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/map_hub/map_hub_layer" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/iphone4" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/iphone5" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphone5" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Layer" />
+	<background-image id="map_hub_layer_background_map_bg" 
+		location-in-interfacebuilder="0.0, 0.0"
+		width="325.0" height="480.0"
+		phony-path="map_layer/background/map_1_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="map_hub_bottom" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="160.5, 26.5" />
+			<position-type value="relative" />
+			<margin bottom="26.5" />
+			<z-index value="1" />
+			<image id="map_hub_layer_map_hub_bottom" 
+				location-in-interfacebuilder="-2.0, 426.0"
+				width="325.0" height="55.0"
+				phony-path="map_hub_layer/sprites/map_hub_bottom.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="common_info" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="290.0, 29.5" />
+					<z-index value="14" />
+					<image id="map_hub_layer_common_info" 
+						location-in-interfacebuilder="270.0, 433.0"
+						width="36.0" height="37.0"
+						phony-path="home_layer/sprites/common_info.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="common_info_text" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="282.0, -72.0" />
+					<z-index value="2" />
+					<image id="map_hub_layer_common_info_text" 
+						location-in-interfacebuilder="269.0, 549.0"
+						width="22.0" height="8.0"
+						phony-path="home_layer/sprites/common_info_text.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="common_setting_text" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="37.0, -71.0" />
+					<z-index value="3" />
+					<image id="map_hub_layer_common_setting_text" 
+						location-in-interfacebuilder="17.0, 548.0"
+						width="36.0" height="8.0"
+						phony-path="home_layer/sprites/common_setting_text.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="common_settings" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="35.0, 29.5" />
+					<z-index value="12" />
+					<image id="map_hub_layer_common_settings" 
+						location-in-interfacebuilder="15.0, 433.0"
+						width="36.0" height="37.0"
+						phony-path="home_layer/sprites/common_settings.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="infor_bg" />
+					<anchorpoint value="0.5, 0.0" />
+					<position value="290.0, 11.0" />
+					<z-index value="13" />
+					<image id="map_hub_layer_infor_bg_common_info_bg" 
+						location-in-interfacebuilder="272.0, 325.0"
+						width="32.0" height="145.0"
+						phony-path="home_layer/sprites/infor_bg/common_info_bg.png"  />
+					<sprites array="false" comment="create group of sprites">
+						<sprite visible="true" comment="">
+							<position-name value="common_hidden_story" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="16.5, 126.0" />
+							<z-index value="15" />
+							<image id="map_hub_layer_infor_bg_common_hidden_story" 
+								location-in-interfacebuilder="281.0, 335.0"
+								width="15.0" height="18.0"
+								phony-path="home_layer/sprites/infor_bg/sprites/common_hidden_story.png"  />
+						</sprite>
+						<sprite visible="true" comment="">
+							<position-name value="common_leader_board" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="16.0, 92.0" />
+							<z-index value="16" />
+							<image id="map_hub_layer_infor_bg_common_leader_board" 
+								location-in-interfacebuilder="278.0, 370.0"
+								width="20.0" height="16.0"
+								phony-path="home_layer/sprites/infor_bg/sprites/common_leader_board.png"  />
+						</sprite>
+						<sprite visible="true" comment="">
+							<position-name value="common_profile" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="16.5, 59.0" />
+							<z-index value="17" />
+							<image id="map_hub_layer_infor_bg_common_profile" 
+								location-in-interfacebuilder="281.0, 402.0"
+								width="15.0" height="18.0"
+								phony-path="home_layer/sprites/infor_bg/sprites/common_profile.png"  />
+						</sprite>
+					</sprites>
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="settings_bg" />
+					<anchorpoint value="0.5, 0.0" />
+					<position value="36.0, 11.0" />
+					<z-index value="8" />
+					<image id="map_hub_layer_settings_bg_common_settings_bg" 
+						location-in-interfacebuilder="18.0, 325.0"
+						width="32.0" height="145.0"
+						phony-path="home_layer/sprites/settings_bg/common_settings_bg.png"  />
+					<sprites array="false" comment="create group of sprites">
+						<sprite visible="true" comment="">
+							<position-name value="common_music" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="16.0, 93.0" />
+							<z-index value="9" />
+							<image id="map_hub_layer_settings_bg_common_music" 
+								location-in-interfacebuilder="26.0, 367.0"
+								width="16.0" height="20.0"
+								phony-path="home_layer/sprites/settings_bg/sprites/common_music.png"  />
+						</sprite>
+						<sprite visible="true" comment="">
+							<position-name value="common_setting" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="15.5, 57.5" />
+							<z-index value="10" />
+							<image id="map_hub_layer_settings_bg_common_setting" 
+								location-in-interfacebuilder="23.0, 402.0"
+								width="21.0" height="21.0"
+								phony-path="home_layer/sprites/settings_bg/sprites/common_setting.png"  />
+						</sprite>
+						<sprite visible="true" comment="">
+							<position-name value="common_sound" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="15.5, 126.5" />
+							<z-index value="11" />
+							<image id="map_hub_layer_settings_bg_common_sound" 
+								location-in-interfacebuilder="24.0, 335.0"
+								width="19.0" height="17.0"
+								phony-path="home_layer/sprites/settings_bg/sprites/common_sound.png"  />
+						</sprite>
+					</sprites>
+				</sprite>
+			</sprites>
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_hub_top" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="162.5, 453.5" />
+			<position-type value="relative" />
+			<margin top="26.5" />
+			<z-index value="20" />
+			<image id="map_hub_layer_map_hub_top" 
+				location-in-interfacebuilder="0.0, -1.0"
+				width="325.0" height="55.0"
+				phony-path="map_hub_layer/sprites/map_hub_top.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="map_back" />
+					<anchorpoint value="0.0, 0.5" />
+					<position value="14.0, 23.0" />
+					<z-index value="5" />
+					<image id="map_hub_layer_back" 
+						location-in-interfacebuilder="14.0, 18.0"
+						width="26.0" height="26.0"
+						phony-path="map_hub_layer/sprites/map_back.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="heart_container" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="119.0, 23.0" />
+					<z-index value="4" />
+					<image id="map_hub_layer_heart_container_heart_container" 
+						location-in-interfacebuilder="67.0, 18.0"
+						width="104.0" height="26.0"
+						phony-path="home_layer/sprites/heart_container/home_heart_container.png"  />
+					<sprites array="false" comment="create group of sprites">
+						<sprite visible="true" comment="">
+							<position-name value="home_heart" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="40.5, 12.0" />
+							<z-index value="6" />
+							<image id="map_hub_layer_heart_container_heart" 
+								location-in-interfacebuilder="101.0, 26.0"
+								width="13.0" height="12.0"
+								phony-path="home_layer/sprites/heart_container/sprites/home_heart.png"  />
+						</sprite>
+						<sprite visible="true" comment="">
+							<position-name value="home_heart_blank" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="55.5, 12.0" />
+							<z-index value="7" />
+							<image id="map_hub_layer_heart_container_heart_blank" 
+								location-in-interfacebuilder="116.0, 26.0"
+								width="13.0" height="12.0"
+								phony-path="home_layer/sprites/heart_container/sprites/home_heart_blank.png"  />
+						</sprite>
+					</sprites>
+					<labels array="false" comment="create group of labels">
+						<label visible="true" comment="">
+							<text value="4" />
+							<font name="HelveticaNeue" family="Helvetica Neue" />
+							<font-color red="255" green="255" blue="255" alpha="255" />
+							<font-size value="15.0" />
+							<position-name value="lifes" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="35.0, 29.5" />
+							<location-in-interfacebuilder value="98.0, 7.0" />
+							<z-index value="18" />
+						</label>
+						<label visible="true" comment="">
+							<text value="04:59" />
+							<font name="HelveticaNeue" family="Helvetica Neue" />
+							<font-color red="255" green="255" blue="255" alpha="255" />
+							<font-size value="15.0" />
+							<position-name value="time" />
+							<anchorpoint value="0.5, 0.5" />
+							<position value="74.0, 29.5" />
+							<location-in-interfacebuilder value="122.0, 7.0" />
+							<z-index value="19" />
+						</label>
+					</labels>
+				</sprite>
+			</sprites>
+		</sprite>
+	</sprites>
+</view>
