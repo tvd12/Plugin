@@ -1,0 +1,54 @@
+#
+# create templates
+#
+
+#CCPoint declaring template
+{tab}CCPoint {var_name};
+
+#end
+
+#CCPoint implementing template
+{var_name}{spaces}= CCPoint({position});
+
+#end
+
+#=============== Point template ===================
+#Point declaring template
+{tab}Point {var_name};
+
+#end
+
+#Point implementing template
+{var_name}{spaces}= Vec2({position});
+
+#end
+
+#Margin-Left Point implementing template	
+{var_name}{spaces}= Vec2(VisibleRect::left().x + {margin-left}, {y});
+
+#end
+
+#Margin-Top Point implementing template
+{var_name}{spaces}= Vec2({x}, VisibleRect::top().y - {margin-top});
+
+#end
+
+#Margin-Right Point implementing template
+{var_name}{spaces}= Vec2(VisibleRect::right().x - {margin-right}, {y});
+
+#end
+
+#Margin-Bottom Point implementing template
+{var_name}{spaces}= Vec2({x}, VisibleRect::bottom().y + {margin-bottom});
+
+#end
+
+#Margin-Center-Top Point implementing template
+{var_name}{spaces}= Vec2({x}, VisibleRect::center().y + {margin-center-top});
+
+#end
+
+#Margin-Center-Bottom Point implementing template
+{var_name}{spaces}= Vec2({x}, VisibleRect::center().y - {margin-center-bottom});
+
+#end

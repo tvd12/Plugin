@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="MainGameLayer" prefix="layer_main_game" type="layer" exitable="false" 
+		super="CommonLayer" background-name="default" 
+		size="480.33826, 324.73572" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="main_game_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Skype/Release/PNG/Main_Game/main_game_layer" />
+	<images-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/iphonesd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/screenshots/iphonesd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Wireframing/WireframingScreen/iphonesd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/proj.android/res/layout/iphonesd" />
+	<class-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/View/Layer" />
+	<background-image id="main_game_layer_background_main_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="480.33826" height="324.73572"
+		phony-path="main_game_layer/background/main_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="bar_frontend" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="main_game_layer_bar_frontend" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="297.6744" height="14.376321"
+				phony-path="main_game_layer/sprites/bar_frontend.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="icon_star" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="main_game_layer_icon_star" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="11.416491" height="10.993657"
+				phony-path="main_game_layer/sprites/icon_star.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="paused_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="main_game_layer_paused_normal" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="16.067654" height="16.067654"
+				phony-path="main_game_layer/sprites/paused_normal.png"  />
+		</sprite>
+	</sprites>
+	<resource comment="resource for view">
+		<image id="main_game_layer_resource_bar_backend" 
+			phony-path="main_game_layer/resource/bar_backend.png"  />
+		<image id="main_game_layer_resource_block_highlight" 
+			phony-path="main_game_layer/resource/block_highlight.png"  />
+		<image id="main_game_layer_resource_block_normal" 
+			phony-path="main_game_layer/resource/block_normal.png"  />
+		<image id="main_game_layer_resource_paused_active" 
+			phony-path="main_game_layer/resource/paused_active.png"  />
+		<image id="main_game_layer_resource_paused_diable" 
+			phony-path="main_game_layer/resource/paused_diable.png"  />
+	</resource>
+</view>

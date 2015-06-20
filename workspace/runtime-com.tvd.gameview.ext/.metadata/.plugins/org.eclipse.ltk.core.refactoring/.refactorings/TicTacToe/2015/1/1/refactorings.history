@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring accessors="true" comment="Delete 2 elements from project &apos;TicTacToe&apos;&#x0A;- Original project: &apos;TicTacToe&apos;&#x0A;- Original elements:&#x0A;     leaderboard_popup.xml&#x0A;     leaderboard_popup.xml" description="Delete elements" element1="resources/xml/iPadhd/leaderboard_popup.xml" element2="resources/xml/iPhonehd/leaderboard_popup.xml" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="2" stamp="1420253870396" subPackages="false" version="1.0"/>
-</session>

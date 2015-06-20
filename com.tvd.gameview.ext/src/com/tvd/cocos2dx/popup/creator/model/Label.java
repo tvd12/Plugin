@@ -19,6 +19,7 @@
 package com.tvd.cocos2dx.popup.creator.model;
 
 import com.tvd.cocos2dx.popup.creator.constants.Attribute;
+import com.tvd.cocos2dx.popup.creator.constants.Constants;
 import com.tvd.cocos2dx.popup.creator.constants.ModelType;
 import com.tvd.cocos2dx.popup.creator.constants.Strings;
 import com.tvd.cocos2dx.popup.creator.constants.Tag;
@@ -150,6 +151,7 @@ public class Label extends CommonObject {
 			}
 			
 			this.setPosition(x, y);
+			this.setMargin();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -268,6 +270,18 @@ public class Label extends CommonObject {
 		builder.append("\n" + tab + "\t")
 			.append("<" + Tag.POSITION + " " + Attribute.VALUE 
 					+ "=\"" + mPosition + "\" />");
+		
+		if(getPositionType().equals(Constants.RELATIVE)) {
+			builder.append("\n" + tab + "\t")
+			.append("<" + Tag.POSITION_TYPE + " " + Attribute.VALUE
+					+ "=\"" + getPositionType() + "\" />");
+			
+			if(getMagin() != null) {
+				builder.append("\n" + tab + "\t")
+				.append(getMagin().toXML());
+			}
+		}
+		
 		builder.append("\n" + tab + "\t")
 			.append("<" + Tag.LOCATION_IN_INTERFACEBUILDER + " " + Attribute.VALUE 
 					+ "=\"" + mLocationInView + "\" />");

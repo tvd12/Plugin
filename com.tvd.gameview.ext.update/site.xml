@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/com.tvd.gameview.ext.feature_1.9.8.201504010805.jar" id="com.tvd.gameview.ext.feature" version="1.9.8.201504010805">
+   <feature url="features/com.tvd.gameview.ext.feature_1.9.9.201504161759.jar" id="com.tvd.gameview.ext.feature" version="1.9.9.201504161759">
       <category name="com.tvd.gameview.ext.category"/>
    </feature>
    <category-def name="com.tvd.gameview.ext.category" label="Game View Ext Category">

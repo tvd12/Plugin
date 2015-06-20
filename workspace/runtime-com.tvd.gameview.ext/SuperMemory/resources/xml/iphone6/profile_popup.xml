@@ -28,7 +28,7 @@
 			<position-name value="popup_common_close" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="125.5, 5.0" />
-			<z-index value="8" />
+			<z-index value="7" />
 			<image id="profile_popup_common_close" 
 				location-in-interfacebuilder="114.0, 570.0"
 				width="45.0" height="46.0"
@@ -48,7 +48,7 @@
 			<position-name value="popup_common_dashed_1" />
 			<anchorpoint value="0.0, 0.5" />
 			<position value="158.0, 439.0" />
-			<z-index value="10" />
+			<z-index value="9" />
 			<image id="profile_popup_common_dashed_1" 
 				location-in-interfacebuilder="169.0, 158.0"
 				width="234.0" height="2.0"
@@ -58,7 +58,7 @@
 			<position-name value="popup_common_dashed_2" />
 			<anchorpoint value="0.0, 0.5" />
 			<position value="158.0, 396.0" />
-			<z-index value="11" />
+			<z-index value="10" />
 			<image id="profile_popup_common_dashed_2" 
 				location-in-interfacebuilder="169.0, 201.0"
 				width="234.0" height="2.0"
@@ -67,20 +67,20 @@
 		<sprite visible="true" comment="">
 			<position-name value="profile_bananas" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="93.0, 120.5" />
-			<z-index value="6" />
+			<position value="93.0, 239.5" />
+			<z-index value="5" />
 			<image id="profile_popup_profile_bananas" 
-				location-in-interfacebuilder="36.0, 456.0"
+				location-in-interfacebuilder="36.0, 337.0"
 				width="136.0" height="43.0"
 				phony-path="profile_popup/sprites/profile_bananas.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="profile_best_score_text" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="176.5, 299.5" />
+			<position value="176.5, 316.5" />
 			<z-index value="4" />
 			<image id="profile_popup_profile_best_score_text" 
-				location-in-interfacebuilder="143.0, 291.0"
+				location-in-interfacebuilder="143.0, 274.0"
 				width="89.0" height="15.0"
 				phony-path="profile_popup/sprites/profile_best_score_text.png"  />
 		</sprite>
@@ -88,7 +88,7 @@
 			<position-name value="profile_cart" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="229.5, 5.0" />
-			<z-index value="9" />
+			<z-index value="8" />
 			<image id="profile_popup_profile_cart" 
 				location-in-interfacebuilder="218.0, 570.0"
 				width="45.0" height="46.0"
@@ -108,7 +108,7 @@
 			<position-name value="profile_facebook_login" />
 			<anchorpoint value="0.5, 0.5" />
 			<position value="241.0, 363.5" />
-			<z-index value="12" />
+			<z-index value="11" />
 			<image id="profile_popup_profile_facebook_login" 
 				location-in-interfacebuilder="169.0, 216.0"
 				width="166.0" height="37.0"
@@ -127,22 +127,42 @@
 		<sprite visible="true" comment="">
 			<position-name value="profile_heart" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="273.5, 120.0" />
-			<z-index value="7" />
+			<position value="273.5, 239.0" />
+			<z-index value="6" />
 			<image id="profile_popup_profile_heart" 
-				location-in-interfacebuilder="231.0, 461.0"
+				location-in-interfacebuilder="231.0, 342.0"
 				width="107.0" height="34.0"
 				phony-path="profile_popup/sprites/profile_heart.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
-			<position-name value="profile_overall_score_text" />
+			<position-name value="profile_feedback" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="176.5, 217.5" />
-			<z-index value="5" />
-			<image id="profile_popup_profile_overall_score_text" 
-				location-in-interfacebuilder="143.0, 373.0"
-				width="89.0" height="15.0"
-				phony-path="profile_popup/sprites/profile_overall_score_text.png"  />
+			<position value="176.5, 81.0" />
+			<z-index value="12" />
+			<image id="profile_popup_profile_feedback" 
+				location-in-interfacebuilder="104.0, 499.0"
+				width="167.0" height="36.0"
+				phony-path="profile_popup/sprites/profile_feedback.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="profile_private_policy" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="92.5, 137.0" />
+			<z-index value="19" />
+			<image id="profile_popup_profile_private_policy" 
+				location-in-interfacebuilder="36.0, 446.0"
+				width="135.0" height="30.0"
+				phony-path="profile_popup/sprites/profile_private_policy.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="profile_terms_of_use" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="260.5, 137.0" />
+			<z-index value="13" />
+			<image id="profile_popup_profile_terms_of_use" 
+				location-in-interfacebuilder="204.0, 446.0"
+				width="135.0" height="30.0"
+				phony-path="profile_popup/sprites/profile_terms_of_use.png"  />
 		</sprite>
 	</sprites>
 	<labels array="false" comment="create group of labels">
@@ -155,7 +175,7 @@
 			<anchorpoint value="0.0, 0.5" />
 			<position value="158.0, 459.5" />
 			<location-in-interfacebuilder value="169.0, 131.0" />
-			<z-index value="13" />
+			<z-index value="14" />
 		</label>
 		<label visible="true" comment="">
 			<text value="D.O.B: 30/05/1992" />
@@ -166,7 +186,7 @@
 			<anchorpoint value="0.0, 0.5" />
 			<position value="158.0, 417.5" />
 			<location-in-interfacebuilder value="169.0, 173.0" />
-			<z-index value="14" />
+			<z-index value="15" />
 		</label>
 		<label visible="true" comment="">
 			<text value="3500" />
@@ -175,19 +195,8 @@
 			<font-size value="18.0" />
 			<position-name value="best_score" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="176.0, 275.0" />
-			<location-in-interfacebuilder value="169.0, 314.0" />
-			<z-index value="15" />
-		</label>
-		<label visible="true" comment="">
-			<text value="123456" />
-			<font name="HelveticaNeue" family="Helvetica Neue" />
-			<font-color red="255" green="255" blue="255" alpha="255" />
-			<font-size value="18.0" />
-			<position-name value="overall_score" />
-			<anchorpoint value="0.5, 0.5" />
-			<position value="176.0, 193.0" />
-			<location-in-interfacebuilder value="160.0, 396.0" />
+			<position value="176.0, 292.0" />
+			<location-in-interfacebuilder value="169.0, 297.0" />
 			<z-index value="16" />
 		</label>
 		<label visible="true" comment="">
@@ -197,8 +206,8 @@
 			<font-size value="18.0" />
 			<position-name value="bananas" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="83.0, 86.0" />
-			<location-in-interfacebuilder value="85.0, 503.0" />
+			<position value="83.0, 205.0" />
+			<location-in-interfacebuilder value="85.0, 384.0" />
 			<z-index value="17" />
 		</label>
 		<label visible="true" comment="">
@@ -208,8 +217,8 @@
 			<font-size value="18.0" />
 			<position-name value="lifes" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="273.0, 86.0" />
-			<location-in-interfacebuilder value="275.0, 503.0" />
+			<position value="273.0, 205.0" />
+			<location-in-interfacebuilder value="275.0, 384.0" />
 			<z-index value="18" />
 		</label>
 	</labels>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="FacebookPopup" prefix="popup_facebook" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" 
+		size="333.0, 200.0" size-by="background"
+		template-name="Common"
+		exported="true"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="facebook_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/popup/facebook_popup" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/iphone6plus" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/iphone5" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphone5" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Popup" />
+	<background-image id="facebook_popup_background_medium_bg" 
+		location-in-interfacebuilder="41.0, 268.0"
+		width="333.0" height="200.0"
+		phony-path="common_popup_medium_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="popup_common_ribbon" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="166.0, 192.5" />
+			<z-index value="1" />
+			<image id="facebook_popup_popup_common_ribbon" 
+				location-in-interfacebuilder="62.0, 239.0"
+				width="290.0" height="73.0"
+				phony-path="setting_popup/sprites/popup_common_ribbon.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="popup_common_close" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="104.0, 4.5" />
+			<z-index value="4" />
+			<image id="facebook_popup_popup_common_close" 
+				location-in-interfacebuilder="120.0, 438.0"
+				width="50.0" height="51.0"
+				phony-path="setting_popup/sprites/popup_common_close.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="finish_next" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="228.0, 4.5" />
+			<z-index value="5" />
+			<image id="facebook_popup_finish_next" 
+				location-in-interfacebuilder="244.0, 438.0"
+				width="50.0" height="51.0"
+				phony-path="finish_popup/sprites/finish_next.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="big_heart" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="155.0, 60.5" />
+			<z-index value="2" />
+			<image id="facebook_popup_big_heart" 
+				location-in-interfacebuilder="170.0, 383.0"
+				width="52.0" height="49.0"
+				phony-path="facebook_popup/sprites/big_heart.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="congrats_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="166.0, 207.0" />
+			<z-index value="3" />
+			<image id="facebook_popup_congrats_text" 
+				location-in-interfacebuilder="144.0, 247.0"
+				width="126.0" height="28.0"
+				phony-path="facebook_popup/sprites/congrats_text.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="Success login to" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="text" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="106.0, 124.5" />
+			<location-in-interfacebuilder value="147.0, 336.0" />
+			<z-index value="7" />
+		</label>
+		<label visible="true" comment="">
+			<text value="+5" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="24.0" />
+			<position-name value="lifes" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="180.0, 60.0" />
+			<location-in-interfacebuilder value="221.0, 396.0" />
+			<z-index value="6" />
+		</label>
+	</labels>
+</view>

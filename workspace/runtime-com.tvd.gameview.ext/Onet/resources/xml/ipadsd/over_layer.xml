@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="OverLayer" prefix="layer_over" type="layer" exitable="false" 
+		super="CommonLayer" background-name="default" 
+		size="768.0, 1136.0" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="over_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/unlimited/unlimited/Unlimited/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/unlimited/unlimited/Unlimited/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/unlimited_all_cut/unlimited_gameover_cut/over_layer" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/unlimited/unlimited/Unlimited/Resources/ipadsd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/unlimited/unlimited/Unlimited/Resources/screenshots/ipadsd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Wireframing/WireframingScreen/ipadsd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/proj.android/res/layout/ipadsd" />
+	<class-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/View/Layer" />
+	<background-image id="over_layer_background_over_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="768.0" height="1136.0"
+		phony-path="over_layer/background/over_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="facebook_icon" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="over_layer_facebook_icon" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="75.0" height="75.0"
+				phony-path="over_layer/sprites/facebook_icon.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="home_icon" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="over_layer_home_icon" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="75.0" height="75.0"
+				phony-path="over_layer/sprites/home_icon.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="leaderboard_icon" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="over_layer_leaderboard_icon" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="75.0" height="75.0"
+				phony-path="over_layer/sprites/leaderboard_icon.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="medal_bronze" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="over_layer_medal_bronze" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="73.0" height="97.0"
+				phony-path="over_layer/sprites/medal_bronze.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="medal_gold" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="over_layer_medal_gold" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="74.0" height="99.0"
+				phony-path="over_layer/sprites/medal_gold.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="medal_silver" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="over_layer_medal_silver" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="74.0" height="99.0"
+				phony-path="over_layer/sprites/medal_silver.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="over_box" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="over_layer_over_box" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="385.5" height="211.0"
+				phony-path="over_layer/sprites/over_box.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="over_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="over_layer_over_text" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="529.0" height="59.0"
+				phony-path="over_layer/sprites/over_text.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="replay" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="over_layer_replay" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="185.0" height="185.0"
+				phony-path="over_layer/sprites/replay.png"  />
+		</sprite>
+	</sprites>
+</view>

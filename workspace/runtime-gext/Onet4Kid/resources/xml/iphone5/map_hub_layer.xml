@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="MapHubLayer" prefix="layer_map_hub" type="layer" exitable="false" 
+		super="CommonLayer" background-name="this" 
+		size="320.0, 568.0" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="map_hub_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Skype/level_score/map_hub_layer" />
+	<images-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/screenshots/iphone5" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Wireframing/WireframingScreen/iphone4" />
+	<androidcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/proj.android/res/layout/iphone4" />
+	<class-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/View/Layer" />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="map_hub_dot" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="160.0, 101.0" />
+			<z-index value="5" />
+			<image id="map_hub_layer_map_hub_dot" 
+				location-in-interfacebuilder="149.0, 456.0"
+				width="22.0" height="22.0"
+				phony-path="map_hub_layer/sprites/map_hub_dot.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_hub_score_bg" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="0.0, 542.5" />
+			<z-index value="1" />
+			<image id="map_hub_layer_map_hub_score_bg" 
+				location-in-interfacebuilder="0.0, 8.0"
+				width="120.0" height="35.0"
+				phony-path="map_hub_layer/sprites/map_hub_score_bg.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_hub_star" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="307.5, 544.0" />
+			<z-index value="2" />
+			<image id="map_hub_layer_map_hub_star" 
+				location-in-interfacebuilder="297.0, 14.0"
+				width="21.0" height="20.0"
+				phony-path="map_hub_layer/sprites/map_hub_star.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_hub_star_bg" />
+			<anchorpoint value="1.0, 0.5" />
+			<position value="320.0, 542.5" />
+			<z-index value="0" />
+			<image id="map_hub_layer_map_hub_star_bg" 
+				location-in-interfacebuilder="257.0, 8.0"
+				width="63.0" height="35.0"
+				phony-path="map_hub_layer/sprites/map_hub_star_bg.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="3,005" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="score" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="80.0, 542.5" />
+			<location-in-interfacebuilder value="61.0, 18.0" />
+			<z-index value="3" />
+		</label>
+		<label visible="true" comment="">
+			<text value="99" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="star" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="280.5, 542.5" />
+			<location-in-interfacebuilder value="273.0, 18.0" />
+			<z-index value="4" />
+		</label>
+	</labels>
+	<resource comment="resource for view">
+		<image id="map_hub_layer_resource_map_hub_dot_disable" 
+			phony-path="map_hub_layer/resource/map_hub_dot_disable.png"  />
+	</resource>
+</view>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="WonPopup" prefix="popup_won" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" 
+		size="244.0, 194.0" size-by="background"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="won_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Skype/PNG/popup/won_popup" />
+	<images-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/screenshots/iphone4" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Wireframing/WireframingScreen/iphone4" />
+	<androidcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/proj.android/res/layout/iphone4" />
+	<class-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/View/Popup" />
+	<background-image id="won_popup_background" 
+		location-in-interfacebuilder="38.0, 143.0"
+		width="244.0" height="194.0"
+		phony-path="common_popup.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="won_header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="122.5, 199.0" />
+			<z-index value="2" />
+			<image id="won_popup_won_header" 
+				location-in-interfacebuilder="51.0, 115.0"
+				width="219.0" height="46.0"
+				phony-path="won_popup/sprites/won_header.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="won_light" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="122.5, 144.0" />
+			<z-index value="1" />
+			<image id="won_popup_won_light" 
+				location-in-interfacebuilder="-2.0, -17.0"
+				width="325.0" height="420.0"
+				phony-path="won_popup/sprites/won_light.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="won_menu_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="54.5, 9.5" />
+			<z-index value="7" />
+			<image id="won_popup_won_menu_normal" 
+				location-in-interfacebuilder="68.0, 306.0"
+				width="49.0" height="43.0"
+				phony-path="won_popup/sprites/won_menu_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="pause_replay_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="122.5, 9.5" />
+			<z-index value="12" />
+			<image id="won_popup_won_replay_normal" 
+				location-in-interfacebuilder="136.0, 306.0"
+				width="49.0" height="43.0"
+				phony-path="pause_popup/sprites/pause_replay_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="won_next_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="189.5, 9.5" />
+			<z-index value="3" />
+			<image id="won_popup_won_next_normal" 
+				location-in-interfacebuilder="203.0, 306.0"
+				width="49.0" height="43.0"
+				phony-path="won_popup/sprites/won_next_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="won_star_1" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="66.5, 130.5" />
+			<z-index value="4" />
+			<image id="won_popup_won_star_1" 
+				location-in-interfacebuilder="81.0, 183.0"
+				width="47.0" height="47.0"
+				phony-path="won_popup/sprites/won_star_1.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="won_star_2" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="121.5, 144.5" />
+			<z-index value="5" />
+			<image id="won_popup_won_star_2" 
+				location-in-interfacebuilder="133.0, 167.0"
+				width="53.0" height="51.0"
+				phony-path="won_popup/sprites/won_star_2.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="won_star_3" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="177.5, 130.5" />
+			<z-index value="6" />
+			<image id="won_popup_won_star_3" 
+				location-in-interfacebuilder="192.0, 183.0"
+				width="47.0" height="47.0"
+				phony-path="won_popup/sprites/won_star_3.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="SCORE:" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="22.0" />
+			<position-name value="score_text" />
+			<anchorpoint value="1.0, 0.5" />
+			<position value="125.0, 73.0" />
+			<location-in-interfacebuilder value="97.0, 253.0" />
+			<z-index value="8" />
+		</label>
+		<label visible="true" comment="">
+			<text value="3005" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="22.0" />
+			<position-name value="score_value" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="142.0, 73.0" />
+			<location-in-interfacebuilder value="180.0, 253.0" />
+			<z-index value="9" />
+		</label>
+		<label visible="true" comment="">
+			<text value="TIME:" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="22.0" />
+			<position-name value="time_text" />
+			<anchorpoint value="1.0, 0.5" />
+			<position value="125.0, 43.0" />
+			<location-in-interfacebuilder value="108.0, 283.0" />
+			<z-index value="10" />
+		</label>
+		<label visible="true" comment="">
+			<text value="60s" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="22.0" />
+			<position-name value="time_value" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="142.0, 43.0" />
+			<location-in-interfacebuilder value="180.0, 283.0" />
+			<z-index value="11" />
+		</label>
+	</labels>
+	<resource comment="resource for view">
+		<image id="won_popup_resource_won_menu_active" 
+			phony-path="won_popup/resource/won_menu_active.png"  />
+		<image id="won_popup_resource_won_next_active" 
+			phony-path="won_popup/resource/won_next_active.png"  />
+		<image id="won_popup_resource_won_random_star" 
+			phony-path="won_popup/resource/won_random_star.png"  />
+		<image id="won_popup_resource_won_star_empty_1" 
+			phony-path="won_popup/resource/won_star_empty_1.png"  />
+		<image id="won_popup_resource_won_star_empty_2" 
+			phony-path="won_popup/resource/won_star_empty_2.png"  />
+		<image id="won_popup_resource_won_star_empty_3" 
+			phony-path="won_popup/resource/won_star_empty_3.png"  />
+	</resource>
+</view>

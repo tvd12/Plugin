@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="PausePopup" prefix="popup_pause" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" 
+		size="768.0, 1024.0" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="pause_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Skype/PNG/popup/pause_popup" />
+	<images-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/ipadsd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/screenshots/ipadsd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Wireframing/WireframingScreen/ipadsd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/proj.android/res/layout/ipadsd" />
+	<class-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/View/Popup" />
+	<background-image id="setting_popup_background_common_popup" 
+		location-in-interfacebuilder="96.0, 283.0"
+		width="577.0" height="458.0"
+		phony-path="common_popup.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="pause_header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="pause_popup_pause_header" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="477.5" height="101.5"
+				phony-path="pause_popup/sprites/pause_header.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="pause_play_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="pause_popup_pause_play_normal" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="117.0" height="102.0"
+				phony-path="pause_popup/sprites/pause_play_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="pause_replay_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="pause_popup_pause_replay_normal" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="117.0" height="102.0"
+				phony-path="pause_popup/sprites/pause_replay_normal.png"  />
+		</sprite>
+	</sprites>
+	<resource comment="resource for view">
+		<image id="pause_popup_resource_pause_play_active" 
+			phony-path="pause_popup/resource/pause_play_active.png"  />
+		<image id="pause_popup_resource_pause_replay_active" 
+			phony-path="pause_popup/resource/pause_replay_active.png"  />
+	</resource>
+</view>

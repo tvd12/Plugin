@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="InvitePopup" prefix="popup_invite" type="popup" exitable="false" 
+		super="PopupLayer" background-name="mBackgroundSprite" 
+		size="453.0, 259.0" size-by="background"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="invite_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/temp/invite_popup" />
+	<images-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/screenshots/iphone6plus" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Wireframing/WireframingScreen/iphone5" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/proj.android/res/layout/iphone5" />
+	<class-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/View/Popup" />
+	<background-image id="invite_popup_background_name_bg" 
+		location-in-interfacebuilder="142.0, 59.0"
+		width="453.0" height="259.0"
+		phony-path="name_popup/background/name_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="iv_close_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="110.5, 78.5" />
+			<z-index value="1" />
+			<image id="invite_popup_iv_close_normal" 
+				location-in-interfacebuilder="200.0, 215.0"
+				width="105.0" height="49.0"
+				phony-path="invite_popup/sprites/iv_close_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="iv_invite_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="290.5, 78.5" />
+			<z-index value="4" />
+			<image id="invite_popup_iv_invite_normal" 
+				location-in-interfacebuilder="329.0, 215.0"
+				width="207.0" height="49.0"
+				phony-path="invite_popup/sprites/iv_invite_normal.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="New High Score" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="24.0" />
+			<position-name value="header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="226.0, 241.0" />
+			<location-in-interfacebuilder value="284.0, 65.0" />
+			<z-index value="2" />
+		</label>
+		<label visible="true" comment="">
+			<text value="Invite 5 friends to get a free shuffle!" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="21.0" />
+			<position-name value="text" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="58.0, 166.5" />
+			<location-in-interfacebuilder value="200.0, 141.0" />
+			<z-index value="3" />
+		</label>
+	</labels>
+	<resource comment="resource for view">
+		<image id="invite_popup_resource_iv_close_active" 
+			phony-path="invite_popup/resource/iv_close_active.png"  />
+		<image id="invite_popup_resource_iv_invite_active" 
+			phony-path="invite_popup/resource/iv_invite_active.png"  />
+	</resource>
+</view>

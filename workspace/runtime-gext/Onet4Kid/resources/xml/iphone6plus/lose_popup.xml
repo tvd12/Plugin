@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="LosePopup" prefix="popup_lose" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" 
+		size="373.13916, 296.44012" size-by="background"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="lose_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Skype/PNG/popup/lose_popup" />
+	<images-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/screenshots/iphone6plus" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Wireframing/WireframingScreen/iphone4" />
+	<androidcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/proj.android/res/layout/iphone4" />
+	<class-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/View/Popup" />
+	<background-image id="lose_popup_background" 
+		location-in-interfacebuilder="21.0, 220.0"
+		width="373.13916" height="296.44012"
+		phony-path="common_popup.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="lose_header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="186.44984, 308.7249" />
+			<z-index value="3" />
+			<image id="lose_popup_lose_header" 
+				location-in-interfacebuilder="78.0, 176.0"
+				width="258.8997" height="63.430424"
+				phony-path="lose_popup/sprites/lose_header.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="lose_menu_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="84.864075, 17.43042" />
+			<z-index value="1" />
+			<image id="lose_popup_lose_menu_normal" 
+				location-in-interfacebuilder="68.0, 466.0"
+				width="75.72816" height="66.01942"
+				phony-path="won_popup/sprites/won_menu_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="pause_replay_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="286.86407, 17.43042" />
+			<z-index value="2" />
+			<image id="lose_popup_lose_replay_normal" 
+				location-in-interfacebuilder="270.0, 466.0"
+				width="75.72816" height="66.01942"
+				phony-path="pause_popup/sprites/pause_replay_normal.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="BEST SCORE" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="24.0" />
+			<position-name value="best_score_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="186.0, 237.44012" />
+			<location-in-interfacebuilder value="147.0, 267.0" />
+			<z-index value="4" />
+		</label>
+		<label visible="true" comment="">
+			<text value="3,005" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="24.0" />
+			<position-name value="best_score_value" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="186.0, 148.44012" />
+			<location-in-interfacebuilder value="177.0, 356.0" />
+			<z-index value="5" />
+		</label>
+	</labels>
+</view>

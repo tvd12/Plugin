@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="NamePopup" prefix="popup_name" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" 
+		size="350.0, 200.0" size-by="background"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="name_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Desktop/temp/name_popup" />
+	<images-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/screenshots/iphone5" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Wireframing/WireframingScreen/iphone5" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/proj.android/res/layout/iphone5" />
+	<class-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/View/Popup" />
+	<background-image id="name_popup_background_name_bg" 
+		location-in-interfacebuilder="109.0, 60.0"
+		width="350.0" height="200.0"
+		phony-path="name_popup/background/name_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="text_bg" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="175.5, 100.5" />
+			<z-index value="1" />
+			<image id="name_popup_text_bg" 
+				location-in-interfacebuilder="153.0, 145.0"
+				width="263.0" height="29.0"
+				phony-path="name_popup/sprites/text_bg.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="x_icon" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="292.5, 100.5" />
+			<z-index value="2" />
+			<image id="name_popup_x_icon" 
+				location-in-interfacebuilder="387.0, 145.0"
+				width="29.0" height="29.0"
+				phony-path="name_popup/sprites/x_icon.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="submit" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="175.0, 39.0" />
+			<z-index value="5" />
+			<image id="name_popup_submit_normal" 
+				location-in-interfacebuilder="204.0, 202.0"
+				width="160.0" height="38.0"
+				phony-path="all_popup/sprites/all_button_normal.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="New High Score" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="24.0" />
+			<position-name value="header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="175.0, 188.0" />
+			<location-in-interfacebuilder value="200.0, 60.0" />
+			<z-index value="3" />
+		</label>
+		<label visible="true" comment="">
+			<text value="Enter your name:" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="21.0" />
+			<position-name value="text" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="44.0, 138.5" />
+			<location-in-interfacebuilder value="153.0, 111.0" />
+			<z-index value="4" />
+		</label>
+	</labels>
+</view>

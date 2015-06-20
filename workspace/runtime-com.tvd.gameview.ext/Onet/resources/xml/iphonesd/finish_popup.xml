@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="FinishPopup" prefix="popup_finish" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" 
+		size="480.0, 320.0" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="finish_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Skype/Release_2/PNG/Popup/finish_popup" />
+	<images-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/iphonesd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/screenshots/iphonesd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Wireframing/WireframingScreen/iphonesd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/proj.android/res/layout/iphonesd" />
+	<class-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/View/Popup" />
+	<background-image id="all_popup_background_all_bg" 
+		location-in-interfacebuilder="3.0, 14.0"
+		width="475.0" height="291.0"
+		phony-path="all_popup/background/all_bg.png"  />
+
+	<resource comment="resource for view">
+		<image id="finish_popup_resource_help_bg" 
+			phony-path="finish_popup/resource/help_bg.png"  />
+		<image id="finish_popup_resource_text_gameover" 
+			phony-path="finish_popup/resource/text_gameover.png"  />
+		<image id="finish_popup_resource_text_victorious" 
+			phony-path="finish_popup/resource/text_victorious.png"  />
+		<image id="finish_popup_resource_text_youwon" 
+			phony-path="finish_popup/resource/text_youwon.png"  />
+	</resource>
+</view>

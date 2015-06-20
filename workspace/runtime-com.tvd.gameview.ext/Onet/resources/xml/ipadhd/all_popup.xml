@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="AllPopup" prefix="popup_all" type="popup" exitable="false" 
+		super="PopupLayer" background-name="mBackgroundSprite" 
+		size="1124.0, 688.0" size-by="background"
+		template-name="Common"
+		exported="true"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="all_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Skype/Release_2/PNG/Popup/all_popup" />
+	<images-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/screenshots/ipadhd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Wireframing/WireframingScreen/iphone5" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/proj.android/res/layout/iphone5" />
+	<class-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/View/Popup" />
+	<background-image id="all_popup_background_all_bg" 
+		location-in-interfacebuilder="0.0, 40.0"
+		width="1124.0" height="688.0"
+		phony-path="all_popup/background/all_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="resume_button" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="943.0, 625.5" />
+			<z-index value="1" />
+			<image id="all_popup_resume_button_normal" 
+				location-in-interfacebuilder="783.0, 65.0"
+				width="320.0" height="75.0"
+				phony-path="all_popup/sprites/all_button_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="new_game_button" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="943.0, 532.5" />
+			<z-index value="2" />
+			<image id="all_popup_new_game_button_normal" 
+				location-in-interfacebuilder="783.0, 158.0"
+				width="320.0" height="75.0"
+				phony-path="all_popup/sprites/all_button_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="leaderboard_button" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="943.0, 438.5" />
+			<z-index value="3" />
+			<image id="all_popup_leaderboard_button_normal" 
+				location-in-interfacebuilder="783.0, 252.0"
+				width="320.0" height="75.0"
+				phony-path="all_popup/sprites/all_button_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="exit_game_button" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="943.0, 344.5" />
+			<z-index value="4" />
+			<image id="all_popup_exit_game_button_normal" 
+				location-in-interfacebuilder="783.0, 346.0"
+				width="320.0" height="75.0"
+				phony-path="all_popup/sprites/all_button_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="icon_help_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="1065.5, 244.5" />
+			<z-index value="8" />
+			<image id="all_popup_icon_help_normal" 
+				location-in-interfacebuilder="1028.0, 446.0"
+				width="75.0" height="75.0"
+				phony-path="all_popup/sprites/icon_help_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="icon_music_on" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="943.5, 244.5" />
+			<z-index value="6" />
+			<image id="all_popup_icon_music_on" 
+				location-in-interfacebuilder="906.0, 446.0"
+				width="75.0" height="75.0"
+				phony-path="all_popup/sprites/icon_music_on.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="icon_sound_on" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="820.5, 244.5" />
+			<z-index value="7" />
+			<image id="all_popup_icon_sound_on" 
+				location-in-interfacebuilder="783.0, 446.0"
+				width="75.0" height="75.0"
+				phony-path="all_popup/sprites/icon_sound_on.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="popup_inner_bg" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="388.5, 344.0" />
+			<z-index value="5" />
+			<image id="all_popup_popup_inner_bg" 
+				location-in-interfacebuilder="24.0, 65.0"
+				width="729.0" height="638.0"
+				phony-path="all_popup/sprites/popup_inner_bg.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="BEST SCORE" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="24.0" />
+			<position-name value="best_score" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="388.0, 609.0" />
+			<location-in-interfacebuilder value="328.0, 107.0" />
+			<z-index value="9" />
+		</label>
+		<label visible="true" comment="">
+			<text value="10,000" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="best_score_value" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="388.5, 555.5" />
+			<location-in-interfacebuilder value="366.0, 165.0" />
+			<z-index value="10" />
+		</label>
+	</labels>
+	<resource comment="resource for view">
+		<image id="all_popup_resource_all_button_active" 
+			phony-path="all_popup/resource/all_button_active.png"  />
+		<image id="all_popup_resource_icon_help_active" 
+			phony-path="all_popup/resource/icon_help_active.png"  />
+		<image id="all_popup_resource_icon_music_active" 
+			phony-path="all_popup/resource/icon_music_active.png"  />
+		<image id="all_popup_resource_icon_music_disable" 
+			phony-path="all_popup/resource/icon_music_disable.png"  />
+		<image id="all_popup_resource_icon_sound_active" 
+			phony-path="all_popup/resource/icon_sound_active.png"  />
+		<image id="all_popup_resource_icon_sound_disable" 
+			phony-path="all_popup/resource/icon_sound_disable.png"  />
+	</resource>
+</view>

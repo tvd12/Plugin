@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="MapHubLayer" prefix="layer_map_hub" type="layer" exitable="false" 
+		super="CommonLayer" background-name="default" 
+		size="768.0, 1024.0" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="map_hub_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Skype/level_score/map_hub_layer" />
+	<images-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/ipadsd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/screenshots/ipadsd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Wireframing/WireframingScreen/ipadsd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/proj.android/res/layout/ipadsd" />
+	<class-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/View/Layer" />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="map_hub_dot" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_hub_layer_map_hub_dot" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="43.0" height="43.0"
+				phony-path="map_hub_layer/sprites/map_hub_dot.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_hub_score_bg" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_hub_layer_map_hub_score_bg" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="183.0" height="74.5"
+				phony-path="map_hub_layer/sprites/map_hub_score_bg.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_hub_star" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_hub_layer_map_hub_star" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="37.0" height="35.5"
+				phony-path="map_hub_layer/sprites/map_hub_star.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="map_hub_star_bg" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="map_hub_layer_map_hub_star_bg" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="101.5" height="74.0"
+				phony-path="map_hub_layer/sprites/map_hub_star_bg.png"  />
+		</sprite>
+	</sprites>
+	<resource comment="resource for view">
+		<image id="map_hub_layer_resource_map_hub_dot_disable" 
+			phony-path="map_hub_layer/resource/map_hub_dot_disable.png"  />
+	</resource>
+</view>

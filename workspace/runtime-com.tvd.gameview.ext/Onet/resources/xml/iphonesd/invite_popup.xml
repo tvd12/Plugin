@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="InvitePopup" prefix="popup_invite" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" 
+		size="480.0, 320.0" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="invite_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/temp/invite_popup" />
+	<images-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/iphonesd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/screenshots/iphonesd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Wireframing/WireframingScreen/iphonesd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/proj.android/res/layout/iphonesd" />
+	<class-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/View/Popup" />
+	<background-image id="common_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		phony-path="common_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="iv_close_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="invite_popup_iv_close_normal" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="68.71036" height="31.712473"
+				phony-path="invite_popup/sprites/iv_close_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="iv_invite_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="invite_popup_iv_invite_normal" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="135.30655" height="31.712473"
+				phony-path="invite_popup/sprites/iv_invite_normal.png"  />
+		</sprite>
+	</sprites>
+	<resource comment="resource for view">
+		<image id="invite_popup_resource_iv_close_active" 
+			phony-path="invite_popup/resource/iv_close_active.png"  />
+		<image id="invite_popup_resource_iv_invite_active" 
+			phony-path="invite_popup/resource/iv_invite_active.png"  />
+	</resource>
+</view>

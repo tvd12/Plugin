@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="CommonLayer" prefix="layer_common" type="layer" exitable="false" 
+		super="CommonLayer" background-name="default" 
+		size="768.0, 1024.0" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="common_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/unlimited/unlimited/Unlimited/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/unlimited/unlimited/Unlimited/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/unlimited_all_cut/common_layer" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/unlimited/unlimited/Unlimited/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/unlimited/unlimited/Unlimited/Resources/screenshots/ipadhd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/iphone5" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/iphone5" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/unlimited/unlimited/Unlimited/Classes/View/Layer" />
+	<background-image id="common_layer_background_home_bg" 
+		location-in-interfacebuilder="0.0, -56.0"
+		width="768.0" height="1136.0"
+		phony-path="home_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="cloud_1" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="304.5, 886.5" />
+			<position-type value="relative" />
+			<margin top="137.5" />
+			<z-index value="3" />
+			<image id="common_layer_cloud_1" 
+				location-in-interfacebuilder="176.0, 15.0"
+				width="257.0" height="133.0"
+				phony-path="cloud_1.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="cloud_2" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="614.0, 599.5" />
+			<position-type value="relative" />
+			<margin top="424.5" />
+			<z-index value="1" />
+			<image id="common_layer_cloud_2" 
+				location-in-interfacebuilder="524.0, 322.0"
+				width="180.0" height="93.0"
+				phony-path="cloud_2.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="cloud_3" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="166.0, 516.0" />
+			<position-type value="relative" />
+			<margin top="508.0" />
+			<z-index value="2" />
+			<image id="common_layer_cloud_3" 
+				location-in-interfacebuilder="88.0, 412.0"
+				width="156.0" height="80.0"
+				phony-path="cloud_3.png"  />
+		</sprite>
+	</sprites>
+</view>

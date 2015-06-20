@@ -3,7 +3,7 @@
 		super="CommonLayer" background-name="mBackgroundSprite" 
 		size="384.0, 568.0" size-by="background"
 		template-name="Common"
-		exported="true"
+		exported="false"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

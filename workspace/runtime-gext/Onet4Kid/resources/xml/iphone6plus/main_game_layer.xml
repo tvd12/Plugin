@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="MainGameLayer" prefix="layer_main_game" type="layer" exitable="false" 
+		super="CommonLayer" background-name="default" 
+		size="414.0, 736.0" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="main_game_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Skype/PNG_2/main_game_layer" />
+	<images-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/screenshots/iphone6plus" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Wireframing/WireframingScreen/iphone4" />
+	<androidcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/proj.android/res/layout/iphone4" />
+	<class-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/View/Layer" />
+	<background-image id="main_game_background" 
+		location-in-interfacebuilder="0.0, 0.0"
+		width="497.0" height="735.0"
+		phony-path="lobby_layer/background/lobby_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="main_ad_banner" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="248.0, 34.5" />
+			<z-index value="3" />
+			<image id="main_game_layer_main_ad_banner" 
+				location-in-interfacebuilder="0.0, 667.0"
+				width="496.0" height="69.0"
+				phony-path="main_game_layer/sprites/main_ad_banner.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="main_char" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="248.0, 360.0" />
+			<z-index value="6" />
+			<image id="main_game_layer_main_char" 
+				location-in-interfacebuilder="220.0, 348.0"
+				width="56.0" height="56.0"
+				phony-path="main_game_layer/sprites/main_char.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="main_top_bg" />
+			<anchorpoint value="0.5, 1.0" />
+			<position value="248.5, 736.0" />
+			<z-index value="1" />
+			<image id="main_game_layer_main_top_bg" 
+				location-in-interfacebuilder="0.0, 0.0"
+				width="497.0" height="113.0"
+				phony-path="main_game_layer/sprites/main_top_bg.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="main_menu_normal" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="36.5, 82.5" />
+					<z-index value="4" />
+					<image id="main_game_layer_main_menu_normal" 
+						location-in-interfacebuilder="8.0, 6.0"
+						width="57.0" height="49.0"
+						phony-path="main_game_layer/sprites/main_menu_normal.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="main_pause_normal" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="460.5, 82.5" />
+					<z-index value="5" />
+					<image id="main_game_layer_main_pause_normal" 
+						location-in-interfacebuilder="432.0, 6.0"
+						width="57.0" height="49.0"
+						phony-path="main_game_layer/sprites/main_pause_normal.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="main_progress_bg" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="248.0, 38.5" />
+					<z-index value="2" />
+					<image id="main_game_layer_main_progress_bg" 
+						location-in-interfacebuilder="64.0, 64.0"
+						width="368.0" height="21.0"
+						phony-path="main_game_layer/sprites/main_progress_bg.png"  />
+				</sprite>
+			</sprites>
+			<labels array="false" comment="create group of labels">
+				<label visible="true" comment="">
+					<text value="12" />
+					<font name="HelveticaNeue" family="Helvetica Neue" />
+					<font-color red="255" green="255" blue="255" alpha="255" />
+					<font-size value="18.0" />
+					<position-name value="level" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="171.0, 82.0" />
+					<location-in-interfacebuilder value="162.0, 22.0" />
+					<z-index value="7" />
+				</label>
+				<label visible="true" comment="">
+					<text value="234,567" />
+					<font name="HelveticaNeue" family="Helvetica Neue" />
+					<font-color red="255" green="255" blue="255" alpha="255" />
+					<font-size value="18.0" />
+					<position-name value="score" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="359.5, 82.0" />
+					<location-in-interfacebuilder value="328.0, 22.0" />
+					<z-index value="8" />
+				</label>
+			</labels>
+		</sprite>
+	</sprites>
+	<resource comment="resource for view">
+		<image id="main_game_layer_resource_main_2star_disable" 
+			phony-path="main_game_layer/resource/main_2star_disable.png"  />
+		<image id="main_game_layer_resource_main_3star_disable" 
+			phony-path="main_game_layer/resource/main_3star_disable.png"  />
+		<image id="main_game_layer_resource_main_menu_active" 
+			phony-path="main_game_layer/resource/main_menu_active.png"  />
+		<image id="main_game_layer_resource_main_pause_active" 
+			phony-path="main_game_layer/resource/main_pause_active.png"  />
+		<image id="main_game_layer_resource_main_pause_disable" 
+			phony-path="main_game_layer/resource/main_pause_disable.png"  />
+		<image id="main_game_layer_resource_main_progress_front" 
+			phony-path="main_game_layer/resource/main_progress_front.png"  />
+	</resource>
+</view>

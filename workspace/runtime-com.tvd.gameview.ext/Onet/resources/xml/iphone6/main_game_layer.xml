@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="MainGameLayer" prefix="layer_main_game" type="layer" exitable="false" 
+		super="CommonLayer" background-name="this" 
+		size="667.0, 375.0" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="main_game_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Skype/Release/PNG/Main_Game/main_game_layer" />
+	<images-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/screenshots/iphone6" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Wireframing/WireframingScreen/iphone5" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/proj.android/res/layout/iphone5" />
+	<class-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/View/Layer" />
+	<background-image id="main_game_layer_background_main_bg" 
+		location-in-interfacebuilder="0.0, 0.0"
+		width="666.0" height="450.0"
+		phony-path="main_game_layer/background/main_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="bar_frontend" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="333.5, 360.0" />
+			<position-type value="relative" />
+			<margin top="15.0" />
+			<z-index value="2" />
+			<image id="main_game_layer_bar_frontend" 
+				location-in-interfacebuilder="127.0, 5.0"
+				width="413.0" height="20.0"
+				phony-path="main_game_layer/sprites/bar_frontend.png"  />
+		</sprite>
+	</sprites>
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="icon_star" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="34.0, 360.5" />
+			<position-type value="relative" />
+			<margin top="14.5" />
+			<z-index value="1" />
+			<image id="main_game_layer_icon_star" 
+				location-in-interfacebuilder="26.0, 7.0"
+				width="16.0" height="15.0"
+				phony-path="main_game_layer/sprites/icon_star.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="paused_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="631.0, 360.0" />
+			<position-type value="relative" />
+			<margin top="15.0" />
+			<z-index value="3" />
+			<image id="main_game_layer_paused_normal" 
+				location-in-interfacebuilder="620.0, 4.0"
+				width="22.0" height="22.0"
+				phony-path="main_game_layer/sprites/paused_normal.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="10" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="swap" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="47.0, 359.5" />
+			<position-type value="relative" />
+			<margin top="14.5" />
+			<location-in-interfacebuilder value="47.0, 8.0" />
+			<z-index value="4" />
+		</label>
+		<label visible="true" comment="">
+			<text value="4/7" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="level" />
+			<anchorpoint value="1.0, 0.5" />
+			<position value="119.0, 359.5" />
+			<position-type value="relative" />
+			<margin top="14.5" />
+			<location-in-interfacebuilder value="96.0, 8.0" />
+			<z-index value="6" />
+		</label>
+		<label visible="true" comment="">
+			<text value="1234" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="score" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="542.0, 359.5" />
+			<position-type value="relative" />
+			<margin top="14.5" />
+			<location-in-interfacebuilder value="542.0, 8.0" />
+			<z-index value="5" />
+		</label>
+	</labels>
+	<resource comment="resource for view">
+		<image id="main_game_layer_resource_bar_backend" 
+			phony-path="main_game_layer/resource/bar_backend.png"  />
+		<image id="main_game_layer_resource_block_highlight" 
+			phony-path="main_game_layer/resource/block_highlight.png"  />
+		<image id="main_game_layer_resource_block_normal" 
+			phony-path="main_game_layer/resource/block_normal.png"  />
+		<image id="main_game_layer_resource_paused_active" 
+			phony-path="main_game_layer/resource/paused_active.png"  />
+		<image id="main_game_layer_resource_paused_diable" 
+			phony-path="main_game_layer/resource/paused_diable.png"  />
+	</resource>
+</view>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="MapLayer" prefix="layer_map" type="layer" exitable="false" 
+		super="CommonLayer" background-name="this" 
+		size="320.0, 568.0" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="map_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Desktop/temp/map_layer" />
+	<images-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/screenshots/iphone5" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Wireframing/WireframingScreen/iphone5" />
+	<androidcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/proj.android/res/layout/iphone5" />
+	<class-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/View/Layer" />
+	<background-image id="map_layer_background" 
+		location-in-interfacebuilder="-2.0, 0.0"
+		width="384.0" height="568.0"
+		phony-path="lobby_layer/background/lobby_bg.png"  />
+
+	<sprites array="true" length="9" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="point" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="54.5, 437.0" />
+			<z-index value="1" />
+			<image id="map_layer_point_square" 
+				location-in-interfacebuilder="13.0, 94.0"
+				width="79.0" height="74.0"
+				phony-path="map_layer/sprites/point/map_square.png"  />
+			<sprites array="true" length="3" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="star" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="13.5, 0.0" />
+					<z-index value="10" />
+					<image id="map_layer_point_star" 
+						location-in-interfacebuilder="13.0, 154.0"
+						width="27.0" height="28.0"
+						phony-path="map_layer/sprites/point/sprites/map_star.png"  />
+				</sprite>
+				<next visible="true" comment="">
+					<position value="39.5, 0.0" />
+					<image id="star_1" 
+						location-in-interfacebuilder="39.0, 154.0"
+						width="27.0" height="28.0" />
+				</next>
+				<next visible="true" comment="">
+					<position value="65.5, 0.0" />
+					<image id="star_2" 
+						location-in-interfacebuilder="65.0, 154.0"
+						width="27.0" height="28.0" />
+				</next>
+			</sprites>
+			<labels array="false" comment="create group of labels">
+				<label visible="true" comment="">
+					<text value="10" />
+					<font name="HelveticaNeue" family="Helvetica Neue" />
+					<font-color red="255" green="255" blue="255" alpha="255" />
+					<font-size value="24.0" />
+					<position-name value="index" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="37.0, 41.0" />
+					<location-in-interfacebuilder value="38.0, 115.0" />
+					<z-index value="13" />
+				</label>
+			</labels>
+		</sprite>
+		<next visible="true" comment="">
+			<position value="162.5, 437.0" />
+			<image id="point_1" 
+				location-in-interfacebuilder="121.0, 94.0"
+				width="79.0" height="74.0" />
+		</next>
+		<next visible="true" comment="">
+			<position value="270.5, 437.0" />
+			<image id="point_2" 
+				location-in-interfacebuilder="229.0, 94.0"
+				width="79.0" height="74.0" />
+		</next>
+		<next visible="true" comment="">
+			<position value="54.5, 313.0" />
+			<image id="point_3" 
+				location-in-interfacebuilder="13.0, 218.0"
+				width="79.0" height="74.0" />
+		</next>
+		<next visible="true" comment="">
+			<position value="162.5, 313.0" />
+			<image id="point_4" 
+				location-in-interfacebuilder="121.0, 218.0"
+				width="79.0" height="74.0" />
+		</next>
+		<next visible="true" comment="">
+			<position value="270.5, 313.0" />
+			<image id="point_5" 
+				location-in-interfacebuilder="229.0, 218.0"
+				width="79.0" height="74.0" />
+		</next>
+		<next visible="true" comment="">
+			<position value="54.5, 187.0" />
+			<image id="point_6" 
+				location-in-interfacebuilder="13.0, 344.0"
+				width="79.0" height="74.0" />
+		</next>
+		<next visible="true" comment="">
+			<position value="162.5, 187.0" />
+			<image id="point_7" 
+				location-in-interfacebuilder="121.0, 344.0"
+				width="79.0" height="74.0" />
+		</next>
+		<next visible="true" comment="">
+			<position value="270.5, 187.0" />
+			<image id="point_8" 
+				location-in-interfacebuilder="229.0, 344.0"
+				width="79.0" height="74.0" />
+		</next>
+	</sprites>
+	<resource comment="resource for view">
+		<image id="map_layer_resource_star_empty" 
+			phony-path="map_layer/resource/map_star_empty.png"  />
+		<image id="map_layer_resource_square_lock" 
+			phony-path="map_layer/resource/map_square_lock.png"  />
+	</resource>
+</view>

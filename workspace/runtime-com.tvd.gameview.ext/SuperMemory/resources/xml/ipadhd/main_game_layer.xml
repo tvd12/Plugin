@@ -3,7 +3,7 @@
 		super="CommonLayer" background-name="this" 
 		size="768.0, 1024.0" size-by="self"
 		template-name="Common"
-		exported="true"
+		exported="false"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -27,304 +27,318 @@
 		<sprite visible="true" comment="">
 			<position-name value="bottom" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="384.0, 10.0" />
+			<position value="384.0, -11.0" />
 			<position-type value="relative" />
-			<margin bottom="10.0" />
+			<margin bottom="-11.0" />
 			<z-index value="2" />
 			<image id="main_game_layer_bottom_main_bot_bg" 
-				location-in-interfacebuilder="-347.0, 765.0"
+				location-in-interfacebuilder="-347.0, 786.0"
 				width="1462.0" height="498.0"
 				phony-path="main_game_layer/sprites/bottom/main_bot_bg.png"  />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
-					<position-name value="common_info" />
-					<anchorpoint value="0.5, 0.5" />
-					<position value="1053.0, 314.5" />
-					<z-index value="15" />
-					<image id="main_game_layer_common_info" 
-						location-in-interfacebuilder="663.0, 905.0"
-						width="86.0" height="87.0"
-						phony-path="home_layer/sprites/common_info.png"  />
-				</sprite>
-				<sprite visible="true" comment="">
-					<position-name value="common_info_text" />
-					<anchorpoint value="0.5, 0.5" />
-					<position value="1053.5, 256.5" />
-					<z-index value="16" />
-					<image id="main_game_layer_common_info_text" 
-						location-in-interfacebuilder="681.0, 997.0"
-						width="51.0" height="19.0"
-						phony-path="home_layer/sprites/common_info_text.png"  />
-				</sprite>
-				<sprite visible="true" comment="">
-					<position-name value="common_setting_text" />
-					<anchorpoint value="0.5, 0.5" />
-					<position value="406.5, 256.5" />
-					<z-index value="17" />
-					<image id="main_game_layer_common_setting_text" 
-						location-in-interfacebuilder="17.0, 997.0"
-						width="85.0" height="19.0"
-						phony-path="home_layer/sprites/common_setting_text.png"  />
-				</sprite>
-				<sprite visible="true" comment="">
-					<position-name value="common_settings" />
-					<anchorpoint value="0.5, 0.5" />
-					<position value="408.0, 314.5" />
-					<z-index value="18" />
-					<image id="main_game_layer_common_settings" 
-						location-in-interfacebuilder="19.0, 905.0"
-						width="84.0" height="87.0"
-						phony-path="home_layer/sprites/common_settings.png"  />
-				</sprite>
-				<sprite visible="true" comment="">
-					<position-name value="main_reset" />
-					<anchorpoint value="0.5, 0.5" />
-					<position value="731.5, 302.5" />
-					<z-index value="7" />
-					<image id="main_game_layer_bottom_main_reset" 
-						location-in-interfacebuilder="341.0, 905.0"
-						width="87.0" height="111.0"
-						phony-path="main_game_layer/sprites/bottom/sprites/main_reset.png"  />
-				</sprite>
-				<sprite visible="true" comment="">
 					<position-name value="main_trees_bot" />
 					<anchorpoint value="0.5, 0.5" />
-					<position value="731.0, 284.0" />
-					<z-index value="5" />
+					<position value="731.0, 324.0" />
+					<z-index value="3" />
 					<image id="main_game_layer_bottom_main_trees_bot" 
-						location-in-interfacebuilder="24.0, 845.0"
+						location-in-interfacebuilder="24.0, 826.0"
 						width="720.0" height="268.0"
 						phony-path="main_game_layer/sprites/bottom/sprites/main_trees_bot.png"  />
-				</sprite>
-				<sprite visible="true" comment="">
-					<position-name value="infor_bg" />
-					<anchorpoint value="0.5, 0.5" />
-					<position value="1053.5, 443.0" />
-					<z-index value="13" />
-					<image id="main_game_layer_infor_bg_common_info_bg" 
-						location-in-interfacebuilder="669.0, 648.0"
-						width="75.0" height="344.0"
-						phony-path="home_layer/sprites/infor_bg/common_info_bg.png"  />
-					<sprites array="false" comment="create group of sprites">
-						<sprite visible="true" comment="">
-							<position-name value="common_hidden_story" />
-							<anchorpoint value="0.5, 0.5" />
-							<position value="37.0, 205.5" />
-							<z-index value="19" />
-							<image id="main_game_layer_infor_bg_common_hidden_story" 
-								location-in-interfacebuilder="688.0, 765.0"
-								width="36.0" height="43.0"
-								phony-path="home_layer/sprites/infor_bg/sprites/common_hidden_story.png"  />
-						</sprite>
-						<sprite visible="true" comment="">
-							<position-name value="common_leader_board" />
-							<anchorpoint value="0.5, 0.5" />
-							<position value="37.0, 300.5" />
-							<z-index value="20" />
-							<image id="main_game_layer_infor_bg_common_leader_board" 
-								location-in-interfacebuilder="682.0, 672.0"
-								width="48.0" height="39.0"
-								phony-path="home_layer/sprites/infor_bg/sprites/common_leader_board.png"  />
-						</sprite>
-						<sprite visible="true" comment="">
-							<position-name value="common_profile" />
-							<anchorpoint value="0.5, 0.5" />
-							<position value="37.5, 126.0" />
-							<z-index value="21" />
-							<image id="main_game_layer_infor_bg_common_profile" 
-								location-in-interfacebuilder="688.0, 845.0"
-								width="37.0" height="42.0"
-								phony-path="home_layer/sprites/infor_bg/sprites/common_profile.png"  />
-						</sprite>
-					</sprites>
-				</sprite>
-				<sprite visible="true" comment="">
-					<position-name value="settings_bg" />
-					<anchorpoint value="0.5, 0.5" />
-					<position value="408.5, 443.0" />
-					<z-index value="14" />
-					<image id="main_game_layer_settings_bg_common_settings_bg" 
-						location-in-interfacebuilder="24.0, 648.0"
-						width="75.0" height="344.0"
-						phony-path="home_layer/sprites/settings_bg/common_settings_bg.png"  />
-					<sprites array="false" comment="create group of sprites">
-						<sprite visible="true" comment="">
-							<position-name value="common_music" />
-							<anchorpoint value="0.5, 0.5" />
-							<position value="35.5, 213.0" />
-							<z-index value="22" />
-							<image id="main_game_layer_settings_bg_common_music" 
-								location-in-interfacebuilder="40.0, 755.0"
-								width="39.0" height="48.0"
-								phony-path="home_layer/sprites/settings_bg/sprites/common_music.png"  />
-						</sprite>
-						<sprite visible="true" comment="">
-							<position-name value="common_setting" />
-							<anchorpoint value="0.5, 0.5" />
-							<position value="35.5, 122.5" />
-							<z-index value="23" />
-							<image id="main_game_layer_settings_bg_common_setting" 
-								location-in-interfacebuilder="35.0, 845.0"
-								width="49.0" height="49.0"
-								phony-path="home_layer/sprites/settings_bg/sprites/common_setting.png"  />
-						</sprite>
-						<sprite visible="true" comment="">
-							<position-name value="common_sound" />
-							<anchorpoint value="0.5, 0.5" />
-							<position value="35.5, 299.5" />
-							<z-index value="24" />
-							<image id="main_game_layer_settings_bg_common_sound" 
-								location-in-interfacebuilder="37.0, 672.0"
-								width="45.0" height="41.0"
-								phony-path="home_layer/sprites/settings_bg/sprites/common_sound.png"  />
-						</sprite>
-					</sprites>
 				</sprite>
 			</sprites>
 		</sprite>
 		<sprite visible="true" comment="">
+			<position-name value="common_info" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="695.0, 85.5" />
+			<position-type value="relative" />
+			<margin bottom="85.5" />
+			<z-index value="13" />
+			<image id="main_game_layer_common_info" 
+				location-in-interfacebuilder="652.0, 895.0"
+				width="86.0" height="87.0"
+				phony-path="home_layer/sprites/common_info.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="common_info_text" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="43.5, -13.5" />
+					<z-index value="14" />
+					<image id="main_game_layer_common_info_text" 
+						location-in-interfacebuilder="670.0, 986.0"
+						width="51.0" height="19.0"
+						phony-path="home_layer/sprites/common_info_text.png"  />
+				</sprite>
+			</sprites>
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="common_settings" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="72.0, 85.5" />
+			<position-type value="relative" />
+			<margin bottom="85.5" />
+			<z-index value="16" />
+			<image id="main_game_layer_common_settings" 
+				location-in-interfacebuilder="30.0, 895.0"
+				width="84.0" height="87.0"
+				phony-path="home_layer/sprites/common_settings.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="common_setting_text" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="42.5, -13.5" />
+					<z-index value="15" />
+					<image id="main_game_layer_common_setting_text" 
+						location-in-interfacebuilder="30.0, 986.0"
+						width="85.0" height="19.0"
+						phony-path="home_layer/sprites/common_setting_text.png"  />
+				</sprite>
+			</sprites>
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="main_reset" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="385.5, 74.5" />
+			<position-type value="relative" />
+			<margin bottom="74.5" />
+			<z-index value="6" />
+			<image id="main_game_layer_bottom_main_reset" 
+				location-in-interfacebuilder="342.0, 894.0"
+				width="87.0" height="111.0"
+				phony-path="main_game_layer/sprites/bottom/sprites/main_reset.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="infor_bg" />
+			<anchorpoint value="0.5, 0.0" />
+			<position value="695.5, 50.0" />
+			<position-type value="relative" />
+			<margin bottom="50.0" />
+			<z-index value="11" />
+			<image id="main_game_layer_infor_bg_common_info_bg" 
+				location-in-interfacebuilder="658.0, 630.0"
+				width="75.0" height="344.0"
+				phony-path="home_layer/sprites/infor_bg/common_info_bg.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="common_hidden_story" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="37.0, 215.5" />
+					<z-index value="20" />
+					<image id="main_game_layer_infor_bg_common_hidden_story" 
+						location-in-interfacebuilder="677.0, 737.0"
+						width="36.0" height="43.0"
+						phony-path="home_layer/sprites/infor_bg/sprites/common_hidden_story.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="common_leader_board" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="37.0, 305.5" />
+					<z-index value="21" />
+					<image id="main_game_layer_infor_bg_common_leader_board" 
+						location-in-interfacebuilder="671.0, 649.0"
+						width="48.0" height="39.0"
+						phony-path="home_layer/sprites/infor_bg/sprites/common_leader_board.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="common_profile" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="37.5, 126.0" />
+					<z-index value="22" />
+					<image id="main_game_layer_infor_bg_common_profile" 
+						location-in-interfacebuilder="677.0, 827.0"
+						width="37.0" height="42.0"
+						phony-path="home_layer/sprites/infor_bg/sprites/common_profile.png"  />
+				</sprite>
+			</sprites>
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="settings_bg" />
+			<anchorpoint value="0.5, 0.0" />
+			<position value="72.5, 50.0" />
+			<position-type value="relative" />
+			<margin bottom="50.0" />
+			<z-index value="12" />
+			<image id="main_game_layer_settings_bg_common_settings_bg" 
+				location-in-interfacebuilder="35.0, 630.0"
+				width="75.0" height="344.0"
+				phony-path="home_layer/sprites/settings_bg/common_settings_bg.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="common_music" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="37.5, 218.0" />
+					<z-index value="17" />
+					<image id="main_game_layer_settings_bg_common_music" 
+						location-in-interfacebuilder="53.0, 732.0"
+						width="39.0" height="48.0"
+						phony-path="home_layer/sprites/settings_bg/sprites/common_music.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="common_setting" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="37.5, 129.5" />
+					<z-index value="18" />
+					<image id="main_game_layer_settings_bg_common_setting" 
+						location-in-interfacebuilder="48.0, 820.0"
+						width="49.0" height="49.0"
+						phony-path="home_layer/sprites/settings_bg/sprites/common_setting.png"  />
+				</sprite>
+				<sprite visible="true" comment="">
+					<position-name value="common_sound" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="37.5, 304.5" />
+					<z-index value="19" />
+					<image id="main_game_layer_settings_bg_common_sound" 
+						location-in-interfacebuilder="50.0, 649.0"
+						width="45.0" height="41.0"
+						phony-path="home_layer/sprites/settings_bg/sprites/common_sound.png"  />
+				</sprite>
+			</sprites>
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="heart_container" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="266.5, 976.5" />
+			<position-type value="relative" />
+			<margin top="47.5" />
+			<z-index value="7" />
+			<image id="main_game_layer_top_heart_container_main_life" 
+				location-in-interfacebuilder="155.0, 19.0"
+				width="223.0" height="57.0"
+				phony-path="main_game_layer/sprites/top/sprites/heart_container/main_life.png"  />
+			<sprites array="false" comment="create group of sprites">
+				<sprite visible="true" comment="">
+					<position-name value="main_heart" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="97.0, 26.5" />
+					<z-index value="8" />
+					<image id="main_game_layer_top_heart_container_main_heart" 
+						location-in-interfacebuilder="238.0, 36.0"
+						width="28.0" height="27.0"
+						phony-path="main_game_layer/sprites/top/sprites/heart_container/sprites/main_heart.png"  />
+				</sprite>
+			</sprites>
+			<labels array="false" comment="create group of labels">
+				<label visible="true" comment="">
+					<text value="lifes (+4)" />
+					<font name="HelveticaNeue" family="Helvetica Neue" />
+					<font-color red="255" green="255" blue="255" alpha="255" />
+					<font-size value="11.0" />
+					<position-name value="lifes" />
+					<anchorpoint value="0.0, 0.5" />
+					<position value="78.0, 55.5" />
+					<location-in-interfacebuilder value="233.0, 15.0" />
+					<z-index value="23" />
+				</label>
+				<label visible="true" comment="">
+					<text value="04:59" />
+					<font name="HelveticaNeue" family="Helvetica Neue" />
+					<font-color red="255" green="255" blue="255" alpha="255" />
+					<font-size value="11.0" />
+					<position-name value="bonus_time" />
+					<anchorpoint value="0.5, 0.5" />
+					<position value="163.0, 55.5" />
+					<location-in-interfacebuilder value="304.0, 15.0" />
+					<z-index value="24" />
+				</label>
+			</labels>
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="main_back" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="58.5, 976.5" />
+			<position-type value="relative" />
+			<margin top="47.5" />
+			<z-index value="28" />
+			<image id="main_game_layer_top_main_back" 
+				location-in-interfacebuilder="30.0, 19.0"
+				width="57.0" height="57.0"
+				phony-path="main_game_layer/sprites/top/sprites/main_back.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="main_taps" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="685.5, 976.5" />
+			<position-type value="relative" />
+			<margin top="47.5" />
+			<z-index value="9" />
+			<image id="main_game_layer_top_main_taps" 
+				location-in-interfacebuilder="633.0, 18.0"
+				width="105.0" height="59.0"
+				phony-path="main_game_layer/sprites/top/sprites/main_taps.png"  />
+			<labels array="false" comment="create group of labels">
+				<label visible="true" comment="">
+					<text value="50" />
+					<font name="HelveticaNeue" family="Helvetica Neue" />
+					<font-color red="255" green="255" blue="255" alpha="255" />
+					<font-size value="15.0" />
+					<position-name value="taps" />
+					<anchorpoint value="0.0, 0.5" />
+					<position value="59.0, 14.5" />
+					<location-in-interfacebuilder value="692.0, 55.0" />
+					<z-index value="25" />
+				</label>
+			</labels>
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="main_time" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="507.0, 972.5" />
+			<position-type value="relative" />
+			<margin top="51.5" />
+			<z-index value="10" />
+			<image id="main_game_layer_top_main_time" 
+				location-in-interfacebuilder="453.0, 21.0"
+				width="108.0" height="61.0"
+				phony-path="main_game_layer/sprites/top/sprites/main_time.png"  />
+			<labels array="false" comment="create group of labels">
+				<label visible="true" comment="">
+					<text value="60" />
+					<font name="HelveticaNeue" family="Helvetica Neue" />
+					<font-color red="255" green="255" blue="255" alpha="255" />
+					<font-size value="15.0" />
+					<position-name value="play_time" />
+					<anchorpoint value="0.0, 0.5" />
+					<position value="64.0, 19.5" />
+					<location-in-interfacebuilder value="517.0, 55.0" />
+					<z-index value="26" />
+				</label>
+			</labels>
+		</sprite>
+		<sprite visible="true" comment="">
 			<position-name value="top" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="389.0, 1101.5" />
+			<position value="385.0, 1070.5" />
 			<position-type value="relative" />
-			<margin top="-77.5" />
+			<margin top="-46.5" />
 			<z-index value="1" />
 			<image id="main_game_layer_top_main_top_bg" 
-				location-in-interfacebuilder="-96.0, -392.0"
+				location-in-interfacebuilder="-100.0, -361.0"
 				width="970.0" height="629.0"
 				phony-path="main_game_layer/sprites/top/main_top_bg.png"  />
 			<sprites array="false" comment="create group of sprites">
 				<sprite visible="true" comment="">
-					<position-name value="heart_container" />
-					<anchorpoint value="0.5, 0.5" />
-					<position value="363.5, 192.5" />
-					<z-index value="8" />
-					<image id="main_game_layer_top_heart_container_main_life" 
-						location-in-interfacebuilder="156.0, 16.0"
-						width="223.0" height="57.0"
-						phony-path="main_game_layer/sprites/top/sprites/heart_container/main_life.png"  />
-					<sprites array="false" comment="create group of sprites">
-						<sprite visible="true" comment="">
-							<position-name value="main_heart" />
-							<anchorpoint value="0.5, 0.5" />
-							<position value="97.0, 26.5" />
-							<z-index value="9" />
-							<image id="main_game_layer_top_heart_container_main_heart" 
-								location-in-interfacebuilder="239.0, 33.0"
-								width="28.0" height="27.0"
-								phony-path="main_game_layer/sprites/top/sprites/heart_container/sprites/main_heart.png"  />
-						</sprite>
-						<sprite visible="true" comment="">
-							<position-name value="main_heart_blank" />
-							<anchorpoint value="0.5, 0.5" />
-							<position value="122.0, 26.5" />
-							<z-index value="12" />
-							<image id="main_game_layer_top_heart_container_main_heart_blank" 
-								location-in-interfacebuilder="267.0, 37.0"
-								width="22.0" height="19.0"
-								phony-path="main_game_layer/sprites/top/sprites/heart_container/sprites/main_heart_blank.png"  />
-						</sprite>
-					</sprites>
-					<labels array="false" comment="create group of labels">
-						<label visible="true" comment="">
-							<text value="lifes (+4)" />
-							<font name="HelveticaNeue" family="Helvetica Neue" />
-							<font-color red="255" green="255" blue="255" alpha="255" />
-							<font-size value="15.0" />
-							<position-name value="lifes" />
-							<anchorpoint value="0.0, 0.5" />
-							<position value="66.0, 55.5" />
-							<location-in-interfacebuilder value="222.0, 10.0" />
-							<z-index value="25" />
-						</label>
-						<label visible="true" comment="">
-							<text value="04:59" />
-							<font name="HelveticaNeue" family="Helvetica Neue" />
-							<font-color red="255" green="255" blue="255" alpha="255" />
-							<font-size value="15.0" />
-							<position-name value="bonus_time" />
-							<anchorpoint value="0.5, 0.5" />
-							<position value="177.0, 55.5" />
-							<location-in-interfacebuilder value="314.0, 10.0" />
-							<z-index value="26" />
-						</label>
-					</labels>
-				</sprite>
-				<sprite visible="true" comment="">
-					<position-name value="main_back" />
-					<anchorpoint value="0.5, 0.5" />
-					<position value="165.5, 197.5" />
-					<z-index value="6" />
-					<image id="main_game_layer_top_main_back" 
-						location-in-interfacebuilder="41.0, 11.0"
-						width="57.0" height="57.0"
-						phony-path="main_game_layer/sprites/top/sprites/main_back.png"  />
-				</sprite>
-				<sprite visible="true" comment="">
-					<position-name value="main_taps" />
-					<anchorpoint value="0.5, 0.5" />
-					<position value="773.5, 197.5" />
-					<z-index value="10" />
-					<image id="main_game_layer_top_main_taps" 
-						location-in-interfacebuilder="625.0, 10.0"
-						width="105.0" height="59.0"
-						phony-path="main_game_layer/sprites/top/sprites/main_taps.png"  />
-				</sprite>
-				<sprite visible="true" comment="">
-					<position-name value="main_time" />
-					<anchorpoint value="0.5, 0.5" />
-					<position value="608.0, 194.5" />
-					<z-index value="11" />
-					<image id="main_game_layer_top_main_time" 
-						location-in-interfacebuilder="458.0, 12.0"
-						width="108.0" height="61.0"
-						phony-path="main_game_layer/sprites/top/sprites/main_time.png"  />
-				</sprite>
-				<sprite visible="true" comment="">
 					<position-name value="main_trees_top1" />
 					<anchorpoint value="0.5, 0.5" />
-					<position value="135.5, 156.5" />
-					<z-index value="3" />
+					<position value="131.5, 199.5" />
+					<z-index value="4" />
 					<image id="main_game_layer_top_main_trees_top1" 
-						location-in-interfacebuilder="-23.0, -24.0"
+						location-in-interfacebuilder="-31.0, -36.0"
 						width="125.0" height="209.0"
 						phony-path="main_game_layer/sprites/top/sprites/main_trees_top1.png"  />
 				</sprite>
 				<sprite visible="true" comment="">
 					<position-name value="main_trees_top2" />
 					<anchorpoint value="0.5, 0.5" />
-					<position value="816.5, 168.5" />
-					<z-index value="4" />
+					<position value="831.5, 199.5" />
+					<z-index value="5" />
 					<image id="main_game_layer_top_main_trees_top2" 
-						location-in-interfacebuilder="658.0, -36.0"
+						location-in-interfacebuilder="669.0, -36.0"
 						width="125.0" height="209.0"
 						phony-path="main_game_layer/sprites/top/sprites/main_trees_top2.png"  />
 				</sprite>
 			</sprites>
-			<labels array="false" comment="create group of labels">
-				<label visible="true" comment="">
-					<text value="60" />
-					<font name="HelveticaNeue" family="Helvetica Neue" />
-					<font-color red="255" green="255" blue="255" alpha="255" />
-					<font-size value="24.0" />
-					<position-name value="play_time" />
-					<anchorpoint value="0.0, 0.5" />
-					<position value="615.0, 185.0" />
-					<location-in-interfacebuilder value="519.0, 40.0" />
-					<z-index value="27" />
-				</label>
-				<label visible="true" comment="">
-					<text value="50" />
-					<font name="HelveticaNeue" family="Helvetica Neue" />
-					<font-color red="255" green="255" blue="255" alpha="255" />
-					<font-size value="24.0" />
-					<position-name value="taps" />
-					<anchorpoint value="0.0, 0.5" />
-					<position value="778.0, 184.0" />
-					<location-in-interfacebuilder value="682.0, 41.0" />
-					<z-index value="28" />
-				</label>
-			</labels>
 		</sprite>
 	</sprites>
 	<labels array="false" comment="create group of labels">
@@ -335,9 +349,9 @@
 			<font-size value="24.0" />
 			<position-name value="text" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="389.0, 851.0" />
-			<location-in-interfacebuilder value="281.0, 161.0" />
-			<z-index value="29" />
+			<position value="385.0, 748.0" />
+			<location-in-interfacebuilder value="277.0, 264.0" />
+			<z-index value="27" />
 		</label>
 	</labels>
 	<resource comment="resource for view">

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="FinishPopup" prefix="popup_finish" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" 
+		size="475.0, 291.0" size-by="background"
+		template-name="Common"
+		exported="true"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="finish_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Skype/Release_2/PNG/Popup/finish_popup" />
+	<images-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/screenshots/iphone4" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Wireframing/WireframingScreen/iphone4" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/proj.android/res/layout/iphone4" />
+	<class-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/View/Popup" />
+	<background-image id="all_popup_background_all_bg" 
+		location-in-interfacebuilder="3.0, 14.0"
+		width="475.0" height="291.0"
+		phony-path="all_popup/background/all_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="action" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="237.5, 43.0" />
+			<z-index value="1" />
+			<image id="finish_popup_action_normal" 
+				location-in-interfacebuilder="173.0, 246.0"
+				width="135.0" height="32.0"
+				phony-path="all_popup/sprites/all_button_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="237.5, 253.0" />
+			<z-index value="2" />
+			<image id="finish_popup_header_normal" 
+				location-in-interfacebuilder="173.0, 36.0"
+				width="135.0" height="32.0"
+				phony-path="finish_popup/resource/text_youwon.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="Score:" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="24.0" />
+			<position-name value="text_1" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="113.0, 189.0" />
+			<location-in-interfacebuilder value="116.0, 104.0" />
+			<z-index value="6" />
+		</label>
+		<label visible="true" comment="">
+			<text value="9,453" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="value_1" />
+			<anchorpoint value="1.0, 0.5" />
+			<position value="362.0, 193.5" />
+			<location-in-interfacebuilder value="327.0, 104.0" />
+			<z-index value="3" />
+		</label>
+		<label visible="true" comment="">
+			<text value="Best Score:" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="24.0" />
+			<position-name value="text_2" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="113.0, 145.0" />
+			<location-in-interfacebuilder value="116.0, 148.0" />
+			<z-index value="4" />
+		</label>
+		<label visible="true" comment="">
+			<text value="10,444" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="15.0" />
+			<position-name value="value_2" />
+			<anchorpoint value="1.0, 0.5" />
+			<position value="362.0, 143.5" />
+			<location-in-interfacebuilder value="320.0, 154.0" />
+			<z-index value="5" />
+		</label>
+	</labels>
+	<resource comment="resource for view">
+		<image id="finish_popup_resource_help_bg" 
+			phony-path="finish_popup/resource/help_bg.png"  />
+		<image id="finish_popup_resource_text_gameover" 
+			phony-path="finish_popup/resource/text_gameover.png"  />
+		<image id="finish_popup_resource_text_victorious" 
+			phony-path="finish_popup/resource/text_victorious.png"  />
+		<image id="finish_popup_resource_text_youwon" 
+			phony-path="finish_popup/resource/text_youwon.png"  />
+	</resource>
+</view>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="OverLayer" prefix="layer_over" type="layer" exitable="false" 
+		super="CommonLayer" background-name="this" 
+		size="512.0, 325.0" size-by="background"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="over_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/projects/spring-eggs/SpringEggs/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/projects/spring-eggs/SpringEggs/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/unlimited_all_cut/unlimited_gameover_cut/over_layer" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/projects/spring-eggs/SpringEggs/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/projects/spring-eggs/SpringEggs/Resources/screenshots/ipadhd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Wireframing/WireframingScreen/iphone5" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/proj.android/res/layout/iphone5" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/projects/spring-eggs/SpringEggs/Classes/View/Layer" />
+	<background-image id="over_layer_background_over_box" 
+		location-in-interfacebuilder="32.0, 131.0"
+		width="512.0" height="325.0"
+		phony-path="over_box.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="medal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="384.5, 162.5" />
+			<z-index value="1" />
+			<image id="over_layer_medal" 
+				location-in-interfacebuilder="362.0, 223.0"
+				width="109.0" height="141.0"
+				phony-path="egg_bronze.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="30" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="41" green="70" blue="166" alpha="255" />
+			<font-size value="16.0" />
+			<position-name value="score" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="127.0, 225.0" />
+			<location-in-interfacebuilder value="151.0, 223.0" />
+			<z-index value="2" />
+		</label>
+		<label visible="true" comment="">
+			<text value="60" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="41" green="70" blue="166" alpha="255" />
+			<font-size value="16.0" />
+			<position-name value="best_score" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="127.0, 115.0" />
+			<location-in-interfacebuilder value="151.0, 333.0" />
+			<z-index value="3" />
+		</label>
+	</labels>
+</view>

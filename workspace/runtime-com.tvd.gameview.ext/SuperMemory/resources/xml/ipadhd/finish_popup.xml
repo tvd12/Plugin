@@ -3,7 +3,7 @@
 		super="PopupLayer" background-name="default" 
 		size="510.0, 507.0" size-by="background"
 		template-name="Common"
-		exported="true"
+		exported="false"
 		comment=""
 		xmlns="http://www.tvd.com/tools"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -37,10 +37,10 @@
 		<sprite visible="true" comment="">
 			<position-name value="popup_common_dashed" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="255.0, 253.0" />
+			<position value="255.0, 281.0" />
 			<z-index value="10" />
 			<image id="finish_popup_popup_common_dashed" 
-				location-in-interfacebuilder="184.0, 526.0"
+				location-in-interfacebuilder="184.0, 498.0"
 				width="400.0" height="4.0"
 				phony-path="setting_popup/sprites/popup_common_dashed.png"  />
 		</sprite>
@@ -67,11 +67,11 @@
 		<sprite visible="true" comment="">
 			<position-name value="finish_best_score_text" />
 			<anchorpoint value="0.0, 0.5" />
-			<position value="63.0, 202.0" />
+			<position value="63.0, 232.5" />
 			<z-index value="3" />
 			<image id="finish_popup_finish_best_score_text" 
-				location-in-interfacebuilder="192.0, 565.0"
-				width="177.0" height="28.0"
+				location-in-interfacebuilder="192.0, 534.0"
+				width="137.0" height="29.0"
 				phony-path="finish_popup/sprites/finish_best_score_text.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
@@ -87,50 +87,50 @@
 		<sprite visible="true" comment="">
 			<position-name value="finish_score_text" />
 			<anchorpoint value="0.0, 0.5" />
-			<position value="63.0, 311.5" />
+			<position value="63.0, 330.5" />
 			<z-index value="5" />
 			<image id="finish_popup_finish_score_text" 
-				location-in-interfacebuilder="192.0, 456.0"
+				location-in-interfacebuilder="192.0, 437.0"
 				width="74.0" height="27.0"
 				phony-path="finish_popup/sprites/finish_score_text.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="finish_share_facebook" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="255.0, 109.5" />
+			<position value="255.0, 93.5" />
 			<z-index value="12" />
 			<image id="finish_popup_finish_share_facebook" 
-				location-in-interfacebuilder="224.0, 640.0"
+				location-in-interfacebuilder="224.0, 656.0"
 				width="320.0" height="63.0"
 				phony-path="finish_popup/sprites/finish_share_facebook.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="finish_star_1" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="136.0, 399.5" />
+			<position value="135.0, 399.5" />
 			<z-index value="6" />
 			<image id="finish_popup_finish_star_1" 
-				location-in-interfacebuilder="231.0, 347.0"
+				location-in-interfacebuilder="230.0, 347.0"
 				width="68.0" height="69.0"
 				phony-path="finish_popup/sprites/finish_star_1.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="finish_star_2" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="258.5, 415.5" />
+			<position value="255.5, 415.5" />
 			<z-index value="7" />
 			<image id="finish_popup_finish_star_2" 
-				location-in-interfacebuilder="344.0, 324.0"
+				location-in-interfacebuilder="341.0, 324.0"
 				width="87.0" height="83.0"
 				phony-path="finish_popup/sprites/finish_star_2.png"  />
 		</sprite>
 		<sprite visible="true" comment="">
 			<position-name value="finish_star_3" />
 			<anchorpoint value="0.5, 0.5" />
-			<position value="382.0, 399.5" />
+			<position value="381.0, 399.5" />
 			<z-index value="8" />
 			<image id="finish_popup_finish_star_3" 
-				location-in-interfacebuilder="477.0, 347.0"
+				location-in-interfacebuilder="476.0, 347.0"
 				width="68.0" height="69.0"
 				phony-path="finish_popup/sprites/finish_star_3.png"  />
 		</sprite>
@@ -144,8 +144,29 @@
 				width="178.0" height="40.0"
 				phony-path="finish_popup/sprites/finish_you_win_text.png"  />
 		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="finish_heart" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="269.5, 176.5" />
+			<z-index value="15" />
+			<image id="finish_popup_finish_heart" 
+				location-in-interfacebuilder="369.0, 578.0"
+				width="59.0" height="53.0"
+				phony-path="finish_popup/sprites/finish_heart.png"  />
+		</sprite>
 	</sprites>
 	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="+5" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="20.0" />
+			<position-name value="heart_value" />
+			<anchorpoint value="1.0, 0.5" />
+			<position value="232.0, 176.0" />
+			<location-in-interfacebuilder value="341.0, 595.0" />
+			<z-index value="16" />
+		</label>
 		<label visible="true" comment="">
 			<text value="3500" />
 			<font name="HelveticaNeue" family="Helvetica Neue" />
@@ -153,9 +174,9 @@
 			<font-size value="24.0" />
 			<position-name value="score" />
 			<anchorpoint value="0.0, 0.5" />
-			<position value="347.0, 308.0" />
-			<location-in-interfacebuilder value="476.0, 463.0" />
-			<z-index value="14" />
+			<position value="347.0, 325.0" />
+			<location-in-interfacebuilder value="476.0, 444.0" />
+			<z-index value="13" />
 		</label>
 		<label visible="true" comment="">
 			<text value="4321" />
@@ -164,9 +185,9 @@
 			<font-size value="24.0" />
 			<position-name value="best_score" />
 			<anchorpoint value="0.0, 0.5" />
-			<position value="347.0, 198.5" />
-			<location-in-interfacebuilder value="476.0, 572.0" />
-			<z-index value="13" />
+			<position value="347.0, 228.0" />
+			<location-in-interfacebuilder value="476.0, 541.0" />
+			<z-index value="14" />
 		</label>
 	</labels>
 	<resource comment="resource for view">

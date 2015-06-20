@@ -331,6 +331,8 @@
 				<xs:element ref="position-name" maxOccurs="1" minOccurs="1" />
 				<xs:element ref="anchorpoint" maxOccurs="1" minOccurs="0" />
 				<xs:element ref="position" maxOccurs="1" minOccurs="1" />
+				<xs:element ref="position-type" maxOccurs="1" minOccurs="0" />
+				<xs:element ref="margin" maxOccurs="1" minOccurs="0" />
 				<xs:element ref="location-in-interfacebuilder" maxOccurs="1" minOccurs="1" />
 				<xs:element ref="z-index" maxOccurs="1" minOccurs="0" />
 			</xs:sequence>

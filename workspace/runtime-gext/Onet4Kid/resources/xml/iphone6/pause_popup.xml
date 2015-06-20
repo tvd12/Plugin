@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="PausePopup" prefix="popup_pause" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" 
+		size="338.0, 269.0" size-by="background"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="pause_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Skype/PNG/popup/pause_popup" />
+	<images-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/screenshots/iphone6" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Wireframing/WireframingScreen/iphone4" />
+	<androidcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/proj.android/res/layout/iphone4" />
+	<class-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/View/Popup" />
+	<background-image id="pause_popup_background" 
+		location-in-interfacebuilder="18.0, 199.0"
+		width="338.0" height="269.0"
+		phony-path="common_popup.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="pause_header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="169.0, 279.0" />
+			<z-index value="1" />
+			<image id="pause_popup_pause_header" 
+				location-in-interfacebuilder="47.0, 159.0"
+				width="280.0" height="60.0"
+				phony-path="pause_popup/sprites/pause_header.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="pause_play_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="266.5, 16.0" />
+			<z-index value="3" />
+			<image id="pause_popup_pause_play_normal" 
+				location-in-interfacebuilder="250.0, 422.0"
+				width="69.0" height="60.0"
+				phony-path="pause_popup/sprites/pause_play_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="pause_replay_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="72.5, 16.0" />
+			<z-index value="2" />
+			<image id="pause_popup_pause_replay_normal" 
+				location-in-interfacebuilder="56.0, 422.0"
+				width="69.0" height="60.0"
+				phony-path="pause_popup/sprites/pause_replay_normal.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="Best Score" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="24.0" />
+			<position-name value="best_score_text" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="169.0, 173.0" />
+			<location-in-interfacebuilder value="127.0, 283.0" />
+			<z-index value="4" />
+		</label>
+		<label visible="true" comment="">
+			<text value="12,345,678" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="24.0" />
+			<position-name value="best_score_value" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="169.0, 104.0" />
+			<location-in-interfacebuilder value="127.0, 352.0" />
+			<z-index value="5" />
+		</label>
+	</labels>
+	<resource comment="resource for view">
+		<image id="pause_popup_resource_pause_play_active" 
+			phony-path="pause_popup/resource/pause_play_active.png"  />
+		<image id="pause_popup_resource_pause_replay_active" 
+			phony-path="pause_popup/resource/pause_replay_active.png"  />
+	</resource>
+</view>

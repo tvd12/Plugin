@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="SnowLayer" prefix="layer_snow" type="layer" exitable="false" 
+		super="CommonLayer" background-name="default" 
+		size="768.0, 1136.0" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="snow_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/Other/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Images/super-memory/main/snow_layer" />
+	<images-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/ipadsd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Resources/screenshots/ipadsd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Wireframing/WireframingScreen/ipadsd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/proj.android/res/layout/ipadsd" />
+	<class-path value="/Volumes/DATA/Working/Bitbucket/supernatural-memory/v2/SuperMemory/Classes/View/Layer" />
+	<background-image id="snow_layer_background_snow_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="768.0" height="1136.0"
+		phony-path="snow_layer/background/snow_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="snow_bot_bg" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="snow_layer_snow_bot_bg" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="768.0" height="189.5"
+				phony-path="snow_layer/sprites/snow_bot_bg.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="snow_top_bg" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="snow_layer_snow_top_bg" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="768.0" height="219.5"
+				phony-path="snow_layer/sprites/snow_top_bg.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="snow_trees_bot" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="snow_layer_snow_trees_bot" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="873.0" height="248.5"
+				phony-path="snow_layer/sprites/snow_trees_bot.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="snow_trees_top1" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="snow_layer_snow_trees_top1" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="194.0" height="199.5"
+				phony-path="snow_layer/sprites/snow_trees_top1.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="snow_trees_top2" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="snow_layer_snow_trees_top2" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="194.0" height="199.5"
+				phony-path="snow_layer/sprites/snow_trees_top2.png"  />
+		</sprite>
+	</sprites>
+	<resource comment="resource for view">
+		<image id="snow_layer_resource_snow_square_active" 
+			phony-path="snow_layer/resource/snow_square_active.png"  />
+		<image id="snow_layer_resource_snow_square_normal" 
+			phony-path="snow_layer/resource/snow_square_normal.png"  />
+	</resource>
+</view>

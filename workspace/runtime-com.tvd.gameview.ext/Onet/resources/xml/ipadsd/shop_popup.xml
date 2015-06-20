@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="ShopPopup" prefix="popup_shop" type="popup" exitable="false" 
+		super="PopupLayer" background-name="mBackgroundSprite" 
+		size="453.0, 259.0" size-by="background"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="shop_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Desktop/temp/name_popup" />
+	<images-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/common" />
+	<xibcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Resources/screenshots/iphone6plus" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/Wireframing/WireframingScreen/iphone5" />
+	<androidcontainer-path value="/Volumes/DATA/Working/Pikachu/Onet/proj.android/res/layout/iphone5" />
+	<class-path value="/Volumes/DATA/Working/Pikachu/Onet/Classes/View/Popup" />
+	<background-image id="shop_popup_background_shop_bg" 
+		location-in-interfacebuilder="142.0, 77.0"
+		width="453.0" height="259.0"
+		phony-path="name_popup/background/name_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="cancel_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="291.5, 85.5" />
+			<z-index value="1" />
+			<image id="shop_popup_cancel_normal" 
+				location-in-interfacebuilder="381.0, 226.0"
+				width="105.0" height="49.0"
+				phony-path="shop_popup/sprites/shop_cancel_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="buy_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="160.5, 85.5" />
+			<z-index value="2" />
+			<image id="shop_popup_buy_normal" 
+				location-in-interfacebuilder="250.0, 226.0"
+				width="105.0" height="49.0"
+				phony-path="invite_popup/sprites/iv_close_normal.png"  />
+		</sprite>
+	</sprites>
+	<labels array="false" comment="create group of labels">
+		<label visible="true" comment="">
+			<text value="REMOVE ADS" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="24.0" />
+			<position-name value="header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="226.0, 240.0" />
+			<location-in-interfacebuilder value="308.0, 84.0" />
+			<z-index value="3" />
+		</label>
+		<label visible="true" comment="">
+			<text value="Do you want remove ads?" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="21.0" />
+			<position-name value="text" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="105.0, 191.5" />
+			<location-in-interfacebuilder value="247.0, 134.0" />
+			<z-index value="6" />
+		</label>
+		<label visible="true" comment="">
+			<text value="$1.99 USD" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="22.0" />
+			<position-name value="money" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="177.0, 150.0" />
+			<location-in-interfacebuilder value="319.0, 175.0" />
+			<z-index value="4" />
+		</label>
+		<label visible="true" comment="">
+			<text value="Restore Purchase" />
+			<font name="HelveticaNeue" family="Helvetica Neue" />
+			<font-color red="255" green="255" blue="255" alpha="255" />
+			<font-size value="20.0" />
+			<position-name value="restore" />
+			<anchorpoint value="0.0, 0.5" />
+			<position value="146.0, 38.0" />
+			<location-in-interfacebuilder value="288.0, 288.0" />
+			<z-index value="5" />
+		</label>
+	</labels>
+	<resource comment="resource for view">
+		<image id="shop_popup_cancel_active" 
+			phony-path="shop_popup/resource/shop_cancel_active.png"  />
+	</resource>
+</view>

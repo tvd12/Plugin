@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="SettingPopup" prefix="popup_setting" type="popup" exitable="false" 
+		super="PopupLayer" background-name="default" 
+		size="243.76321, 193.6575" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="setting_popup" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Skype/PNG/popup/setting_popup" />
+	<images-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/iphonesd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/screenshots/iphonesd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Wireframing/WireframingScreen/iphonesd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/proj.android/res/layout/iphonesd" />
+	<class-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/View/Popup" />
+	<background-image id="setting_popup_background_common_popup" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="243.76321" height="193.6575"
+		phony-path="setting_popup/background/common_popup.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="setting_close_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="setting_popup_setting_close_normal" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="91.12051" height="42.07188"
+				phony-path="setting_popup/sprites/setting_close_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="setting_header" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="setting_popup_setting_header" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="144.39746" height="39.957718"
+				phony-path="setting_popup/sprites/setting_header.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="setting_music_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="setting_popup_setting_music_normal" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="49.47146" height="43.128963"
+				phony-path="setting_popup/sprites/setting_music_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="setting_sound_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="setting_popup_setting_sound_normal" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="49.47146" height="43.128963"
+				phony-path="setting_popup/sprites/setting_sound_normal.png"  />
+		</sprite>
+	</sprites>
+	<resource comment="resource for view">
+		<image id="setting_popup_resource_setting_close_active" 
+			phony-path="setting_popup/resource/setting_close_active.png"  />
+		<image id="setting_popup_resource_setting_music_active" 
+			phony-path="setting_popup/resource/setting_music_active.png"  />
+		<image id="setting_popup_resource_setting_sound_active" 
+			phony-path="setting_popup/resource/setting_sound_active.png"  />
+		<image id="setting_popup_resource_setting_sound_off_active" 
+			phony-path="setting_popup/resource/setting_sound_off_active.png"  />
+		<image id="setting_popup_resource_setting_sound_off_normal" 
+			phony-path="setting_popup/resource/setting_sound_off_normal.png"  />
+	</resource>
+</view>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view class-name="LobbyLayer" prefix="layer_lobby" type="layer" exitable="false" 
+		super="CommonLayer" background-name="default" 
+		size="324.73572, 480.33826" size-by="self"
+		template-name="Common"
+		exported="false"
+		comment=""
+		xmlns="http://www.tvd.com/tools"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.tvd.com/tools ../xsd/view_2_0.xsd">
+	<position-name value="lobby_layer" />
+	<position value="default" />
+	<define-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/Defines" />
+	<parameters-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/Utils/GameParams" />
+	<images-inputpath value="/Users/dungtavan/Downloads/Skype/PNG/lobby_layer" />
+	<images-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/iphonesd" />
+	<xibcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Resources/screenshots/iphonesd" used="true" />
+	<screencontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Wireframing/WireframingScreen/iphonesd" />
+	<androidcontainer-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/proj.android/res/layout/iphonesd" />
+	<class-path value="/Volumes/DATA/Working/PikachuV2/OnetV2/Classes/View/Layer" />
+	<background-image id="lobby_layer_background_lobby_bg" 
+		location-in-interfacebuilder="10.0, 10.0"
+		width="324.73572" height="480.33826"
+		phony-path="lobby_layer/background/lobby_bg.png"  />
+
+	<sprites array="false" comment="create group of sprites">
+		<sprite visible="true" comment="">
+			<position-name value="lobby_help_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="lobby_layer_lobby_help_normal" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="49.47146" height="43.128963"
+				phony-path="lobby_layer/sprites/lobby_help_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="lobby_playnow_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="lobby_layer_lobby_playnow_normal" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="102.536995" height="88.79492"
+				phony-path="lobby_layer/sprites/lobby_playnow_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="lobby_setting_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="lobby_layer_lobby_setting_normal" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="49.47146" height="43.128963"
+				phony-path="lobby_layer/sprites/lobby_setting_normal.png"  />
+		</sprite>
+		<sprite visible="true" comment="">
+			<position-name value="lobby_shop_normal" />
+			<anchorpoint value="0.5, 0.5" />
+			<position value="50.0, 50.0" />
+			<z-index value="0" />
+			<image id="lobby_layer_lobby_shop_normal" 
+				location-in-interfacebuilder="10.0, 10.0"
+				width="49.47146" height="43.128963"
+				phony-path="lobby_layer/sprites/lobby_shop_normal.png"  />
+		</sprite>
+	</sprites>
+	<resource comment="resource for view">
+		<image id="lobby_layer_resource_lobby_help_active" 
+			phony-path="lobby_layer/resource/lobby_help_active.png"  />
+		<image id="lobby_layer_resource_lobby_playnow_active" 
+			phony-path="lobby_layer/resource/lobby_playnow_active.png"  />
+		<image id="lobby_layer_resource_lobby_setting_active" 
+			phony-path="lobby_layer/resource/lobby_setting_active.png"  />
+		<image id="lobby_layer_resource_lobby_shop_active" 
+			phony-path="lobby_layer/resource/lobby_shop_active.png"  />
+	</resource>
+</view>
